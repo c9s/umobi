@@ -1,0 +1,31 @@
+@mixin border-radius($radius: 10px)
+  border-radius: $radius
+  -webkit-border-radius: $radius
+  -o-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+
+@mixin text-shadow($shadow)
+  text-shadow: $shadow
+  -webkit-text-shadow: $shadow
+  -moz-text-shadow: $shadow
+  -ms-text-shadow: $shadow
+  -o-text-shadow: $shadow
+
+@mixin background-vertical-gradient($from,$to)
+  /* Older browser */
+  background: $from
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top,  $from 0%, $to 100%) 
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to))
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top,  $from 0%,$to 100%) 
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top,  $from 0%,$to 100%) 
+  /* IE10+ */
+  background: -ms-linear-gradient(top,  $from 0%,$to 100%)
+  /* W3C */
+  background: linear-gradient(to bottom,  $from 0%,$to 100%) 
+  /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$from}', endColorstr='#{$to}',GradientType=0 ) 

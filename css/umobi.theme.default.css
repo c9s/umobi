@@ -1,0 +1,19 @@
+/* basic layout system */
+.ui-hd,
+.ui-ft {
+  /* Older browser */
+  background: #cdeb8e;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdeb8e), color-stop(100%, #a5c956));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
+  /* IE10+ */
+  background: -ms-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #cdeb8e 0%, #a5c956 100%);
+  /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 ); }
