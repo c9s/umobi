@@ -1,5 +1,10 @@
-requirejs:
+
+
+all:
+	node node_modules/requirejs/bin/r.js -o js/build.js
+
+node_modules:
 	npm install requirejs
 
-all: requirejs
-	node node_modules/requirejs/bin/r.js
+deps: node_modules
+

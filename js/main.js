@@ -1,6 +1,6 @@
 require({
   paths: {
-    cs: 'js/external/coffee-script.js',
-    'coffee-script': 'js/external/coffee-script'
+    cs: 'cs',
+    'coffee-script': 'coffee-script'
   }
 }, ['cs!csmain']);
