@@ -10,3 +10,7 @@ x use require.js to define dependencies
 - basic styles for buttons, input, chooser, dialog, messages
 - bring the design of fast button (from google)
 
+- split view demo page
+- bottom navigator demo page (with buttons)
+- form widgets demo page
+
