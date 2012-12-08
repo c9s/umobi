@@ -5,10 +5,14 @@ uMobi: Micro Mobile Web Framework for Smartphones & Tablets.
 **working in progress**
 
 
-Target File size
-----------------
+Band Width for 3G devices
+-------------------------
 
+In real world,
 
+- Start up speed: 4KB ~ 8KB/s
+- Maximum speed: 696.32KB/s or 0.68MB/s
+- Average speed: 0.31MB/s
 
 File sizes
 ----------
