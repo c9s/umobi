@@ -1,5 +1,7 @@
 // require(["cs","coffee-script","jquery"],['cs!csmain']);
 require({
+  // baseUrl: '/js',
+  urlArgs: 'bust=' + (new Date()).getTime(),
   paths: {
     cs: 'cs',
     'coffee-script': 'coffee-script',

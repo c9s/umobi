@@ -1,3 +1,3 @@
 define () ->
-  alert('load umobi main')
+  console.log('load umobi main')
   return 1
