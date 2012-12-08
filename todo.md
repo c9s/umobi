@@ -9,5 +9,3 @@ todo
 - basic styles for buttons, input, chooser, dialog, messages
 - bring the design of fast button (from google)
 
-
-
