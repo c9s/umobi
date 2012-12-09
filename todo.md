@@ -13,4 +13,3 @@ x use require.js to define dependencies
 - split view demo page
 - bottom navigator demo page (with buttons)
 - form widgets demo page
-
