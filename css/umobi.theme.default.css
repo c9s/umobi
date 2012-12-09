@@ -20,3 +20,14 @@ body, p {
   background: linear-gradient(to bottom, #cdeb8e 0%, #a5c956 100%);
   /* IE6-9 */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 ); }
+
+body {
+  background: #eeeeee; }
+
+p {
+  color: #333333;
+  text-shadow: 1px 1px white;
+  -webkit-text-shadow: 1px 1px white;
+  -moz-text-shadow: 1px 1px white;
+  -ms-text-shadow: 1px 1px white;
+  -o-text-shadow: 1px 1px white; }
