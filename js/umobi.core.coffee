@@ -54,4 +54,6 @@ define () ->
     $pages.each ->
       $(this).trigger('pagecreate',[this])
       uMobi.initPageContainer(this)
+    $pages.hide()
+    $pages.first().show()
   return uMobi
