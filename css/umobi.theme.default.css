@@ -21,13 +21,31 @@ body, p {
   /* IE6-9 */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 ); }
 
+.ui-title {
+  min-height: 1.1em;
+  text-align: center;
+  display: block;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  outline: 0 !important;
+  color: black;
+  text-shadow: 1px 1px white; }
+
+.ui-content {
+  padding: 0; }
+
 body {
   background: #eeeeee; }
 
+h2 {
+  margin: 1.2em 0 0.4em 0; }
+
 p {
   color: #333333;
-  text-shadow: 1px 1px white;
-  -webkit-text-shadow: 1px 1px white;
-  -moz-text-shadow: 1px 1px white;
-  -ms-text-shadow: 1px 1px white;
-  -o-text-shadow: 1px 1px white; }
+  text-shadow: 0 1px white;
+  -webkit-text-shadow: 0 1px white;
+  -moz-text-shadow: 0 1px white;
+  -ms-text-shadow: 0 1px white;
+  -o-text-shadow: 0 1px white; }

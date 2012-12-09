@@ -15,6 +15,8 @@ define () ->
     $f = $el.find('[data-role="footer"]').addClass('ui-ft')  # footer container
     $c = $el.find('[data-role="content"]').addClass('ui-content') # content container
 
+    $h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title')
+
     isFixed = $h.data 'fixed' or $f.data 'fixed'
 
     headerHeight = $h.height()

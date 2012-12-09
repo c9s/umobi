@@ -10,12 +10,29 @@ body, p
 
 .ui-ft .ui-navbar
 
+
+.ui-title
+  min-height: 1.1em
+  text-align: center
+  display: block
+  padding: 0
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  outline: 0 !important
+  color: #000
+  text-shadow: 1px 1px #fff
+
 .ui-content
+  padding: 0
 
 body
   background: #eee
 
+h2
+  margin: 1.2em 0 .4em 0
+
 p
   color: #333
-  @include text-shadow(1px 1px #fff)
+  @include text-shadow(0 1px #fff)
 
