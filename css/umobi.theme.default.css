@@ -1,6 +1,20 @@
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 
+body {
+  background: #eeeeee; }
+
+h2 {
+  margin: 1.2em 0 0.4em 0; }
+
+p {
+  color: #333333;
+  text-shadow: 0 1px white;
+  -webkit-text-shadow: 0 1px white;
+  -moz-text-shadow: 0 1px white;
+  -ms-text-shadow: 0 1px white;
+  -o-text-shadow: 0 1px white; }
+
 /* basic layout system */
 .ui-hd,
 .ui-ft {
@@ -36,16 +50,6 @@ body, p {
 .ui-content {
   padding: 0; }
 
-body {
-  background: #eeeeee; }
-
-h2 {
-  margin: 1.2em 0 0.4em 0; }
-
-p {
-  color: #333333;
-  text-shadow: 0 1px white;
-  -webkit-text-shadow: 0 1px white;
-  -moz-text-shadow: 0 1px white;
-  -ms-text-shadow: 0 1px white;
-  -o-text-shadow: 0 1px white; }
+.ui-link {
+  color: #2489ce;
+  font-weight: bold; }

@@ -61,6 +61,7 @@ define () ->
 
     $(document.links).each (i,e) ->
       $a = $(this)
+      $a.addClass('ui-link')
       $a.click (e) ->
         href = $(this).attr('href')
         if href.match(/^#\w+/)

@@ -3,6 +3,17 @@
 body, p
   font-family: Helvetica, Arial, sans-serif
 
+
+body
+  background: #eee
+
+h2
+  margin: 1.2em 0 .4em 0
+
+p
+  color: #333
+  @include text-shadow(0 1px #fff)
+
 /* basic layout system */
 .ui-hd,
 .ui-ft
@@ -26,13 +37,6 @@ body, p
 .ui-content
   padding: 0
 
-body
-  background: #eee
-
-h2
-  margin: 1.2em 0 .4em 0
-
-p
-  color: #333
-  @include text-shadow(0 1px #fff)
-
+.ui-link
+  color: #2489CE
+  font-weight: bold
