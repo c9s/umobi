@@ -55,5 +55,17 @@ define () ->
       $(this).trigger('pagecreate',[this])
       uMobi.initPageContainer(this)
     $pages.hide()
-    $pages.first().show()
+    $pages.first().show().addClass('ui-page-active')
+
+    $(document.links).each (i,e) ->
+      $a = $(this)
+      $a.click (e) ->
+        href = $(this).attr('href')
+        if href.match(/^#\w+/)
+          $activePage = $('.ui-page-active')
+          $page = $(href)
+          # got page
+          if $page.get(0)
+            $page.show().addClass('ui-page-active')
+            $activePage.hide().removeClass('ui-page-active')
   return uMobi
