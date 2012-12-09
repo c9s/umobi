@@ -1,2 +1,2 @@
-define ['cs!umobi.main'], (main) ->
+define ['jquery','cs!umobi.core','cs!umobi.main'], (main) ->
   console.log 'csmain'
