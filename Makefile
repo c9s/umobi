@@ -1,5 +1,9 @@
 
 
+
+sass:
+	sass -c --update css
+
 all:
 	node node_modules/requirejs/bin/r.js -o js/build.js
 
