@@ -12,6 +12,11 @@
   -ms-text-shadow: $shadow
   -o-text-shadow: $shadow
 
+@mixin box-shadow($shadow)
+  -moz-box-shadow: $shadow
+  -webkit-box-shadow: $shadow
+  box-shadow: $shadow
+
 @mixin background-vertical-gradient($from,$to)
   /* Older browser */
   background: $from
