@@ -1,4 +1,9 @@
 define ['cs!umobi.core'], ->
+  uMobi = window.uMobi
+
+  uMobi.handleHashChange = (e) ->
+    hash = location.hash
+    uMobi.showPage(hash)
 
   $(window).on 'hashchange', (e) ->
     uMobi.handleHashChange(e)

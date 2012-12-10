@@ -1,6 +1,7 @@
 define [
-  "jquery",
+  "jquery"
   "cs!umobi.core"
+  "cs!umobi.page"
   "cs!umobi.navigation"
 ], ($, uMobi)->
   # Page Initialization
@@ -9,10 +10,10 @@ define [
 
     # find static pages and initialize them
     $pages = $('[data-role="page"]')
+    $pages.hide()
     $pages.each ->
       $(this).trigger('pagecreate',[this])
       uMobi.initPageContainer(this)
-    $pages.hide()
     $pages.first().show().addClass('ui-page-active')
 
     $(document.links).each (i,e) ->
