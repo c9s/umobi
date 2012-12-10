@@ -15,11 +15,11 @@ module.exports = function( grunt ) {
 	suffix = process.env.IS_DEPLOY_TARGET === "true" ? "-" + verOfficial : "";
 
 	names= {
-		base: 'jquery.mobile' + suffix,
+		base: 'umobi' + suffix,
 		// this will change for the deploy target to include version information
-		root: 'jquery.mobile' + suffix,
-		structure: 'jquery.mobile.structure' + suffix,
-		theme: 'jquery.mobile.theme' + suffix
+		root: 'umobi' + suffix,
+		structure: 'umobi.structure' + suffix,
+		theme: 'umobi.theme' + suffix
 	};
 
 	function outputPath( name ){
@@ -101,7 +101,7 @@ module.exports = function( grunt ) {
 			theme: {
 				src: [
 					'<banner:global.ver.header>',
-					'css/themes/' + theme + '/jquery.mobile.theme.css'
+					'css/themes/' + theme + '/umobi.theme.css'
 				],
 				dest: themeFile + '.css'
 			}
@@ -116,7 +116,7 @@ module.exports = function( grunt ) {
 		js: {
 			require: {
 				baseUrl: 'js',
-				name: 'jquery.mobile',
+				name: 'umobi',
 				exclude: [
 					'jquery',
 					'depend',
@@ -140,14 +140,14 @@ module.exports = function( grunt ) {
 
 			require: {
 				all: {
-					cssIn: 'css/themes/default/jquery.mobile.css',
+					cssIn: 'css/themes/default/umobi.css',
 					optimizeCss: 'standard.keepComments.keepLines',
 					baseUrl: '.',
 					out: rootFile + '.compiled.css'
 				},
 
 				structure: {
-					cssIn: 'css/structure/jquery.mobile.structure.css',
+					cssIn: 'css/structure/umobi.structure.css',
 					out: structureFile + '.compiled.css'
 				}
 			}
@@ -159,14 +159,14 @@ module.exports = function( grunt ) {
 			names: names,
 
 			files: {
-				license: 'LICENSE-INFO.txt'
+				license: 'LICENSE.txt'
 			},
 
 			// other version information is added via the asyncConfig helper that
 			// depends on git commands (eg ver.min, ver.header)
 			ver: {
 				official: verOfficial,
-				min: '/*! jQuery Mobile v<%= build_sha %> jquerymobile.com | jquery.org/license !*/',
+				min: '/*! uMobi v<%= build_sha %> umobi.com !*/',
 				gitLongSha: 'git log -1 --format=format:"Git Build: SHA1: %H <> Date: %cd"',
 				gitShortSha: 'git log -1 --format=format:"%H"'
 			},
