@@ -1,0 +1,28 @@
+<html> 
+<body>
+
+</body>
+</html>
+<script>
+var colors = [
+    '#2891a6',
+    '#2f5278',
+    '#1391e6',
+    '#51a1d4',
+    '#2e80b0',
+    '#51a1d6',
+    '#4a9bd2',
+    '#26647b'
+];
+
+for(var i=0; i < colors.length ; i++ ) {
+    var code = colors[i];
+    var el = document.createElement('span');
+    el.innerHTML = code;
+    el.style.backgroundColor = code;
+    el.style.color = 'white';
+    el.style.padding = '15px 10px';
+    el.style.display = 'inline-block';
+    document.body.appendChild(el);
+}
+</script>
