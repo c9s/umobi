@@ -1,6 +1,6 @@
 ({
     // appDir: '.',
-    // dir: '../build',
+    // dir: '../compiled',
     baseUrl: '.',
 
     findNestedDependencies: true,
