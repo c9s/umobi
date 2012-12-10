@@ -1,7 +1,7 @@
 ####
 # uMobi framework
 ####
-define ["depend!jquery.hashchange[jquery]"], ->
+define ["depend!jquery.hashchange[jquery]"], () ->
   uMobi =
     Env: { }
 
@@ -62,6 +62,5 @@ define ["depend!jquery.hashchange[jquery]"], ->
 
     $h.addClass('ui-fixed-hd') if $h.data 'fixed'
     $f.addClass('ui-fixed-ft') if $f.data 'fixed'
-
 
   return uMobi
