@@ -1,6 +1,5 @@
 @import url(reset.css);
 @import url(grid.css);
-[data-role=page],
 .ui-mobile [data-role=page],
 .ui-mobile [data-role=dialog],
 .ui-page {
@@ -12,10 +11,13 @@
   display: none;
   border: 0; }
 
-.ui-mobile .ui-page-active,
-.ui-page-active {
+.ui-page.ui-page-active {
   display: block;
   overflow: visible; }
+
+/* on ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
+.ui-page {
+  outline: none; }
 
 /* basic layout system */
 .ui-hd,
@@ -66,3 +68,6 @@
   background: linear-gradient(to bottom, #cdeb8e 0%, #a5c956 100%);
   /* IE6-9 */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 ); }
+
+.ui-mobile-rendering > * {
+  visibility: hidden; }

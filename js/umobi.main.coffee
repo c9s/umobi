@@ -1,3 +1,4 @@
+
 define [
   "jquery"
   "cs!umobi.core"
@@ -5,10 +6,12 @@ define [
   "cs!umobi.navigation"
 ], ($, uMobi)->
   # Page Initialization
+  $html = $('html')
+  window.scrollTo( 0, 1 )
   $ ->
+    console.log('dom ready')
     $(document).trigger('pageinit')
 
-    window.scrollTo( 0, 1 )
     defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1
 
     # find static pages and initialize them
@@ -18,11 +21,11 @@ define [
     if not $pages.length
       $pages = $( "body" ).wrapInner( "<div data-role=\"page\"></div>" ).children( 0 )
     else
-      $pages.hide()
       $pages.each ->
         $(this).trigger('pagecreate',[this])
         uMobi.initPageContainer(this)
-      $pages.first().show().addClass('ui-page-active')
+
+    $pages.first().addClass('ui-page-active')
 
     $(document.links).each (i,e) ->
       $a = $(this)
@@ -31,3 +34,5 @@ define [
         href = $(this).attr('href')
         if href.match(/^#\w+/)
           uMobi.showPage(href)
+
+    $html.removeClass('ui-mobile-rendering')
