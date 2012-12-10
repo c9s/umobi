@@ -4,7 +4,7 @@ uMobi: Micro Mobile Web Framework for Smartphones & Tablets.
 
 uMobi aims to be a smaller, faster, touch-optimized mobile web framework.
 
-**working in progress**
+**Working In Progress**
 
 ## Band width limitation
 
@@ -25,13 +25,13 @@ In real world, 802.11b/g/n Wi-Fi (test incomplete)
 
 Zepto (minified 23KB, 22KB through Google closure compiler)
 
+jQuery 1.8.3 (minified 32KB)
+
 jQuery Mobile 1.2 (minified 227KB)
 
 - jquery.mobile.min.js 119KB
 - jquery.mobile.min.css 76KB
 - images/ 32KB
-
-jQuery 1.8.3 (minified 32KB)
 
 jQuery UI 1.9.2 (minified 335KB)
 
