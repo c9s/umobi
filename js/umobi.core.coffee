@@ -5,6 +5,7 @@ define ["depend!jquery.hashchange[jquery]"], ->
   uMobi =
     Env: { }
 
+  window.uMobi = uMobi
 
   uMobi.showPage = (hash) ->
     # hide current active page
@@ -63,26 +64,4 @@ define ["depend!jquery.hashchange[jquery]"], ->
     $f.addClass('ui-fixed-ft') if $f.data 'fixed'
 
 
-  # Page Initialization
-  $ ->
-    $(window).on 'hashchange', (e) ->
-      uMobi.handleHashChange(e)
-
-    $(document).trigger('pageinit')
-
-    # find static pages and initialize them
-    $pages = $('[data-role="page"]')
-    $pages.each ->
-      $(this).trigger('pagecreate',[this])
-      uMobi.initPageContainer(this)
-    $pages.hide()
-    $pages.first().show().addClass('ui-page-active')
-
-    $(document.links).each (i,e) ->
-      $a = $(this)
-      $a.addClass('ui-link')
-      $a.click (e) ->
-        href = $(this).attr('href')
-        if href.match(/^#\w+/)
-          uMobi.showPage(href)
   return uMobi
