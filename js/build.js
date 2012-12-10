@@ -4,6 +4,7 @@
     baseUrl: '.',
 
     findNestedDependencies: true,
+    skipModuleInsertion: true,
 
     //Uncomment to turn off uglify minification.
     //optimize: 'none',
