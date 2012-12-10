@@ -8,13 +8,21 @@ define [
   $ ->
     $(document).trigger('pageinit')
 
+    window.scrollTo( 0, 1 )
+    defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1
+
     # find static pages and initialize them
     $pages = $('[data-role="page"]')
-    $pages.hide()
-    $pages.each ->
-      $(this).trigger('pagecreate',[this])
-      uMobi.initPageContainer(this)
-    $pages.first().show().addClass('ui-page-active')
+
+		# if no pages are found, create one with body's inner html
+    if not $pages.length
+      $pages = $( "body" ).wrapInner( "<div data-role=\"page\"></div>" ).children( 0 )
+    else
+      $pages.hide()
+      $pages.each ->
+        $(this).trigger('pagecreate',[this])
+        uMobi.initPageContainer(this)
+      $pages.first().show().addClass('ui-page-active')
 
     $(document.links).each (i,e) ->
       $a = $(this)

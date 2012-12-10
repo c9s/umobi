@@ -1,15 +1,16 @@
-define ["cs!umobi.core"],->
+define ["cs!umobi.core"], ->
 
   uMobi.showPage = (hash) ->
     # hide current active page
-    $('.ui-page-active').hide().removeClass('ui-page-active')
+    $('.ui-page-active').removeClass('ui-page-active')
+
 
     # show first page if page not found.
     $page = $(hash)
     if $page.get(0)
-      $page.show().addClass('ui-page-active')
+      $page.addClass('ui-page-active')
     else
-      $($('[data-role="page"]').get(0)).show().addClass('ui-page-active')
+      $($('[data-role="page"]').get(0)).addClass('ui-page-active')
 
   # uMobi
   uMobi.initPageContainer = (el) ->

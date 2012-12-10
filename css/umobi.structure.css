@@ -1,5 +1,22 @@
 @import url(reset.css);
 @import url(grid.css);
+[data-role=page],
+.ui-mobile [data-role=page],
+.ui-mobile [data-role=dialog],
+.ui-page {
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  display: none;
+  border: 0; }
+
+.ui-mobile .ui-page-active,
+.ui-page-active {
+  display: block;
+  overflow: visible; }
+
 /* basic layout system */
 .ui-hd,
 .ui-ft {
