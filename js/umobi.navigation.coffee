@@ -1,6 +1,5 @@
-
-define () ->
-  class uMobiPath
+define ['cs!umobi.core'], ->
+  class window.uMobi.Navigator
     # url path helpers for use in relative url management
     # This scary looking regular expression parses an absolute URL or its relative
     # variants (protocol, site, document, query, and hash), into the various
@@ -99,5 +98,4 @@ define () ->
               absStack.pop()
           else absStack.push( d )
       return "/" + absStack.join( "/" )
-
 
