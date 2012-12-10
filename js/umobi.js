@@ -10,6 +10,6 @@ require({
 });
 
 // load cs plugin and coffee-script
-define(["cs","coffee-script","cs!csmain"], function() { 
+define(["cs","coffee-script","cs!umobi.main"], function() { 
 
 });

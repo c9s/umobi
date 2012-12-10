@@ -1,4 +1,4 @@
-define ["cs!umobi.core"], (uMobi)->
+define ["jquery","cs!umobi.core"], (uMobi)->
   # Page Initialization
   $ ->
     $(window).on 'hashchange', (e) ->
