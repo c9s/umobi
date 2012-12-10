@@ -26,11 +26,19 @@ Zepto (minified 23KB, 22KB through Google closure compiler)
 
 jQuery 1.8.3 (minified 32KB)
 
+
 jQuery Mobile 1.2 (minified 227KB)
 
 - jquery.mobile.min.js 119KB
 - jquery.mobile.min.css 76KB
 - images/ 32KB
+
+Enyo (237KB)
+
+- enyo.css 2.7K
+- enoy.js  111K
+- app.js    97K
+- app.css   27K
 
 jQuery UI 1.9.2 (minified 335KB)
 
