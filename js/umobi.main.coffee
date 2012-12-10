@@ -5,9 +5,6 @@ define [
 ], ($, uMobi)->
   # Page Initialization
   $ ->
-    $(window).on 'hashchange', (e) ->
-      uMobi.handleHashChange(e)
-
     $(document).trigger('pageinit')
 
     # find static pages and initialize them

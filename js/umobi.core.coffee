@@ -62,5 +62,4 @@ define ["depend!jquery.hashchange[jquery]"], () ->
 
     $h.addClass('ui-fixed-hd') if $h.data 'fixed'
     $f.addClass('ui-fixed-ft') if $f.data 'fixed'
-
   return uMobi
