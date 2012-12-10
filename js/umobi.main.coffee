@@ -6,7 +6,7 @@ define [
   "cs!umobi.navigation"
 ], ($, uMobi)->
   # Page Initialization
-  $html = $('html')
+  $html = $(document.getElementsByTagName('html')[0])
   window.scrollTo( 0, 1 )
   $ ->
     console.log('dom ready')

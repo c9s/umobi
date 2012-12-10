@@ -10,9 +10,8 @@ require({
 });
 
 // load cs plugin and coffee-script
+document.getElementsByTagName('html')[0].className += 'ui-mobile ui-mobile-rendering';
 define(["jquery"], function() { 
-    var $html = $('html')
-    $html.addClass('ui-mobile ui-mobile-rendering')
     require(["cs","coffee-script","cs!umobi.main"])
 });
 
