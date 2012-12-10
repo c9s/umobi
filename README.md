@@ -14,12 +14,11 @@ In real world, tested with iPhone 4S
 
 - Start up speed: 4KB ~ 8KB/s
 - Maximum speed: 696.32KB/s or 0.68MB/s
-- Average speed: 0.31MB/s or 317KB/s
+- Average speed: 317KB/s or 0.31MB/s
 
 ### Band width for wifi devices
 
 In real world, 802.11b/g/n Wi-Fi (test incomplete)
-
 
 ## File sizes
 
