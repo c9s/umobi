@@ -54,6 +54,22 @@ p {
   color: #2489ce;
   font-weight: bold; }
 
+.ui-link-inherit {
+  color: white; }
+
+a.ui-link {
+  color: #7cc4e7;
+  font-weight: bold; }
+
+a.ui-link:visited {
+  color: #2489ce; }
+
+a.ui-link:hover {
+  color: #2489ce; }
+
+a.ui-link:active {
+  color: #2489ce; }
+
 .ui-btn:focus, .ui-link-inherit:focus {
   outline: 0; }
 
