@@ -24,11 +24,15 @@ define(["jquery","cs!umobi.core"],function($,umobi) {
     };
 
     // get by tagname
-    dom.getTags = function(n,c) {
+
+    dom.byTagName = function(n,c) {
         c = c || document;
         return c.getElementsByTagName(n);
     };
-
+    dom.byClassName = function(n,c) {
+            c = c || document;
+            return c.getElementsByClassName(n);
+    };
     umobi.dom = dom;
     return dom;
 });
