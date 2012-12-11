@@ -3,23 +3,32 @@
 //
 // get element by id vs query selector
 // http://jsperf.com/getelementbyid-v-s-queryselector
-define(["jquery","cs!umobi.core"],function($) {
+define(["jquery","cs!umobi.core"],function($,uMobi) {
     var dom = {  };
-    dom.queryAll = function(q) {
-        if( typeof document.querySelectorAll !== 'undefined' )
-            return $(document.querySelectorAll(q));
-        return $(q);
+    dom.query = function(q,c) {
+        c = c || document;
+        return c.querySelector(q);
     };
 
-    // get by id
-    dom.get = function(id) {
-        return $(document.getElementById(id));
+    dom.queryAll = function(q,c) {
+        c = c || document;
+        // querySelectorAll is available in IE8, Chrome, Firefox and Safari
+        // in this library we don't consider IE7
+        return c.querySelectorAll(q);
+    };
+
+    // get element by id, which is faster than querySelectorAll
+    dom.get = function(d,c) {
+        c = c || document;
+        return c.getElementById(d);
     };
 
     // get by tagname
-    dom.getTags = function(tag) {
-        return $(document.getElementsByTagName(tag));
+    dom.getTags = function(n,c) {
+        c = c || document;
+        return c.getElementsByTagName(n);
     };
+
     uMobi.dom = dom;
     return dom;
 });
