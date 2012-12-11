@@ -6,7 +6,7 @@ define [
   "cs!umobi.page"
   "cs!umobi.widget"
   "cs!umobi.navigation"
-], ($, uMobi)->
+], ($, umobi)->
   # Page Initialization
   $html = $(document.getElementsByTagName('html')[0])
   window.scrollTo( 0, 1 )
@@ -25,7 +25,7 @@ define [
     else
       $pages.each ->
         $(this).trigger('pagecreate',[this])
-        uMobi.initPageContainer(this)
+        umobi.initPageContainer(this)
 
     $pages.first().addClass('ui-page-active')
 
@@ -35,6 +35,6 @@ define [
       $a.click (e) ->
         href = $(this).attr('href')
         if href.match(/^#\w+/)
-          uMobi.showPage(href)
+          umobi.showPage(href)
 
     $html.removeClass('ui-mobile-rendering')

@@ -1,8 +1,8 @@
 ####
-# uMobi framework
+# umobi framework
 ####
 define ["depend!jquery.hashchange[jquery]"], () ->
-  uMobi =
+  umobi =
     Env: { }
-  window.uMobi = uMobi
-  return uMobi
+  window.umobi = umobi
+  return umobi

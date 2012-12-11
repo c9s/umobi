@@ -1,8 +1,8 @@
-uMobi
+umobi
 ==============
-uMobi: Micro Mobile Web Framework for Smartphones & Tablets.
+umobi: Micro Mobile Web Framework for Smartphones & Tablets.
 
-uMobi aims to be a smaller, faster, touch-optimized mobile web framework.
+umobi aims to be a smaller, faster, touch-optimized mobile web framework.
 
 **Working In Progress**
 

@@ -1,6 +1,6 @@
 define ["cs!umobi.core"], ->
 
-  uMobi.showPage = (hash) ->
+  umobi.showPage = (hash) ->
     # hide current active page
     $('.ui-page-active').removeClass('ui-page-active')
 
@@ -12,8 +12,8 @@ define ["cs!umobi.core"], ->
     else
       $($('[data-role="page"]').get(0)).addClass('ui-page-active')
 
-  # uMobi
-  uMobi.initPageContainer = (el) ->
+  # umobi
+  umobi.initPageContainer = (el) ->
     $el = $(el)
     $el.addClass('ui-page')
     $h = $el.find('[data-role="header"]').addClass('ui-hd') # header container

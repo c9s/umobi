@@ -3,7 +3,7 @@
 //
 // get element by id vs query selector
 // http://jsperf.com/getelementbyid-v-s-queryselector
-define(["jquery","cs!umobi.core"],function($,uMobi) {
+define(["jquery","cs!umobi.core"],function($,umobi) {
     var dom = {  };
     dom.query = function(q,c) {
         c = c || document;
@@ -29,6 +29,6 @@ define(["jquery","cs!umobi.core"],function($,uMobi) {
         return c.getElementsByTagName(n);
     };
 
-    uMobi.dom = dom;
+    umobi.dom = dom;
     return dom;
 });

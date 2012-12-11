@@ -1,14 +1,14 @@
 define ['cs!umobi.core'], ->
-  uMobi = window.uMobi
+  umobi = window.umobi
 
-  uMobi.handleHashChange = (e) ->
+  umobi.handleHashChange = (e) ->
     hash = location.hash
-    uMobi.showPage(hash)
+    umobi.showPage(hash)
 
   $(window).on 'hashchange', (e) ->
-    uMobi.handleHashChange(e)
+    umobi.handleHashChange(e)
 
-  class window.uMobi.Navigator
+  class window.umobi.Navigator
     # url path helpers for use in relative url management
     # This scary looking regular expression parses an absolute URL or its relative
     # variants (protocol, site, document, query, and hash), into the various

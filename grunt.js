@@ -166,7 +166,7 @@ module.exports = function( grunt ) {
 			// depends on git commands (eg ver.min, ver.header)
 			ver: {
 				official: verOfficial,
-				min: '/*! uMobi v<%= build_sha %> umobi.com !*/',
+				min: '/*! umobi v<%= build_sha %> umobi.com !*/',
 				gitLongSha: 'git log -1 --format=format:"Git Build: SHA1: %H <> Date: %cd"',
 				gitShortSha: 'git log -1 --format=format:"%H"'
 			},
