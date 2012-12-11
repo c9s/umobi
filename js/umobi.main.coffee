@@ -2,7 +2,9 @@
 define [
   "jquery"
   "cs!umobi.core"
+  "umobi.dom"
   "cs!umobi.page"
+  "cs!umobi.widget"
   "cs!umobi.navigation"
 ], ($, uMobi)->
   # Page Initialization
