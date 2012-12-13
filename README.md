@@ -1,10 +1,11 @@
+<img height="80" src="https://raw.github.com/c9s/umobi/master/assets/logo.png"/>
+
 µMobi
-==============
+=======
+
 µMobi: Micro Mobile Web Framework for Smartphones & Tablets.
 
 µMobi aims to be a smaller, faster, touch-optimized mobile web framework.
-
-<img height="80" src="https://raw.github.com/c9s/umobi/master/assets/logo.png"/>
 
 
 **Working In Progress**

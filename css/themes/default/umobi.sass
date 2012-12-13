@@ -3,9 +3,6 @@
 body, p
   font-family: Helvetica, Arial, sans-serif
 
-body
-  background: #eee
-
 h2
   margin: 1.2em 0 .4em 0
 
@@ -19,19 +16,17 @@ p
   @include background-vertical-gradient(#cdeb8e,#a5c956)
 
 
-
-
 .ui-body-c
   border: 1px solid #AAA
   color: #333
   text-shadow: 0 1px 0 white
   background: #F9F9F9
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#EEE));
-  background-image: -webkit-linear-gradient( #F9F9F9 , #EEE );
-  background-image: -moz-linear-gradient( #F9F9F9 , #EEE );
-  background-image: -ms-linear-gradient( #F9F9F9 , #EEE );
-  background-image: -o-linear-gradient( #F9F9F9 , #EEE );
-  background-image: linear-gradient( #F9F9F9 , #EEE );
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#EEE))
+  background-image: -webkit-linear-gradient( #F9F9F9 , #EEE )
+  background-image: -moz-linear-gradient( #F9F9F9 , #EEE )
+  background-image: -ms-linear-gradient( #F9F9F9 , #EEE )
+  background-image: -o-linear-gradient( #F9F9F9 , #EEE )
+  background-image: linear-gradient( #F9F9F9 , #EEE )
 
 /* .ui-ft .ui-navbar */
 
@@ -71,6 +66,9 @@ a.ui-link:active
   color: #2489ce
 
 
+/***********
+ focus state 
+
 .ui-btn:focus, .ui-link-inherit:focus
   outline: 0
 
@@ -79,9 +77,8 @@ a.ui-link:active
 
 .ui-focus,
 .ui-btn:focus
-  @include box-shadow(inset 0px 0px 3px 		#387bbe, 0px 0px 9px #387bbe)
+  @include box-shadow("inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe")
 
-/* focus state */
 .ui-btn:focus, .ui-link-inherit:focus
   outline: 0
 
@@ -90,7 +87,8 @@ a.ui-link:active
 
 .ui-focus,
 .ui-btn:focus
-  @include box-shadow(inset 0px 0px 3px 		#387bbe, 0px 0px 9px 		#387bbe)
+  @include box-shadow("inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe")
+
 
 .ui-btn-inner
   border-top: 1px solid 	#fff
@@ -98,8 +96,8 @@ a.ui-link:active
 
 /* corner rounding classes */
 .ui-corner-all
-  -webkit-border-radius: .6em
-  border-radius: .6em
+  -webkit-border-radius: .5em
+  border-radius: .5em
 
 .ui-shadow-inset
   @include box-shadow(inset 0px 1px 4px rgba(0, 0, 0, .2))
@@ -167,7 +165,7 @@ input.ui-input-text
   -webkit-appearance: none
 
 textarea.ui-input-text
-  height: 50px
+  min-height: 50px
   -webkit-transition: height 200ms linear
   -moz-transition: height 200ms linear
   -o-transition: height 200ms linear
@@ -175,16 +173,6 @@ textarea.ui-input-text
 
 textarea.ui-mini
   height: 45px
-
-.ui-icon-searchfield:after
-  position: absolute
-  left: 7px
-  top: 50%
-  margin-top: -9px
-  content: ""
-  width: 18px
-  height: 18px
-  opacity: .5
 
 .ui-input-text .ui-input-clear
   position: absolute
