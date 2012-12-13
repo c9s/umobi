@@ -1,4 +1,4 @@
-<img height="80" src="https://raw.github.com/c9s/umobi/master/assets/logo.png"/>
+<img height="120" src="https://raw.github.com/c9s/umobi/master/assets/logo.png"/>
 
 µMobi
 =======
