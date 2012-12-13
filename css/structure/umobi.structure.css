@@ -144,32 +144,3 @@ a img {
 .ui-fixed-content {
   position: fixed;
   width: 100%; }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000351}}
-.ui-btn {
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -o-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  text-shadow: 8px;
-  -webkit-text-shadow: 8px;
-  -moz-text-shadow: 8px;
-  -ms-text-shadow: 8px;
-  -o-text-shadow: 8px;
-  /* Older browser */
-  background: #cdeb8e;
-  /* FF3.6+ */
-  background: -moz-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* Chrome,Safari4+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdeb8e), color-stop(100%, #a5c956));
-  /* Chrome10+,Safari5.1+ */
-  background: -webkit-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* Opera 11.10+ */
-  background: -o-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* IE10+ */
-  background: -ms-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* W3C */
-  background: linear-gradient(to bottom, #cdeb8e 0%, #a5c956 100%);
-  /* IE6-9 */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 ); }
