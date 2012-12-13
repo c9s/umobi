@@ -1,8 +1,10 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\000032}}
 html {
   margin: 0;
   padding: 0;
   border: 0; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\000037}}
 body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, code,
@@ -19,47 +21,57 @@ hgroup, nav, section {
   vertical-align: baseline; }
 
 /* This helps to make newer HTML5 elements behave like DIVs in older browers */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000323}}
 article, aside, details, figcaption, figure, dialog,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
 /* Line-height should always be unitless! */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000328}}
 body {
   line-height: 1.5;
   background: white; }
 
 /* Tables still need 'cellspacing="0"' in the markup. */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000333}}
 table {
   border-collapse: separate;
   border-spacing: 0; }
 
 /* float:none prevents the span-x classes from breaking table-cell display */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000338}}
 caption, th, td {
   text-align: left;
   font-weight: normal;
   float: none !important; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000343}}
 table, th, td {
   vertical-align: middle; }
 
 /* Remove possible quote marks (") from <q>, <blockquote>. */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000347}}
 blockquote:before, blockquote:after, q:before, q:after {
   content: ""; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000350}}
 blockquote, q {
   quotes: "" ""; }
 
 /* Remove annoying border on linked images. */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000354}}
 a img {
   border: none; }
 
 /* Remember to define your own focus styles! */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.reset\.sass}line{font-family:\0000358}}
 :focus {
   outline: 0; }
 
 /* Clearing floats without extra markup
  * Based on How To Clear Floats Without Structural Markup by PiE
  * [http://www.positioniseverything.net/easyclearing.html] */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.grid\.sass}line{font-family:\000034}}
 .clearfix:after,
 .container:after {
   content: "\0020";
@@ -69,18 +81,22 @@ a img {
   visibility: hidden;
   overflow: hidden; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.grid\.sass}line{font-family:\0000313}}
 .clearfix,
 .container {
   display: block; }
 
 /* Regular clearing
  * apply to column that should drop below previous ones. */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/umobi\.grid\.sass}line{font-family:\0000320}}
 .clear {
   clear: both; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\000035}}
 .ui-mobile-rendering > * {
   visibility: hidden; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\000038}}
 .ui-mobile [data-role=page],
 .ui-mobile [data-role=dialog],
 .ui-page {
@@ -92,36 +108,44 @@ a img {
   display: none;
   border: 0; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000320}}
 .ui-page.ui-page-active {
   display: block;
   overflow: visible; }
 
 /* on ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000325}}
 .ui-page {
   outline: none; }
 
 /* basic layout system */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000330}}
 .ui-hd,
 .ui-ft {
   text-align: center; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000334}}
 .ui-fixed-ft,
 .ui-fixed-hd {
   position: fixed;
   width: 100%; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000339}}
 .ui-fixed-hd {
   top: 0;
   left: 0; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000343}}
 .ui-fixed-ft {
   bottom: 0;
   left: 0; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000347}}
 .ui-fixed-content {
   position: fixed;
   width: 100%; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/structure\/umobi\.structure\.sass}line{font-family:\0000351}}
 .ui-btn {
   border-radius: 8px;
   -webkit-border-radius: 8px;
