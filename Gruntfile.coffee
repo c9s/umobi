@@ -70,9 +70,15 @@ module.exports = (grunt) ->
     
     # TODO add test files here once we can specify different configs for
     #      different globs
-    lint:
-      files: ["js/**/*.mobile.*.js", "js/*/*.js"]
+    # lint:
+    #  files: ["js/**/*.mobile.*.js", "js/*/*.js"]
 
+    coffeelint:
+      app: ['js/*.coffee']
+    coffeelintOptions:
+      max_line_length:
+        value: 100
+        level: "ignore"
     
     # NOTE these configuration settings are used _after_ compilation has taken place
     #      using requirejs. Thus the .compiled extensions. The exception being the theme concat
@@ -174,6 +180,7 @@ module.exports = (grunt) ->
   # authors task
   grunt.loadNpmTasks "grunt-git-authors"
   grunt.loadNpmTasks "grunt-junit"
+  grunt.loadNpmTasks "grunt-coffeelint"
   grunt.loadNpmTasks "grunt-coffee"
   
   # Ease of use aliases for users who want the zip and docs
