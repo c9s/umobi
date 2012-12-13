@@ -3,13 +3,12 @@ define ["cs!umobi.core"], ->
   umobi.showPage = ($page) ->
     # hide current active page
     $('.ui-page-active').removeClass('ui-page-active')
-    $page.addClass('ui-page-active')
-    $page.trigger('pagereveal')
+    $page.addClass('ui-page-active').trigger('pagereveal')
 
   umobi.showPageByHash = (hash) ->
     # show first page if page not found.
     $page = $(hash)
-    $page = $('[data-role="page"]').first() if not $page.get(0)
+    $page = $($('[data-role="page"]').get(0)) if not $page.get(0)
     umobi.showPage($page)
 
   # umobi
@@ -23,7 +22,6 @@ define ["cs!umobi.core"], ->
     $h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title')
 
     isBothFixed = $h.data 'fixed' or $f.data 'fixed'
-
     if isBothFixed
       AdjustContentHeight = ->
         contentHeight = $(window).height()
@@ -42,11 +40,10 @@ define ["cs!umobi.core"], ->
           overflow: 'auto'
       $page.on 'pagereveal', AdjustContentHeight
 
-
-      resizeTimeout = null
-      $(window).resize ->
-        clearTimeout(resizeTimeout) if resizeTimeout
-        resizeTimeout = setTimeout AdjustContentHeight, 1000
+    resizeTimeout = null
+    $(window).resize ->
+      clearTimeout(resizeTimeout) if resizeTimeout
+      resizeTimeout = setTimeout AdjustContentHeight, 1000
 
     $h.addClass('ui-fixed-hd') if $h.data 'fixed'
     $f.addClass('ui-fixed-ft') if $f.data 'fixed'

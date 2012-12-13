@@ -27,7 +27,10 @@ define [
         $(this).trigger('pagecreate',[this])
         umobi.initPageContainer(this)
 
-    umobi.showPage($pages.first())
+    if location.hash
+      umobi.showPageByHash(location.hash)
+    else
+      umobi.showPage($pages.first())
 
     $(document.links).each (i,e) ->
       $a = $(this)
