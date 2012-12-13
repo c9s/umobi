@@ -36,12 +36,14 @@ define ["cs!umobi.core"], ->
       isBothFixed = $h.data 'fixed' or $f.data 'fixed'
 
       if isBothFixed
+        # prevent body scrolling
+        $('body').css('overflow','hidden')
         $c.wrap('<div class="ui-content-scroll"/>')
+
         AdjustContentHeight = (e) ->
-          $p = $(this)
-          $content = $p.find('[data-role="content"]')
-          $header = $p.find('[data-role="header"]')
-          $footer = $p.find('[data-role="footer"]')
+          $content = $page.find('[data-role="content"]')
+          $header = $page.find('[data-role="header"]')
+          $footer = $page.find('[data-role="footer"]')
           contentHeight = $(window).height()
           contentTop    = 0
           contentBottom = 0
@@ -51,18 +53,17 @@ define ["cs!umobi.core"], ->
             contentBottom = $footer.height()
 
           $content.parent().css
-            position: 'fixed'
+            position: 'absolute'
             top: contentTop + 'px'
             left: 0
             bottom: contentBottom + 'px'
             overflow: 'auto'
         $page.on 'pagereveal', AdjustContentHeight
 
-
       resizeTimeout = null
       $(window).resize ->
         clearTimeout(resizeTimeout) if resizeTimeout
-        resizeTimeout = setTimeout AdjustContentHeight, 1000
+        resizeTimeout = setTimeout AdjustContentHeight, 100
 
       $h.addClass('ui-fixed-header') if $h.data 'fixed'
       $f.addClass('ui-fixed-footer') if $f.data 'fixed'

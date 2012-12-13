@@ -29,17 +29,14 @@ define [
         if href.match(/^#\w+/)
           umobi.page.revealByHash(href)
 
+    # currently, if the page can not be scrolled, this won't work.
     hideAddressBar = () ->
       if document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)
         document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
       window.scrollTo(0,1)
       # window.top.scrollTo(0,1)
-
     window.addEventListener("load",hideAddressBar)
     window.addEventListener("orientationchange",hideAddressBar)
-    
-
-    # currently, if the page can not be scrolled, this won't work.
     $(document).on('pagereveal', hideAddressBar )
 
     if location.hash
