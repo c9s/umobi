@@ -2,19 +2,19 @@ define ["cs!umobi.core"], ->
   umobi.page =
 
     # $p: page element object.
-    showPage: ($p) ->
+    reveal: ($p) ->
       # hide current active page
       $('.ui-page-active').removeClass('ui-page-active')
       $p.addClass('ui-page-active').trigger('pagereveal')
       $(document).trigger('pagereveal',[$p])
 
-    showPageByHash: (hash) ->
+    revealByHash: (hash) ->
       # show first page if page not found.
       $page = $(hash)
       $page = $($('[data-role="page"]').get(0)) if not $page.get(0)
-      umobi.page.showPage($page)
+      umobi.page.reveal($page)
 
-    initPage: (el) ->
+    init: (el) ->
       $page = $(el)
       $page.addClass('ui-page ui-body-c')
       $h = $page.find('[data-role="header"]').addClass('ui-header') # header container

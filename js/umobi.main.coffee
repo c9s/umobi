@@ -24,12 +24,12 @@ define [
     else
       $pages.each ->
         $(this).trigger('pagecreate',[this])
-        umobi.page.initPage(this)
+        umobi.page.init(this)
 
     if location.hash
-      umobi.page.showPageByHash(location.hash)
+      umobi.page.revealByHash(location.hash)
     else
-      umobi.page.showPage($pages.first())
+      umobi.page.reveal($pages.first())
 
     $(document.links).each (i,e) ->
       $a = $(this)
@@ -37,6 +37,6 @@ define [
       $a.click (e) ->
         href = $(this).attr('href')
         if href.match(/^#\w+/)
-          umobi.page.showPageByHash(href)
+          umobi.page.revealByHash(href)
 
     $html.removeClass('ui-mobile-rendering')
