@@ -2,8 +2,8 @@
 
 all: build
 	# node node_modules/requirejs/bin/r.js -o js/build.js
-	ls -lh compiled/umobi.min.js
-	ls -lh compiled/umobi.min.css
+	@stat -f "%N: %z bytes" compiled/umobi.min.js
+	@stat -f "%N: %z bytes" compiled/umobi.min.css
 
 build: js css
 
