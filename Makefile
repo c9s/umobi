@@ -28,4 +28,3 @@ sass:
 
 sass-updater:
 	sass -q --debug-info --watch css &
-

@@ -2,18 +2,9 @@ path = require("path")
 fs = require("fs")
 execSync = require("exec-sync")
 module.exports = (grunt) ->
-  
 
-  dirs = undefined
-  names = undefined
   min = {}
   cssmin = {}
-  theme = undefined
-  rootFile = undefined
-  structureFile = undefined
-  themeFile = undefined
-  verOfficial = undefined
-  suffix = undefined
   dirs =
     output: "compiled"
     temp: "tmp"
