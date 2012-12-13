@@ -1,7 +1,12 @@
+.PHONY: build
 
-all:
-	node node_modules/requirejs/bin/r.js -o js/build.js
-	ls -lh js/umobi.min.js
+all: build
+	# node node_modules/requirejs/bin/r.js -o js/build.js
+	# ls -lh js/umobi.min.js
+
+build:
+	grunt --config Gruntfile.coffee js
+	grunt --config Gruntfile.coffee css
 
 node_modules:
 	npm install
