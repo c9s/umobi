@@ -18,6 +18,21 @@ p
 .ui-ft
   @include background-vertical-gradient(#cdeb8e,#a5c956)
 
+
+
+
+.ui-body-c
+  border: 1px solid #AAA
+  color: #333
+  text-shadow: 0 1px 0 white
+  background: #F9F9F9
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#EEE));
+  background-image: -webkit-linear-gradient( #F9F9F9 , #EEE );
+  background-image: -moz-linear-gradient( #F9F9F9 , #EEE );
+  background-image: -ms-linear-gradient( #F9F9F9 , #EEE );
+  background-image: -o-linear-gradient( #F9F9F9 , #EEE );
+  background-image: linear-gradient( #F9F9F9 , #EEE );
+
 /* .ui-ft .ui-navbar */
 
 .ui-title
@@ -64,11 +79,7 @@ a.ui-link:active
 
 .ui-focus,
 .ui-btn:focus
-  -moz-box-shadow: inset 0px 0px 3px 		#387bbe, 0px 0px 9px #387bbe
-  -webkit-box-shadow: inset 0px 0px 3px 	#387bbe, 0px 0px 9px #387bbe
-  box-shadow: inset 0px 0px 3px 			#387bbe, 0px 0px 9px #387bbe
-
-
+  @include box-shadow(inset 0px 0px 3px 		#387bbe, 0px 0px 9px #387bbe)
 
 /* focus state */
 .ui-btn:focus, .ui-link-inherit:focus
@@ -79,10 +90,7 @@ a.ui-link:active
 
 .ui-focus,
 .ui-btn:focus
-  -moz-box-shadow: inset 0px 0px 3px 		#387bbe, 0px 0px 9px 		#387bbe
-  -webkit-box-shadow: inset 0px 0px 3px 	#387bbe, 0px 0px 9px 		#387bbe
-  box-shadow: inset 0px 0px 3px 			#387bbe, 0px 0px 9px 		#387bbe
-
+  @include box-shadow(inset 0px 0px 3px 		#387bbe, 0px 0px 9px 		#387bbe)
 
 .ui-btn-inner
   border-top: 1px solid 	#fff
@@ -93,12 +101,11 @@ a.ui-link:active
   -webkit-border-radius: .6em
   border-radius: .6em
 
+.ui-shadow-inset
+  @include box-shadow(inset 0px 1px 4px rgba(0, 0, 0, .2))
+
 .ui-shadow
   @include box-shadow(0px 1px 4px rgba(0,0,0,.3))
-
-/* focus style */
-.ui-input-text.ui-focus
-  @include box-shadow(0px 0px 12px #387bbe)
 
 label.ui-input-text
   font-size: 16px
@@ -117,6 +124,10 @@ input.ui-input-text, textarea.ui-input-text
   display: block
   width: 100%
   outline: 0
+
+/* focus style */
+.ui-input-text.ui-focus
+  @include box-shadow(0px 0px 12px #387bbe)
 
 input.ui-mini, .ui-mini input, textarea.ui-mini
   font-size: 14px

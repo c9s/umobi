@@ -4,7 +4,6 @@ define ["cs!umobi.core"], ->
     # hide current active page
     $('.ui-page-active').removeClass('ui-page-active')
 
-
     # show first page if page not found.
     $page = $(hash)
     if $page.get(0)
@@ -15,7 +14,7 @@ define ["cs!umobi.core"], ->
   # umobi
   umobi.initPageContainer = (el) ->
     $el = $(el)
-    $el.addClass('ui-page')
+    $el.addClass('ui-page ui-body-c')
     $h = $el.find('[data-role="header"]').addClass('ui-hd') # header container
     $f = $el.find('[data-role="footer"]').addClass('ui-ft')  # footer container
     $c = $el.find('[data-role="content"]').addClass('ui-content') # content container
