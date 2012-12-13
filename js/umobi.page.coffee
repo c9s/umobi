@@ -1,32 +1,30 @@
 define ["cs!umobi.core"], ->
 
-  umobi.showPage = (hash) ->
+  umobi.showPage = ($page) ->
     # hide current active page
     $('.ui-page-active').removeClass('ui-page-active')
+    $page.addClass('ui-page-active')
+    $page.trigger('pagereveal')
 
+  umobi.showPageByHash = (hash) ->
     # show first page if page not found.
     $page = $(hash)
-    if $page.get(0)
-      $page.addClass('ui-page-active')
-    else
-      $($('[data-role="page"]').get(0)).addClass('ui-page-active')
+    $page = $('[data-role="page"]').first() if not $page.get(0)
+    umobi.showPage($page)
 
   # umobi
   umobi.initPageContainer = (el) ->
-    $el = $(el)
-    $el.addClass('ui-page ui-body-c')
-    $h = $el.find('[data-role="header"]').addClass('ui-hd') # header container
-    $f = $el.find('[data-role="footer"]').addClass('ui-ft')  # footer container
-    $c = $el.find('[data-role="content"]').addClass('ui-content') # content container
+    $page = $(el)
+    $page.addClass('ui-page ui-body-c')
+    $h = $page.find('[data-role="header"]').addClass('ui-hd') # header container
+    $f = $page.find('[data-role="footer"]').addClass('ui-ft')  # footer container
+    $c = $page.find('[data-role="content"]').addClass('ui-content') # content container
 
     $h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title')
 
-    isFixed = $h.data 'fixed' or $f.data 'fixed'
+    isBothFixed = $h.data 'fixed' or $f.data 'fixed'
 
-    headerHeight = $h.height()
-    footerHeight = $f.height()
-
-    if isFixed
+    if isBothFixed
       AdjustContentHeight = ->
         contentHeight = $(window).height()
         contentTop    = 0
@@ -42,7 +40,8 @@ define ["cs!umobi.core"], ->
           left: 0
           bottom: contentBottom + 'px'
           overflow: 'auto'
-      AdjustContentHeight()
+      $page.on 'pagereveal', AdjustContentHeight
+
 
       resizeTimeout = null
       $(window).resize ->

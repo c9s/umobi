@@ -1,7 +1,22 @@
 @import "umobi.macro"
 
+$fore-color: #62B1D0
+$fore-color2: #9cd
+
 body, p
   font-family: Helvetica, Arial, sans-serif
+
+h1
+  font-size: 1.9em
+
+h2
+  font-size: 1.6em
+
+h3
+  font-size: 1.3em
+
+h4
+  font-size: 1.1em
 
 h2
   margin: 1.2em 0 .4em 0
@@ -11,12 +26,16 @@ p
   @include text-shadow(0 1px #fff)
 
 /* basic layout system */
+
 .ui-hd,
 .ui-ft
   @include background-vertical-gradient(#9cd,#62B1D0)
 
 .ui-hd
   box-shadow: 0px 2px 5px #666
+
+.ui-ft
+  box-shadow: 0px -3px 10px #666
 
 .ui-body-c
   border: 1px solid #AAA
@@ -100,9 +119,11 @@ a.ui-link:active
   border-top: 1px solid 	#fff
   border-color: rgba(255,255,255,.3)
 
-.ui-input-text.ui-focus
+textarea.ui-input-text.ui-focus,
+div.ui-input-text.ui-focus
   /* box-shadow: inset 0px 1px 4px rgba(0, 0, 0, .4), 0px 0px 12px #80acbd
   box-shadow: inset 0px 1px 8px rgba(0, 0, 0, .5)
+  background: $fore-color2
 
 /* corner rounding classes */
 .ui-corner-all
@@ -110,10 +131,10 @@ a.ui-link:active
   border-radius: .5em
 
 .ui-shadow-inset
-  @include box-shadow(inset 0px 1px 5px #9cd)
+  @include box-shadow(inset 0px 1px 5px rgba(0,0,0, .3))
 
 .ui-shadow
-  @include box-shadow(0px 1px 5px #9cd)
+  @include box-shadow(0px 1px 5px rgba(0,0,0,.3))
 
 label.ui-input-text
   font-size: 16px
@@ -133,7 +154,7 @@ textarea.ui-input-text
   display: block
   width: 100%
   outline: 0
-  @include text-shadow(1px 1px #fff)
+  @include text-shadow(0px 1px #d8d8d8)
   
 input.ui-mini, .ui-mini input, textarea.ui-mini
   font-size: 14px

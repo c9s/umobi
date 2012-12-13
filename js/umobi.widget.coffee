@@ -7,8 +7,10 @@ define ["jquery","umobi.dom"], ($,dom) ->
         input.className += uiClass
         $input = $(input)
         $input.wrap('<div class="' + uiClass + ' ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"></div>')
-        $input.focus () -> $(this).parent().addClass('ui-focus')
-        $input.blur () -> $(this).parent().removeClass('ui-focus')
+        $input.focus -> $(this).parent().addClass('ui-focus')
+        $input.blur -> $(this).parent().removeClass('ui-focus')
       else if input.nodeName is "TEXTAREA"
         input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"
-
+        $input = $(input)
+        $input.focus -> $(this).addClass('ui-focus')
+        $input.blur -> $(this).removeClass('ui-focus')

@@ -27,7 +27,7 @@ define [
         $(this).trigger('pagecreate',[this])
         umobi.initPageContainer(this)
 
-    $pages.first().addClass('ui-page-active')
+    umobi.showPage($pages.first())
 
     $(document.links).each (i,e) ->
       $a = $(this)
@@ -35,6 +35,6 @@ define [
       $a.click (e) ->
         href = $(this).attr('href')
         if href.match(/^#\w+/)
-          umobi.showPage(href)
+          umobi.showPageByHash(href)
 
     $html.removeClass('ui-mobile-rendering')
