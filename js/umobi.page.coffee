@@ -1,4 +1,11 @@
-define ["cs!umobi.core"], ->
+define [
+  "cs!umobi.core"
+  "cs!umobi.scroller"
+], ->
+
+  # prevent body scrolling
+  $('body').css('overflow','hidden').addClass('ui-overlay-c')
+
 
   # static methods of page object.
   umobi.page =
@@ -36,9 +43,10 @@ define ["cs!umobi.core"], ->
       isBothFixed = $h.data 'fixed' or $f.data 'fixed'
 
       if isBothFixed
-        # prevent body scrolling
-        $('body').css('overflow','hidden')
         $c.wrap('<div class="ui-content-scroll"/>')
+        $scrollingContent = $c.parent()
+
+        umobi.scroller.create($c.get(0))
 
         AdjustContentHeight = (e) ->
           $content = $page.find('[data-role="content"]')
@@ -52,12 +60,13 @@ define ["cs!umobi.core"], ->
           if $footer.get(0)
             contentBottom = $footer.height()
 
-          $content.parent().css
+          $scrollingContent.css
             position: 'absolute'
             top: contentTop + 'px'
             left: 0
             bottom: contentBottom + 'px'
             overflow: 'auto'
+
         $page.on 'pagereveal', AdjustContentHeight
 
       resizeTimeout = null

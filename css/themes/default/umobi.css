@@ -48,6 +48,7 @@ p {
 .ui-footer {
   box-shadow: 0px -3px 10px #666666; }
 
+.ui-overlay-c,
 .ui-body-c {
   border: 1px solid #aaaaaa;
   color: #333333;
