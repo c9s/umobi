@@ -1,5 +1,6 @@
 var path = require( 'path' ), fs = require( 'fs' );
 
+
 module.exports = function( grunt ) {
 	var dirs, names, min = {}, cssmin = {},
 		theme, rootFile, structureFile, themeFile,
@@ -14,7 +15,7 @@ module.exports = function( grunt ) {
 
 	suffix = process.env.IS_DEPLOY_TARGET === "true" ? "-" + verOfficial : "";
 
-	names= {
+	names = {
 		base: 'umobi' + suffix,
 		// this will change for the deploy target to include version information
 		root: 'umobi' + suffix,
@@ -119,13 +120,16 @@ module.exports = function( grunt ) {
 				name: 'umobi',
 				exclude: [
 					'jquery',
+                    'coffee-script',
 					'depend',
 					'text',
 					'text!../version.txt'
 				],
 				out: rootFile + '.compiled.js',
 				pragmasOnSave: { jqmBuildExclude: true },
-				wrap: { startFile: 'build/wrap.start', endFile: 'build/wrap.end' },
+
+				// wrap: { startFile: 'build/wrap.start', endFile: 'build/wrap.end' },
+
 				findNestedDependencies: true,
 				skipModuleInsertion: true,
 				optimize: 'none'
