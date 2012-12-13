@@ -27,14 +27,14 @@ p
 
 /* basic layout system */
 
-.ui-hd,
-.ui-ft
+.ui-header,
+.ui-footer
   @include background-vertical-gradient(#9cd,#62B1D0)
 
-.ui-hd
+.ui-header
   box-shadow: 0px 2px 5px #666
 
-.ui-ft
+.ui-footer
   box-shadow: 0px -3px 10px #666
 
 .ui-body-c
@@ -48,8 +48,6 @@ p
   background-image: -ms-linear-gradient( #F9F9F9 , #EEE )
   background-image: -o-linear-gradient( #F9F9F9 , #EEE )
   background-image: linear-gradient( #F9F9F9 , #EEE )
-
-/* .ui-ft .ui-navbar */
 
 .ui-title
   min-height: 1.1em
@@ -74,8 +72,11 @@ h2.ui-title
 h3.ui-title
   font-size: 1.1em
 
+.ui-content-scroll
+  width: 100%
+
 .ui-content
-  padding: 0
+  padding: 15px
 
 .ui-link
   color: #2489CE
