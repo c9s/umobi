@@ -7,7 +7,6 @@
 
 µMobi aims to be a smaller, faster, touch-optimized mobile web framework.
 
-
 **Working In Progress**
 
 ## Band width limitation

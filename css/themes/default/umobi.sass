@@ -13,8 +13,10 @@ p
 /* basic layout system */
 .ui-hd,
 .ui-ft
-  @include background-vertical-gradient(#cdeb8e,#a5c956)
+  @include background-vertical-gradient(#9cd,#62B1D0)
 
+.ui-hd
+  box-shadow: 0px 2px 5px #666
 
 .ui-body-c
   border: 1px solid #AAA
@@ -40,7 +42,18 @@ p
   white-space: nowrap
   outline: 0 !important
   color: #000
-  text-shadow: 1px 1px #fff
+  font-weight: bold
+  text-shadow: 0px 1px #d8d8d8
+  color: #383838
+
+h1.ui-title
+  font-size: 1.4em
+
+h2.ui-title
+  font-size: 1.2em
+
+h3.ui-title
+  font-size: 1.1em
 
 .ui-content
   padding: 0
@@ -77,22 +90,19 @@ a.ui-link:active
 
 .ui-focus,
 .ui-btn:focus
-  @include box-shadow("inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe")
+  @include box-shadow("inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0")
 
 .ui-btn:focus, .ui-link-inherit:focus
   outline: 0
 
-.ui-btn.ui-focus
-  z-index: 1
-
-.ui-focus,
-.ui-btn:focus
-  @include box-shadow("inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe")
-
 
 .ui-btn-inner
   border-top: 1px solid 	#fff
-  border-color: 			rgba(255,255,255,.3)
+  border-color: rgba(255,255,255,.3)
+
+.ui-input-text.ui-focus
+  /* box-shadow: inset 0px 1px 4px rgba(0, 0, 0, .4), 0px 0px 12px #80acbd
+  box-shadow: inset 0px 1px 8px rgba(0, 0, 0, .5)
 
 /* corner rounding classes */
 .ui-corner-all
@@ -100,10 +110,10 @@ a.ui-link:active
   border-radius: .5em
 
 .ui-shadow-inset
-  @include box-shadow(inset 0px 1px 4px rgba(0, 0, 0, .2))
+  @include box-shadow(inset 0px 1px 5px #9cd)
 
 .ui-shadow
-  @include box-shadow(0px 1px 4px rgba(0,0,0,.3))
+  @include box-shadow(0px 1px 5px #9cd)
 
 label.ui-input-text
   font-size: 16px
@@ -112,7 +122,8 @@ label.ui-input-text
   font-weight: normal
   margin: 0 0 .3em
 
-input.ui-input-text, textarea.ui-input-text
+input.ui-input-text, 
+textarea.ui-input-text
   background-image: none
   padding: .4em
   margin: .5em 0
@@ -122,11 +133,8 @@ input.ui-input-text, textarea.ui-input-text
   display: block
   width: 100%
   outline: 0
-
-/* focus style */
-.ui-input-text.ui-focus
-  @include box-shadow(0px 0px 12px #387bbe)
-
+  @include text-shadow(1px 1px #fff)
+  
 input.ui-mini, .ui-mini input, textarea.ui-mini
   font-size: 14px
 
