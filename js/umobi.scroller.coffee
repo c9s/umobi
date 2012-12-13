@@ -1,6 +1,9 @@
 define ['jquery','cs!umobi.core'], ->
 
+  debug = false
+
   $(->
+    # TODO: range slider need this.
     document.body.addEventListener('touchmove', ((e) ->
       # This prevents native scrolling from happening.
       e.preventDefault()
@@ -14,6 +17,7 @@ define ['jquery','cs!umobi.core'], ->
       @element.addEventListener('touchstart', this, false)
       @element.addEventListener('touchmove', this, false)
       @element.addEventListener('touchend', this, false)
+
     handleEvent: (e) ->
       switch e.type
         when "touchstart"
@@ -27,11 +31,12 @@ define ['jquery','cs!umobi.core'], ->
       @stopMomentum()
       @startTouchY = e.touches[0].clientY
       @startTouchTime = (new Date).getTime()
+      @contentStartOffsetY = @getContentOffsetY()
       console.log( 'onTouchStart at', @startTouchY , 'Content start offset at', @contentStartOffsetY)
 
     onTouchMove: (e) ->
       return if not @isDragging
-      console.log 'onTouchMove'
+      console.log 'onTouchMove', { touchY: e.touches[0].clientY , contentStartOffsetY: @contentStartOffsetY }
 
       currentY = e.touches[0].clientY
       deltaY = currentY - @startTouchY
@@ -42,12 +47,16 @@ define ['jquery','cs!umobi.core'], ->
     onTouchEnd: (e) ->
       console.log 'onTouchEnd',e
 
-
       if @isDragging()
         if @shouldStartMomentum()
           @startMomentum()
         else
           @snapToBounds()
+
+    getContentOffsetY: () ->
+      style = document.defaultView.getComputedStyle(@element, null)
+      transform = new WebKitCSSMatrix(style.webkitTransform)
+      return transform.m42
 
     isDragging: () -> true
 
@@ -59,16 +68,16 @@ define ['jquery','cs!umobi.core'], ->
       # than changing the top value.
       @element.style.webkitTransform = 'translate3d(0, ' + offsetY + 'px, 0)'
 
-    getEndVelocity: () -> (@contentLastOffsetY - @contentStartOffsetY) / ((new Date).getTime() - @startTouchTime)
+    getEndVelocity: -> (@contentLastOffsetY - @contentStartOffsetY) / ((new Date).getTime() - @startTouchTime)
 
-    isDecelerating: () -> true
+    isDecelerating: -> true
 
     shouldStartMomentum: -> true
 
     stopMomentum: () ->
       if @isDecelerating()
         # Get the computed style object.
-        style = document.defaultView.getComputedStyle(this.element, null)
+        style = document.defaultView.getComputedStyle(@element, null)
         # Computed the transform in a matrix object given the style.
         transform = new WebKitCSSMatrix(style.webkitTransform)
         # Clear the active transition so it doesn’t apply to our next transform.
