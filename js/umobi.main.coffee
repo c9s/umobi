@@ -9,9 +9,7 @@ define [
 ], ($, umobi)->
   # Page Initialization
   $html = $(document.getElementsByTagName('html')[0])
-  window.scrollTo( 0, 1 )
   $ ->
-    console.log('dom ready')
     $(document).trigger('pageinit')
 
     defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1

@@ -40,7 +40,10 @@ define ["cs!umobi.core"], ->
           left: 0
           bottom: contentBottom + 'px'
           overflow: 'auto'
+        window.scrollTo(0,1)
       $page.on 'pagereveal', AdjustContentHeight
+    else
+      $page.on 'pagereveal', -> window.scrollTo(0, 1)
 
     resizeTimeout = null
     $(window).resize ->
