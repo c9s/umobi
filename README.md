@@ -30,10 +30,11 @@ In real world, 802.11b/g/n Wi-Fi (test incomplete)
 
 ## File sizes
 
+uMobi (minified 16KB)
+
 Zepto (minified 23KB, 22KB through Google closure compiler)
 
 jQuery 1.8.3 (minified 32KB)
-
 
 jQuery Mobile 1.2 (minified 227KB)
 
