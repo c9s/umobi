@@ -5,6 +5,7 @@ define [
   "umobi.dom"
   "cs!umobi.page"
   "cs!umobi.widget"
+  "cs!umobi.zoom"
   "cs!umobi.navigation"
 ], ($, umobi)->
   # Page Initialization
@@ -23,12 +24,12 @@ define [
     else
       $pages.each ->
         $(this).trigger('pagecreate',[this])
-        umobi.initPageContainer(this)
+        umobi.page.initPage(this)
 
     if location.hash
-      umobi.showPageByHash(location.hash)
+      umobi.page.showPageByHash(location.hash)
     else
-      umobi.showPage($pages.first())
+      umobi.page.showPage($pages.first())
 
     $(document.links).each (i,e) ->
       $a = $(this)
@@ -36,6 +37,6 @@ define [
       $a.click (e) ->
         href = $(this).attr('href')
         if href.match(/^#\w+/)
-          umobi.showPageByHash(href)
+          umobi.page.showPageByHash(href)
 
     $html.removeClass('ui-mobile-rendering')
