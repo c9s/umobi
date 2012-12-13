@@ -1,11 +1,15 @@
-.PHONY: build
+.PHONY: build js css
 
 all: build
 	# node node_modules/requirejs/bin/r.js -o js/build.js
 	# ls -lh js/umobi.min.js
 
-build:
+build: js css
+
+js:
 	grunt --config Gruntfile.coffee js
+
+css:
 	grunt --config Gruntfile.coffee css
 
 node_modules:
