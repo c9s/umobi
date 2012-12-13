@@ -1,260 +1,57 @@
-body, p {
-  font-family: Helvetica, Arial, sans-serif; }
+/*
+Syntax error: File to import not found or unreadable: umobi.macro.
+              Load paths:
+                /Users/c9s/src/work/umobi
+                /Users/c9s/src/work/umobi/css/blueprint
+                /Users/c9s/src/work/umobi/css/structure
+                /Users/c9s/src/work/umobi/css/themes
+        on line 1 of css/themes/default/umobi.sass
 
-body {
-  background: #eeeeee; }
+1: @import "umobi.macro"
+2: 
+3: body, p
+4:   font-family: Helvetica, Arial, sans-serif
+5: 
+6: 
 
-h2 {
-  margin: 1.2em 0 0.4em 0; }
-
-p {
-  color: #333333;
-  text-shadow: 0 1px white;
-  -webkit-text-shadow: 0 1px white;
-  -moz-text-shadow: 0 1px white;
-  -ms-text-shadow: 0 1px white;
-  -o-text-shadow: 0 1px white; }
-
-/* basic layout system */
-.ui-hd,
-.ui-ft {
-  /* Older browser */
-  background: #cdeb8e;
-  /* FF3.6+ */
-  background: -moz-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* Chrome,Safari4+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdeb8e), color-stop(100%, #a5c956));
-  /* Chrome10+,Safari5.1+ */
-  background: -webkit-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* Opera 11.10+ */
-  background: -o-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* IE10+ */
-  background: -ms-linear-gradient(top, #cdeb8e 0%, #a5c956 100%);
-  /* W3C */
-  background: linear-gradient(to bottom, #cdeb8e 0%, #a5c956 100%);
-  /* IE6-9 */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 ); }
-
-/* .ui-ft .ui-navbar */
-.ui-title {
-  min-height: 1.1em;
-  text-align: center;
-  display: block;
-  padding: 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  outline: 0 !important;
-  color: black;
-  text-shadow: 1px 1px white; }
-
-.ui-content {
-  padding: 0; }
-
-.ui-link {
-  color: #2489ce;
-  font-weight: bold; }
-
-.ui-link-inherit {
-  color: white; }
-
-a.ui-link {
-  color: #7cc4e7;
-  font-weight: bold; }
-
-a.ui-link:visited {
-  color: #2489ce; }
-
-a.ui-link:hover {
-  color: #2489ce; }
-
-a.ui-link:active {
-  color: #2489ce; }
-
-.ui-btn:focus, .ui-link-inherit:focus {
-  outline: 0; }
-
-.ui-btn.ui-focus {
-  z-index: 1; }
-
-.ui-focus,
-.ui-btn:focus {
-  -moz-box-shadow: inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe;
-  -webkit-box-shadow: inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe;
-  box-shadow: inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe; }
-
-/* focus state */
-.ui-btn:focus, .ui-link-inherit:focus {
-  outline: 0; }
-
-.ui-btn.ui-focus {
-  z-index: 1; }
-
-.ui-focus,
-.ui-btn:focus {
-  -moz-box-shadow: inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe;
-  -webkit-box-shadow: inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe;
-  box-shadow: inset 0px 0px 3px #387bbe, 0px 0px 9px #387bbe; }
-
-.ui-btn-inner {
-  border-top: 1px solid white;
-  border-color: rgba(255, 255, 255, 0.3); }
-
-/* corner rounding classes */
-.ui-corner-all {
-  -webkit-border-radius: 0.6em;
-  border-radius: 0.6em; }
-
-.ui-shadow {
-  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3); }
-
-.ui-input-text.ui-focus,
-.ui-input-search.ui-focus {
-  -moz-box-shadow: 0px 0px 12px #387bbe;
-  -webkit-box-shadow: 0px 0px 12px #387bbe;
-  box-shadow: 0px 0px 12px #387bbe; }
-
-/* ui-input theme */
-.ui-input-text.ui-focus,
-.ui-input-search.ui-focus {
-  -moz-box-shadow: 0px 0px 12px #387bbe;
-  -webkit-box-shadow: 0px 0px 12px #387bbe;
-  box-shadow: 0px 0px 12px #387bbe; }
-
-label.ui-input-text {
-  font-size: 16px;
-  line-height: 1.4;
-  display: block;
-  font-weight: normal;
-  margin: 0 0 0.3em; }
-
-input.ui-input-text, textarea.ui-input-text {
-  background-image: none;
-  padding: 0.4em;
-  margin: 0.5em 0;
-  min-height: 1.4em;
-  line-height: 1.4em;
-  font-size: 16px;
-  display: block;
-  width: 100%;
-  outline: 0; }
-
-input.ui-mini, .ui-mini input, textarea.ui-mini {
-  font-size: 14px; }
-
-div.ui-input-text input.ui-input-text,
-div.ui-input-text textarea.ui-input-text,
-.ui-input-search input.ui-input-text {
-  border: none;
-  width: 100%;
-  padding: 0.4em 0;
-  margin: 0;
-  display: block;
-  background: transparent none;
-  outline: 0 !important; }
-
-.ui-input-search, div.ui-input-text {
-  margin: 0.5em 0;
-  background-image: none;
-  position: relative; }
-
-.ui-input-search {
-  padding: 0 30px; }
-
-div.ui-input-text {
-  padding: 0 30px 0 0.4em;
-  border: 1px solid #cccccc;
-  border-radius: 10px; }
-
-input.ui-input-text.ui-mini,
-textarea.ui-input-text.ui-mini,
-.ui-input-search.ui-mini,
-div.ui-input-text.ui-mini {
-  margin: 0.25em 0; }
-
-.ui-field-contain input.ui-input-text,
-.ui-field-contain textarea.ui-input-text,
-.ui-field-contain .ui-input-search,
-.ui-field-contain div.ui-input-text {
-  margin: 0; }
-
-textarea.ui-input-text {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box; }
-
-input.ui-input-text {
-  -webkit-appearance: none; }
-
-textarea.ui-input-text {
-  height: 50px;
-  -webkit-transition: height 200ms linear;
-  -moz-transition: height 200ms linear;
-  -o-transition: height 200ms linear;
-  transition: height 200ms linear; }
-
-textarea.ui-mini {
-  height: 45px; }
-
-.ui-icon-searchfield:after {
-  position: absolute;
-  left: 7px;
-  top: 50%;
-  margin-top: -9px;
-  content: "";
-  width: 18px;
-  height: 18px;
-  opacity: 0.5; }
-
-.ui-input-search .ui-input-clear, .ui-input-text .ui-input-clear {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  margin-top: -13px; }
-
-.ui-mini .ui-input-clear {
-  margin-top: -14px;
-  right: -3px; }
-
-.ui-input-search .ui-input-clear-hidden, .ui-input-text .ui-input-clear-hidden {
-  display: none; }
-
-/* Resolves issue #5166: Added to support issue introduced in Firefox 15. We can likely remove this in the future. */
-input:-moz-placeholder {
-  color: #aaaaaa; }
-
-/* Resolves issue #5131: Width of textinput depends on its type, for Android 4.1 */
-input[type=number]::-webkit-outer-spin-button {
-  margin: 0; }
-
-@media all and (min-width: 28em) {
-  .ui-field-contain label.ui-input-text {
-    vertical-align: top;
-    display: inline-block;
-    width: 20%;
-    margin: 0 2% 0 0; }
-
-  .ui-field-contain input.ui-input-text,
-  .ui-field-contain textarea.ui-input-text,
-  .ui-field-contain .ui-input-search,
-  .ui-field-contain div.ui-input-text {
-    width: 78%;
-    display: inline-block; }
-
-  .ui-field-contain .ui-input-search,
-  .ui-field-contain div.ui-input-text {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box; }
-
-  .ui-hide-label input.ui-input-text,
-  .ui-hide-label textarea.ui-input-text,
-  .ui-hide-label .ui-input-search,
-  .ui-hide-label div.ui-input-text,
-  .ui-input-search input.ui-input-text,
-  div.ui-input-text input.ui-input-text {
-    width: 100%; } }
+Backtrace:
+css/themes/default/umobi.sass:1
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/import_node.rb:64:in `import'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/import_node.rb:25:in `imported_file'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:227:in `visit_import'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:107:in `visit_children'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:119:in `with_environment'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:106:in `visit_children'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:126:in `visit_root'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:7:in `send'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/visitors/perform.rb:7:in `visit'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/tree/root_node.rb:20:in `render'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/engine.rb:315:in `_render'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/engine.rb:262:in `render'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/plugin/compiler.rb:340:in `update_stylesheet'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/plugin/compiler.rb:202:in `update_stylesheets'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/plugin/compiler.rb:200:in `each'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/plugin/compiler.rb:200:in `update_stylesheets'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/plugin.rb:81:in `update_stylesheets'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/exec.rb:411:in `watch_or_update'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/exec.rb:302:in `process_result'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/exec.rb:41:in `parse'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/../lib/sass/../sass/exec.rb:21:in `parse!'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.1/bin/sass:8
+/usr/bin/sass:19:in `load'
+/usr/bin/sass:19
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: umobi.macro.\A               Load paths:\A                 /Users/c9s/src/work/umobi\A                 /Users/c9s/src/work/umobi/css/blueprint\A                 /Users/c9s/src/work/umobi/css/structure\A                 /Users/c9s/src/work/umobi/css/themes\A         on line 1 of css/themes/default/umobi.sass\A \A 1: @import \"umobi.macro\"\A 2: \A 3: body, p\A 4:   font-family: Helvetica, Arial, sans-serif\A 5: \A 6: "; }
