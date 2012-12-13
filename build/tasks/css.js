@@ -19,7 +19,7 @@ module.exports = function( grunt ) {
 		requirejs.optimize( require.structure );
 
 		// simple theme file compile
-		grunt.file.write( themeFile + '.css', 'css/themes/' + theme + '/jquery.mobile.theme.css' );
+		grunt.file.write( themeFile + '.css', 'css/themes/' + theme + '/umobi.theme.css' );
 	});
 
 	// TODO image copy would be better in compile though not perfect
