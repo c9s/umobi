@@ -3,8 +3,6 @@ fs = require("fs")
 execSync = require("exec-sync")
 module.exports = (grunt) ->
   
-  # this will change for the deploy target to include version information
-  outputPath = (name) -> path.join(dirs.output, name)
 
   dirs = undefined
   names = undefined
@@ -20,7 +18,12 @@ module.exports = (grunt) ->
     output: "compiled"
     temp: "tmp"
 
+  # this will change for the deploy target to include version information
+  outputPath = (name) -> path.join(dirs.output, name)
+
   verOfficial = grunt.file.read("version.txt").replace(/\n/, "")
+
+  # version suffix
   suffix = (if process.env.IS_DEPLOY_TARGET is "true" then "-" + verOfficial else "")
   names =
     base: "umobi" + suffix

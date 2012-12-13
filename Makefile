@@ -25,6 +25,5 @@ sass:
 	sass -c --update css
 
 sass-updater:
-	sass -q --watch css &
-
+	sass -q --debug-info --watch css &
 
