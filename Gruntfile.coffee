@@ -4,8 +4,8 @@ execSync = require("exec-sync")
 module.exports = (grunt) ->
   
   # this will change for the deploy target to include version information
-  outputPath = (name) ->
-    path.join dirs.output, name
+  outputPath = (name) -> path.join(dirs.output, name)
+
   dirs = undefined
   names = undefined
   min = {}
@@ -110,17 +110,19 @@ module.exports = (grunt) ->
       require:
         baseUrl: "js"
         name: "umobi"
-        exclude: ["jquery", "coffee-script", "depend", "text", "text!../version.txt"]
+        exclude: [
+          "jquery"
+          "coffee-script"
+          "depend"
+          "text"
+          "text!../version.txt"
+        ]
         out: rootFile + ".compiled.js"
-        pragmasOnSave:
-          jqmBuildExclude: true
-
         
         # wrap: { startFile: 'build/wrap.start', endFile: 'build/wrap.end' },
         findNestedDependencies: true
         skipModuleInsertion: true
         optimize: "none"
-
     
     # CSS config, mostly the requirejs configuration
     css:

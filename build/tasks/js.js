@@ -11,7 +11,8 @@ module.exports = function( grunt ) {
 			global_config = grunt.config.get( 'global' );
 
 		// pull the includes together using require js
-		requirejs.optimize( require );
+        grunt.log.writeln("requriejs optimizing...")
+		requirejs.optimize(require);
 
 		// replace the version with the value in version.text
 		grunt.file.copy( require.out, require.out, { process: function( fileContents ) {
