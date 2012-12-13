@@ -27,5 +27,5 @@ module.exports = function( grunt ) {
 	});
 
 	// NOTE custom dasks don't accept dependencies so we alias
-	grunt.registerTask( 'js', 'custom_init config:async js:compile concat:js min js:cleanup' );
+	grunt.registerTask( 'js', 'config:async js:compile concat:js min js:cleanup' );
 };
