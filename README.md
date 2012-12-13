@@ -2,12 +2,17 @@
 
 µMobi
 =======
-
 µMobi: Micro Mobile Web Framework for Smartphones & Tablets.
 
 µMobi aims to be a smaller, faster, touch-optimized mobile web framework.
 
 **Working In Progress**
+
+## Features
+
+- fast 
+- small
+- extra feature with extensions
 
 ## Band width limitation
 
