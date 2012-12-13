@@ -12,9 +12,8 @@ define [
   $html = $(document.getElementsByTagName('html')[0])
   $ ->
     $(document).trigger('pageinit')
-    $(document).on('pagereveal', -> window.scrollTo(0,1))
 
-    defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1
+    # defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1
 
     # find static pages and initialize them
     $pages = umobi.page.all()
@@ -29,6 +28,19 @@ define [
         href = $(this).attr('href')
         if href.match(/^#\w+/)
           umobi.page.revealByHash(href)
+
+    hideAddressBar = () ->
+      if document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)
+        document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
+      window.scrollTo(0,1)
+      # window.top.scrollTo(0,1)
+
+    window.addEventListener("load",hideAddressBar)
+    window.addEventListener("orientationchange",hideAddressBar)
+    
+
+    # currently, if the page can not be scrolled, this won't work.
+    $(document).on('pagereveal', hideAddressBar )
 
     if location.hash
       umobi.page.revealByHash(location.hash)
