@@ -18,9 +18,10 @@ define ["cs!umobi.core"], ->
       $page = $('[data-role="page"]').first() if not $page.get(0)
       umobi.page.reveal($page)
 
-    init: (el) ->
+    create: (el) ->
+
       $page = $(el)
-      $page.addClass('ui-page ui-body-c')
+      $page.trigger('pagecreate').addClass('ui-page ui-body-c')
       $h = $page.find('[data-role="header"]').addClass('ui-header') # header container
       $f = $page.find('[data-role="footer"]').addClass('ui-footer')  # footer container
       $c = $page.find('[data-role="content"]').addClass('ui-content') # content container
@@ -50,10 +51,8 @@ define ["cs!umobi.core"], ->
             left: 0
             bottom: contentBottom + 'px'
             overflow: 'auto'
-          window.scrollTo(0,1)
         $page.on 'pagereveal', AdjustContentHeight
-      else
-        $page.on 'pagereveal', -> window.scrollTo(0, 1)
+
 
       resizeTimeout = null
       $(window).resize ->

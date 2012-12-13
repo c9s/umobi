@@ -12,6 +12,7 @@ define [
   $html = $(document.getElementsByTagName('html')[0])
   $ ->
     $(document).trigger('pageinit')
+    $(document).on('pagereveal', -> window.scrollTo(0,1))
 
     defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1
 
@@ -23,8 +24,7 @@ define [
       $pages = $( "body" ).wrapInner( "<div data-role=\"page\"></div>" ).children( 0 )
     else
       $pages.each ->
-        $(this).trigger('pagecreate',[this])
-        umobi.page.init(this)
+        umobi.page.create(this)
 
     if location.hash
       umobi.page.revealByHash(location.hash)
