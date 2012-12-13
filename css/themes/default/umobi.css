@@ -13,11 +13,9 @@ h2 {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\0000312}}
 p {
   color: #333333;
-  text-shadow: 0 1px white;
   -webkit-text-shadow: 0 1px white;
   -moz-text-shadow: 0 1px white;
-  -ms-text-shadow: 0 1px white;
-  -o-text-shadow: 0 1px white; }
+  text-shadow: 0 1px white; }
 
 /* basic layout system */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\0000317}}
@@ -132,20 +130,14 @@ a.ui-link:active {
   -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003101}}
+/* focus style */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003100}}
 .ui-input-text.ui-focus {
   -moz-box-shadow: 0px 0px 12px #387bbe;
   -webkit-box-shadow: 0px 0px 12px #387bbe;
   box-shadow: 0px 0px 12px #387bbe; }
 
-/* ui-input theme */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003109}}
-.ui-input-text.ui-focus {
-  -moz-box-shadow: 0px 0px 12px #387bbe;
-  -webkit-box-shadow: 0px 0px 12px #387bbe;
-  box-shadow: 0px 0px 12px #387bbe; }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003112}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003103}}
 label.ui-input-text {
   font-size: 16px;
   line-height: 1.4;
@@ -153,7 +145,7 @@ label.ui-input-text {
   font-weight: normal;
   margin: 0 0 0.3em; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003119}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003110}}
 input.ui-input-text, textarea.ui-input-text {
   background-image: none;
   padding: 0.4em;
@@ -165,11 +157,11 @@ input.ui-input-text, textarea.ui-input-text {
   width: 100%;
   outline: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003130}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003121}}
 input.ui-mini, .ui-mini input, textarea.ui-mini {
   font-size: 14px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003133}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003124}}
 div.ui-input-text input.ui-input-text,
 div.ui-input-text textarea.ui-input-text {
   border: none;
@@ -180,36 +172,36 @@ div.ui-input-text textarea.ui-input-text {
   background: transparent none;
   outline: 0 !important; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003143}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003134}}
 div.ui-input-text {
   padding: 0 30px 0 0.4em;
   border: 1px solid #cccccc;
   border-radius: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003139}}
 input.ui-input-text.ui-mini,
 textarea.ui-input-text.ui-mini,
 div.ui-input-text.ui-mini {
   margin: 0.25em 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003153}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003144}}
 .ui-field-contain input.ui-input-text,
 .ui-field-contain textarea.ui-input-text,
 .ui-field-contain div.ui-input-text {
   margin: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003158}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003149}}
 textarea.ui-input-text {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003164}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003155}}
 input.ui-input-text {
   -webkit-appearance: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003167}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003158}}
 textarea.ui-input-text {
   height: 50px;
   -webkit-transition: height 200ms linear;
@@ -217,11 +209,11 @@ textarea.ui-input-text {
   -o-transition: height 200ms linear;
   transition: height 200ms linear; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003174}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003165}}
 textarea.ui-mini {
   height: 45px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003177}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003168}}
 .ui-icon-searchfield:after {
   position: absolute;
   left: 7px;
@@ -232,72 +224,68 @@ textarea.ui-mini {
   height: 18px;
   opacity: 0.5; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003187}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003178}}
 .ui-input-text .ui-input-clear {
   position: absolute;
   right: 0;
   top: 50%;
   margin-top: -13px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003193}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003184}}
 .ui-mini .ui-input-clear {
   margin-top: -14px;
   right: -3px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003197}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003188}}
 .ui-input-text .ui-input-clear-hidden {
   display: none; }
 
 /* Resolves issue #5166: Added to support issue introduced in Firefox 15. We can likely remove this in the future. */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003201}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003192}}
 input:-moz-placeholder {
   color: #aaaaaa; }
 
 /* Resolves issue #5131: Width of textinput depends on its type, for Android 4.1 */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003205}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003196}}
 input[type=number]::-webkit-outer-spin-button {
   margin: 0; }
 
 @media all and (min-width: 28em) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003209}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003200}}
   .ui-field-contain label.ui-input-text {
     vertical-align: top;
     display: inline-block;
     width: 20%;
     margin: 0 2% 0 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003214}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003205}}
   .ui-field-contain input.ui-input-text,
   .ui-field-contain textarea.ui-input-text,
   .ui-field-contain div.ui-input-text {
     width: 78%;
     display: inline-block; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003210}}
   .ui-field-contain div.ui-input-text {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003225}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003216}}
   .ui-hide-label input.ui-input-text,
   .ui-hide-label textarea.ui-input-text,
   .ui-hide-label div.ui-input-text,
   div.ui-input-text input.ui-input-text {
     width: 100%; } }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003231}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/c9s\/src\/work\/umobi\/css\/themes\/default\/umobi\.sass}line{font-family:\00003222}}
 .ui-btn {
-  border-radius: 8px;
   -webkit-border-radius: 8px;
-  -o-border-radius: 8px;
   -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  text-shadow: 8px;
+  border-radius: 8px;
   -webkit-text-shadow: 8px;
   -moz-text-shadow: 8px;
-  -ms-text-shadow: 8px;
-  -o-text-shadow: 8px;
+  text-shadow: 8px;
   /* Older browser */
   background: #cdeb8e;
   /* FF3.6+ */

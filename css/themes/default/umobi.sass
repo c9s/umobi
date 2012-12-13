@@ -94,18 +94,9 @@ a.ui-link:active
   border-radius: .6em
 
 .ui-shadow
-  -moz-box-shadow: 0px 1px 4px rgba(0,0,0,.3)
-  -webkit-box-shadow: 0px 1px 4px rgba(0,0,0,.3)
-  box-shadow: 0px 1px 4px rgba(0,0,0,.3)
+  @include box-shadow(0px 1px 4px rgba(0,0,0,.3))
 
-.ui-input-text.ui-focus
-  -moz-box-shadow: 0px 0px 12px #387bbe
-  -webkit-box-shadow: 0px 0px 12px #387bbe
-  box-shadow: 0px 0px 12px #387bbe
-
-
-/* ui-input theme */
-
+/* focus style */
 .ui-input-text.ui-focus
   @include box-shadow(0px 0px 12px #387bbe)
 
@@ -232,3 +223,4 @@ input[type=number]::-webkit-outer-spin-button
   @include border-radius(8px)
   @include text-shadow(8px)
   @include background-vertical-gradient(#cdeb8e,#a5c956)
+
