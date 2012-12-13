@@ -168,7 +168,8 @@ module.exports = (grunt) ->
   grunt.config.set "cssmin", cssmin
   
   # set the default task.
-  grunt.registerTask "default", "lint"
+  grunt.registerTask "default", "coffeelint"
+
   grunt.registerTask "sass", "compile sass files into css file", ->
     grunt.log.writeln "sass --update css"
     execSync "sass --update css"

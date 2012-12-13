@@ -1,6 +1,7 @@
 requirejs = require("requirejs")
 path = require("path")
 fs = require("fs")
+
 module.exports = (grunt) ->
   min = {}
   config = grunt.config.get("global")
