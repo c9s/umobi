@@ -2,7 +2,8 @@
 
 all: build
 	# node node_modules/requirejs/bin/r.js -o js/build.js
-	# ls -lh js/umobi.min.js
+	ls -lh compiled/umobi.min.js
+	ls -lh compiled/umobi.min.css
 
 build: js css
 
