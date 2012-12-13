@@ -3,15 +3,20 @@ define ["cs!umobi.core"], ->
   # static methods of page object.
   umobi.page =
 
-    getActive: () -> $('.ui-page-active')
+    # get all pages
+    all: -> $('[data-role="page"]')
+
+    # get active page
+    active: () -> $('.ui-page-active')
 
     # $p: page element object.
     reveal: ($p) ->
       # hide current active page
-      this.getActive().removeClass('ui-page-active')
+      this.active().removeClass('ui-page-active')
       $p.addClass('ui-page-active').trigger('pagereveal')
       $(document).trigger('pagereveal',[$p])
 
+    # reveal page element by hash
     revealByHash: (hash) ->
       # show first page if page not found.
       $page = $(hash)

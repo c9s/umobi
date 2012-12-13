@@ -1,8 +1,7 @@
 define ['cs!umobi.core','cs!umobi.page'], ->
   umobi = window.umobi
 
-  umobi.handleHashChange = (e) ->
-    umobi.page.revealByHash(location.hash)
+  umobi.handleHashChange = (e) -> umobi.page.revealByHash(location.hash)
 
   $(window).on 'hashchange', (e) ->
     umobi.handleHashChange(e)
