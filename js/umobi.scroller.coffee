@@ -12,7 +12,12 @@ define ['jquery','cs!umobi.core'], ->
 
   class Scroller
     constructor: (@element) ->
+
+      # first touch offset Y from touchstart event.
       @startTouchY = 0
+
+      # last touch offset Y from touchmove event.
+      @lastTouchY          = 0
       @contentStartOffsetY = 0
       @element.addEventListener('touchstart', this, false)
       @element.addEventListener('touchmove', this, false)
@@ -38,9 +43,13 @@ define ['jquery','cs!umobi.core'], ->
       return if not @isDragging
       console.log 'onTouchMove', { touchY: e.touches[0].clientY , contentStartOffsetY: @contentStartOffsetY }
 
-      currentY = e.touches[0].clientY
-      deltaY = currentY - @startTouchY
-      newY = deltaY + @contentStartOffsetY
+      currentY    = e.touches[0].clientY
+      deltaY      = currentY - @startTouchY
+      newY        = deltaY   + @contentStartOffsetY
+      @lastTouchY = currentY
+      newY = 30 if newY > 30
+      # @startTouchY = currentY
+      # return
       @animateTo(newY)
       @contentLastOffsetY = newY
 
@@ -72,7 +81,12 @@ define ['jquery','cs!umobi.core'], ->
 
     isDecelerating: -> true
 
-    shouldStartMomentum: -> true
+    shouldStartMomentum: ->
+      return true
+      # @lastTouchY
+      contentOffsetY = @getContentOffsetY()
+      return false if contentOffsetY > 30
+      return true
 
     stopMomentum: () ->
       if @isDecelerating()
@@ -85,25 +99,33 @@ define ['jquery','cs!umobi.core'], ->
         # Set the element transform to where it is right now.
         @animateTo(transform.m42)
 
-    startMomentum: () ->
-      # Calculate the movement properties. Implement getEndVelocity using the
-      # start and end position / time.
+    # Calculate the movement properties. Implement getEndVelocity using the
+    # start and end position / time.
+    calculateMomentum: () ->
       velocity = @getEndVelocity()
       acceleration = if velocity < 0 then 0.0005 else -0.0005
       displacement = - (velocity * velocity) / (2 * acceleration)
       time = - velocity / acceleration
+      newY = @contentOffsetY + displacement
+      return {
+        velocity: velocity
+        acceleration: acceleration
+        displacement: displacement
+        time: time
+        newY: newY
+      }
 
-      console.log "startMomentum" , { velocity: velocity , acceleration: acceleration }
+    startMomentum: () ->
+      m = @calculateMomentum()
 
       # Set up the transition and execute the transform. Once you implement this
       # you will need to figure out an appropriate time to clear the transition
       # so that it doesn’t apply to subsequent scrolling.
       # @element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
-      @element.style.webkitTransition = '-webkit-transform ' + 1000 + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
-
-      newY = @contentOffsetY + displacement
-      @element.style.webkitTransform = 'translate3d(0,' + newY + 'px, 0)'
-      @contentOffsetY = newY
+      @element.style.webkitTransition = '-webkit-transform ' + m.time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
+      @element.style.webkitTransform = 'translate3d(0,' + m.newY + 'px, 0)'
+      @contentOffsetY = m.newY
+      console.log "startMomentum", m
 
     snapToBounds: () ->
     
