@@ -11,6 +11,7 @@ define ['jquery','cs!umobi.core'], ->
   )
 
   class Scroller
+    snapBoundery: 60
     constructor: (@element) ->
 
       # first touch offset Y from touchstart event.
@@ -47,7 +48,7 @@ define ['jquery','cs!umobi.core'], ->
       deltaY      = currentY - @startTouchY
       newY        = deltaY   + @contentStartOffsetY
       @lastTouchY = currentY
-      newY = 30 if newY > 30
+      newY = @snapBoundery if newY > @snapBoundery
       # @startTouchY = currentY
       # return
       @animateTo(newY)
@@ -82,10 +83,12 @@ define ['jquery','cs!umobi.core'], ->
     isDecelerating: -> true
 
     shouldStartMomentum: ->
+      m = @calculateMomentum()
+      return false if m.newY > @snapBoundery
       return true
       # @lastTouchY
       contentOffsetY = @getContentOffsetY()
-      return false if contentOffsetY > 30
+      return false if contentOffsetY > @snapBoundery
       return true
 
     stopMomentum: () ->
@@ -115,6 +118,11 @@ define ['jquery','cs!umobi.core'], ->
         newY: newY
       }
 
+    cubicBezierAnimateTo: (time,newY) ->
+      @element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
+      @element.style.webkitTransform = 'translate3d(0,' + newY + 'px, 0)'
+      @contentOffsetY = newY
+
     startMomentum: () ->
       m = @calculateMomentum()
 
@@ -122,13 +130,11 @@ define ['jquery','cs!umobi.core'], ->
       # you will need to figure out an appropriate time to clear the transition
       # so that it doesn’t apply to subsequent scrolling.
       # @element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
-      @element.style.webkitTransition = '-webkit-transform ' + m.time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
-      @element.style.webkitTransform = 'translate3d(0,' + m.newY + 'px, 0)'
-      @contentOffsetY = m.newY
       console.log "startMomentum", m
+      @cubicBezierAnimateTo(m.time,m.newY)
 
     snapToBounds: () ->
-    
+      @cubicBezierAnimateTo(500,0)
 
   umobi.scroller = {}
   umobi.scroller.create = (element) -> new Scroller(element)
