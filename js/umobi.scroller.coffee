@@ -11,7 +11,7 @@ define ['jquery','cs!umobi.core'], ->
   )
 
   class Scroller
-    snapBoundery: 120
+    snapBoundary: 80
     snapDuration: 500
     constructor: (@element) ->
 
@@ -58,11 +58,18 @@ define ['jquery','cs!umobi.core'], ->
         deltaY: deltaY
         newY: newY
         contentStartOffsetY: @contentStartOffsetY
-        transform: @getCurrentTransform()
+        # transform: @getCurrentTransform()
       }
 
       @lastTouchY = currentY
-      newY = @snapBoundery if newY > @snapBoundery
+
+      # top boundary
+      newY = @snapBoundary if newY > @snapBoundary
+
+      # bottom boundary
+      $el = $(@element)
+      newY = - $el.height() + ($el.parent().height() - @snapBoundary) if ( $el.height() + newY + @snapBoundary ) < $el.parent().height()
+
       # @startTouchY = currentY
       # return
       @animateTo(newY)
@@ -103,10 +110,18 @@ define ['jquery','cs!umobi.core'], ->
       @element.style.webkitTransform = 'translate3d(0,' + newY + 'px, 0)'
       @contentOffsetY = newY
 
+    overBottomSnapLimit: (newY) ->
+      contentHeight = @getElementHeight(@element)
+      parentHeight  = @getElementHeight(@element.parentNode)
+      # console.log 'overBottomSnapLimit', (parentHeight - (contentHeight + newY)) , @snapBoundary
+      return (parentHeight - (contentHeight + newY)) >= @snapBoundary
+
     shouldStartMomentum: ->
       m = @calculateMomentum()
       return false if m.velocity < 1 and m.newY > 0
-      # return true if m.newY > @snapBoundery
+      return false if @overBottomSnapLimit(m.newY)
+
+      # return true if m.newY > @snapBoundary
       # @lastTouchY
       return true
 
@@ -134,12 +149,19 @@ define ['jquery','cs!umobi.core'], ->
         name = 'snaptobounds' + (@animationIndex++)
         frames = []
         time = m.time * 0.6
-        newY = if m.newY > @snapBoundery then @snapBoundery else m.newY
-        frames.push { time: time * 0.5, css: 'translate3d(0,' + newY + 'px,0)' }
-        frames.push { time: time, css: 'translate3d(0,' + 0 + 'px,0)' }
+        newY = if m.newY > @snapBoundary then @snapBoundary else m.newY
+        frames.push {
+          time: time * 0.2
+          transform: 'translate3d(0,' + newY + 'px,0)'
+        }
+        frames.push {
+          time: time
+          transform: 'translate3d(0,' + 0 + 'px,0)'
+        }
+
         framecss = @generateCSSKeyframes(frames,name,time)
         @globalStyleSheet.insertRule(framecss, 0)
-        @element.style.webkitAnimation = name + " " + time + "ms linear both"
+        @element.style.webkitAnimation = name + " " + time + "ms cubic-bezier(0.33,0.66,0.66,1)"
         @element.style.webkitAnimationPlayState = name ? "running" : "paused"
         console.log 'Playing snaptobounds animation', framecss if console.log
         normalEnd = (e) =>
@@ -172,8 +194,16 @@ define ['jquery','cs!umobi.core'], ->
         # Set the element transform to where it is right now.
         @animateTo(transform.m42)
 
+    getElementHeight: (el) -> parseInt(window.getComputedStyle(el).height)
+
     snapToBounds: () ->
-      @cubicBezierAnimateTo(@snapDuration,0)
+      offsetY = @getContentOffsetY()
+      if @overBottomSnapLimit(offsetY)
+        contentHeight = @getElementHeight(@element)
+        parentHeight  = @getElementHeight(@element.parentNode)
+        @cubicBezierAnimateTo(@snapDuration, (parentHeight - contentHeight) )
+      else
+        @cubicBezierAnimateTo(@snapDuration,0)
 
     # keyframes [array]
     # name [string]
@@ -183,7 +213,10 @@ define ['jquery','cs!umobi.core'], ->
       lines = [ '@-webkit-keyframes ' + name + ' {' ]
       keyframes.forEach (keyframe) ->
         percent = (keyframe.time / time) * 100
-        frame = Math.floor(percent) + '% { -webkit-transform: ' + keyframe.css + ';' + '}'
+        frame = Math.floor(percent) + '% { '
+        frame += '-webkit-transform: ' + keyframe.transform + ';'
+        frame += '-webkit-transition: ' + keyframe.transition + ';' if keyframe.transition
+        frame += '}'
         # D&&D(frame)
         lines.push frame
       lines.push '}'
