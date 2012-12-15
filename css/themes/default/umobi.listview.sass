@@ -1,2 +1,48 @@
-.ui-listview
 
+/* structure */
+.ui-content .ui-listview
+  margin: -15px
+
+ul.ui-listview
+  margin: 0
+  padding: 0
+
+ul.ui-listview li
+  margin: 0
+  padding: 0
+  list-style: none
+
+ul.ui-listview li a
+  text-decoration: none
+  color: #333
+  text-shadow: 1px 1px 2px #fff
+  padding: 10px
+  display: block
+  font-size: 15px
+
+ul.ui-listview li.ui-btn
+  border: 1px solid #ccc
+  border-bottom: 1px solid #e3e3e3
+  border-radius: 0px
+  background-color: #fff
+  text-shadow: 0 1px 0 white
+  background-image: -webkit-gradient(linear, left top, left bottom, from( white ), to( #F1F1F1 ))
+  background-image: -webkit-linear-gradient(white, #F1F1F1)
+  background-image: -moz-linear-gradient(white, #F1F1F1)
+  background-image: -ms-linear-gradient(white, #F1F1F1)
+  background-image: -o-linear-gradient(white, #F1F1F1)
+  background-image: linear-gradient(white, #F1F1F1)
+
+ul.ui-listview li.ui-btn:last-child
+  border-color: #ccc
+
+
+/* inset ui-listview, we should provide inset listview with 
+   border radius and box-shadow here.
+
+ul.ui-listview-inset li.ui-btn:first-child
+  border-radius: 10px 10px 0 0
+
+ul.ui-listview-inset li.ui-btn:last-child
+  border-radius: 0 0 10px 10px
+/* theme */

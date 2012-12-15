@@ -6,6 +6,13 @@ define ['jquery','umobi.dom'], ($,dom) ->
     for listview in listviews
       $listview = $(listview)
       $listview.addClass('ui-listview')
+      console.log listview
       lis = dom.queryAll('li',listview)
       for li in lis
+        $li = $(li)
+        $li.addClass('ui-li ui-btn')
+        $a = $li.find('a')
+        $inner = $('<div/>').addClass('ui-btn-inner').append($a)
+        $li.empty().append($inner)
+        # $li.wrapInner('<div class="ui-btn-inner"></div>')
         console.log li
