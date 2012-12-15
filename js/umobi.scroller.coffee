@@ -11,12 +11,14 @@ define ['jquery','cs!umobi.core'], ->
   )
 
   class Scroller
-    snapBoundery: 60
+    snapBoundery: 120
     snapDuration: 500
     constructor: (@element) ->
 
       # first touch offset Y from touchstart event.
+      @animationIndex = 1
       @startTouchY = 0
+      @globalStyleSheet = document.styleSheets[document.styleSheets.length-1]
 
       # last touch offset Y from touchmove event.
       @lastTouchY          = 0
@@ -39,15 +41,26 @@ define ['jquery','cs!umobi.core'], ->
       @startTouchY = e.touches[0].clientY
       @startTouchTime = (new Date).getTime()
       @contentStartOffsetY = @getContentOffsetY()
-      console.log( 'onTouchStart at', @startTouchY , 'Content start offset at', @contentStartOffsetY)
+      console.log 'onTouchStart', {
+        startTouchY: @startTouchY
+        contentStartOffsetY: @contentStartOffsetY
+      }
 
     onTouchMove: (e) ->
       return if not @isDragging
-      console.log 'onTouchMove', { touchY: e.touches[0].clientY , contentStartOffsetY: @contentStartOffsetY }
 
       currentY    = e.touches[0].clientY
       deltaY      = currentY - @startTouchY
       newY        = deltaY   + @contentStartOffsetY
+
+      console.log 'onTouchMove', {
+        touchY: currentY
+        deltaY: deltaY
+        newY: newY
+        contentStartOffsetY: @contentStartOffsetY
+        transform: @getCurrentTransform()
+      }
+
       @lastTouchY = currentY
       newY = @snapBoundery if newY > @snapBoundery
       # @startTouchY = currentY
@@ -64,10 +77,12 @@ define ['jquery','cs!umobi.core'], ->
         else
           @snapToBounds()
 
-    getContentOffsetY: () ->
+
+    getCurrentTransform: () ->
       style = document.defaultView.getComputedStyle(@element, null)
-      transform = new WebKitCSSMatrix(style.webkitTransform)
-      return transform.m42
+      new WebKitCSSMatrix(style.webkitTransform)
+
+    getContentOffsetY: () -> @getCurrentTransform().m42
 
     isDragging: () -> true
 
@@ -90,7 +105,7 @@ define ['jquery','cs!umobi.core'], ->
 
     shouldStartMomentum: ->
       m = @calculateMomentum()
-      return false if m.velocity < 0.1 and m.newY > 0
+      return false if m.velocity < 1 and m.newY > 0
       # return true if m.newY > @snapBoundery
       # @lastTouchY
       return true
@@ -116,9 +131,30 @@ define ['jquery','cs!umobi.core'], ->
       if m.newY > 0
         # first generate a css keyframe to animate to top boundery
         # then snap it to bounds.
+        name = 'snaptobounds' + (@animationIndex++)
         frames = []
-        frames.push { time: 0.1, css: 'translate3d(0,' + offsetY + 'px,0)' }
-        framecss = @generateCSSKeyframes(frames,'snaptobounds')
+        time = m.time * 0.6
+        newY = if m.newY > @snapBoundery then @snapBoundery else m.newY
+        frames.push { time: time * 0.5, css: 'translate3d(0,' + newY + 'px,0)' }
+        frames.push { time: time, css: 'translate3d(0,' + 0 + 'px,0)' }
+        framecss = @generateCSSKeyframes(frames,name,time)
+        @globalStyleSheet.insertRule(framecss, 0)
+        @element.style.webkitAnimation = name + " " + time + "ms linear both"
+        @element.style.webkitAnimationPlayState = name ? "running" : "paused"
+        console.log 'Playing snaptobounds animation', framecss if console.log
+        normalEnd = (e) =>
+            @element.removeEventListener("webkitAnimationEnd", normalEnd, false)
+            @globalStyleSheet.deleteRule(0)
+            @element.style.webkitAnimation = 'none'
+            @element.style.webkitTransition = ''
+            @animateTo(0)
+            # @stopMomentum()
+            # @element.style.webkitAnimationPlayState = "paused"
+            # @element.style.webkitTransform = "translate3d(0,0,0)"
+            # @contentOffsetY = 0
+            # @contentStartOffsetY = 0
+        @element.addEventListener("webkitAnimationEnd", normalEnd, false)
+        return
 
 
       # Set up the transition and execute the transform. Once you implement this
@@ -130,10 +166,7 @@ define ['jquery','cs!umobi.core'], ->
 
     stopMomentum: () ->
       if @isDecelerating()
-        # Get the computed style object.
-        style = document.defaultView.getComputedStyle(@element, null)
-        # Computed the transform in a matrix object given the style.
-        transform = new WebKitCSSMatrix(style.webkitTransform)
+        transform = @getCurrentTransform()
         # Clear the active transition so it doesn’t apply to our next transform.
         @element.style.webkitTransition = ''
         # Set the element transform to where it is right now.

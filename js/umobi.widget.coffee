@@ -13,9 +13,10 @@ define ["jquery","umobi.dom"], ($,dom) ->
         input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"
         $input.focus -> $(this).addClass('ui-focus')
         $input.blur -> $(this).removeClass('ui-focus')
-      $input.on 'touchmove', (e) ->
-        e.stopPropagation()
-        e.stopImmediatePropagation()
-      $input.on 'touchstart', (e) ->
-        e.stopPropagation()
-        e.stopImmediatePropagation()
+
+#        $input.on 'touchmove', (e) ->
+#          e.stopPropagation()
+#          e.stopImmediatePropagation()
+#        $input.on 'touchstart', (e) ->
+#          e.stopPropagation()
+#          e.stopImmediatePropagation()
