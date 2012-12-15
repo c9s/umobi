@@ -12,6 +12,7 @@ define ['jquery','cs!umobi.core'], ->
 
   class Scroller
     snapBoundery: 60
+    snapDuration: 500
     constructor: (@element) ->
 
       # first touch offset Y from touchstart event.
@@ -82,25 +83,17 @@ define ['jquery','cs!umobi.core'], ->
 
     isDecelerating: -> true
 
+    cubicBezierAnimateTo: (time,newY) ->
+      @element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
+      @element.style.webkitTransform = 'translate3d(0,' + newY + 'px, 0)'
+      @contentOffsetY = newY
+
     shouldStartMomentum: ->
       m = @calculateMomentum()
-      return false if m.newY > @snapBoundery
-      return true
+      return false if m.velocity < 0.1 and m.newY > 0
+      # return true if m.newY > @snapBoundery
       # @lastTouchY
-      contentOffsetY = @getContentOffsetY()
-      return false if contentOffsetY > @snapBoundery
       return true
-
-    stopMomentum: () ->
-      if @isDecelerating()
-        # Get the computed style object.
-        style = document.defaultView.getComputedStyle(@element, null)
-        # Computed the transform in a matrix object given the style.
-        transform = new WebKitCSSMatrix(style.webkitTransform)
-        # Clear the active transition so it doesn’t apply to our next transform.
-        @element.style.webkitTransition = ''
-        # Set the element transform to where it is right now.
-        @animateTo(transform.m42)
 
     # Calculate the movement properties. Implement getEndVelocity using the
     # start and end position / time.
@@ -118,13 +111,15 @@ define ['jquery','cs!umobi.core'], ->
         newY: newY
       }
 
-    cubicBezierAnimateTo: (time,newY) ->
-      @element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
-      @element.style.webkitTransform = 'translate3d(0,' + newY + 'px, 0)'
-      @contentOffsetY = newY
-
     startMomentum: () ->
       m = @calculateMomentum()
+      if m.newY > 0
+        # first generate a css keyframe to animate to top boundery
+        # then snap it to bounds.
+        frames = []
+        frames.push { time: 0.1, css: 'translate3d(0,' + offsetY + 'px,0)' }
+        framecss = @generateCSSKeyframes(frames,'snaptobounds')
+
 
       # Set up the transition and execute the transform. Once you implement this
       # you will need to figure out an appropriate time to clear the transition
@@ -133,8 +128,33 @@ define ['jquery','cs!umobi.core'], ->
       console.log "startMomentum", m
       @cubicBezierAnimateTo(m.time,m.newY)
 
+    stopMomentum: () ->
+      if @isDecelerating()
+        # Get the computed style object.
+        style = document.defaultView.getComputedStyle(@element, null)
+        # Computed the transform in a matrix object given the style.
+        transform = new WebKitCSSMatrix(style.webkitTransform)
+        # Clear the active transition so it doesn’t apply to our next transform.
+        @element.style.webkitTransition = ''
+        # Set the element transform to where it is right now.
+        @animateTo(transform.m42)
+
     snapToBounds: () ->
-      @cubicBezierAnimateTo(500,0)
+      @cubicBezierAnimateTo(@snapDuration,0)
+
+    # keyframes [array]
+    # name [string]
+    # time, duration [microseconds]
+    # offset
+    generateCSSKeyframes: (keyframes, name, time, offset) ->
+      lines = [ '@-webkit-keyframes ' + name + ' {' ]
+      keyframes.forEach (keyframe) ->
+        percent = (keyframe.time / time) * 100
+        frame = Math.floor(percent) + '% { -webkit-transform: ' + keyframe.css + ';' + '}'
+        # D&&D(frame)
+        lines.push frame
+      lines.push '}'
+      return lines.join '\n'
 
   umobi.scroller = {}
   umobi.scroller.create = (element) -> new Scroller(element)
