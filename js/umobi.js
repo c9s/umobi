@@ -3,9 +3,9 @@ require({
   // baseUrl: '/js',
   urlArgs: 'bust=' + (new Date()).getTime(),
   paths: {
-    "cs": "lib/cs",
-    "coffee-script": "lib/coffee-script",
-    "jquery":"lib/jquery"
+    "cs": "cs",
+    "coffee-script": "coffee-script",
+    "jquery":"jquery"
    }
 });
 
