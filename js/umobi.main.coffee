@@ -6,6 +6,7 @@ define [
   "cs!umobi.page"
   "cs!umobi.widget"
   "cs!umobi.zoom"
+  "cs!umobi.listview"
   "cs!umobi.navigation"
 ], ($, umobi)->
   # Page Initialization

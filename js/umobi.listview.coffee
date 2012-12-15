@@ -1,0 +1,4 @@
+
+# listview widgets
+define ['jquery'], ($) ->
+
