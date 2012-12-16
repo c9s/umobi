@@ -1,17 +1,18 @@
 define ['jquery','cs!umobi.core'], () ->
   c = window.applicationCache
-  switch (c.status) {
-    when c.UNCACHED then # UNCACHED == 0
+  switch c.status
+    # UNCACHED == 0
+    when c.UNCACHED
       return 'UNCACHED'
-    when c.IDLE then # IDLE == 1
+    when c.IDLE # IDLE == 1
       return 'IDLE'
-    when c.CHECKING then # CHECKING == 2
+    when c.CHECKING # CHECKING == 2
       return 'CHECKING'
-    when c.DOWNLOADING then # DOWNLOADING == 3
+    when c.DOWNLOADING # DOWNLOADING == 3
       return 'DOWNLOADING'
-    when c.UPDATEREADY then  # UPDATEREADY == 4
+    when c.UPDATEREADY  # UPDATEREADY == 4
       return 'UPDATEREADY'
-    when c.OBSOLETE then # OBSOLETE == 5
+    when c.OBSOLETE # OBSOLETE == 5
       return 'OBSOLETE'
     else
       return 'UKNOWN CACHE STATUS'
