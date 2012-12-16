@@ -68,53 +68,72 @@ define(["jquery","cs!umobi.core"],function($,umobi) {
         else $(e).toggleClass(cls);
     };
 
+    dom.bind = function(el,n,cb) {
+        el.addEventListener(n,cb);
+    };
+
+
     umobi.dom = dom;
 
     var u = function(a) {
         this.dom = dom;
         if( a instanceof NodeList ) {
-            this.elements = a;
+            this.els = a;
             this.length = a.length;
         } else if( a instanceof Node ) {
-            this.element = a;
+            this.el = a;
         } else if (typeof a === "string") {
-            this.elements = this.dom.queryAll(a);
+            this.els = this.dom.queryAll(a);
         } else {
             throw "u: unsupported argument"
         }
     };
     u.prototype = {
-        addClass: function(cls) {
-            if(this.element) {
-                dom.addClass(this.element,cls);
-            } else if (this.elements) {
-                var i = 0, len = this.length;
-                for(; i < len; i++ ) {
-                    dom.addClass(this.elements[i],cls);
-                }
+          size: function() {
+            if(this.els) return this.els.length;
+            if(this.el) return 1;
+            return 0;
+        }
+        , get: function(i) {
+            if(this.els) return this.els[i];
+            else if (i == 0) return this.el;
+        }
+        , addClass: function(cls) {
+            this.each(function(i,el) {
+                dom.addClass(el,cls);
+            });
+            return this;
+        }
+        , removeClass: function(cls) {
+            this.each(function(i,el) {
+                dom.removeClass(el,cls);
+            });
+            return this;
+        }
+        , each: function(cb) {
+            if(this.els) {
+                var i = 0, len = this.els.length;
+                for(;i < len; i++ ) cb(i,this.els[i]);
+            } else {
+                cb(0,this.el);
             }
             return this;
-        },
-        removeClass: function(cls) {
-            if(this.element) {
-                dom.removeClass(this.element,cls);
-            } else if (this.elements) {
-                var i = 0, len = this.length;
-                for(; i < len; i++ ) {
-                    dom.removeClass(this.elements[i],cls);
-                }
-            }
+        }
+        , toggleClass: function(cls) {
+            this.each(function(i,el) {
+                dom.toggleClass(el,cls);
+            });
             return this;
-        },
-        toggleClass: function(cls) {
-            if(this.element) {
-                dom.toggleClass(this.element,cls);
-            } else if (this.elements) {
-                var i = 0, len = this.lenght;
-                for(;i < len; i++ ) {
-                    dom.toggleClass(this.elements[i],cls);
-                }
-            }
+        }
+        , click: function(cb) {
+            this.bind('click',cb);
+            return this;
+        }
+        , bind: function(n,cb) {
+            this.each(function(i,el) {
+                el.addEventListener(n,cb);
+            });
+            return this;
         }
     };
     window.u = u;
