@@ -2,11 +2,16 @@
 
 µMobi
 =======
-µMobi: Micro Mobile Web Framework for Smartphones & Tablets.
+µMobi: A Micro Mobile Web Framework for Smartphones & Tablets, 
+which aims to be a smaller, faster, touch-optimized mobile web framework.
 
-µMobi aims to be a smaller, faster, touch-optimized mobile web framework.
+uMobi uses jQueryMobile compatible HTML template, the same template in
+jQueryMobile also works in uMobi.
 
-**Working In Progress**
+uMobi is pretty small, and is 11X smaller than jQueryMobile, if you 
+don't need such rich components like jQueryMobile, you can simply pick up uMobi.
+
+**WORKING IN PROGRESS**
 
 ## Features
 
@@ -28,7 +33,13 @@ In real world, tested with iPhone 4S
 
 In real world, 802.11b/g/n Wi-Fi (test incomplete)
 
+
+## Benchmarks
+
+- jQuery addClass vs DOM classList: <http://jsperf.com/jquery-addclass-vs-dom-classlist/2>
+
 ## File sizes
+
 
 uMobi (minified 16KB)
 
