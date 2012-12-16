@@ -2,7 +2,8 @@
 define [
   "jquery"
   "cs!umobi.core"
-  "umobi.dom"
+  "cs!umobi.dom"
+  "cs!u"
   "cs!umobi.page"
   "cs!umobi.widget"
   "cs!umobi.zoom"
