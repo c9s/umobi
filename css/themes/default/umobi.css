@@ -51,12 +51,15 @@ ul.ui-listview li.ui-btn:last-child {
   box-shadow: 0px 0px 8px #aaaaaa; }
 
 ul.ui-listview-inset li.ui-btn:first-child {
+  -webkit-border-radius: 12px 12px 0 0;
+  -moz-border-radius: 12px 12px 0 0;
   border-radius: 12px 12px 0 0; }
 
 ul.ui-listview-inset li.ui-btn:last-child {
+  -webkit-border-radius: 0 0 12px 12px;
+  -moz-border-radius: 0 0 12px 12px;
   border-radius: 0 0 12px 12px; }
 
-/* theme */
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 
