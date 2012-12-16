@@ -44,6 +44,24 @@ define(["jquery","cs!umobi.core"],function($,umobi) {
             c = c || document;
             return c.getElementsByClassName(n);
     };
+
+
+    // http://jsperf.com/jquery-addclass-vs-dom-classlist/2
+    dom.addClass = function(e,cls) {
+        if(typeof e.classList !== 'undefined')
+            e.classList.add(cls);
+        // jquery fallback
+        else $(e).addClass(cls);
+    };
+
+    dom.removeClass = function(e,cls) {
+        if(typeof e.classList !== 'undefined')
+            e.classList.remove(cls);
+        else $(e).removeClass(cls);
+    };
+
     umobi.dom = dom;
+
+
     return dom;
 });
