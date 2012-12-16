@@ -20,5 +20,6 @@ x list view
 
 - navigate buttons (in footer)
 
-- split view demo page
-- form widgets demo page
+- split view demo page.
+- form widgets demo page.
+- offline cache support.
