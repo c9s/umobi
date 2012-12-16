@@ -1,5 +1,5 @@
 ####
-# umobi framework
+# umobi mobile web framework
 ####
 define ["depend!jquery.hashchange[jquery]"], () ->
   umobi =

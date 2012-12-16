@@ -1,6 +1,5 @@
 todo
 ======
-
 x use require.js to define dependencies
     x basic require.js loader
     x basic require.js builder, build the compressed js/css out.
