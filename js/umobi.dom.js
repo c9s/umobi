@@ -5,6 +5,8 @@
 // http://jsperf.com/getelementbyid-v-s-queryselector
 define(["jquery","cs!umobi.core"],function($,umobi) {
     var dom = {  };
+    dom.supportClassList = (typeof document.documentElement.classList !== 'undefined');
+
     dom.query = function(q,c) {
         c = c || document;
         return c.querySelector(q);
@@ -55,13 +57,62 @@ define(["jquery","cs!umobi.core"],function($,umobi) {
     };
 
     dom.removeClass = function(e,cls) {
-        if(typeof e.classList !== 'undefined')
+        if(this.supportClassList)
             e.classList.remove(cls);
         else $(e).removeClass(cls);
     };
 
+    dom.toggleClass = function(e,cls) {
+        if(this.supportClassList)
+            e.classList.toggle(cls)
+        else $(e).toggleClass(cls);
+    };
+
     umobi.dom = dom;
 
-
+    var u = function(a) {
+        this.dom = dom;
+        if( a instanceof NodeList ) {
+            this.elements = a;
+            this.length = a.length;
+        } else if( a instanceof Node ) {
+            this.element = a;
+        }
+    };
+    u.prototype = {
+        addClass: function(cls) {
+            if(this.element) {
+                dom.addClass(this.element,cls);
+            } else if (this.elements) {
+                var i = 0, len = this.length;
+                for(; i < len; i++ ) {
+                    dom.addClass(this.elements[i],cls);
+                }
+            }
+            return this;
+        },
+        removeClass: function(cls) {
+            if(this.element) {
+                dom.removeClass(this.element,cls);
+            } else if (this.elements) {
+                var i = 0, len = this.length;
+                for(; i < len; i++ ) {
+                    dom.removeClass(this.elements[i],cls);
+                }
+            }
+            return this;
+        },
+        toggleClass: function(cls) {
+            if(this.element) {
+                dom.toggleClass(this.element,cls);
+            } else if (this.elements) {
+                var i = 0, len = this.lenght;
+                for(;i < len; i++ ) {
+                    dom.toggleClass(this.elements[i],cls);
+                }
+            }
+        }
+    };
+    window.u = u;
     return dom;
 });
