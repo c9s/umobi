@@ -77,6 +77,10 @@ define(["jquery","cs!umobi.core"],function($,umobi) {
             this.length = a.length;
         } else if( a instanceof Node ) {
             this.element = a;
+        } else if (typeof a === "string") {
+            this.elements = this.dom.queryAll(a);
+        } else {
+            throw "u: unsupported argument"
         }
     };
     u.prototype = {
