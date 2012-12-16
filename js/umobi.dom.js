@@ -23,8 +23,19 @@ define(["jquery","cs!umobi.core"],function($,umobi) {
         return c.getElementById(d);
     };
 
-    // get by tagname
 
+    // convert element collection to array
+    // which is needed when iterating huge collection.
+    dom.collectionToArray = function(c) {
+        var i = 0, len = c.length;
+        var list = [];
+        for (; i < len ; i++ ) {
+            list.push(c[i]);
+        }
+        return list;
+    };
+
+    // get by tagname
     dom.byTagName = function(n,c) {
         c = c || document;
         return c.getElementsByTagName(n);
