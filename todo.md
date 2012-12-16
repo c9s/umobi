@@ -9,11 +9,11 @@ x use grunt tasks to build distribution
 x text input style.
 x textarea input style.
 x hashchange trirgger (to switch page)
+x fast scroll js implementation
+x list view
 
 - button style
-- fast scroll js implementation
 - fast button
-- list view
 - table view
 - range input widget
 - dialog widget
