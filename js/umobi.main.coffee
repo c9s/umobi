@@ -43,6 +43,10 @@ define [
     if location.hash
       umobi.page.revealByHash(location.hash)
     else
-      umobi.page.reveal($pages.first())
+      indexPage = umobi.dom.query('#index')
+      if indexPage
+        umobi.page.reveal($(indexPage))
+      else
+        umobi.page.reveal($pages.first())
 
     $html.removeClass('ui-mobile-rendering')
