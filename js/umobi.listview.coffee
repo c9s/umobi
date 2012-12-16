@@ -6,7 +6,7 @@ define ['jquery','umobi.dom'], ($,dom) ->
     for listview in listviews
       $listview = $(listview)
       $listview.addClass('ui-listview')
-      console.log listview
+      $listview.addClass('ui-listview-inset') if $listview.data('inset')
       lis = dom.queryAll('li',listview)
       for li in lis
         $li = $(li)
