@@ -11,15 +11,15 @@ define [
   umobi.page =
 
     # get all pages
-    all: -> $('[data-role="page"]')
+    all: -> $(umobi.dom.queryAll('[data-role="page"]'))
 
     # get active page
-    active: () -> $('.ui-page-active')
+    active: () -> $(umobi.dom.queryAll('.ui-page-active'))
 
     # $p: page element object.
     reveal: ($p) ->
       # hide current active page
-      this.active().removeClass('ui-page-active')
+      @active().removeClass('ui-page-active')
       $p.addClass('ui-page-active').trigger('pagereveal')
       $(document).trigger('pagereveal',[$p])
 
@@ -31,9 +31,10 @@ define [
       umobi.page.reveal($page)
 
     create: (el) ->
-
       $page = $(el)
       $page.trigger('pagecreate').addClass('ui-page ui-body-c')
+
+      # TODO: rewrite this with umobi.dom
       $h = $page.find('[data-role="header"]').addClass('ui-header') # header container
       $f = $page.find('[data-role="footer"]').addClass('ui-footer')  # footer container
       $c = $page.find('[data-role="content"]').addClass('ui-content') # content container
