@@ -1,5 +1,4 @@
-define ['jquery','cs!umobi.core'], ->
-
+define ['jquery','cs!umobi.core','cs!u'], ->
   debug = false
 
   $(->

@@ -53,6 +53,20 @@ define ["jquery", "umobi.dom"], ($, dom) ->
     bind: (n, cb) ->
       @each (i, el) -> el.addEventListener n, cb
       this
+
+    style: (computed) ->
+      return unless this.element
+      return window.getComputedStyle(this.element) if computed
+      this.element.style
+
+    height: (a) ->
+      if a
+        this.each (i,e) -> e.style.height = parseInt(a) + 'px'
+      else
+        return unless this.element
+        return parseInt(this.element.style.height) if this.element.style.height
+        parseInt(@style(1).height)
+
   
   # export to global
   window.u = u
