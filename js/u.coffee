@@ -56,25 +56,25 @@ define ["jquery","cs!u.dom","cs!umobi.core"], ($,dom,umobi) ->
         # setter
         if( n and v )
           return @each (i,el) -> el.style[n] = v
-        else if typeof n is "object" and @element
+        else if typeof n is "object" and @el
           return @each (i,el) ->
             for k,val in n
               el.style[k] = val
         # getter
-        if typeof n is "string" and @element
-          return @element.style[n]
+        if typeof n is "string" and @el
+          return @el.style[n]
 
       attr: (n,v) ->
         # setter
         if( n and v )
           return @each (i,el) -> el.setAttribute(n,v)
-        else if typeof n is "object" and @element
+        else if typeof n is "object" and @el
           return @each (i,el) ->
             for k,val in n
               el.setAttribute(k,val)
         # getter
-        if typeof n is "string" and @element
-          return @element.getAttribute(n)
+        if typeof n is "string" and @el
+          return @el.getAttribute(n)
 
       each: (cb) ->
         if @els
@@ -96,25 +96,29 @@ define ["jquery","cs!u.dom","cs!umobi.core"], ($,dom,umobi) ->
       # Returns style or computed style
       ###
       style: (computed) ->
-        return unless @element
-        return window.getComputedStyle(@element) if computed
-        @element.style
+        return unless @el
+        return window.getComputedStyle(@el) if computed
+        @el.style
 
       height: (a) ->
         if a
           return @each (i,e) -> e.style.height = parseInt(a) + 'px'
         else
-          return unless @element
-          return parseInt(@element.style.height) if @element.style.height
+          return unless @el
+          return parseInt(@el.style.height) if @el.style.height
           parseInt(@style(1).height)
 
       width: (a) ->
         if a
           @each (i,e) -> e.style.width = parseInt(a) + 'px'
         else
-          return unless @element
-          return parseInt(@element.style.width) if @element.style.width
+          return unless @el
+          return parseInt(@el.style.width) if @el.style.width
           parseInt(@style(1).width)
+
+      # convert element or element collection to jQuery object.
+      jQuery: () -> $( @els or @el )
+
     window.u = u
   )()
   ###
