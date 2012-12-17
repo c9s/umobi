@@ -17,6 +17,7 @@ define [
   (->
     # Page Initialization
     $html = $(document.getElementsByTagName('html')[0])
+    $html.addClass('ui-mobile ui-mobile-rendering')
     $ ->
       $(document).trigger('pageinit')
 
@@ -37,14 +38,17 @@ define [
             umobi.page.revealByHash(href)
 
       # currently, if the page can not be scrolled, this won't work.
-      hideAddressBar = () ->
-        if document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)
-          document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
-        window.scrollTo(0,1)
-        # window.top.scrollTo(0,1)
-      window.addEventListener("load",hideAddressBar)
-      window.addEventListener("orientationchange",hideAddressBar)
-      $(document).on('pagereveal', hideAddressBar )
+      if window.navigator.userAgent.match(/iPhone|iPad|Android/)
+        hideAddressBar = () ->
+          if document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)
+            document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
+            # TODO: move this to structure css?
+            document.documentElement.style.overflow = 'hidden'
+          window.scrollTo(0,1)
+          # window.top.scrollTo(0,1)
+        window.addEventListener("load",hideAddressBar)
+        window.addEventListener("orientationchange",hideAddressBar)
+        $(document).on('pagereveal', hideAddressBar )
 
       if location.hash
         umobi.page.revealByHash(location.hash)

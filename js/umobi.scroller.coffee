@@ -1,13 +1,12 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','cs!umobi.core','cs!u'], ->
+define ['jquery','cs!umobi.core','cs!u'], ($,umobi) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
     debug = false
-
     $(->
       # TODO: range slider need this.
       document.body.addEventListener('touchmove', ((e) ->
@@ -15,7 +14,6 @@ define ['jquery','cs!umobi.core','cs!u'], ->
         e.preventDefault()
       ), false)
     )
-
     class Scroller
       snapBoundary: 80
       snapDuration: 500
@@ -227,7 +225,6 @@ define ['jquery','cs!umobi.core','cs!u'], ->
           lines.push frame
         lines.push '}'
         return lines.join '\n'
-
     umobi.scroller = {}
     umobi.scroller.create = (element) -> new Scroller(element)
   )()

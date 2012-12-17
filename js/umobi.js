@@ -23,7 +23,6 @@ define([
     "cs!umobi.core",
     "cs!umobi.dom",
     "cs!u",
-    "cs!umobi.page",
     "cs!umobi.button",
     "cs!umobi.widget",
     "cs!umobi.zoom",
@@ -32,6 +31,7 @@ define([
     "cs!umobi.scroller",
     "cs!umobi.support",
     "cs!umobi.offlinecache",
+    "cs!umobi.page",
     "cs!umobi.init"
 ], function(r,jQuery,cs,cs2,umobi) { 
     // r(["cs!umobi.init"]);
