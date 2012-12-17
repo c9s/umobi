@@ -6,19 +6,9 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-    u = (a) ->
-      if a instanceof NodeList
-        @els = a
-        @length = a.length
-      else if a instanceof Node
-        @el = a
-      else if typeof a is "string"
-        @els = @dom.queryAll(a)
-      else
-        throw new Error "u: unsupported argument"
+    u = (a) -> new uSet(a)
+
     u.dom = window.dom
-
-
     u.ready = (cb) ->
       # if the document has already finished before we hook.
       if document.readyState is "complete"
@@ -37,22 +27,37 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       else
         window.addEventListener( "load", cb, false )
 
-    u:: =
+    class uSet
+      constructor: (a) ->
+        if a instanceof NodeList
+          @els = a
+          @length = a.length
+        else if a instanceof Node
+          @el = a
+        else if typeof a is "string"
+          @els = u.dom.queryAll(a)
+        else
+          throw new Error("u: unsupported argument")
+
       size: ->
         return @els.length  if @els
         return 1  if @el
         0
 
       get: (i) ->
-        if @els
-          return @els[i]
-        else @el  if i is 0
+        return @els[i] if @els
+        if @el i is 0
+          return @el
 
-      children: (i) -> u(@get(i))
+      children: (i) -> new uSet(@get(i))
 
-      addClass: (cls) -> @each (i, el) -> dom.addClass el, cls
+      first: -> @children(0)
 
-      removeClass: (cls) -> @each (i, el) -> dom.removeClass el, cls
+      last: -> @children( if @els.length > 0 then @els.length - 1 else 0 ) if @els
+
+      addClass: (cls) -> @each (i, el) -> u.dom.addClass el, cls
+
+      removeClass: (cls) -> @each (i, el) -> u.dom.removeClass el, cls
 
       css: (n,v) ->
         # setter
@@ -89,7 +94,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           cb 0, @el
         return this
 
-      toggleClass: (cls) -> @each (i, el) -> dom.toggleClass el, cls
+      toggleClass: (cls) -> @each (i, el) -> u.dom.toggleClass el, cls
       click: (cb) -> @bind "click", cb
       on: (n,cb) -> @bind(n,cb)
       bind: (n, cb) -> @each (i, el) -> el.addEventListener n, cb
