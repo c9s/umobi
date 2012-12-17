@@ -118,11 +118,12 @@ module.exports = (grunt) ->
           "text"
           "text!../version.txt"
         ]
-        CoffeeScript:
-          bare: true
+
+        # use bare option for coffee-script compiler,
+        # this remove the function wrapper from coffee-script.
+        CoffeeScript: { bare: true }
         out: rootFile + ".compiled.js"
-        pragmasOnSave:
-          umobiBuildExclude: true
+        pragmas: { umobiBuildExclude: true }
         wrap:
           startFile: 'build/wrap.start'
           endFile: 'build/wrap.end'
