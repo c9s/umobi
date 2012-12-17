@@ -18,6 +18,25 @@ define ["jquery","cs!u.dom","cs!umobi.core"], ($,dom,umobi) ->
         throw new Error "u: unsupported argument"
     u.dom = window.dom
 
+
+    u.ready = (cb) ->
+      # if the document has already finished before we hook.
+      if document.readyState is "complete"
+        setTimeout(cb)
+      else
+        # The DOMContentLoaded event is fired when the document has finished
+        # loading and being parsed, without waiting for stylesheets, images,
+        # and subframes to be done loading (the load event can be used to
+        # detect a fully-loaded page).
+        document.addEventListener( "DOMContentLoaded", cb, false )
+
+    # the load event can be used to detect a fully-loaded page.
+    u.load = (cb) ->
+      if document.readyState is "complete"
+        setTimeout(cb)
+      else
+        window.addEventListener( "load", cb, false )
+
     u:: =
       size: ->
         return @els.length  if @els
