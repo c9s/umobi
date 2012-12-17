@@ -1,4 +1,6 @@
+`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
 define ["jquery","umobi.dom"], ($,dom) ->
+  `//>>excludeEnd("umobiBuildExclude")`
   $ ->
     inputs = dom.queryAll('input, textarea')
     for input in inputs
@@ -13,7 +15,9 @@ define ["jquery","umobi.dom"], ($,dom) ->
         input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"
         $input.focus -> $(this).addClass('ui-focus')
         $input.blur -> $(this).removeClass('ui-focus')
-
+  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  return
+`//>>excludeEnd("umobiBuildExclude")`
 #        $input.on 'touchmove', (e) ->
 #          e.stopPropagation()
 #          e.stopImmediatePropagation()

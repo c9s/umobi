@@ -1,4 +1,6 @@
+`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
 define ['cs!umobi.core','cs!umobi.page'], ->
+  `//>>excludeEnd("umobiBuildExclude")`
   umobi = window.umobi
 
   umobi.handleHashChange = (e) -> umobi.page.revealByHash(location.hash)
@@ -105,4 +107,6 @@ define ['cs!umobi.core','cs!umobi.page'], ->
               absStack.pop()
           else absStack.push( d )
       return "/" + absStack.join( "/" )
-
+  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  return
+`//>>excludeEnd("umobiBuildExclude")`

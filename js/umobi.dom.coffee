@@ -1,9 +1,17 @@
+###
 # query selector vs jquery
 # http://jsperf.com/jquery-vs-queryselectorall-to-array
 #
 # get element by id vs query selector
 # http://jsperf.com/getelementbyid-v-s-queryselector
+###
+###
+//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+###
 define ["jquery", "cs!umobi.core"], ($, umobi) ->
+  ###
+  //>>excludeEnd("umobiBuildExclude")
+  ###
   dom = {}
   dom.supportClassList = (typeof document.documentElement.classList isnt "undefined")
   dom.query = (q, c) ->
@@ -14,9 +22,8 @@ define ["jquery", "cs!umobi.core"], ($, umobi) ->
     c = c or document
     
     # querySelectorAll is available in IE8, Chrome, Firefox and Safari
-    # in this library we don't consider IE7
+    # in this library we don t consider IE7
     c.querySelectorAll q
-
   
   # get element by id, which is faster than querySelectorAll
   dom.get = (d, c) ->
@@ -71,5 +78,10 @@ define ["jquery", "cs!umobi.core"], ($, umobi) ->
     el.addEventListener n, cb
 
   umobi.dom = dom
-  dom
-
+  ###
+  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+  ###
+  return dom
+###
+//>>excludeEnd("umobiBuildExclude")
+###

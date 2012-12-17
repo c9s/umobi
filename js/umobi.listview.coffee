@@ -1,6 +1,10 @@
-`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+###
+//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+###
 define ['jquery','umobi.dom'], ($,dom) ->
-  `//>>excludeEnd("umobiBuildExclude")`
+  ###
+  //>>excludeEnd("umobiBuildExclude")
+  ###
   $ ->
     listviews = dom.queryAll('ul[data-role="listview"]')
     for listview in listviews
@@ -16,6 +20,10 @@ define ['jquery','umobi.dom'], ($,dom) ->
         $li.empty().append($inner)
         # $li.wrapInner('<div class="ui-btn-inner"></div>')
         console.log li
-  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  ###
+  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+  ###
   return
-`//>>excludeEnd("umobiBuildExclude")`
+###
+//>>excludeEnd("umobiBuildExclude")
+###
