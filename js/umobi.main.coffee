@@ -1,4 +1,6 @@
-`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+###
+//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+###
 define [
   "jquery"
   "cs!umobi.core"
@@ -10,7 +12,9 @@ define [
   "cs!umobi.listview"
   "cs!umobi.navigation"
 ], ($, umobi)->
-  `//>>excludeEnd("umobiBuildExclude")`
+  ###
+  //>>excludeEnd("umobiBuildExclude")
+  ###
 
   # Page Initialization
   $html = $(document.getElementsByTagName('html')[0])
@@ -53,6 +57,10 @@ define [
         umobi.page.reveal($pages.first())
 
     $html.removeClass('ui-mobile-rendering')
-  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  ###
+  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+  ###
   return umobi
-`//>>excludeEnd("umobiBuildExclude")`
+###
+//>>excludeEnd("umobiBuildExclude")
+###

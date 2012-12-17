@@ -1,9 +1,17 @@
-`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+###
+//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+###
 define ["depend!jquery.hashchange[jquery]"], () ->
-  `//>>excludeEnd("umobiBuildExclude")`
+  ###
+  //>>excludeEnd("umobiBuildExclude")
+  ###
   umobi =
     Env: { }
   window.umobi = umobi
-  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  ###
+  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+  ###
   return umobi
-`//>>excludeEnd("umobiBuildExclude")`
+###
+//>>excludeEnd("umobiBuildExclude")
+###
