@@ -9,7 +9,7 @@ define [
   "cs!umobi.widget"
   "cs!umobi.zoom"
   "cs!umobi.listview"
-  "cs!umobi.navigation" ], ($, umobi) ->
+  "cs!umobi.navigation" ], ($, umobi, u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
@@ -17,7 +17,8 @@ define [
     # Page Initialization
     $html = $(document.getElementsByTagName('html')[0])
     $html.addClass('ui-mobile ui-mobile-rendering')
-    $ ->
+
+    u.ready ->
       $(document).trigger('pageinit')
 
       # defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1

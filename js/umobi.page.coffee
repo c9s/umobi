@@ -13,7 +13,6 @@ define [
     # prevent body scrolling
     $('body').css('overflow','hidden').addClass('ui-overlay-c')
 
-
     # static methods of page object.
     umobi.page =
 
