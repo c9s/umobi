@@ -1,12 +1,14 @@
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 require({
   // baseUrl: '/js',
-  urlArgs: 'bust=' + (new Date()).getTime(),
-  paths: {
-    "cs": "cs",
-    "coffee-script": "coffee-script",
-    "jquery":"jquery"
-   }
+    urlArgs: 'bust=' + (new Date()).getTime()
+    /*
+    , paths: {
+        "cs": "cs",
+        "coffee-script": "coffee-script",
+        "jquery":"jquery"
+    }
+    */
 });
 //>>excludeEnd("umobiBuildExclude")
 
@@ -17,6 +19,8 @@ if(typeof define === "undefined" ) {
 // load cs plugin and coffee-script
 define([
     "require",
+    // "depend!zepto[]",
+    // "z",
     "depend!jquery[]",
     "cs",
     "coffee-script",

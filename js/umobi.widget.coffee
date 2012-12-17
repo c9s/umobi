@@ -1,7 +1,7 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ["jquery","cs!umobi.core","cs!u"], ($,umobi,u) ->
+define ["cs!umobi.core","cs!u"], (umobi,u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###

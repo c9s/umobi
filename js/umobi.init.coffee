@@ -2,14 +2,13 @@
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
 define [
-  "jquery"
   "cs!umobi.core"
   "cs!u"
   "cs!umobi.page"
   "cs!umobi.widget"
   "cs!umobi.zoom"
   "cs!umobi.listview"
-  "cs!umobi.navigation" ], ($, umobi, u) ->
+  "cs!umobi.navigation" ], (umobi, u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
