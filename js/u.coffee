@@ -34,6 +34,9 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           @length = a.length
         else if a instanceof Node
           @el = a
+        else if typeof a is "object" and a instanceof Array
+          @els = a
+          @length = a.length
         else if typeof a is "string"
           @els = u.dom.queryAll(a)
         else
@@ -49,7 +52,14 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         if @el i is 0
           return @el
 
-      children: (i) -> new uSet(@get(i))
+      all: ->
+        return @els if @els
+        return [ @el ] if @el
+        return []
+
+      children: (i) ->
+        return new uSet(@get(i)) if i
+        return new uSet(@els) if @els
 
       first: -> @children(0)
 
@@ -95,13 +105,34 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         return this
 
       toggleClass: (cls) -> @each (i, el) -> u.dom.toggleClass el, cls
+
       click: (cb) -> @bind "click", cb
+
       on: (n,cb) -> @bind(n,cb)
+
       bind: (n, cb) -> @each (i, el, capture) -> el.addEventListener n, cb, capture
 
       parent: ->
         e = @get(0)
         return new uSet(e.parentNode) if e
+
+      find: (sel) ->
+        els = []
+        for el in @all()
+          nodes = u.dom.queryAll(sel,el)
+          els = els.concat(nodes)
+        return new uSet(els)
+
+      siblings: (sel) ->
+        return @parent().find(sel) if sel
+        return @parent().children()
+
+      filter: (cb) ->
+        newlist = []
+        els = @all()
+        for e in els
+          newlist.push(e) if cb.call(e,e)
+        return new uSet(newlist)
 
       next: ->
         e = @get(0)
