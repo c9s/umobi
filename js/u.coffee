@@ -1,77 +1,12 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ["jquery","cs!umobi.core"], ($, umobi) ->
+define ["jquery","cs!u.dom","cs!umobi.core"], ($,dom,umobi) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-      # DOM Helpers
-      dom = {}
-
-      ###
-      # See if current DOM support classList (HTML5)
-      ###
-      dom.supportClassList = (typeof document.documentElement.classList isnt "undefined")
-
-      dom.query = (q, c) ->
-        c = c or document
-        # querySelector is only available in IE.
-        c.querySelector q
-
-      dom.queryAll = (q, c) ->
-        c = c or document
-        
-        # querySelectorAll is available in IE8, Chrome, Firefox and Safari
-        # in this library we don t consider IE7
-        c.querySelectorAll q
-      
-      # get element by id, which is faster than querySelectorAll
-      dom.get = (dom, c) ->
-        c = c or document
-        c.getElementById dom
-
-      
-      # convert element collection to array
-      # which is needed when iterating huge collection.
-      dom.collectionToArray = (c) ->
-        i = 0
-        len = c.length
-        list = []
-        while i < len
-          list.push c[i]
-          i++
-        list
-      
-      # get by tagname
-      dom.byTagName = (n, c) ->
-        c = c or document
-        c.getElementsByTagName n
-
-      dom.byClassName = (n, c) ->
-        c = c or document
-        c.getElementsByClassName n
-      
-      # http://jsperf.com/jquery-addclass-vs-dom-classlist/2
-      dom.addClass = (e, cls) ->
-        if @supportClassList
-          e.classList.add cls
-        else
-          $(e).addClass cls
-      dom.removeClass = (e, cls) ->
-        if @supportClassList
-          e.classList.remove cls
-        else
-          $(e).removeClass cls
-      dom.toggleClass = (e, cls) ->
-        if @supportClassList
-          e.classList.toggle cls
-        else
-          $(e).toggleClass cls
-      dom.bind = (el, n, cb) -> el.addEventListener n, cb
-
     u = (a) ->
-      @dom = dom
       if a instanceof NodeList
         @els = a
         @length = a.length
@@ -81,6 +16,8 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
         @els = @dom.queryAll(a)
       else
         throw "u: unsupported argument"
+    u.dom = window.dom
+
     u:: =
       size: ->
         return @els.length  if @els
@@ -129,14 +66,11 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
             i++
         else
           cb 0, @el
-        this
+        return this
 
       toggleClass: (cls) -> @each (i, el) -> dom.toggleClass el, cls
-
       click: (cb) -> @bind "click", cb
-
       on: (n,cb) -> @bind(n,cb)
-
       bind: (n, cb) -> @each (i, el) -> el.addEventListener n, cb
 
       ###
@@ -162,7 +96,6 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
           return unless @element
           return parseInt(@element.style.width) if @element.style.width
           parseInt(@style(1).width)
-
     window.u = u
   )()
   ###
