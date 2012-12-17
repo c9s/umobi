@@ -48,6 +48,8 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @els[i]
         else @el  if i is 0
 
+      children: (i) -> u(@get(i))
+
       addClass: (cls) -> @each (i, el) -> dom.addClass el, cls
 
       removeClass: (cls) -> @each (i, el) -> dom.removeClass el, cls

@@ -55,17 +55,17 @@ define ["jquery"], ->
     # http://jsperf.com/jquery-addclass-vs-dom-classlist/2
     dom.addClass = (e, cls) ->
       if @supportClassList
-        e.classList.add cls
+        e.classList.add(c) for c in cls.split(' ')
       else
         $(e).addClass cls
     dom.removeClass = (e, cls) ->
       if @supportClassList
-        e.classList.remove cls
+        e.classList.remove(c) for c in cls.split(' ')
       else
         $(e).removeClass cls
     dom.toggleClass = (e, cls) ->
       if @supportClassList
-        e.classList.toggle cls
+        e.classList.toggle(c) for c in cls.split(' ')
       else
         $(e).toggleClass cls
     dom.bind = (el, n, cb) -> el.addEventListener n, cb
