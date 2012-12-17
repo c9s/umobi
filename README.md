@@ -40,7 +40,6 @@ In real world, 802.11b/g/n Wi-Fi (test incomplete)
 
 ## File sizes
 
-
 uMobi (minified 16KB)
 
 Zepto (minified 23KB, 22KB through Google closure compiler)
@@ -65,4 +64,21 @@ jQuery UI 1.9.2 (minified 335KB)
 - jquery-ui-1.9.2.custom.min.js 232KB
 - css/ui-lightness/jquery-ui-1.9.2.custom.min.css 27KB
 - images/   76KB
+
+## Development
+
+### Special Requirement
+
+We use Grunt.js 0.4.x, which is still in development. there are some fixed dependencies 
+to install.
+
+- Grunt.js 0.4.x <http://github.com/gruntjs/grunt>
+- Grunt-cli <http://github.com/gruntjs/grunt-cli>
+- grunt-css <http://github.com/c9s/grunt-css>
+
+Then run:
+
+    npm install
+
+This should install grunt dependencies and contributed tasks.
 
