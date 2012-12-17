@@ -97,7 +97,19 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       toggleClass: (cls) -> @each (i, el) -> u.dom.toggleClass el, cls
       click: (cb) -> @bind "click", cb
       on: (n,cb) -> @bind(n,cb)
-      bind: (n, cb) -> @each (i, el) -> el.addEventListener n, cb
+      bind: (n, cb) -> @each (i, el, capture) -> el.addEventListener n, cb, capture
+
+      parent: ->
+        e = @get(0)
+        return new uSet(e.parentNode) if e
+
+      next: ->
+        e = @get(0)
+        return new uSet(e.nextSibling) if e
+
+      prev: ->
+        e = @get(0)
+        return new uSet(e.prevSibling) if e
 
       ###
       # Returns style or computed style
