@@ -28,3 +28,6 @@ sass:
 
 sass-updater:
 	sass -q --debug-info --watch css &
+
+clean:
+	rm -rf compiled/ .sass-cache/

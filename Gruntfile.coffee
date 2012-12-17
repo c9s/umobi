@@ -96,7 +96,7 @@ module.exports = (grunt) ->
         dest: rootFile + ".css"
 
       theme:
-        src: ["<banner:global.ver.header>", "css/themes/" + theme + "/umobi.theme.css"]
+        src: ["<banner:global.ver.header>", "css/themes/" + theme + "/umobi.css"]
         dest: themeFile + ".css"
 
     
@@ -144,7 +144,6 @@ module.exports = (grunt) ->
           optimizeCss: "standard.keepComments.keepLines"
           baseUrl: "."
           out: rootFile + ".compiled.css"
-
         structure:
           cssIn: "css/structure/umobi.structure.css"
           out: structureFile + ".compiled.css"

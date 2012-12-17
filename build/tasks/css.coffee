@@ -6,9 +6,10 @@ module.exports = (grunt) ->
   config = grunt.config.get("global")
   helpers = config.helpers
   grunt.registerTask "css:compile", "use require js to sort out deps", ->
-    theme = grunt.config.get("css").theme
-    themeFile = grunt.config.get("css").themeFile
-    require = grunt.config.get("css").require
+    cssConfig = grunt.config.get('css')
+    theme = cssConfig.theme
+    themeFile = cssConfig.themeFile
+    require = cssConfig.require
     
     # pull the includes together using require js
     requirejs.optimize require.all
@@ -17,7 +18,7 @@ module.exports = (grunt) ->
     requirejs.optimize require.structure
     
     # simple theme file compile
-    grunt.file.write themeFile + ".css", "css/themes/" + theme + "/umobi.css"
+    # grunt.file.write themeFile + ".css", "css/themes/" + theme + "/umobi.css"
 
   
   # TODO image copy would be better in compile though not perfect

@@ -1,7 +1,7 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','cs!umobi.core','cs!u'], ($,umobi) ->
+define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
@@ -23,6 +23,8 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi) ->
         @animationIndex = 1
         @startTouchY = 0
         @globalStyleSheet = document.styleSheets[document.styleSheets.length-1]
+
+        @$el = $(@element)
 
         # last touch offset Y from touchmove event.
         @lastTouchY          = 0
@@ -71,8 +73,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi) ->
         newY = @snapBoundary if newY > @snapBoundary
 
         # bottom boundary
-        $el = $(@element)
-        newY = - $el.height() + ($el.parent().height() - @snapBoundary) if ( $el.height() + newY + @snapBoundary ) < $el.parent().height()
+        newY = - @$el.height() + (@$el.parent().height() - @snapBoundary) if ( @$el.height() + newY + @snapBoundary ) < @$el.parent().height()
 
         # @startTouchY = currentY
         # return
