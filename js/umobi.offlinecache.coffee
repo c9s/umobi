@@ -1,6 +1,10 @@
-`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+###
+//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+###
 define ['jquery','cs!umobi.core'], () ->
-  `//>>excludeEnd("umobiBuildExclude")`
+  ###
+  //>>excludeEnd("umobiBuildExclude")
+  ###
   c = window.applicationCache
   switch c.status
     # UNCACHED == 0
@@ -18,6 +22,10 @@ define ['jquery','cs!umobi.core'], () ->
       return 'OBSOLETE'
     else
       return 'UKNOWN CACHE STATUS'
-  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  ###
+  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+  ###
   return c
-`//>>excludeEnd("umobiBuildExclude")`
+###
+//>>excludeEnd("umobiBuildExclude")
+###
