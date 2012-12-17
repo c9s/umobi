@@ -46,25 +46,26 @@ define ["jquery", "umobi.dom"], ($, dom) ->
       @each (i, el) -> dom.toggleClass el, cls
       this
 
-    click: (cb) ->
-      @bind "click", cb
-      this
+    click: (cb) -> @bind "click", cb
+
+    on: (n,cb) ->
+      m = n.charAt(0).toUpperCase() + n.substr(1)
+      @bind(m,cb)
 
     bind: (n, cb) ->
       @each (i, el) -> el.addEventListener n, cb
-      this
 
     style: (computed) ->
-      return unless this.element
-      return window.getComputedStyle(this.element) if computed
-      this.element.style
+      return unless @element
+      return window.getComputedStyle(@element) if computed
+      @element.style
 
     height: (a) ->
       if a
-        this.each (i,e) -> e.style.height = parseInt(a) + 'px'
+        @each (i,e) -> e.style.height = parseInt(a) + 'px'
       else
-        return unless this.element
-        return parseInt(this.element.style.height) if this.element.style.height
+        return unless @element
+        return parseInt(@element.style.height) if @element.style.height
         parseInt(@style(1).height)
 
   
