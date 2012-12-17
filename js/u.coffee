@@ -6,10 +6,17 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
+      # DOM Helpers
       dom = {}
+
+      ###
+      # See if current DOM support classList (HTML5)
+      ###
       dom.supportClassList = (typeof document.documentElement.classList isnt "undefined")
+
       dom.query = (q, c) ->
         c = c or document
+        # querySelector is only available in IE.
         c.querySelector q
 
       dom.queryAll = (q, c) ->
@@ -35,7 +42,6 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
           list.push c[i]
           i++
         list
-
       
       # get by tagname
       dom.byTagName = (n, c) ->
@@ -45,13 +51,11 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
       dom.byClassName = (n, c) ->
         c = c or document
         c.getElementsByClassName n
-
       
       # http://jsperf.com/jquery-addclass-vs-dom-classlist/2
       dom.addClass = (e, cls) ->
-        if typeof e.classList isnt "undefined"
+        if @supportClassList
           e.classList.add cls
-        # jquery fallback
         else
           $(e).addClass cls
       dom.removeClass = (e, cls) ->
@@ -77,7 +81,6 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
         @els = @dom.queryAll(a)
       else
         throw "u: unsupported argument"
-
     u:: =
       size: ->
         return @els.length  if @els
@@ -89,13 +92,33 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
           return @els[i]
         else @el  if i is 0
 
-      addClass: (cls) ->
-        @each (i, el) -> dom.addClass el, cls
-        this
+      addClass: (cls) -> @each (i, el) -> dom.addClass el, cls
 
-      removeClass: (cls) ->
-        @each (i, el) -> dom.removeClass el, cls
-        this
+      removeClass: (cls) -> @each (i, el) -> dom.removeClass el, cls
+
+      css: (n,v) ->
+        # setter
+        if( n and v )
+          return @each (i,el) -> el.style[n] = v
+        else if typeof n is "object" and @element
+          return @each (i,el) ->
+            for k,val in n
+              el.style[k] = val
+        # getter
+        if typeof n is "string" and @element
+          return @element.style[n]
+
+      attr: (n,v) ->
+        # setter
+        if( n and v )
+          return @each (i,el) -> el.setAttribute(n,v)
+        else if typeof n is "object" and @element
+          return @each (i,el) ->
+            for k,val in n
+              el.setAttribute(k,val)
+        # getter
+        if typeof n is "string" and @element
+          return @element.getAttribute(n)
 
       each: (cb) ->
         if @els
@@ -108,19 +131,17 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
           cb 0, @el
         this
 
-      toggleClass: (cls) ->
-        @each (i, el) -> dom.toggleClass el, cls
-        this
+      toggleClass: (cls) -> @each (i, el) -> dom.toggleClass el, cls
 
       click: (cb) -> @bind "click", cb
 
-      on: (n,cb) ->
-        m = n.charAt(0).toUpperCase() + n.substr(1)
-        @bind(m,cb)
+      on: (n,cb) -> @bind(n,cb)
 
-      bind: (n, cb) ->
-        @each (i, el) -> el.addEventListener n, cb
+      bind: (n, cb) -> @each (i, el) -> el.addEventListener n, cb
 
+      ###
+      # Returns style or computed style 
+      ###
       style: (computed) ->
         return unless @element
         return window.getComputedStyle(@element) if computed
@@ -128,11 +149,20 @@ define ["jquery","cs!umobi.core"], ($, umobi) ->
 
       height: (a) ->
         if a
-          @each (i,e) -> e.style.height = parseInt(a) + 'px'
+          return @each (i,e) -> e.style.height = parseInt(a) + 'px'
         else
           return unless @element
           return parseInt(@element.style.height) if @element.style.height
           parseInt(@style(1).height)
+
+      width: (a) ->
+        if a
+          @each (i,e) -> e.style.width = parseInt(a) + 'px'
+        else
+          return unless @element
+          return parseInt(@element.style.width) if @element.style.width
+          parseInt(@style(1).width)
+
     window.u = u
   )()
   ###
