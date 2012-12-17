@@ -112,14 +112,20 @@ module.exports = (grunt) ->
         name: "umobi"
         exclude: [
           "jquery"
+          "cs"
           "coffee-script"
           "depend"
           "text"
           "text!../version.txt"
         ]
+        CoffeeScript:
+          bare: true
         out: rootFile + ".compiled.js"
-        
-        # wrap: { startFile: 'build/wrap.start', endFile: 'build/wrap.end' },
+        pragmasOnSave:
+          umobiBuildExclude: true
+        wrap:
+          startFile: 'build/wrap.start'
+          endFile: 'build/wrap.end'
         findNestedDependencies: true
         skipModuleInsertion: true
         optimize: "none"
