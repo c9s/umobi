@@ -3,7 +3,6 @@ fs = require("fs")
 execSync = require("exec-sync")
 module.exports = (grunt) ->
 
-  min = {}
   cssmin = {}
   dirs =
     output: "compiled"
@@ -83,26 +82,28 @@ module.exports = (grunt) ->
     # NOTE these configuration settings are used _after_ compilation has taken place
     #      using requirejs. Thus the .compiled extensions. The exception being the theme concat
     concat:
+      options:
+        banner: "<%= global.ver.header %>"
       js:
-        src: ["<banner:global.ver.header>", rootFile + ".compiled.js"]
+        src: [ rootFile + ".compiled.js"]
         dest: rootFile + ".js"
 
       structure:
-        src: ["<banner:global.ver.header>", structureFile + ".compiled.css"]
+        src: [ structureFile + ".compiled.css"]
         dest: structureFile + ".css"
 
       regular:
-        src: ["<banner:global.ver.header>", rootFile + ".compiled.css"]
+        src: [ rootFile + ".compiled.css"]
         dest: rootFile + ".css"
 
       theme:
-        src: ["<banner:global.ver.header>", "css/themes/" + theme + "/umobi.css"]
+        src: [ "css/themes/" + theme + "/umobi.css"]
         dest: themeFile + ".css"
 
     
     # NOTE the keys are filenames which, being stored as variables requires that we use
     #      key based assignment. See below.
-    min: `undefined`
+    uglify: `undefined`
     cssmin: `undefined`
     
     # JS config, mostly the requirejs configuration
@@ -167,13 +168,15 @@ module.exports = (grunt) ->
 
   
   # MIN configuration
-  min[rootFile + ".min.js"] = ["<banner:global.ver.min>", rootFile + ".js"]
-  grunt.config.set "min", min
+  uglify = { js: { files: {} } }
+  uglify.options = { banner: "<%= global.ver.min %>" }
+  uglify.js.files[ rootFile + ".min.js" ] = [rootFile + ".js"]
+  grunt.config.set "uglify",uglify
   
   # CSSMIN configuration
-  cssmin[rootFile + ".min.css"] = ["<banner:global.ver.min>", rootFile + ".css"]
-  cssmin[structureFile + ".min.css"] = ["<banner:global.ver.min>", structureFile + ".css"]
-  cssmin[themeFile + ".min.css"] = ["<banner:global.ver.min>", themeFile + ".css"]
+  cssmin[rootFile + ".min.css"] = ["<%= global.ver.min %>", rootFile + ".css"]
+  cssmin[structureFile + ".min.css"] = ["<%= global.ver.min %>", structureFile + ".css"]
+  cssmin[themeFile + ".min.css"] = ["<%= global.ver.min %>", themeFile + ".css"]
   grunt.config.set "cssmin", cssmin
   
   # set the default task.
@@ -191,7 +194,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-git-authors"
   grunt.loadNpmTasks "grunt-junit"
   grunt.loadNpmTasks "grunt-coffeelint"
-  grunt.loadNpmTasks "grunt-coffee"
+  grunt.loadNpmTasks "grunt-contrib-concat"
+  grunt.loadNpmTasks "grunt-contrib-coffee"
+  grunt.loadNpmTasks "grunt-contrib-uglify"
   
   # Ease of use aliases for users who want the zip and docs
   grunt.registerTask "docs", "js css legacy_tasks:docs"

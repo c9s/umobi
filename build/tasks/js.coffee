@@ -3,7 +3,6 @@ path = require("path")
 fs = require("fs")
 
 module.exports = (grunt) ->
-  min = {}
   config = grunt.config.get("global")
   helpers = config.helpers
   grunt.registerTask "js:compile", ->
@@ -27,4 +26,4 @@ module.exports = (grunt) ->
     fs.unlink require.out
   
   # NOTE custom dasks don't accept dependencies so we alias
-  grunt.registerTask "js", "config:async js:compile concat:js min js:cleanup"
+  grunt.registerTask "js", "config:async js:compile concat:js uglify js:cleanup".split(" ")

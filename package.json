@@ -3,7 +3,7 @@
   "description": "dependencies for the grunt based build",
   "version": "0.0.1",
   "scripts": {
-    "lint" : "grunt"
+    "lint": "grunt"
   },
   "main": "grunt.js",
   "repository": {
@@ -11,14 +11,16 @@
     "url": "https://github.com/c9s/umobi.git"
   },
   "dependencies": {
-    "grunt":  "0.3.x",
-    "grunt-css": "0.2.0",
+    "grunt": "~0.4.0",
+    "grunt-css": "0.x.x",
     "grunt-sass": "0",
     "grunt-junit": "0.1.4",
+    "grunt-contrib-concat": "0",
     "grunt-contrib-jshint": "0",
-    "grunt-coffee": "0",
+    "grunt-contrib-uglify": "0",
+    "grunt-contrib-coffee": "0",
     "grunt-git-authors": "1.0.0",
-	"grunt-coffeelint": "0",
+    "grunt-coffeelint": "0",
     "requirejs": "1.0.8",
     "glob-whatev": "~0.1.4",
     "rimraf": "2.0.1",
@@ -27,5 +29,10 @@
   },
   "engine": {
     "node": ">=6.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-uglify": "~0.1.0",
+    "grunt-contrib-coffee": "~0.3.2",
+    "grunt-contrib-concat": "~0.1.1"
   }
 }

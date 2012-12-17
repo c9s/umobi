@@ -170,16 +170,16 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           @element.style.webkitAnimationPlayState = name ? "running" : "paused"
           console.log 'Playing snaptobounds animation', framecss if console.log
           normalEnd = (e) =>
-              @element.removeEventListener("webkitAnimationEnd", normalEnd, false)
-              @globalStyleSheet.deleteRule(0)
-              @element.style.webkitAnimation = 'none'
-              @element.style.webkitTransition = ''
-              @animateTo(0)
-              # @stopMomentum()
-              # @element.style.webkitAnimationPlayState = "paused"
-              # @element.style.webkitTransform = "translate3d(0,0,0)"
-              # @contentOffsetY = 0
-              # @contentStartOffsetY = 0
+            @element.removeEventListener("webkitAnimationEnd", normalEnd, false)
+            @globalStyleSheet.deleteRule(0)
+            @element.style.webkitAnimation = 'none'
+            @element.style.webkitTransition = ''
+            @animateTo(0)
+            # @stopMomentum()
+            # @element.style.webkitAnimationPlayState = "paused"
+            # @element.style.webkitTransform = "translate3d(0,0,0)"
+            # @contentOffsetY = 0
+            # @contentStartOffsetY = 0
           @element.addEventListener("webkitAnimationEnd", normalEnd, false)
           return
 

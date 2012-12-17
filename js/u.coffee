@@ -15,7 +15,7 @@ define ["jquery","cs!u.dom","cs!umobi.core"], ($,dom,umobi) ->
       else if typeof a is "string"
         @els = @dom.queryAll(a)
       else
-        throw "u: unsupported argument"
+        throw new Error "u: unsupported argument"
     u.dom = window.dom
 
     u:: =
@@ -74,7 +74,7 @@ define ["jquery","cs!u.dom","cs!umobi.core"], ($,dom,umobi) ->
       bind: (n, cb) -> @each (i, el) -> el.addEventListener n, cb
 
       ###
-      # Returns style or computed style 
+      # Returns style or computed style
       ###
       style: (computed) ->
         return unless @element
