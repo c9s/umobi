@@ -21,7 +21,6 @@ define([
     "cs",
     "coffee-script",
     "cs!umobi.core",
-    "cs!umobi.dom",
     "cs!u",
     "cs!umobi.button",
     "cs!umobi.widget",

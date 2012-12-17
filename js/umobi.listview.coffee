@@ -1,12 +1,12 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','umobi.dom','cs!umobi.core'], ($,dom) ->
+define ['jquery','cs!u','cs!umobi.core'], ($,u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   $ ->
-    listviews = umobi.dom.queryAll('ul[data-role="listview"]')
+    listviews = u.dom.queryAll('ul[data-role="listview"]')
     for listview in listviews
       $listview = $(listview)
       $listview.addClass('ui-listview')

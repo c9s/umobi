@@ -1,12 +1,12 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','cs!umobi.core'], ->
+define ['jquery','cs!umobi.core','cs!u'], ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   $ ->
-    buttons = umobi.dom.queryAll('[data-role="button"]')
+    buttons = u.dom.queryAll('[data-role="button"]')
     for button in buttons
       $(button)
   ###

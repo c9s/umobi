@@ -4,7 +4,6 @@
 define [
   "jquery"
   "cs!umobi.core"
-  "cs!umobi.dom"
   "cs!u"
   "cs!umobi.page"
   "cs!umobi.widget"
@@ -53,7 +52,7 @@ define [
       if location.hash
         umobi.page.revealByHash(location.hash)
       else
-        indexPage = umobi.dom.query('#index')
+        indexPage = u.dom.query('#index')
         if indexPage
           umobi.page.reveal($(indexPage))
         else

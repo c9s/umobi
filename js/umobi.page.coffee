@@ -3,7 +3,6 @@
 ###
 define [
   "cs!umobi.core"
-  "cs!umobi.dom"
   "cs!u"
   "cs!umobi.scroller"
 ], (umobi) ->
@@ -19,10 +18,10 @@ define [
     umobi.page =
 
       # get all pages
-      all: -> $(umobi.dom.queryAll('[data-role="page"]'))
+      all: -> $(u.dom.queryAll('[data-role="page"]'))
 
       # get active page
-      active: () -> $(umobi.dom.queryAll('.ui-page-active'))
+      active: () -> $(u.dom.queryAll('.ui-page-active'))
 
       # $p: page element object.
       reveal: ($p) ->

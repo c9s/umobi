@@ -1,12 +1,12 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','cs!umobi.core'], (jquery,umobi)->
+define ['jquery','cs!umobi.core','cs!u'], (jquery,umobi,u)->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-    meta = $( "meta[name=viewport]" )
+    meta = $("meta[name=viewport]")
     initialContent = meta.attr( "content" )
     disabledZoom = initialContent + ",maximum-scale=1, user-scalable=no"
     enabledZoom = initialContent + ",maximum-scale=10, user-scalable=yes"

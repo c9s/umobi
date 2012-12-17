@@ -1,12 +1,12 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ["jquery","cs!umobi.core","umobi.dom"], ($,umobi,dom) ->
+define ["jquery","cs!umobi.core","cs!u"], ($,umobi,u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   $ ->
-    inputs = umobi.dom.queryAll('input, textarea')
+    inputs = u.dom.queryAll('input, textarea')
     for input in inputs
       $input = $(input)
       if input.type is "text" or input.type is "password"
