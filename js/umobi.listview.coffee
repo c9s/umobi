@@ -1,12 +1,12 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','umobi.dom'], ($,dom) ->
+define ['jquery','umobi.dom','cs!umobi.core'], ($,dom) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   $ ->
-    listviews = dom.queryAll('ul[data-role="listview"]')
+    listviews = umobi.dom.queryAll('ul[data-role="listview"]')
     for listview in listviews
       $listview = $(listview)
       $listview.addClass('ui-listview')
@@ -19,7 +19,6 @@ define ['jquery','umobi.dom'], ($,dom) ->
         $inner = $('<div/>').addClass('ui-btn-inner').append($a)
         $li.empty().append($inner)
         # $li.wrapInner('<div class="ui-btn-inner"></div>')
-        console.log li
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
   ###

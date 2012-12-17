@@ -10,13 +10,29 @@ require({
 });
 //>>excludeEnd("umobiBuildExclude")
 
+if(typeof define === "undefined" ) {
+    define = function() {  };
+}
+
 // load cs plugin and coffee-script
 define([
-"require",
-"jquery",
-"cs",
-"coffee-script",
-"cs!umobi.main"
-], function(r,jQuery) { 
-    r(["cs!umobi.main"]);
+    "require",
+    "depend!jquery[]",
+    "cs",
+    "coffee-script",
+    "cs!umobi.core",
+    "cs!umobi.dom",
+    "cs!u",
+    "cs!umobi.page",
+    "cs!umobi.button",
+    "cs!umobi.widget",
+    "cs!umobi.zoom",
+    "cs!umobi.listview",
+    "cs!umobi.navigation",
+    "cs!umobi.scroller",
+    "cs!umobi.support",
+    "cs!umobi.offlinecache",
+    "cs!umobi.init"
+], function(r,jQuery,cs,cs2,umobi) { 
+    // r(["cs!umobi.init"]);
 });
