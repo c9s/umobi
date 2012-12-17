@@ -118,7 +118,10 @@ module.exports = (grunt) ->
           "text"
           "text!../version.txt"
         ]
-
+        paths:
+          "cs": "cs"
+          "coffee-script": "coffee-script"
+          "jquery":"jquery"
         # use bare option for coffee-script compiler,
         # this remove the function wrapper from coffee-script.
         CoffeeScript: { bare: true }

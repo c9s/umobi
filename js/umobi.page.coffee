@@ -1,7 +1,9 @@
+`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
 define [
   "cs!umobi.core"
   "cs!umobi.scroller"
 ], ->
+  `//>>excludeEnd("umobiBuildExclude")`
 
   # prevent body scrolling
   $('body').css('overflow','hidden').addClass('ui-overlay-c')
@@ -77,3 +79,6 @@ define [
 
       $h.addClass('ui-fixed-header') if $h.data 'fixed'
       $f.addClass('ui-fixed-footer') if $f.data 'fixed'
+  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  return
+`//>>excludeEnd("umobiBuildExclude")`

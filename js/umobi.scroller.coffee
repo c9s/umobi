@@ -1,4 +1,6 @@
+`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
 define ['jquery','cs!umobi.core','cs!u'], ->
+  `//>>excludeEnd("umobiBuildExclude")`
   debug = false
 
   $(->
@@ -223,3 +225,6 @@ define ['jquery','cs!umobi.core','cs!u'], ->
 
   umobi.scroller = {}
   umobi.scroller.create = (element) -> new Scroller(element)
+  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  return umobi.scroller
+`//>>excludeEnd("umobiBuildExclude")`

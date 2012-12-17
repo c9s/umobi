@@ -1,6 +1,9 @@
 
+
+`//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
 define ["jquery", "umobi.dom"], ($, dom) ->
-  u = (a) ->
+  `//>>excludeEnd("umobiBuildExclude")`
+  window.u = (a) ->
     @dom = dom
     if a instanceof NodeList
       @els = a
@@ -12,7 +15,7 @@ define ["jquery", "umobi.dom"], ($, dom) ->
     else
       throw "u: unsupported argument"
 
-  u:: =
+  window.u:: =
     size: ->
       return @els.length  if @els
       return 1  if @el
@@ -67,8 +70,6 @@ define ["jquery", "umobi.dom"], ($, dom) ->
         return unless @element
         return parseInt(@element.style.height) if @element.style.height
         parseInt(@style(1).height)
-
-  
-  # export to global
-  window.u = u
-
+  `//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
+  return window.u
+`//>>excludeEnd("umobiBuildExclude")`
