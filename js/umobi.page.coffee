@@ -37,7 +37,8 @@ define [
         umobi.page.reveal($page)
 
       create: (el) ->
-        u(el).trigger('pagecreate').addClass(['ui-page','ui-body-c'])
+        upage = u(el)
+        upage.trigger('pagecreate').addClass(['ui-page','ui-body-c'])
         $page = $(el)
 
         # TODO: rewrite this with umobi.dom

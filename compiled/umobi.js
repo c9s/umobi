@@ -484,6 +484,15 @@ if (objCtr.defineProperty) {
         return this;
       };
 
+      USet.prototype.trigger = function(n) {
+        var evt;
+        evt = document.createEvent("HTMLEvents");
+        evt.initEvent(n, true, true);
+        return this.each(function(i, el) {
+          return el.dispatchEvent(evt);
+        });
+      };
+
       USet.prototype.click = function(cb) {
         return this.bind("click", cb);
       };
@@ -1046,9 +1055,10 @@ if (objCtr.defineProperty) {
         return umobi.page.reveal($page);
       },
       create: function(el) {
-        var $c, $f, $h, $page, $scrollingContent, AdjustContentHeight, isBothFixed, resizeTimeout, scroller;
+        var $c, $f, $h, $page, $scrollingContent, AdjustContentHeight, isBothFixed, resizeTimeout, scroller, upage;
+        upage = u(el);
+        upage.trigger('pagecreate').addClass(['ui-page', 'ui-body-c']);
         $page = $(el);
-        $page.trigger('pagecreate').addClass('ui-page ui-body-c');
         $h = $page.find('[data-role="header"]').addClass('ui-header');
         $f = $page.find('[data-role="footer"]').addClass('ui-footer');
         $c = $page.find('[data-role="content"]').addClass('ui-content');
