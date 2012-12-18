@@ -53,21 +53,29 @@ define ["jquery"], ->
       c.getElementsByClassName n
     
     # http://jsperf.com/jquery-addclass-vs-dom-classlist/2
-    dom.addClass = (e, cls) ->
-      if @supportClassList
-        e.classList.add(c) for c in cls.split(' ')
-      else
+    if dom.supportClassList
+      dom.addClass = (e, cls) -> e.classList.add(cls)
+    else
+      dom.addClass = (e, cls) ->
+        cls = cls.join(" ") if typeof cls is "object"
         $(e).addClass cls
-    dom.removeClass = (e, cls) ->
-      if @supportClassList
-        e.classList.remove(c) for c in cls.split(' ')
-      else
+
+    if dom.supportClassList
+      dom.removeClass = (e, cls) ->
+        e.classList.remove(cls)
+    else
+      dom.removeClass = (e, cls) ->
+        cls = cls.join(" ") if typeof cls is "object"
         $(e).removeClass cls
-    dom.toggleClass = (e, cls) ->
-      if @supportClassList
-        e.classList.toggle(c) for c in cls.split(' ')
-      else
+
+    if dom.supportClassList
+      dom.toggleClass = (e, cls) ->
+        e.classList.toggle(cls) for c in cls.split(' ')
+    else
+      dom.toggleClass = (e, cls) ->
+        cls = cls.join(" ") if typeof cls is "object"
         $(e).toggleClass cls
+
     dom.bind = (el, n, cb) -> el.addEventListener n, cb
     window.dom = dom
   )()
