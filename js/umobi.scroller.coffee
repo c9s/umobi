@@ -121,8 +121,8 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         @contentOffsetY = newY
 
       overBottomSnapLimit: (newY) ->
-        contentHeight = @getElementHeight(@element)
-        parentHeight  = @getElementHeight(@element.parentNode)
+        contentHeight = u(@element).height()
+        parentHeight  = u(@element.parentNode).height()
         # console.log 'overBottomSnapLimit', (parentHeight - (contentHeight + newY)) , @snapBoundary
         return (parentHeight - (contentHeight + newY)) >= @snapBoundary
 
@@ -204,13 +204,11 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           # Set the element transform to where it is right now.
           @animateTo(transform.m42)
 
-      getElementHeight: (el) -> parseInt(window.getComputedStyle(el).height)
-
       snapToBounds: () ->
         offsetY = @getContentOffsetY()
         if @overBottomSnapLimit(offsetY)
-          contentHeight = @getElementHeight(@element)
-          parentHeight  = @getElementHeight(@element.parentNode)
+          contentHeight = u(@element).height()
+          parentHeight  = u(@element.parentNode).height()
           @cubicBezierAnimateTo(@snapDuration, (parentHeight - contentHeight) )
         else
           @cubicBezierAnimateTo(@snapDuration,0)
