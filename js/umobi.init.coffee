@@ -14,7 +14,8 @@ define [
   ###
   (->
     # Page Initialization
-    u('html').children(0).addClass(['ui-mobile','ui-mobile-rendering'])
+    uhtml = u('html')
+    uhtml.children(0).addClass(['ui-mobile','ui-mobile-rendering'])
 
     u.ready ->
       $(document).trigger('pageinit')
@@ -57,7 +58,7 @@ define [
         else
           umobi.page.reveal($pages.first())
 
-      u('html').removeClass('ui-mobile-rendering')
+      u.load -> uhtml.removeClass('ui-mobile-rendering')
   )()
 
   ###

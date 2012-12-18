@@ -7,6 +7,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
   ###
   (->
     debug = false
+
     u.ready ->
       # TODO: range slider need this.
       document.body.addEventListener('touchmove', ((e) ->
@@ -49,10 +50,11 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         @startTouchY = e.touches[0].clientY
         @startTouchTime = (new Date).getTime()
         @contentStartOffsetY = @getContentOffsetY()
+
         console.log 'onTouchStart', {
           startTouchY: @startTouchY
           contentStartOffsetY: @contentStartOffsetY
-        }
+        } if debug
 
       onTouchMove: (e) ->
         return if not @isDragging
@@ -67,7 +69,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           newY: newY
           contentStartOffsetY: @contentStartOffsetY
           # transform: @getCurrentTransform()
-        }
+        } if debug
 
         @lastTouchY = currentY
 
@@ -84,7 +86,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         @contentLastOffsetY = newY
 
       onTouchEnd: (e) ->
-        console.log 'onTouchEnd',e
+        console.log 'onTouchEnd',e if debug
 
         if @isDragging()
           if @shouldStartMomentum()
@@ -171,7 +173,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           @globalStyleSheet.insertRule(framecss, 0)
           @element.style.webkitAnimation = name + " " + time + "ms cubic-bezier(0.33,0.66,0.66,1)"
           @element.style.webkitAnimationPlayState = name ? "running" : "paused"
-          console.log 'Playing snaptobounds animation', framecss if console.log
+          console.log 'Playing snaptobounds animation', framecss if debug
           normalEnd = (e) =>
             @element.removeEventListener("webkitAnimationEnd", normalEnd, false)
             @globalStyleSheet.deleteRule(0)
@@ -191,7 +193,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         # you will need to figure out an appropriate time to clear the transition
         # so that it doesn’t apply to subsequent scrolling.
         # @element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
-        console.log "startMomentum", m
+        console.log "startMomentum", m if debug
         @cubicBezierAnimateTo(m.time,m.newY)
 
       stopMomentum: () ->

@@ -293,7 +293,7 @@ if (objCtr.defineProperty) {
         if (this.els) {
           return this.els[i];
         }
-        if (this.el(i === 0)) {
+        if (i === 0) {
           return this.el;
         }
       };
@@ -775,10 +775,12 @@ if (objCtr.defineProperty) {
         this.startTouchY = e.touches[0].clientY;
         this.startTouchTime = (new Date).getTime();
         this.contentStartOffsetY = this.getContentOffsetY();
-        return console.log('onTouchStart', {
-          startTouchY: this.startTouchY,
-          contentStartOffsetY: this.contentStartOffsetY
-        });
+        if (debug) {
+          return console.log('onTouchStart', {
+            startTouchY: this.startTouchY,
+            contentStartOffsetY: this.contentStartOffsetY
+          });
+        }
       };
 
       Scroller.prototype.onTouchMove = function(e) {
@@ -789,12 +791,14 @@ if (objCtr.defineProperty) {
         currentY = e.touches[0].clientY;
         deltaY = currentY - this.startTouchY;
         newY = deltaY + this.contentStartOffsetY;
-        console.log('onTouchMove', {
-          touchY: currentY,
-          deltaY: deltaY,
-          newY: newY,
-          contentStartOffsetY: this.contentStartOffsetY
-        });
+        if (debug) {
+          console.log('onTouchMove', {
+            touchY: currentY,
+            deltaY: deltaY,
+            newY: newY,
+            contentStartOffsetY: this.contentStartOffsetY
+          });
+        }
         this.lastTouchY = currentY;
         if (newY > this.snapBoundary) {
           newY = this.snapBoundary;
@@ -807,7 +811,9 @@ if (objCtr.defineProperty) {
       };
 
       Scroller.prototype.onTouchEnd = function(e) {
-        console.log('onTouchEnd', e);
+        if (debug) {
+          console.log('onTouchEnd', e);
+        }
         if (this.isDragging()) {
           if (this.shouldStartMomentum()) {
             return this.startMomentum();
@@ -908,7 +914,7 @@ if (objCtr.defineProperty) {
           this.element.style.webkitAnimationPlayState = name != null ? name : {
             "running": "paused"
           };
-          if (console.log) {
+          if (debug) {
             console.log('Playing snaptobounds animation', framecss);
           }
           normalEnd = function(e) {
@@ -921,7 +927,9 @@ if (objCtr.defineProperty) {
           this.element.addEventListener("webkitAnimationEnd", normalEnd, false);
           return;
         }
-        console.log("startMomentum", m);
+        if (debug) {
+          console.log("startMomentum", m);
+        }
         return this.cubicBezierAnimateTo(m.time, m.newY);
       };
 
@@ -1230,7 +1238,9 @@ if (objCtr.defineProperty) {
           umobi.page.reveal($pages.first());
         }
       }
-      return u('html').removeClass('ui-mobile-rendering');
+      return u.load(function() {
+        return u('html').removeClass('ui-mobile-rendering');
+      });
     });
   })();
   /*
