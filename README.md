@@ -31,9 +31,10 @@ lighter mobile web framework, especially for 3G-bandwidth devices.
 
 ## Features
 
-- fast 
-- small
-- extra feature with extensions
+- Fast: fast DOM manipulation, initialization.
+- Small: core is pretty small. you can build a customzied version with extra extensions.
+- Extensible: write your features in extensions.
+- jQueryMobile template compatible.
 
 ## Band width limitation
 
