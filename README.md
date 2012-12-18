@@ -13,6 +13,22 @@ don't need such rich components like jQueryMobile, you can simply pick up uMobi.
 
 **WORKING IN PROGRESS**
 
+
+## Why?
+
+Though there are jQueryMobile, iUI, jqTouch frameworks for mobile web
+development, but their files are too huge for 3G devices to download, the
+size of jQueryMobile is even more than 220KB (without jQuery or Zepto),
+but the startup bandwidth of 3G devices only has 8KB or uppper, therefore,
+jQueryMobile costs more than 4-6 seconds to download the whole
+jQueryMobile files.
+
+Beyond that, jQuery runs slower 8 times than pure DOM manipulation.
+
+But we found that the UI design, effects of jQueryMobile are so splendid,
+and other frameworks are not.  So we decide to make a smaller, faster,
+lighter mobile web framework, especially for 3G-bandwidth devices.
+
 ## Features
 
 - fast 
@@ -81,4 +97,32 @@ Then run:
     npm install
 
 This should install grunt dependencies and contributed tasks.
+
+### Build 
+
+To build compiled js through requirejs and uglifyjs:
+
+    grunt js
+
+To build compiled css through cssmin and jshint:
+
+    grunt css
+
+The compiled css/js files are located in `compiled` directory,
+Below is the compiled directory structure:
+
+    compiled
+    ├── images
+    │   ├── icons-18-black.png
+    │   ├── icons-18-white.png
+    │   ├── icons-36-black.png
+    │   └── icons-36-white.png
+    ├── umobi.css
+    ├── umobi.js
+    ├── umobi.min.css
+    ├── umobi.min.js
+    ├── umobi.structure.css
+    ├── umobi.structure.min.css
+    ├── umobi.theme.css
+    └── umobi.theme.min.css
 
