@@ -1093,7 +1093,7 @@ if (objCtr.defineProperty) {
           $page.on('pagereveal', AdjustContentHeight);
         }
         resizeTimeout = null;
-        $(window).resize(function() {
+        u(window).on('resize', function() {
           if (resizeTimeout) {
             clearTimeout(resizeTimeout);
           }
