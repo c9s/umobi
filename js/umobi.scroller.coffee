@@ -6,7 +6,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-    debug = false
+    debug = true
 
     u.ready ->
       # TODO: range slider need this.

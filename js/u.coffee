@@ -145,8 +145,8 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
             for k,val in n
               el.setAttribute(k,val)
         # getter
-        if typeof n is "string" and @el
-          return @el.getAttribute(n)
+        if typeof n is "string"
+          return @get(0).getAttribute(n)
 
       empty: () -> @each (i,el) -> el.innerHTML = ''
 
