@@ -17,6 +17,8 @@
                 <h1>µMobi</h1>
             </div>
             <div data-role="content">
+				<h2>Field Contain</h2>
+
                 <div data-role="fieldcontain">
                     <label for="text-field">Text Field</label>
                     <input type="text" id="text-field"/>
@@ -27,16 +29,30 @@
                     <input type="password" id="text-field"/>
                 </div>
 
-                <p>Radio Input</p>
+				<h2>Radio Input</h2>
+                <p></p>
+                <input type="radio" name="radio" id="radio1" value="female"/>
+				<label for="radio1">Female</label>
+                <input type="radio" name="radio" id="radio2" value="male"/>
+				<label for="radio2">Male</label>
 
-                <input type="radio" name="radio" value="1"/>
-                <input type="radio" name="radio" value="2"/>
+				<h2>Date Input</h2>
+				<input type="date" name="date"/>
 
-                <p>Range input</p>
+				<h2>DateTime Input</h2>
+				<input type="datetime" name="datetime" value="1996-12-19T16:39:57-08:00"/>
+				<p>DateTime input is not supported in Google Chrome yet</p>
+
+				<h2>Time Input</h2>
+				<input type="time" name="time">
+
+                <h2>Range input</h2>
                 <input type="range" name="radio" value="2"/>
 
+                <h2>Text Input</h2>
                 <input type="text" name="" value="Text Input"/>
 
+				<h2>Textarea</h2>
                 <textarea rows="10" name="textarea"></textarea>
 
             </div>

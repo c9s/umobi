@@ -72,12 +72,9 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         } if debug
 
       onTouchMove: (e) ->
-        return if not @isDragging
-
-        currentY    = e.touches[0].clientY
-
         @prevTouchY = @lastTouchY
-        @lastTouchY = currentY
+        @lastTouchY = currentY = e.touches[0].clientY
+        return if not @isDragging
 
         return if @viewportHeight() > @contentHeight()
 
@@ -139,7 +136,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
 
       getCurrentContentOffsetY: () -> @getCurrentTransform().m42
 
-      isDragging: () -> true
+      isDragging: () -> @lastTouchY isnt @prevTouchY
 
       animateTo: (offsetY) ->
         @contentOffsetY = offsetY
