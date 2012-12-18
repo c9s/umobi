@@ -6,7 +6,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-    debug = window.console and false
+    debug = window.console and true
 
     u.ready ->
       # TODO: range slider need this.
@@ -63,7 +63,8 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         @stopMomentum()
         @startTouchY = e.touches[0].clientY
         @startTouchTime = (new Date).getTime()
-        @contentStartOffsetY = @getContentOffsetY()
+        @contentStartOffsetY = @getCurrentContentOffsetY()
+        @contentLastOffsetY = @contentStartOffsetY
 
         console.log 'onTouchStart', {
           startTouchY: @startTouchY
@@ -136,7 +137,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         style = document.defaultView.getComputedStyle(@element, null)
         new WebKitCSSMatrix(style.webkitTransform)
 
-      getContentOffsetY: () -> @getCurrentTransform().m42
+      getCurrentContentOffsetY: () -> @getCurrentTransform().m42
 
       isDragging: () -> true
 
@@ -190,8 +191,9 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         }
 
       startMomentum: () ->
+        d = @getTouchDirection()
         m = @calculateMomentum()
-        if m.newY > 0
+        if d is 1 and m.newY > 0
           # first generate a css keyframe to animate to top boundery
           # then snap it to bounds.
           name = 'snaptobounds' + (@animationIndex++)
@@ -218,6 +220,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
             @element.style.webkitAnimation = 'none'
             @element.style.webkitTransition = ''
             @animateTo(0)
+            @contentLastOffsetY = 0
             # @stopMomentum()
             # @element.style.webkitAnimationPlayState = "paused"
             # @element.style.webkitTransform = "translate3d(0,0,0)"
@@ -243,7 +246,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           @animateTo(transform.m42)
 
       snapToBounds: () ->
-        offsetY = @getContentOffsetY()
+        offsetY = @getCurrentContentOffsetY()
         d = @getTouchDirection()
         console.log d
         if d is -1 and @overBottomSnapLimit(offsetY)
