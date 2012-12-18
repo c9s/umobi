@@ -310,10 +310,10 @@ if (objCtr.defineProperty) {
 
       USet.prototype.children = function(i) {
         if (i) {
-          return new USet(this.get(i));
+          return u(this.get(i));
         }
         if (this.els) {
-          return new USet(this.els);
+          return u(this.els);
         }
       };
 
@@ -355,7 +355,6 @@ if (objCtr.defineProperty) {
 
 
       USet.prototype.addClass = function(cls) {
-        console.log(cls, typeof cls);
         if (typeof cls === "object") {
           return this.each(function(i, el) {
             var c, _i, _len, _results;
@@ -503,7 +502,7 @@ if (objCtr.defineProperty) {
         var e;
         e = this.get(0);
         if (e) {
-          return new USet(e.parentNode);
+          return u(e.parentNode);
         }
       };
 
@@ -516,7 +515,7 @@ if (objCtr.defineProperty) {
           nodes = u.dom.queryAll(sel, el);
           els = els.concat(nodes);
         }
-        return new USet(els);
+        return u(els);
       };
 
       USet.prototype.siblings = function(sel) {
@@ -536,14 +535,14 @@ if (objCtr.defineProperty) {
             newlist.push(e);
           }
         }
-        return new USet(newlist);
+        return u(newlist);
       };
 
       USet.prototype.next = function() {
         var e;
         e = this.get(0);
         if (e) {
-          return new USet(e.nextSibling);
+          return u(e.nextSibling);
         }
       };
 
@@ -551,7 +550,7 @@ if (objCtr.defineProperty) {
         var e;
         e = this.get(0);
         if (e) {
-          return new USet(e.prevSibling);
+          return u(e.prevSibling);
         }
       };
 
@@ -1039,7 +1038,7 @@ if (objCtr.defineProperty) {
         return umobi.page.reveal($page);
       },
       create: function(el) {
-        var $c, $f, $h, $page, $scrollingContent, AdjustContentHeight, isBothFixed, resizeTimeout;
+        var $c, $f, $h, $page, $scrollingContent, AdjustContentHeight, isBothFixed, resizeTimeout, scroller;
         $page = $(el);
         $page.trigger('pagecreate').addClass('ui-page ui-body-c');
         $h = $page.find('[data-role="header"]').addClass('ui-header');
@@ -1050,7 +1049,7 @@ if (objCtr.defineProperty) {
         if (isBothFixed) {
           $c.wrap('<div class="ui-content-scroll"/>');
           $scrollingContent = $c.parent();
-          umobi.scroller.create($c.get(0));
+          scroller = umobi.scroller.create($c.get(0));
           AdjustContentHeight = function(e) {
             var $content, $footer, $header, contentBottom, contentHeight, contentTop;
             $content = $page.find('[data-role="content"]');

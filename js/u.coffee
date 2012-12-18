@@ -56,7 +56,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
 
       get: (i) ->
         return @els[i] if @els
-        if @el i is 0
+        if i is 0
           return @el
 
       all: ->
@@ -65,8 +65,8 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         return []
 
       children: (i) ->
-        return new USet(@get(i)) if i
-        return new USet(@els) if @els
+        return u(@get(i)) if i
+        return u(@els) if @els
 
       first: -> @children(0)
 
@@ -98,7 +98,6 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       # https://developer.mozilla.org/en-US/docs/DOM/element.classList
       ###
       addClass: (cls) ->
-        console.log(cls, typeof cls)
         if typeof cls is "object"
           return @each (i, el) -> el.classList.add(c) for c in cls
         else
@@ -170,14 +169,14 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
 
       parent: ->
         e = @get(0)
-        return new USet(e.parentNode) if e
+        return u(e.parentNode) if e
 
       find: (sel) ->
         els = []
         for el in @all()
           nodes = u.dom.queryAll(sel,el)
           els = els.concat(nodes)
-        return new USet(els)
+        return u(els)
 
       siblings: (sel) ->
         return @parent().find(sel) if sel
@@ -188,15 +187,15 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         els = @all()
         for e in els
           newlist.push(e) if cb.call(e,e)
-        return new USet(newlist)
+        return u(newlist)
 
       next: ->
         e = @get(0)
-        return new USet(e.nextSibling) if e
+        return u(e.nextSibling) if e
 
       prev: ->
         e = @get(0)
-        return new USet(e.prevSibling) if e
+        return u(e.prevSibling) if e
 
       ###
       # Returns style or computed style

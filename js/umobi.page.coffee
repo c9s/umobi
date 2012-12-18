@@ -53,7 +53,7 @@ define [
           $c.wrap('<div class="ui-content-scroll"/>')
           $scrollingContent = $c.parent()
 
-          umobi.scroller.create($c.get(0))
+          scroller = umobi.scroller.create($c.get(0))
 
           AdjustContentHeight = (e) ->
             $content = $page.find('[data-role="content"]')

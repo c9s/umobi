@@ -109,6 +109,7 @@ module.exports = (grunt) ->
     cssmin: `undefined`
     
     # JS config, mostly the requirejs configuration
+    # full example: https://github.com/jrburke/r.js/blob/master/build/example.build.js
     js:
       require:
         baseUrl: "js"
