@@ -156,9 +156,9 @@ a img {
   bottom: 0;
   left: 0; }
 
-.ui-content-scroll {
-  width: 100%;
-  position: fixed; }
+.ui-content-container {
+  position: fixed;
+  width: 100%; }
 
 body, p {
   font-family: Helvetica, Arial, sans-serif; }

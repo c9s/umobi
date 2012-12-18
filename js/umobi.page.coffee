@@ -53,17 +53,21 @@ define [
         if isBothFixed
           $c = c.jQuery()
 
-          $c.wrap('<div class="ui-content-scroll"/>')
-          $scrollingContent = $c.parent()
+          $c.wrap('<div class="ui-content-container"/>')
+          $contentContainer = $c.parent()
+
+          # Initialize touch scroller with 3D translate if it's on mobile
+          # device
           if umobi.support.touchEnabled
             umobi.scroller.create(c.get(0))
+            $contentContainer.addClass('ui-content-scroll')
           AdjustContentHeight = (e) ->
             contentHeight = $(window).height()
             contentTop    = 0
             contentBottom = 0
             contentTop    = h.height() if h.get(0)
             contentBottom = f.height() if f.get(0)
-            $scrollingContent.css
+            $contentContainer.css
               position: 'absolute'
               top: contentTop + 'px'
               left: 0
