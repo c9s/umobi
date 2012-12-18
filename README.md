@@ -43,7 +43,7 @@ lighter mobile web framework, especially for 3G-bandwidth devices.
 In real world, tested with iPhone 4S
 
 - Start up speed: 4KB ~ 8KB/s
-- Maximum speed: 696.32KB/s or 0.68MB/s
+- Maximum speed: 700KB/s or 0.68MB/s
 - Average speed: 317KB/s or 0.31MB/s
 
 ### Band width for wifi devices

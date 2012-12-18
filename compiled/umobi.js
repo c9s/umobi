@@ -831,12 +831,11 @@ if (objCtr.defineProperty) {
 
       Scroller.prototype.onTouchMove = function(e) {
         var contentHeight, currentY, d, deltaY, newY, viewportHeight;
+        this.prevTouchY = this.lastTouchY;
+        this.lastTouchY = currentY = e.touches[0].clientY;
         if (!this.isDragging) {
           return;
         }
-        currentY = e.touches[0].clientY;
-        this.prevTouchY = this.lastTouchY;
-        this.lastTouchY = currentY;
         if (this.viewportHeight() > this.contentHeight()) {
           return;
         }
@@ -899,7 +898,7 @@ if (objCtr.defineProperty) {
       };
 
       Scroller.prototype.isDragging = function() {
-        return true;
+        return this.lastTouchY !== this.prevTouchY;
       };
 
       Scroller.prototype.animateTo = function(offsetY) {
@@ -1061,7 +1060,8 @@ if (objCtr.defineProperty) {
   */
   umobi.support = {
     offlineCache: typeof window.applicationCache !== 'undefined',
-    classList: typeof document.documentElement !== 'undefined'
+    classList: typeof document.documentElement !== 'undefined',
+    touchEnabled: navigator.userAgent.match(/(iPhone|iPad|Android|Mobile)/)
   };
   /*
     */
@@ -1129,7 +1129,9 @@ if (objCtr.defineProperty) {
           $c = c.jQuery();
           $c.wrap('<div class="ui-content-scroll"/>');
           $scrollingContent = $c.parent();
-          umobi.scroller.create(c.get(0));
+          if (umobi.support.touchEnabled) {
+            umobi.scroller.create(c.get(0));
+          }
           AdjustContentHeight = function(e) {
             var contentBottom, contentHeight, contentTop;
             contentHeight = $(window).height();
@@ -1146,7 +1148,7 @@ if (objCtr.defineProperty) {
               top: contentTop + 'px',
               left: 0,
               bottom: contentBottom + 'px',
-              overflow: 'auto'
+              overflow: umobi.support.touchEnabled ? 'hidden' : 'auto'
             });
           };
           $page.on('pagereveal', AdjustContentHeight);
