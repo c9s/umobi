@@ -34,6 +34,144 @@
 	}
 }( this, document, function ( jQuery, window, document, undefined ) {
 
+/**
+ * classList.js: Cross-browser full element.classList implementation.
+ * 2011-06-15
+ *
+ * By Eli Grey, http://eligrey.com
+ * Public Domain.
+ * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+ */
+ 
+/*global self, document, DOMException */
+ 
+/*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
+ 
+if (typeof document !== "undefined" && !("classList" in document.documentElement)) {
+ 
+(function (view) {
+ 
+
+ 
+var
+      classListProp = "classList"
+    , protoProp = "prototype"
+    , elemCtrProto = (view.HTMLElement || view.Element)[protoProp]
+    , objCtr = Object
+    , strTrim = String[protoProp].trim || function () {
+        return this.replace(/^\s+|\s+$/g, "");
+    }
+    , arrIndexOf = Array[protoProp].indexOf || function (item) {
+        var
+              i = 0
+            , len = this.length
+        ;
+        for (; i < len; i++) {
+            if (i in this && this[i] === item) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    // Vendors: please allow content code to instantiate DOMExceptions
+    , DOMEx = function (type, message) {
+        this.name = type;
+        this.code = DOMException[type];
+        this.message = message;
+    }
+    , checkTokenAndGetIndex = function (classList, token) {
+        if (token === "") {
+            throw new DOMEx(
+                  "SYNTAX_ERR"
+                , "An invalid or illegal string was specified"
+            );
+        }
+        if (/\s/.test(token)) {
+            throw new DOMEx(
+                  "INVALID_CHARACTER_ERR"
+                , "String contains an invalid character"
+            );
+        }
+        return arrIndexOf.call(classList, token);
+    }
+    , ClassList = function (elem) {
+        var
+              trimmedClasses = strTrim.call(elem.className)
+            , classes = trimmedClasses ? trimmedClasses.split(/\s+/) : []
+            , i = 0
+            , len = classes.length
+        ;
+        for (; i < len; i++) {
+            this.push(classes[i]);
+        }
+        this._updateClassName = function () {
+            elem.className = this.toString();
+        };
+    }
+    , classListProto = ClassList[protoProp] = []
+    , classListGetter = function () {
+        return new ClassList(this);
+    }
+;
+// Most DOMException implementations don't allow calling DOMException's toString()
+// on non-DOMExceptions. Error's toString() is sufficient here.
+DOMEx[protoProp] = Error[protoProp];
+classListProto.item = function (i) {
+    return this[i] || null;
+};
+classListProto.contains = function (token) {
+    token += "";
+    return checkTokenAndGetIndex(this, token) !== -1;
+};
+classListProto.add = function (token) {
+    token += "";
+    if (checkTokenAndGetIndex(this, token) === -1) {
+        this.push(token);
+        this._updateClassName();
+    }
+};
+classListProto.remove = function (token) {
+    token += "";
+    var index = checkTokenAndGetIndex(this, token);
+    if (index !== -1) {
+        this.splice(index, 1);
+        this._updateClassName();
+    }
+};
+classListProto.toggle = function (token) {
+    token += "";
+    if (checkTokenAndGetIndex(this, token) === -1) {
+        this.add(token);
+    } else {
+        this.remove(token);
+    }
+};
+classListProto.toString = function () {
+    return this.join(" ");
+};
+ 
+if (objCtr.defineProperty) {
+    var classListPropDesc = {
+          get: classListGetter
+        , enumerable: true
+        , configurable: true
+    };
+    try {
+        objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
+    } catch (ex) { // IE 8 doesn't support enumerable:true
+        if (ex.number === -0x7FF5EC54) {
+            classListPropDesc.enumerable = false;
+            objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
+        }
+    }
+} else if (objCtr[protoProp].__defineGetter__) {
+    elemCtrProto.__defineGetter__(classListProp, classListGetter);
+}
+ 
+}(self));
+ 
+}
+;
 /*
   */
   (function() {
@@ -83,48 +221,6 @@
     dom.byClassName = function(n, c) {
       c = c || document;
       return c.getElementsByClassName(n);
-    };
-    dom.addClass = function(e, cls) {
-      var c, _i, _len, _ref, _results;
-      if (this.supportClassList) {
-        _ref = cls.split(' ');
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          c = _ref[_i];
-          _results.push(e.classList.add(c));
-        }
-        return _results;
-      } else {
-        return $(e).addClass(cls);
-      }
-    };
-    dom.removeClass = function(e, cls) {
-      var c, _i, _len, _ref, _results;
-      if (this.supportClassList) {
-        _ref = cls.split(' ');
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          c = _ref[_i];
-          _results.push(e.classList.remove(c));
-        }
-        return _results;
-      } else {
-        return $(e).removeClass(cls);
-      }
-    };
-    dom.toggleClass = function(e, cls) {
-      var c, _i, _len, _ref, _results;
-      if (this.supportClassList) {
-        _ref = cls.split(' ');
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          c = _ref[_i];
-          _results.push(e.classList.toggle(c));
-        }
-        return _results;
-      } else {
-        return $(e).toggleClass(cls);
-      }
     };
     dom.bind = function(el, n, cb) {
       return el.addEventListener(n, cb);
@@ -222,22 +318,94 @@
         }
       };
 
+      /*
+            # addClass, toggleClass, removeClass is little different from jQuery
+            # which takes a string for single class or an array for multiple
+            # class names.
+            #
+            # As you are already using u(), you should use
+            #
+            #    u('element').addClass('class1 class2'.split(' '))
+            #
+            # Instead of
+            #
+            #    u('element').addClass('class1 class2')
+            #
+            # Because the classList is faster 8 times than jQuery.addClass
+            #
+            # Performance:
+            # http://jsperf.com/jquery-addclass-vs-dom-classlist/4
+            #
+            # Support:
+            # https://developer.mozilla.org/en-US/docs/DOM/element.classList
+      */
+
+
       USet.prototype.addClass = function(cls) {
-        return this.each(function(i, el) {
-          return u.dom.addClass(el, cls);
-        });
+        if (typeof cls === "object") {
+          return this.each(function(i, el) {
+            var c, _i, _len, _results;
+            _results = [];
+            for (_i = 0, _len = cls.length; _i < _len; _i++) {
+              c = cls[_i];
+              _results.push(el.classList.add(c));
+            }
+            return _results;
+          });
+        } else {
+          return this.each(function(i, el) {
+            return el.classList.add(cls);
+          });
+        }
       };
 
       USet.prototype.toggleClass = function(cls) {
-        return this.each(function(i, el) {
-          return u.dom.toggleClass(el, cls);
-        });
+        if (typeof cls === "object") {
+          return this.each(function(i, el) {
+            var c, _i, _len, _results;
+            _results = [];
+            for (_i = 0, _len = cls.length; _i < _len; _i++) {
+              c = cls[_i];
+              _results.push(el.classList.toggle(c));
+            }
+            return _results;
+          });
+        } else {
+          return this.each(function(i, el) {
+            return el.classList.toggle(cls);
+          });
+        }
       };
 
       USet.prototype.removeClass = function(cls) {
-        return this.each(function(i, el) {
-          return u.dom.removeClass(el, cls);
-        });
+        if (typeof cls === "object") {
+          return this.each(function(i, el) {
+            var c, _i, _len, _results;
+            _results = [];
+            for (_i = 0, _len = cls.length; _i < _len; _i++) {
+              c = cls[_i];
+              _results.push(el.classList.remove(c));
+            }
+            return _results;
+          });
+        } else {
+          return this.each(function(i, el) {
+            return el.classList.remove(cls);
+          });
+        }
+      };
+
+      USet.prototype.hasClass = function(cls) {
+        var has;
+        if (this.el) {
+          return this.el.classList.contains(cls);
+        } else {
+          has = false;
+          this.each(function(i, el) {
+            return has && (has = el.classList.contains(cls));
+          });
+          return has;
+        }
       };
 
       USet.prototype.css = function(n, v) {
@@ -534,7 +702,7 @@
         for (_j = 0, _len1 = lis.length; _j < _len1; _j++) {
           li = lis[_j];
           $li = $(li);
-          $li.addClass('ui-li ui-btn');
+          $li.addClass(['ui-li', 'ui-btn']);
           $a = $li.find('a');
           $inner = $('<div/>').addClass('ui-btn-inner').append($a);
           _results1.push($li.empty().append($inner));
@@ -1067,6 +1235,7 @@ define('umobi',[
     // "depend!zepto[]",
     // "z",
     "depend!jquery[]",
+    "depend!classList[]",
     "cs",
     "coffee-script",
     "cs!umobi.core",

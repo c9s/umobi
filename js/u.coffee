@@ -27,18 +27,25 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       else
         window.addEventListener( "load", cb, false )
 
+    ensureClassArray = (c) ->
+      return c.split(" ") if typeof c is "string"
+      return c() if typeof c is "function"
+      return c
+      # NOTE: `instanceof` is slower than `typeof`
+      # return c if c instanceof Array
+
     class USet
       constructor: (a) ->
-        if a instanceof NodeList
+        if typeof a is "string"
+          @els = u.dom.queryAll(a)
+        else if typeof a is "object" and a instanceof Array
+          @els = a
+          @length = a.length
+        else if a instanceof NodeList
           @els = a
           @length = a.length
         else if a instanceof Node
           @el = a
-        else if typeof a is "object" and a instanceof Array
-          @els = a
-          @length = a.length
-        else if typeof a is "string"
-          @els = u.dom.queryAll(a)
         else
           throw new Error("u: unsupported argument")
 
@@ -70,25 +77,47 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       # which takes a string for single class or an array for multiple
       # class names.
       #
-      # As you are already using u(), you should use 
+      # As you are already using u(), you should use
       #
-      #    u('element').addClass(['class1','class2'])
+      #    u('element').addClass('class1 class2'.split(' '))
       #
-      # Instead of 
+      # Instead of
       #
       #    u('element').addClass('class1 class2')
       #
-      # Because the first one is faster 3 times than second one.
+      # Because the classList is faster 8 times than jQuery.addClass
       #
+      # Performance:
       # http://jsperf.com/jquery-addclass-vs-dom-classlist/4
+      #
+      # Support:
+      # https://developer.mozilla.org/en-US/docs/DOM/element.classList
       ###
-      addClass: (cls) -> @each (i, el) -> el.classList.add(cls)
+      addClass: (cls) ->
+        if typeof cls is "object"
+          return @each (i, el) -> el.classList.add(c) for c in cls
+        else
+          return @each (i, el) -> el.classList.add(cls)
 
-      toggleClass: (cls) -> @each (i, el) -> el.classList.toggle(cls)
+      toggleClass: (cls) ->
+        if typeof cls is "object"
+          return @each (i, el) -> el.classList.toggle(c) for c in cls
+        else
+          return @each (i, el) -> el.classList.toggle(cls)
 
-      removeClass: (cls) -> @each (i, el) -> el.classList.remove(cls)
+      removeClass: (cls) ->
+        if typeof cls is "object"
+          return @each (i, el) -> el.classList.remove(c) for c in cls
+        else
+          return @each (i,el) -> el.classList.remove(cls)
 
-      hasClass: (cls) -> @each (i, el) -> el.classList.contains(cls)
+      hasClass: (cls) ->
+        if @el
+          return @el.classList.contains(cls)
+        else
+          has = false
+          @each (i, el) -> has and= el.classList.contains(cls)
+          return has
 
       css: (n,v) ->
         # setter

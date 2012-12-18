@@ -14,9 +14,7 @@ define [
   ###
   (->
     # Page Initialization
-    u('html').children(0).addClass('ui-mobile ui-mobile-rendering')
-    $html = $(document.getElementsByTagName('html')[0])
-    $html.addClass('ui-mobile ui-mobile-rendering')
+    u('html').children(0).addClass(['ui-mobile','ui-mobile-rendering'])
 
     u.ready ->
       $(document).trigger('pageinit')
