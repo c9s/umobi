@@ -1,6 +1,6 @@
 .PHONY: build js css
 
-all: build stat
+all: node_modules build stat
 	# node node_modules/requirejs/bin/r.js -o js/build.js
 
 stat:
@@ -16,7 +16,7 @@ css:
 	grunt --config Gruntfile.coffee css
 
 node_modules:
-	npm install
+	npm install --dev
 
 gem_modules:
 	gem install sass listen
