@@ -89,7 +89,7 @@ jQuery UI 1.9.2 (minified 335KB)
 ### Special Requirement
 
 We use Grunt.js 0.4.x, which is still in development. there are some fixed dependencies 
-to install.
+to install. please see <https://github.com/gruntjs/grunt/wiki/Upgrading-from-0.3-to-0.4>
 
 - Grunt.js 0.4.x <http://github.com/gruntjs/grunt>
 - Grunt-cli <http://github.com/gruntjs/grunt-cli>

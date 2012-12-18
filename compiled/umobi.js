@@ -233,7 +233,7 @@ if (objCtr.defineProperty) {
 /*
   */
   (function() {
-    var USet, u;
+    var USet, ensureClassArray, u;
     u = function(a) {
       return new USet(a);
     };
@@ -252,19 +252,28 @@ if (objCtr.defineProperty) {
         return window.addEventListener("load", cb, false);
       }
     };
+    ensureClassArray = function(c) {
+      if (typeof c === "string") {
+        return c.split(" ");
+      }
+      if (typeof c === "function") {
+        return c();
+      }
+      return c;
+    };
     USet = (function() {
 
       function USet(a) {
-        if (a instanceof NodeList) {
+        if (typeof a === "string") {
+          this.els = u.dom.queryAll(a);
+        } else if (typeof a === "object" && a instanceof Array) {
+          this.els = a;
+          this.length = a.length;
+        } else if (a instanceof NodeList) {
           this.els = a;
           this.length = a.length;
         } else if (a instanceof Node) {
           this.el = a;
-        } else if (typeof a === "object" && a instanceof Array) {
-          this.els = a;
-          this.length = a.length;
-        } else if (typeof a === "string") {
-          this.els = u.dom.queryAll(a);
         } else {
           throw new Error("u: unsupported argument");
         }
@@ -327,6 +336,10 @@ if (objCtr.defineProperty) {
             #
             #    u('element').addClass('class1 class2'.split(' '))
             #
+            # Or
+            #
+            #    u('element').addClass('class1')
+            #
             # Instead of
             #
             #    u('element').addClass('class1 class2')
@@ -342,6 +355,7 @@ if (objCtr.defineProperty) {
 
 
       USet.prototype.addClass = function(cls) {
+        console.log(cls, typeof cls);
         if (typeof cls === "object") {
           return this.each(function(i, el) {
             var c, _i, _len, _results;
@@ -448,6 +462,12 @@ if (objCtr.defineProperty) {
         if (typeof n === "string" && this.el) {
           return this.el.getAttribute(n);
         }
+      };
+
+      USet.prototype.empty = function() {
+        return this.each(function(i, el) {
+          return el.innerHTML = '';
+        });
       };
 
       USet.prototype.each = function(cb) {
@@ -596,15 +616,9 @@ if (objCtr.defineProperty) {
 ;
 /*
   */
-  $(function() {
-    var button, buttons, _i, _len, _results;
-    buttons = u.dom.queryAll('[data-role="button"]');
-    _results = [];
-    for (_i = 0, _len = buttons.length; _i < _len; _i++) {
-      button = buttons[_i];
-      _results.push($(button));
-    }
-    return _results;
+  u.ready(function() {
+    var buttons;
+    return buttons = u.dom.queryAll('[data-role="button"]');
   });
   /*
     */
@@ -685,15 +699,15 @@ if (objCtr.defineProperty) {
 /*
   */
   $(function() {
-    var $a, $inner, $li, $listview, li, lis, listview, listviews, _i, _len, _results;
+    var $a, $inner, $li, li, lis, listview, listviews, ulistview, _i, _len, _results;
     listviews = u.dom.queryAll('ul[data-role="listview"]');
     _results = [];
     for (_i = 0, _len = listviews.length; _i < _len; _i++) {
       listview = listviews[_i];
-      $listview = $(listview);
-      $listview.addClass('ui-listview');
-      if ($listview.data('inset')) {
-        $listview.addClass('ui-listview-inset');
+      ulistview = u(listview);
+      listview.classList.add('ui-listview');
+      if (ulistview.attr('data-inset')) {
+        listview.classList.add('ui-listview-inset');
       }
       lis = dom.queryAll('li', listview);
       _results.push((function() {
@@ -701,8 +715,9 @@ if (objCtr.defineProperty) {
         _results1 = [];
         for (_j = 0, _len1 = lis.length; _j < _len1; _j++) {
           li = lis[_j];
+          li.classList.add('ui-li');
+          li.classList.add('ui-btn');
           $li = $(li);
-          $li.addClass(['ui-li', 'ui-btn']);
           $a = $li.find('a');
           $inner = $('<div/>').addClass('ui-btn-inner').append($a);
           _results1.push($li.empty().append($inner));
@@ -720,7 +735,7 @@ if (objCtr.defineProperty) {
   (function() {
     var Scroller, debug;
     debug = false;
-    $(function() {
+    u.ready(function() {
       return document.body.addEventListener('touchmove', (function(e) {
         return e.preventDefault();
       }), false);
@@ -737,6 +752,7 @@ if (objCtr.defineProperty) {
         this.startTouchY = 0;
         this.globalStyleSheet = document.styleSheets[document.styleSheets.length - 1];
         this.$el = $(this.element);
+        this.uEl = u(this.element);
         this.lastTouchY = 0;
         this.contentStartOffsetY = 0;
         this.element.addEventListener('touchstart', this, false);
@@ -784,8 +800,8 @@ if (objCtr.defineProperty) {
         if (newY > this.snapBoundary) {
           newY = this.snapBoundary;
         }
-        if ((this.$el.height() + newY + this.snapBoundary) < this.$el.parent().height()) {
-          newY = -this.$el.height() + (this.$el.parent().height() - this.snapBoundary);
+        if ((this.uEl.height() + newY + this.snapBoundary) < this.uEl.parent().height()) {
+          newY = -this.uEl.height() + (this.uEl.parent().height() - this.snapBoundary);
         }
         this.animateTo(newY);
         return this.contentLastOffsetY = newY;
@@ -1171,10 +1187,7 @@ if (objCtr.defineProperty) {
 /*
   */
   (function() {
-    var $html;
-    u('html').children(0).addClass('ui-mobile ui-mobile-rendering');
-    $html = $(document.getElementsByTagName('html')[0]);
-    $html.addClass('ui-mobile ui-mobile-rendering');
+    u('html').children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
     return u.ready(function() {
       var $pages, hideAddressBar, indexPage, link, _i, _len, _ref;
       $(document).trigger('pageinit');

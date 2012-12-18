@@ -183,68 +183,6 @@ a img {
   width: 100%;
   position: fixed; }
 
-/* structure */
-.ui-content ul.ui-listview {
-  margin: -15px; }
-
-ul.ui-listview {
-  margin: 0;
-  padding: 0; }
-
-ul.ui-listview li {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
-
-ul.ui-listview li a {
-  text-decoration: none;
-  color: #333333;
-  text-shadow: 1px 1px 2px white;
-  padding: 10px;
-  display: block;
-  font-size: 15px; }
-
-ul.ui-listview li.ui-btn {
-  border: 1px solid #cccccc;
-  border-bottom: 1px solid #e3e3e3;
-  border-radius: 0px;
-  background-color: white;
-  text-shadow: 0 1px 0 white;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#f1f1f1));
-  background-image: -webkit-linear-gradient(white, #f1f1f1);
-  background-image: -moz-linear-gradient(white, #f1f1f1);
-  background-image: -ms-linear-gradient(white, #f1f1f1);
-  background-image: -o-linear-gradient(white, #f1f1f1);
-  background-image: linear-gradient(white, #f1f1f1); }
-
-ul.ui-listview li.ui-btn:hover {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(lightgrey));
-  background-image: -webkit-linear-gradient(#f0f0f0, lightgrey);
-  background-image: -moz-linear-gradient(#f0f0f0, lightgrey);
-  background-image: -ms-linear-gradient(#f0f0f0, lightgrey);
-  background-image: -o-linear-gradient(#f0f0f0, lightgrey);
-  background-image: linear-gradient(#f0f0f0, lightgrey); }
-
-ul.ui-listview li.ui-btn:last-child {
-  border-color: #cccccc; }
-
-/* inset ui-listview, we should provide inset listview with
- * border radius and box-shadow here. */
-.ui-content ul.ui-listview-inset {
-  margin: 10px 0;
-  border-radius: 12px;
-  box-shadow: 0px 0px 8px #aaaaaa; }
-
-ul.ui-listview-inset li.ui-btn:first-child {
-  -webkit-border-radius: 12px 12px 0 0;
-  -moz-border-radius: 12px 12px 0 0;
-  border-radius: 12px 12px 0 0; }
-
-ul.ui-listview-inset li.ui-btn:last-child {
-  -webkit-border-radius: 0 0 12px 12px;
-  -moz-border-radius: 0 0 12px 12px;
-  border-radius: 0 0 12px 12px; }
-
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 
@@ -517,3 +455,65 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-text-shadow: 8px;
   -moz-text-shadow: 8px;
   text-shadow: 8px; }
+
+/* structure */
+.ui-content ul.ui-listview {
+  margin: -15px; }
+
+ul.ui-listview {
+  margin: 0;
+  padding: 0; }
+
+ul.ui-listview li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+ul.ui-listview li a {
+  text-decoration: none;
+  color: #333333;
+  text-shadow: 1px 1px 2px white;
+  padding: 10px;
+  display: block;
+  font-size: 15px; }
+
+ul.ui-listview li.ui-btn {
+  border: 1px solid #cccccc;
+  border-bottom: 1px solid #e3e3e3;
+  border-radius: 0px;
+  background-color: white;
+  text-shadow: 0 1px 0 white;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#f1f1f1));
+  background-image: -webkit-linear-gradient(white, #f1f1f1);
+  background-image: -moz-linear-gradient(white, #f1f1f1);
+  background-image: -ms-linear-gradient(white, #f1f1f1);
+  background-image: -o-linear-gradient(white, #f1f1f1);
+  background-image: linear-gradient(white, #f1f1f1); }
+
+ul.ui-listview li.ui-btn:hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(lightgrey));
+  background-image: -webkit-linear-gradient(#f0f0f0, lightgrey);
+  background-image: -moz-linear-gradient(#f0f0f0, lightgrey);
+  background-image: -ms-linear-gradient(#f0f0f0, lightgrey);
+  background-image: -o-linear-gradient(#f0f0f0, lightgrey);
+  background-image: linear-gradient(#f0f0f0, lightgrey); }
+
+ul.ui-listview li.ui-btn:last-child {
+  border-color: #cccccc; }
+
+/* inset ui-listview, we should provide inset listview with
+ * border radius and box-shadow here. */
+.ui-content ul.ui-listview-inset {
+  margin: 10px 0;
+  border-radius: 12px;
+  box-shadow: 0px 0px 8px #aaaaaa; }
+
+ul.ui-listview-inset li.ui-btn:first-child {
+  -webkit-border-radius: 12px 12px 0 0;
+  -moz-border-radius: 12px 12px 0 0;
+  border-radius: 12px 12px 0 0; }
+
+ul.ui-listview-inset li.ui-btn:last-child {
+  -webkit-border-radius: 0 0 12px 12px;
+  -moz-border-radius: 0 0 12px 12px;
+  border-radius: 0 0 12px 12px; }
