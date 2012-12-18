@@ -160,6 +160,8 @@ a img {
   position: fixed;
   width: 100%; }
 
+/* .ui-content
+ * .ui-content-scroll */
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 
