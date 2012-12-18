@@ -53,7 +53,7 @@ In real world, 802.11b/g/n Wi-Fi (test incomplete)
 
 ## Benchmarks
 
-- jQuery addClass vs DOM classList: <http://jsperf.com/jquery-addclass-vs-dom-classlist/2>
+- jQuery addClass vs DOM classList: <http://jsperf.com/jquery-addclass-vs-dom-classlist/4>
 
 ## File sizes
 
