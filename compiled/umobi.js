@@ -34,6 +34,14 @@
 	}
 }( this, document, function ( jQuery, window, document, undefined ) {
 
+if(typeof define === "undefined" ) {
+    // creates the define method on window, only used where async loading
+    // is not desired in the docs and experiments
+    window.define = function() {
+        Array.prototype.slice.call( arguments ).pop()( window.jQuery );
+    };
+}
+;
 /**
  * classList.js: Cross-browser full element.classList implementation.
  * 2011-06-15
@@ -446,6 +454,7 @@ if (objCtr.defineProperty) {
       };
 
       USet.prototype.attr = function(n, v) {
+        var _ref;
         if (n && v) {
           return this.each(function(i, el) {
             return el.setAttribute(n, v);
@@ -462,7 +471,7 @@ if (objCtr.defineProperty) {
           });
         }
         if (typeof n === "string") {
-          return this.get(0).getAttribute(n);
+          return (_ref = this.get(0)) != null ? _ref.getAttribute(n) : void 0;
         }
       };
 
@@ -607,7 +616,7 @@ if (objCtr.defineProperty) {
           });
         } else {
           el = this.get(0);
-          if (el.style.height) {
+          if (el != null ? el.style.height : void 0) {
             return parseInt(el.style.height);
           }
           return parseInt(this.style(1).height);
@@ -622,7 +631,7 @@ if (objCtr.defineProperty) {
           });
         } else {
           el = this.get(0);
-          if (el.style.width) {
+          if (el != null ? el.style.width : void 0) {
             return parseInt(el.style.width);
           }
           return parseInt(style(1).width);
@@ -725,7 +734,7 @@ if (objCtr.defineProperty) {
 ;
 /*
   */
-  $(function() {
+  u.ready(function() {
     var $a, $inner, $li, li, lis, listview, listviews, ulistview, _i, _len, _results;
     listviews = u.dom.queryAll('ul[data-role="listview"]');
     _results = [];
@@ -910,10 +919,6 @@ if (objCtr.defineProperty) {
         return (this.contentLastOffsetY - this.contentStartOffsetY) / ((new Date).getTime() - this.startTouchTime);
       };
 
-      Scroller.prototype.isDecelerating = function() {
-        return true;
-      };
-
       Scroller.prototype.cubicBezierAnimateTo = function(time, newY) {
         this.element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)';
         this.element.style.webkitTransform = 'translate3d(0,' + newY + 'px, 0)';
@@ -1004,6 +1009,17 @@ if (objCtr.defineProperty) {
         return this.cubicBezierAnimateTo(m.time, m.newY);
       };
 
+      /*
+            TODO:
+            When touch starts, stopMomentum will be called if
+            the transition is decelerating.
+      */
+
+
+      Scroller.prototype.isDecelerating = function() {
+        return true;
+      };
+
       Scroller.prototype.stopMomentum = function() {
         var transform;
         if (this.isDecelerating()) {
@@ -1017,7 +1033,6 @@ if (objCtr.defineProperty) {
         var contentHeight, d, offsetY, parentHeight;
         offsetY = this.getCurrentContentOffsetY();
         d = this.getTouchDirection();
-        console.log(d);
         if (d === -1 && this.overBottomSnapLimit(offsetY)) {
           contentHeight = this.contentHeight();
           parentHeight = this.viewportHeight();
@@ -1116,7 +1131,7 @@ if (objCtr.defineProperty) {
         return umobi.page.reveal($page);
       },
       create: function(el) {
-        var $c, $page, $scrollingContent, AdjustContentHeight, c, f, h, isBothFixed, resizeTimeout, upage;
+        var $c, $contentContainer, $page, AdjustContentHeight, c, f, h, isBothFixed, resizeTimeout, upage;
         $page = $(el);
         upage = u(el);
         upage.trigger('pagecreate').addClass(['ui-page', 'ui-body-c']);
@@ -1127,10 +1142,11 @@ if (objCtr.defineProperty) {
         isBothFixed = h.attr('data-fixed' || f.attr('data-fixed'));
         if (isBothFixed) {
           $c = c.jQuery();
-          $c.wrap('<div class="ui-content-scroll"/>');
-          $scrollingContent = $c.parent();
+          $c.wrap('<div class="ui-content-container"/>');
+          $contentContainer = $c.parent();
           if (umobi.support.touchEnabled) {
             umobi.scroller.create(c.get(0));
+            $contentContainer.addClass('ui-content-scroll');
           }
           AdjustContentHeight = function(e) {
             var contentBottom, contentHeight, contentTop;
@@ -1143,7 +1159,7 @@ if (objCtr.defineProperty) {
             if (f.get(0)) {
               contentBottom = f.height();
             }
-            return $scrollingContent.css({
+            return $contentContainer.css({
               position: 'absolute',
               top: contentTop + 'px',
               left: 0,
@@ -1320,15 +1336,12 @@ if (objCtr.defineProperty) {
     */
 ;
 
-if(typeof define === "undefined" ) {
-    define = function() {  };
-}
-
 // load cs plugin and coffee-script
 define('umobi',[
     "require",
     // "depend!zepto[]",
     // "z",
+    "depend!define[]",
     "depend!jquery[]",
     "depend!classList[]",
     "cs",
