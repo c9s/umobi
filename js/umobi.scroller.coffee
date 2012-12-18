@@ -235,7 +235,7 @@ define ['jquery','cs!umobi.core','cs!u'], () ->
 
       ###
       TODO:
-      When touch starts, stopMomentum will be called if 
+      When touch starts, stopMomentum will be called if
       the transition is decelerating.
       ###
       isDecelerating: -> true
