@@ -22,6 +22,7 @@ define([
     // "depend!zepto[]",
     // "z",
     "depend!jquery[]",
+    "depend!classList",
     "cs",
     "coffee-script",
     "cs!umobi.core",

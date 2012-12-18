@@ -79,12 +79,16 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       #    u('element').addClass('class1 class2')
       #
       # Because the first one is faster 3 times than second one.
+      #
+      # http://jsperf.com/jquery-addclass-vs-dom-classlist/4
       ###
-      addClass: (cls) -> @each (i, el) -> u.dom.addClass el, cls
+      addClass: (cls) -> @each (i, el) -> el.classList.add(cls)
 
-      toggleClass: (cls) -> @each (i, el) -> u.dom.toggleClass el, cls
+      toggleClass: (cls) -> @each (i, el) -> el.classList.toggle(cls)
 
-      removeClass: (cls) -> @each (i, el) -> u.dom.removeClass el, cls
+      removeClass: (cls) -> @each (i, el) -> el.classList.remove(cls)
+
+      hasClass: (cls) -> @each (i, el) -> el.classList.contains(cls)
 
       css: (n,v) ->
         # setter
