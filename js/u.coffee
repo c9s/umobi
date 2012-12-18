@@ -67,6 +67,8 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
 
       addClass: (cls) -> @each (i, el) -> u.dom.addClass el, cls
 
+      toggleClass: (cls) -> @each (i, el) -> u.dom.toggleClass el, cls
+
       removeClass: (cls) -> @each (i, el) -> u.dom.removeClass el, cls
 
       css: (n,v) ->
@@ -104,7 +106,6 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           cb 0, @el
         return this
 
-      toggleClass: (cls) -> @each (i, el) -> u.dom.toggleClass el, cls
 
       click: (cb) -> @bind "click", cb
 
