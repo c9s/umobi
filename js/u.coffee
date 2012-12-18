@@ -146,7 +146,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
               el.setAttribute(k,val)
         # getter
         if typeof n is "string"
-          return @get(0).getAttribute(n)
+          return @get(0)?.getAttribute(n)
 
       empty: () -> @each (i,el) -> el.innerHTML = ''
 
@@ -228,7 +228,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @each (i,e) -> e.style.height = parseInt(a) + 'px'
         else
           el = @get(0)
-          return parseInt(el.style.height) if el.style.height
+          return parseInt(el.style.height) if el?.style.height
           parseInt(@style(1).height)
 
       width: (a) ->
@@ -236,7 +236,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @each (i,e) -> e.style.width = parseInt(a) + 'px'
         else
           el = @get(0)
-          return parseInt(el.style.width) if el.style.width
+          return parseInt(el.style.width) if el?.style.width
           parseInt(style(1).width)
 
       # convert element or element collection to jQuery object.

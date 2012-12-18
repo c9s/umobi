@@ -12,15 +12,12 @@ require({
 });
 //>>excludeEnd("umobiBuildExclude")
 
-if(typeof define === "undefined" ) {
-    define = function() {  };
-}
-
 // load cs plugin and coffee-script
 define([
     "require",
     // "depend!zepto[]",
     // "z",
+    "depend!define[]",
     "depend!jquery[]",
     "depend!classList[]",
     "cs",

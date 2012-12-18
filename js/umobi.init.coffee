@@ -8,7 +8,7 @@ define [
   "cs!umobi.widget"
   "cs!umobi.zoom"
   "cs!umobi.listview"
-  "cs!umobi.navigation" ], (umobi, u) ->
+  "cs!umobi.navigation" ], () ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###

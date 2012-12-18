@@ -6,7 +6,7 @@ define [
   "cs!u"
   "cs!umobi.scroller"
   "cs!umobi.support"
-], (umobi,u) ->
+], () ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###

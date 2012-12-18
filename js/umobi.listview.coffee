@@ -1,11 +1,11 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','cs!u','cs!umobi.core'], ($,u,umobi) ->
+define ['jquery','cs!u','cs!umobi.core'], () ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
-  $ ->
+  u.ready ->
     listviews = u.dom.queryAll('ul[data-role="listview"]')
     for listview in listviews
       ulistview = u(listview)

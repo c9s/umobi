@@ -1,7 +1,7 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['cs!umobi.core','cs!umobi.page'], (umobi)->
+define ['cs!umobi.core','cs!umobi.page'], ()->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
