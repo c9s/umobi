@@ -24,7 +24,9 @@
     "glob-whatev": "~0.1.4",
     "rimraf": "2.0.1",
     "testswarm": "0.2.3",
-    "exec-sync": "0"
+    "exec-sync": "0",
+    "js-yaml": "~1.0.3",
+    "grunt-lib-phantomjs": "~0.1.0"
   },
   "engine": {
     "node": ">=6.0"
@@ -36,5 +38,6 @@
     "grunt-contrib-concat": "~0.1.1",
     "qunit": "~0.5.14",
     "grunt-contrib-qunit": "~0.1.0",
+    "js-yaml": "~1.0.3"
   }
 }
