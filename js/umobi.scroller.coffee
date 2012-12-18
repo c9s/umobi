@@ -83,6 +83,9 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         deltaY      = currentY - @startTouchY
         newY        = deltaY   + @contentStartOffsetY
 
+        ###
+        //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+        ###
         console.log 'onTouchMove', {
           touchY: currentY
           deltaY: deltaY
@@ -90,8 +93,10 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           contentStartOffsetY: @contentStartOffsetY
           # transform: @getCurrentTransform()
         } if debug
-
-
+        ###
+        //>>excludeEnd("umobiBuildExclude")
+        ###
+        
         d = @getTouchDirection()
         if d is 1
           # top boundary
