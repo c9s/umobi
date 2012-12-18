@@ -37,53 +37,40 @@ define [
         umobi.page.reveal($page)
 
       create: (el) ->
+        $page = $(el)
         upage = u(el)
         upage.trigger('pagecreate').addClass(['ui-page','ui-body-c'])
-        $page = $(el)
 
         # TODO: rewrite this with umobi.dom
-        $h = $page.find('[data-role="header"]').addClass('ui-header') # header container
-        $f = $page.find('[data-role="footer"]').addClass('ui-footer')  # footer container
-        $c = $page.find('[data-role="content"]').addClass('ui-content') # content container
+        h = upage.find('[data-role="header"]').addClass('ui-header') # header container
+        f = upage.find('[data-role="footer"]').addClass('ui-footer')  # footer container
+        $c = upage.find('[data-role="content"]').addClass('ui-content') # content container
 
-        $h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title')
-
-        isBothFixed = $h.data 'fixed' or $f.data 'fixed'
-
+        h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title')
+        isBothFixed = h.attr 'data-fixed' or f.attr 'data-fixed'
         if isBothFixed
           $c.wrap('<div class="ui-content-scroll"/>')
-          $scrollingContent = $c.parent()
-
+          $scrollingContent = $c.parent().jQuery()
           scroller = umobi.scroller.create($c.get(0))
-
           AdjustContentHeight = (e) ->
-            $content = $page.find('[data-role="content"]')
-            $header = $page.find('[data-role="header"]')
-            $footer = $page.find('[data-role="footer"]')
             contentHeight = $(window).height()
             contentTop    = 0
             contentBottom = 0
-            if $header.get(0)
-              contentTop = $header.height()
-            if $footer.get(0)
-              contentBottom = $footer.height()
-
+            contentTop    = h.height() if h.get(0)
+            contentBottom = f.height() if f.get(0)
             $scrollingContent.css
               position: 'absolute'
               top: contentTop + 'px'
               left: 0
               bottom: contentBottom + 'px'
               overflow: 'auto'
-
           $page.on 'pagereveal', AdjustContentHeight
-
         resizeTimeout = null
-        $(window).resize ->
+        u(window).on 'resize',->
           clearTimeout(resizeTimeout) if resizeTimeout
           resizeTimeout = setTimeout AdjustContentHeight, 100
-
-        $h.addClass('ui-fixed-header') if $h.data 'fixed'
-        $f.addClass('ui-fixed-footer') if $f.data 'fixed'
+        h.addClass('ui-fixed-header') if h.attr 'data-fixed'
+        f.addClass('ui-fixed-footer') if f.attr 'data-fixed'
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)

@@ -516,13 +516,16 @@ if (objCtr.defineProperty) {
       };
 
       USet.prototype.find = function(sel) {
-        var el, els, nodes, _i, _len, _ref;
+        var el, els, n, nodes, _i, _j, _len, _len1, _ref;
         els = [];
         _ref = this.all();
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           el = _ref[_i];
           nodes = u.dom.queryAll(sel, el);
-          els = els.concat(nodes);
+          for (_j = 0, _len1 = nodes.length; _j < _len1; _j++) {
+            n = nodes[_j];
+            els.push(n);
+          }
         }
         return u(els);
       };
@@ -1055,32 +1058,29 @@ if (objCtr.defineProperty) {
         return umobi.page.reveal($page);
       },
       create: function(el) {
-        var $c, $f, $h, $page, $scrollingContent, AdjustContentHeight, isBothFixed, resizeTimeout, scroller, upage;
+        var $c, $page, $scrollingContent, AdjustContentHeight, f, h, isBothFixed, resizeTimeout, scroller, upage;
+        $page = $(el);
         upage = u(el);
         upage.trigger('pagecreate').addClass(['ui-page', 'ui-body-c']);
-        $page = $(el);
-        $h = $page.find('[data-role="header"]').addClass('ui-header');
-        $f = $page.find('[data-role="footer"]').addClass('ui-footer');
-        $c = $page.find('[data-role="content"]').addClass('ui-content');
-        $h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title');
-        isBothFixed = $h.data('fixed' || $f.data('fixed'));
+        h = upage.find('[data-role="header"]').addClass('ui-header');
+        f = upage.find('[data-role="footer"]').addClass('ui-footer');
+        $c = upage.find('[data-role="content"]').addClass('ui-content');
+        h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title');
+        isBothFixed = h.attr('data-fixed' || f.attr('data-fixed'));
         if (isBothFixed) {
           $c.wrap('<div class="ui-content-scroll"/>');
-          $scrollingContent = $c.parent();
+          $scrollingContent = $c.parent().jQuery();
           scroller = umobi.scroller.create($c.get(0));
           AdjustContentHeight = function(e) {
-            var $content, $footer, $header, contentBottom, contentHeight, contentTop;
-            $content = $page.find('[data-role="content"]');
-            $header = $page.find('[data-role="header"]');
-            $footer = $page.find('[data-role="footer"]');
+            var contentBottom, contentHeight, contentTop;
             contentHeight = $(window).height();
             contentTop = 0;
             contentBottom = 0;
-            if ($header.get(0)) {
-              contentTop = $header.height();
+            if (h.get(0)) {
+              contentTop = h.height();
             }
-            if ($footer.get(0)) {
-              contentBottom = $footer.height();
+            if (f.get(0)) {
+              contentBottom = f.height();
             }
             return $scrollingContent.css({
               position: 'absolute',
@@ -1099,11 +1099,11 @@ if (objCtr.defineProperty) {
           }
           return resizeTimeout = setTimeout(AdjustContentHeight, 100);
         });
-        if ($h.data('fixed')) {
-          $h.addClass('ui-fixed-header');
+        if (h.attr('data-fixed')) {
+          h.addClass('ui-fixed-header');
         }
-        if ($f.data('fixed')) {
-          return $f.addClass('ui-fixed-footer');
+        if (f.attr('data-fixed')) {
+          return f.addClass('ui-fixed-footer');
         }
       }
     };

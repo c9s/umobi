@@ -186,7 +186,8 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         els = []
         for el in @all()
           nodes = u.dom.queryAll(sel,el)
-          els = els.concat(nodes)
+          for n in nodes
+            els.push(n)
         return u(els)
 
       siblings: (sel) ->
