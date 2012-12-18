@@ -6,7 +6,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-    u = (a) -> new uSet(a)
+    u = (a) -> new USet(a)
 
     u.dom = window.dom
     u.ready = (cb) ->
@@ -27,7 +27,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       else
         window.addEventListener( "load", cb, false )
 
-    class uSet
+    class USet
       constructor: (a) ->
         if a instanceof NodeList
           @els = a
@@ -58,8 +58,8 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         return []
 
       children: (i) ->
-        return new uSet(@get(i)) if i
-        return new uSet(@els) if @els
+        return new USet(@get(i)) if i
+        return new USet(@els) if @els
 
       first: -> @children(0)
 
@@ -115,14 +115,14 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
 
       parent: ->
         e = @get(0)
-        return new uSet(e.parentNode) if e
+        return new USet(e.parentNode) if e
 
       find: (sel) ->
         els = []
         for el in @all()
           nodes = u.dom.queryAll(sel,el)
           els = els.concat(nodes)
-        return new uSet(els)
+        return new USet(els)
 
       siblings: (sel) ->
         return @parent().find(sel) if sel
@@ -133,15 +133,15 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         els = @all()
         for e in els
           newlist.push(e) if cb.call(e,e)
-        return new uSet(newlist)
+        return new USet(newlist)
 
       next: ->
         e = @get(0)
-        return new uSet(e.nextSibling) if e
+        return new USet(e.nextSibling) if e
 
       prev: ->
         e = @get(0)
-        return new uSet(e.prevSibling) if e
+        return new USet(e.prevSibling) if e
 
       ###
       # Returns style or computed style

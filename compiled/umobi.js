@@ -137,9 +137,9 @@
 /*
   */
   (function() {
-    var u, uSet;
+    var USet, u;
     u = function(a) {
-      return new uSet(a);
+      return new USet(a);
     };
     u.dom = window.dom;
     u.ready = function(cb) {
@@ -156,9 +156,9 @@
         return window.addEventListener("load", cb, false);
       }
     };
-    uSet = (function() {
+    USet = (function() {
 
-      function uSet(a) {
+      function USet(a) {
         if (a instanceof NodeList) {
           this.els = a;
           this.length = a.length;
@@ -174,7 +174,7 @@
         }
       }
 
-      uSet.prototype.size = function() {
+      USet.prototype.size = function() {
         if (this.els) {
           return this.els.length;
         }
@@ -184,7 +184,7 @@
         return 0;
       };
 
-      uSet.prototype.get = function(i) {
+      USet.prototype.get = function(i) {
         if (this.els) {
           return this.els[i];
         }
@@ -193,7 +193,7 @@
         }
       };
 
-      uSet.prototype.all = function() {
+      USet.prototype.all = function() {
         if (this.els) {
           return this.els;
         }
@@ -203,44 +203,44 @@
         return [];
       };
 
-      uSet.prototype.children = function(i) {
+      USet.prototype.children = function(i) {
         if (i) {
-          return new uSet(this.get(i));
+          return new USet(this.get(i));
         }
         if (this.els) {
-          return new uSet(this.els);
+          return new USet(this.els);
         }
       };
 
-      uSet.prototype.first = function() {
+      USet.prototype.first = function() {
         return this.children(0);
       };
 
-      uSet.prototype.last = function() {
+      USet.prototype.last = function() {
         if (this.els) {
           return this.children(this.els.length > 0 ? this.els.length - 1 : 0);
         }
       };
 
-      uSet.prototype.addClass = function(cls) {
+      USet.prototype.addClass = function(cls) {
         return this.each(function(i, el) {
           return u.dom.addClass(el, cls);
         });
       };
 
-      uSet.prototype.toggleClass = function(cls) {
+      USet.prototype.toggleClass = function(cls) {
         return this.each(function(i, el) {
           return u.dom.toggleClass(el, cls);
         });
       };
 
-      uSet.prototype.removeClass = function(cls) {
+      USet.prototype.removeClass = function(cls) {
         return this.each(function(i, el) {
           return u.dom.removeClass(el, cls);
         });
       };
 
-      uSet.prototype.css = function(n, v) {
+      USet.prototype.css = function(n, v) {
         if (n && v) {
           return this.each(function(i, el) {
             return el.style[n] = v;
@@ -261,7 +261,7 @@
         }
       };
 
-      uSet.prototype.attr = function(n, v) {
+      USet.prototype.attr = function(n, v) {
         if (n && v) {
           return this.each(function(i, el) {
             return el.setAttribute(n, v);
@@ -282,7 +282,7 @@
         }
       };
 
-      uSet.prototype.each = function(cb) {
+      USet.prototype.each = function(cb) {
         var i, len;
         if (this.els) {
           i = 0;
@@ -297,29 +297,29 @@
         return this;
       };
 
-      uSet.prototype.click = function(cb) {
+      USet.prototype.click = function(cb) {
         return this.bind("click", cb);
       };
 
-      uSet.prototype.on = function(n, cb) {
+      USet.prototype.on = function(n, cb) {
         return this.bind(n, cb);
       };
 
-      uSet.prototype.bind = function(n, cb) {
+      USet.prototype.bind = function(n, cb) {
         return this.each(function(i, el, capture) {
           return el.addEventListener(n, cb, capture);
         });
       };
 
-      uSet.prototype.parent = function() {
+      USet.prototype.parent = function() {
         var e;
         e = this.get(0);
         if (e) {
-          return new uSet(e.parentNode);
+          return new USet(e.parentNode);
         }
       };
 
-      uSet.prototype.find = function(sel) {
+      USet.prototype.find = function(sel) {
         var el, els, nodes, _i, _len, _ref;
         els = [];
         _ref = this.all();
@@ -328,17 +328,17 @@
           nodes = u.dom.queryAll(sel, el);
           els = els.concat(nodes);
         }
-        return new uSet(els);
+        return new USet(els);
       };
 
-      uSet.prototype.siblings = function(sel) {
+      USet.prototype.siblings = function(sel) {
         if (sel) {
           return this.parent().find(sel);
         }
         return this.parent().children();
       };
 
-      uSet.prototype.filter = function(cb) {
+      USet.prototype.filter = function(cb) {
         var e, els, newlist, _i, _len;
         newlist = [];
         els = this.all();
@@ -348,22 +348,22 @@
             newlist.push(e);
           }
         }
-        return new uSet(newlist);
+        return new USet(newlist);
       };
 
-      uSet.prototype.next = function() {
+      USet.prototype.next = function() {
         var e;
         e = this.get(0);
         if (e) {
-          return new uSet(e.nextSibling);
+          return new USet(e.nextSibling);
         }
       };
 
-      uSet.prototype.prev = function() {
+      USet.prototype.prev = function() {
         var e;
         e = this.get(0);
         if (e) {
-          return new uSet(e.prevSibling);
+          return new USet(e.prevSibling);
         }
       };
 
@@ -372,7 +372,7 @@
       */
 
 
-      uSet.prototype.style = function(computed) {
+      USet.prototype.style = function(computed) {
         if (!this.el) {
           return;
         }
@@ -382,7 +382,7 @@
         return this.el.style;
       };
 
-      uSet.prototype.height = function(a) {
+      USet.prototype.height = function(a) {
         if (a) {
           return this.each(function(i, e) {
             return e.style.height = parseInt(a) + 'px';
@@ -398,7 +398,7 @@
         }
       };
 
-      uSet.prototype.width = function(a) {
+      USet.prototype.width = function(a) {
         if (a) {
           return this.each(function(i, e) {
             return e.style.width = parseInt(a) + 'px';
@@ -414,11 +414,11 @@
         }
       };
 
-      uSet.prototype.jQuery = function() {
+      USet.prototype.jQuery = function() {
         return $(this.els || this.el);
       };
 
-      return uSet;
+      return USet;
 
     })();
     return window.u = u;
