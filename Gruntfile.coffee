@@ -100,6 +100,8 @@ module.exports = (grunt) ->
         src: [ "css/themes/" + theme + "/umobi.css"]
         dest: themeFile + ".css"
 
+    qunit:
+      all: ["tests/**/*.html","tests/*.html"]
     
     # NOTE the keys are filenames which, being stored as variables requires that we use
     #      key based assignment. See below.
@@ -197,6 +199,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-concat"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-contrib-uglify"
+  grunt.loadNpmTasks "grunt-contrib-qunit"
+  
   
   # Ease of use aliases for users who want the zip and docs
   grunt.registerTask "docs", "js css legacy_tasks:docs"
