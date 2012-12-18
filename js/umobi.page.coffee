@@ -5,6 +5,7 @@ define [
   "cs!umobi.core"
   "cs!u"
   "cs!umobi.scroller"
+  "cs!umobi.support"
 ], (umobi,u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
@@ -51,9 +52,11 @@ define [
 
         if isBothFixed
           $c = c.jQuery()
+
           $c.wrap('<div class="ui-content-scroll"/>')
           $scrollingContent = $c.parent()
-          umobi.scroller.create(c.get(0))
+          if umobi.support.touchEnabled
+            umobi.scroller.create(c.get(0))
           AdjustContentHeight = (e) ->
             contentHeight = $(window).height()
             contentTop    = 0
@@ -65,7 +68,7 @@ define [
               top: contentTop + 'px'
               left: 0
               bottom: contentBottom + 'px'
-              overflow: 'auto'
+              overflow: if umobi.support.touchEnabled then 'hidden' else 'auto'
 
           $page.on 'pagereveal', AdjustContentHeight
         resizeTimeout = null
