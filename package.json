@@ -22,10 +22,7 @@
     "requirejs": "1.0.8",
     "glob-whatev": "~0.1.4",
     "rimraf": "2.0.1",
-    "testswarm": "0.2.3",
-    "exec-sync": "0",
-    "js-yaml": "~1.0.3",
-    "grunt-lib-phantomjs": "~0.1.0"
+    "testswarm": "0.2.3"
   },
   "engine": {
     "node": ">=6.0"
@@ -40,6 +37,10 @@
     "js-yaml": "~1.0.3",
     "grunt-coffeelint": "0.0.3",
     "grunt-contrib-copy": "~0.3.2",
-    "grunt-contrib": "~0.3.0"
+    "grunt-contrib": "~0.3.0",
+    "grunt-lib-phantomjs": "~0.1.0",
+    "exec-sync": "~0.1.5",
+    "requirejs": "~1.0.8",
+    "grunt-sass": "~0.2.5"
   }
 }
