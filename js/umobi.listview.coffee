@@ -1,20 +1,23 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['cs!u','cs!umobi.core'], (u,umobi) ->
+define ['jquery','cs!u','cs!umobi.core'], ($,u,umobi) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   $ ->
     listviews = u.dom.queryAll('ul[data-role="listview"]')
     for listview in listviews
-      $listview = $(listview)
-      $listview.addClass('ui-listview')
-      $listview.addClass('ui-listview-inset') if $listview.data('inset')
+      ulistview = u(listview)
+      listview.classList.add('ui-listview')
+      listview.classList.add('ui-listview-inset') if ulistview.attr('data-inset')
+
       lis = dom.queryAll('li',listview)
       for li in lis
+        li.classList.add('ui-li')
+        li.classList.add('ui-btn')
+
         $li = $(li)
-        $li.addClass(['ui-li','ui-btn'])
         $a = $li.find('a')
         $inner = $('<div/>').addClass('ui-btn-inner').append($a)
         $li.empty().append($inner)

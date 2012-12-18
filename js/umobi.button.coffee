@@ -5,10 +5,9 @@ define ['cs!u.dom','cs!u','cs!umobi.core'], (dom,u,umobi) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
-  $ ->
+  u.ready ->
     buttons = u.dom.queryAll('[data-role="button"]')
-    for button in buttons
-      $(button)
+    # for button in buttons
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
   ###

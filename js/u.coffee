@@ -81,6 +81,10 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       #
       #    u('element').addClass('class1 class2'.split(' '))
       #
+      # Or
+      #
+      #    u('element').addClass('class1')
+      #
       # Instead of
       #
       #    u('element').addClass('class1 class2')
@@ -94,6 +98,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       # https://developer.mozilla.org/en-US/docs/DOM/element.classList
       ###
       addClass: (cls) ->
+        console.log(cls, typeof cls)
         if typeof cls is "object"
           return @each (i, el) -> el.classList.add(c) for c in cls
         else
@@ -142,6 +147,8 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         # getter
         if typeof n is "string" and @el
           return @el.getAttribute(n)
+
+      empty: () -> @each (i,el) -> el.innerHTML = ''
 
       each: (cb) ->
         if @els

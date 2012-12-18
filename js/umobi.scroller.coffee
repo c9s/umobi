@@ -1,19 +1,19 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['cs!umobi.core','cs!u'], (umobi,u) ->
+define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
     debug = false
-    $(->
+    u.ready ->
       # TODO: range slider need this.
       document.body.addEventListener('touchmove', ((e) ->
         # This prevents native scrolling from happening.
         e.preventDefault()
       ), false)
-    )
+
     class Scroller
       snapBoundary: 80
       snapDuration: 500
@@ -25,6 +25,8 @@ define ['cs!umobi.core','cs!u'], (umobi,u) ->
         @globalStyleSheet = document.styleSheets[document.styleSheets.length-1]
 
         @$el = $(@element)
+
+        @uEl = u(@element)
 
         # last touch offset Y from touchmove event.
         @lastTouchY          = 0
@@ -73,7 +75,8 @@ define ['cs!umobi.core','cs!u'], (umobi,u) ->
         newY = @snapBoundary if newY > @snapBoundary
 
         # bottom boundary
-        newY = - @$el.height() + (@$el.parent().height() - @snapBoundary) if ( @$el.height() + newY + @snapBoundary ) < @$el.parent().height()
+        newY = - @uEl.height() + (@uEl.parent().height() - @snapBoundary) \
+          if ( @uEl.height() + newY + @snapBoundary ) < @uEl.parent().height()
 
         # @startTouchY = currentY
         # return
