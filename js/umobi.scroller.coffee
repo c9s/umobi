@@ -33,18 +33,31 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         @lastTouchY          = undefined
         @prevTouchY          = undefined
         @contentStartOffsetY = 0
-        @element.addEventListener('touchstart', this, false)
-        @element.addEventListener('touchmove', this, false)
-        @element.addEventListener('touchend', this, false)
+        self = this
+        @element.addEventListener 'touchstart', this, false
 
+
+        # @element.addEventListener 'touchmove', this, false
+        # This seems faster for dispatching (by using native dispatcher?)
+        onTouchMove = self.onTouchMove
+        @element.addEventListener 'touchmove', (e) -> onTouchMove.call(self,e)
+
+        @element.addEventListener 'touchend', this, false
+
+      ###
+      HandleEvent
+      
+      As the interface is marked with the [function] flag, all JavaScript
+      Function objects automatically implement this interface. Calling the
+      handleEvent() method on such an implementation automatically invokes
+      the function.
+      
+      http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener
+      ###
       handleEvent: (e) ->
         switch e.type
-          when "touchstart"
-            @onTouchStart(e)
-          when "touchmove"
-            @onTouchMove(e)
-          when "touchend"
-            @onTouchEnd(e)
+          when "touchstart" then @onTouchStart(e)
+          when "touchend" then @onTouchEnd(e)
 
       onTouchStart: (e) ->
         @stopMomentum()
@@ -61,6 +74,12 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         return if not @isDragging
 
         currentY    = e.touches[0].clientY
+
+        @prevTouchY = @lastTouchY
+        @lastTouchY = currentY
+
+        return if @viewportHeight() > @contentHeight()
+
         deltaY      = currentY - @startTouchY
         newY        = deltaY   + @contentStartOffsetY
 
@@ -72,17 +91,17 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           # transform: @getCurrentTransform()
         } if debug
 
-        @prevTouchY = @lastTouchY
-        @lastTouchY = currentY
 
-        # top boundary
-        newY = @snapBoundary if newY > @snapBoundary
-
-        # bottom boundary
-        contentHeight = @contentHeight()
-        viewportHeight = @viewportHeight()
-        newY = - contentHeight + (viewportHeight - @snapBoundary) \
-          if (contentHeight + newY + @snapBoundary) < viewportHeight
+        d = @getTouchDirection()
+        if d is 1
+          # top boundary
+          newY = @snapBoundary if newY > @snapBoundary
+        else if d is -1
+          # bottom boundary
+          contentHeight = @contentHeight()
+          viewportHeight = @viewportHeight()
+          newY = - contentHeight + (viewportHeight - @snapBoundary) \
+            if (contentHeight + newY + @snapBoundary) < viewportHeight
 
         # @startTouchY = currentY
         # return
@@ -98,6 +117,15 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           else
             @snapToBounds()
 
+
+      # delta > 0 , scrolling down
+      # delta == 0, scrolling stop
+      # detal < 0 , scrolling up
+      getTouchDirection: () ->
+        delta = (@lastTouchY - @prevTouchY)
+        return 1 if delta > 0
+        return 0 if delta is 0
+        return -1 if delta < 0
 
       getCurrentTransform: () ->
         style = document.defaultView.getComputedStyle(@element, null)
@@ -133,7 +161,7 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
 
       shouldStartMomentum: ->
         m = @calculateMomentum()
-        return false if m.velocity < 1 and m.newY > 0
+        return false if m.velocity < 0.2 and m.newY > 0
         return false if @overBottomSnapLimit(m.newY)
 
         # return true if m.newY > @snapBoundary
@@ -211,11 +239,13 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
 
       snapToBounds: () ->
         offsetY = @getContentOffsetY()
-        if @overBottomSnapLimit(offsetY)
+        d = @getTouchDirection()
+        console.log d
+        if d is -1 and @overBottomSnapLimit(offsetY)
           contentHeight = @contentHeight()
           parentHeight  = @viewportHeight()
           @cubicBezierAnimateTo(@snapDuration, (parentHeight - contentHeight) )
-        else
+        else if d is 1
           @cubicBezierAnimateTo(@snapDuration,0)
 
       # keyframes [array]

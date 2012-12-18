@@ -331,29 +331,29 @@ if (objCtr.defineProperty) {
       };
 
       /*
-            # addClass, toggleClass, removeClass is little different from jQuery
-            # which takes a string for single class or an array for multiple
-            # class names.
-            #
-            # As you are already using u(), you should use
-            #
-            #    u('element').addClass('class1 class2'.split(' '))
-            #
-            # Or
-            #
-            #    u('element').addClass('class1')
-            #
-            # Instead of
-            #
-            #    u('element').addClass('class1 class2')
-            #
-            # Because the classList is faster 8 times than jQuery.addClass
-            #
-            # Performance:
-            # http://jsperf.com/jquery-addclass-vs-dom-classlist/4
-            #
-            # Support:
-            # https://developer.mozilla.org/en-US/docs/DOM/element.classList
+            addClass, toggleClass, removeClass is little different from jQuery
+            which takes a string for single class or an array for multiple
+            class names.
+            
+            As you are already using u(), you should use
+            
+               u('element').addClass('class1 class2'.split(' '))
+            
+            Or
+            
+               u('element').addClass('class1')
+            
+            Instead of
+            
+               u('element').addClass('class1 class2')
+            
+            Because the classList is faster 8 times than jQuery.addClass
+            
+            Performance:
+            http://jsperf.com/jquery-addclass-vs-dom-classlist/4
+            
+            Support:
+            https://developer.mozilla.org/en-US/docs/DOM/element.classList
       */
 
 
@@ -487,6 +487,13 @@ if (objCtr.defineProperty) {
         return this;
       };
 
+      /*
+            Trigger a native element
+            
+            @param string n event name
+      */
+
+
       USet.prototype.trigger = function(n) {
         var evt;
         evt = document.createEvent("HTMLEvents");
@@ -570,49 +577,55 @@ if (objCtr.defineProperty) {
       };
 
       /*
-            # Returns style or computed style
+            Returns style or computed style
       */
 
 
-      USet.prototype.style = function(computed) {
-        if (!this.el) {
+      USet.prototype.style = function(computed, update) {
+        var el;
+        if (update == null) {
+          update = false;
+        }
+        el = this.get(0);
+        if (!el) {
           return;
         }
         if (computed) {
-          return window.getComputedStyle(this.el);
+          if (this.cstyle && !update) {
+            return this.cstyle;
+          }
+          return this.cstyle = window.getComputedStyle(el);
         }
-        return this.el.style;
+        return el.style;
       };
 
       USet.prototype.height = function(a) {
+        var el;
         if (a) {
           return this.each(function(i, e) {
             return e.style.height = parseInt(a) + 'px';
           });
         } else {
-          if (!this.el) {
-            return;
-          }
-          if (this.el.style.height) {
-            return parseInt(this.el.style.height);
+          el = this.get(0);
+          if (el.style.height) {
+            return parseInt(el.style.height);
           }
           return parseInt(this.style(1).height);
         }
       };
 
       USet.prototype.width = function(a) {
+        var el;
         if (a) {
           return this.each(function(i, e) {
             return e.style.width = parseInt(a) + 'px';
           });
         } else {
-          if (!this.el) {
-            return;
+          el = this.get(0);
+          if (el.style.width) {
+            return parseInt(el.style.width);
           }
-          if (this.el.style.width) {
-            return parseInt(this.el.style.width);
-          }
-          return parseInt(this.style(1).width);
+          return parseInt(style(1).width);
         }
       };
 
@@ -761,25 +774,42 @@ if (objCtr.defineProperty) {
       Scroller.prototype.snapDuration = 500;
 
       function Scroller(element) {
+        var onTouchMove, self;
         this.element = element;
         this.animationIndex = 1;
         this.startTouchY = 0;
         this.globalStyleSheet = document.styleSheets[document.styleSheets.length - 1];
         this.$el = $(this.element);
         this.uEl = u(this.element);
-        this.lastTouchY = 0;
+        this.viewportElement = this.element.parentNode;
+        this.lastTouchY = void 0;
+        this.prevTouchY = void 0;
         this.contentStartOffsetY = 0;
+        self = this;
         this.element.addEventListener('touchstart', this, false);
-        this.element.addEventListener('touchmove', this, false);
+        onTouchMove = self.onTouchMove;
+        this.element.addEventListener('touchmove', function(e) {
+          return onTouchMove.call(self, e);
+        });
         this.element.addEventListener('touchend', this, false);
       }
+
+      /*
+            HandleEvent
+            
+            As the interface is marked with the [function] flag, all JavaScript
+            Function objects automatically implement this interface. Calling the
+            handleEvent() method on such an implementation automatically invokes
+            the function.
+            
+            http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener
+      */
+
 
       Scroller.prototype.handleEvent = function(e) {
         switch (e.type) {
           case "touchstart":
             return this.onTouchStart(e);
-          case "touchmove":
-            return this.onTouchMove(e);
           case "touchend":
             return this.onTouchEnd(e);
         }
@@ -799,11 +829,16 @@ if (objCtr.defineProperty) {
       };
 
       Scroller.prototype.onTouchMove = function(e) {
-        var currentY, deltaY, newY;
+        var contentHeight, currentY, d, deltaY, newY, viewportHeight;
         if (!this.isDragging) {
           return;
         }
         currentY = e.touches[0].clientY;
+        this.prevTouchY = this.lastTouchY;
+        this.lastTouchY = currentY;
+        if (this.viewportHeight() > this.contentHeight()) {
+          return;
+        }
         deltaY = currentY - this.startTouchY;
         newY = deltaY + this.contentStartOffsetY;
         if (debug) {
@@ -814,12 +849,17 @@ if (objCtr.defineProperty) {
             contentStartOffsetY: this.contentStartOffsetY
           });
         }
-        this.lastTouchY = currentY;
-        if (newY > this.snapBoundary) {
-          newY = this.snapBoundary;
-        }
-        if ((this.uEl.height() + newY + this.snapBoundary) < this.uEl.parent().height()) {
-          newY = -this.uEl.height() + (this.uEl.parent().height() - this.snapBoundary);
+        d = this.getTouchDirection();
+        if (d === 1) {
+          if (newY > this.snapBoundary) {
+            newY = this.snapBoundary;
+          }
+        } else if (d === -1) {
+          contentHeight = this.contentHeight();
+          viewportHeight = this.viewportHeight();
+          if ((contentHeight + newY + this.snapBoundary) < viewportHeight) {
+            newY = -contentHeight + (viewportHeight - this.snapBoundary);
+          }
         }
         this.animateTo(newY);
         return this.contentLastOffsetY = newY;
@@ -835,6 +875,20 @@ if (objCtr.defineProperty) {
           } else {
             return this.snapToBounds();
           }
+        }
+      };
+
+      Scroller.prototype.getTouchDirection = function() {
+        var delta;
+        delta = this.lastTouchY - this.prevTouchY;
+        if (delta > 0) {
+          return 1;
+        }
+        if (delta === 0) {
+          return 0;
+        }
+        if (delta < 0) {
+          return -1;
         }
       };
 
@@ -871,17 +925,22 @@ if (objCtr.defineProperty) {
         return this.contentOffsetY = newY;
       };
 
+      Scroller.prototype.contentHeight = function() {
+        return u(this.element).height();
+      };
+
+      Scroller.prototype.viewportHeight = function() {
+        return u(this.viewportElement).height();
+      };
+
       Scroller.prototype.overBottomSnapLimit = function(newY) {
-        var contentHeight, parentHeight;
-        contentHeight = this.getElementHeight(this.element);
-        parentHeight = this.getElementHeight(this.element.parentNode);
-        return (parentHeight - (contentHeight + newY)) >= this.snapBoundary;
+        return (this.viewportHeight() - (this.contentHeight() + newY)) >= this.snapBoundary;
       };
 
       Scroller.prototype.shouldStartMomentum = function() {
         var m;
         m = this.calculateMomentum();
-        if (m.velocity < 1 && m.newY > 0) {
+        if (m.velocity < 0.2 && m.newY > 0) {
           return false;
         }
         if (this.overBottomSnapLimit(m.newY)) {
@@ -957,18 +1016,16 @@ if (objCtr.defineProperty) {
         }
       };
 
-      Scroller.prototype.getElementHeight = function(el) {
-        return parseInt(window.getComputedStyle(el).height);
-      };
-
       Scroller.prototype.snapToBounds = function() {
-        var contentHeight, offsetY, parentHeight;
+        var contentHeight, d, offsetY, parentHeight;
         offsetY = this.getContentOffsetY();
-        if (this.overBottomSnapLimit(offsetY)) {
-          contentHeight = this.getElementHeight(this.element);
-          parentHeight = this.getElementHeight(this.element.parentNode);
+        d = this.getTouchDirection();
+        console.log(d);
+        if (d === -1 && this.overBottomSnapLimit(offsetY)) {
+          contentHeight = this.contentHeight();
+          parentHeight = this.viewportHeight();
           return this.cubicBezierAnimateTo(this.snapDuration, parentHeight - contentHeight);
-        } else {
+        } else if (d === 1) {
           return this.cubicBezierAnimateTo(this.snapDuration, 0);
         }
       };
@@ -1061,7 +1118,7 @@ if (objCtr.defineProperty) {
         return umobi.page.reveal($page);
       },
       create: function(el) {
-        var $page, $scrollingContent, AdjustContentHeight, c, f, h, isBothFixed, resizeTimeout, upage;
+        var $c, $page, $scrollingContent, AdjustContentHeight, c, f, h, isBothFixed, resizeTimeout, upage;
         $page = $(el);
         upage = u(el);
         upage.trigger('pagecreate').addClass(['ui-page', 'ui-body-c']);
@@ -1071,8 +1128,9 @@ if (objCtr.defineProperty) {
         h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title');
         isBothFixed = h.attr('data-fixed' || f.attr('data-fixed'));
         if (isBothFixed) {
-          c.jQuery().wrap('<div class="ui-content-scroll"/>');
-          $scrollingContent = c.parent().jQuery();
+          $c = c.jQuery();
+          $c.wrap('<div class="ui-content-scroll"/>');
+          $scrollingContent = $c.parent();
           umobi.scroller.create(c.get(0));
           AdjustContentHeight = function(e) {
             var contentBottom, contentHeight, contentTop;

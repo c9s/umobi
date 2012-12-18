@@ -74,29 +74,29 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       last: -> @children( if @els.length > 0 then @els.length - 1 else 0 ) if @els
 
       ###
-      # addClass, toggleClass, removeClass is little different from jQuery
-      # which takes a string for single class or an array for multiple
-      # class names.
-      #
-      # As you are already using u(), you should use
-      #
-      #    u('element').addClass('class1 class2'.split(' '))
-      #
-      # Or
-      #
-      #    u('element').addClass('class1')
-      #
-      # Instead of
-      #
-      #    u('element').addClass('class1 class2')
-      #
-      # Because the classList is faster 8 times than jQuery.addClass
-      #
-      # Performance:
-      # http://jsperf.com/jquery-addclass-vs-dom-classlist/4
-      #
-      # Support:
-      # https://developer.mozilla.org/en-US/docs/DOM/element.classList
+      addClass, toggleClass, removeClass is little different from jQuery
+      which takes a string for single class or an array for multiple
+      class names.
+      
+      As you are already using u(), you should use
+      
+         u('element').addClass('class1 class2'.split(' '))
+      
+      Or
+      
+         u('element').addClass('class1')
+      
+      Instead of
+      
+         u('element').addClass('class1 class2')
+      
+      Because the classList is faster 8 times than jQuery.addClass
+      
+      Performance:
+      http://jsperf.com/jquery-addclass-vs-dom-classlist/4
+      
+      Support:
+      https://developer.mozilla.org/en-US/docs/DOM/element.classList
       ###
       addClass: (cls) ->
         if typeof cls is "object"
@@ -161,10 +161,11 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           cb 0, @el
         return this
 
-      # Trigger a native element
-      #
-      # @param string n event name
-      # @param array...
+      ###
+      Trigger a native element
+      
+      @param string n event name
+      ###
       trigger: (n) ->
         # createEvent: https://developer.mozilla.org/en-US/docs/DOM/document.createEvent
         evt = document.createEvent("HTMLEvents")
@@ -211,7 +212,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         return u(e.prevSibling) if e
 
       ###
-      # Returns style or computed style
+      Returns style or computed style
       ###
       style: (computed,update = false) ->
         el = @get(0)
