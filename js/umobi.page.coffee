@@ -37,8 +37,8 @@ define [
         umobi.page.reveal($page)
 
       create: (el) ->
+        u(el).trigger('pagecreate').addClass(['ui-page','ui-body-c'])
         $page = $(el)
-        $page.trigger('pagecreate').addClass('ui-page ui-body-c')
 
         # TODO: rewrite this with umobi.dom
         $h = $page.find('[data-role="header"]').addClass('ui-header') # header container

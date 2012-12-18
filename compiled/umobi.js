@@ -1194,7 +1194,9 @@ if (objCtr.defineProperty) {
 /*
   */
   (function() {
-    u('html').children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
+    var uhtml;
+    uhtml = u('html');
+    uhtml.children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
     return u.ready(function() {
       var $pages, hideAddressBar, indexPage, link, _i, _len, _ref;
       $(document).trigger('pageinit');
@@ -1239,7 +1241,7 @@ if (objCtr.defineProperty) {
         }
       }
       return u.load(function() {
-        return u('html').removeClass('ui-mobile-rendering');
+        return uhtml.removeClass('ui-mobile-rendering');
       });
     });
   })();

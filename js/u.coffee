@@ -160,6 +160,17 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           cb 0, @el
         return this
 
+      # Trigger a native element
+      #
+      # @param string n event name
+      # @param array...
+      trigger: (n) ->
+        # createEvent: https://developer.mozilla.org/en-US/docs/DOM/document.createEvent
+        evt = document.createEvent("HTMLEvents")
+
+        # https://developer.mozilla.org/en-US/docs/DOM/event.initEvent
+        evt.initEvent(n, true, true) # event type,bubbling,cancelable
+        return @each (i,el) -> el.dispatchEvent(evt)
 
       click: (cb) -> @bind "click", cb
 
