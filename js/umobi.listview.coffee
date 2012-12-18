@@ -14,7 +14,7 @@ define ['cs!u','cs!umobi.core'], (u,umobi) ->
       lis = dom.queryAll('li',listview)
       for li in lis
         $li = $(li)
-        $li.addClass('ui-li ui-btn')
+        $li.addClass(['ui-li','ui-btn'])
         $a = $li.find('a')
         $inner = $('<div/>').addClass('ui-btn-inner').append($a)
         $li.empty().append($inner)
