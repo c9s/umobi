@@ -65,6 +65,21 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
 
       last: -> @children( if @els.length > 0 then @els.length - 1 else 0 ) if @els
 
+      ###
+      # addClass, toggleClass, removeClass is little different from jQuery
+      # which takes a string for single class or an array for multiple
+      # class names.
+      #
+      # As you are already using u(), you should use 
+      #
+      #    u('element').addClass(['class1','class2'])
+      #
+      # Instead of 
+      #
+      #    u('element').addClass('class1 class2')
+      #
+      # Because the first one is faster 3 times than second one.
+      ###
       addClass: (cls) -> @each (i, el) -> u.dom.addClass el, cls
 
       toggleClass: (cls) -> @each (i, el) -> u.dom.toggleClass el, cls
