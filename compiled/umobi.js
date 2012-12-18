@@ -761,7 +761,7 @@ if (objCtr.defineProperty) {
   */
   (function() {
     var Scroller, debug;
-    debug = true;
+    debug = window.console && true;
     u.ready(function() {
       return document.body.addEventListener('touchmove', (function(e) {
         return e.preventDefault();
@@ -819,7 +819,8 @@ if (objCtr.defineProperty) {
         this.stopMomentum();
         this.startTouchY = e.touches[0].clientY;
         this.startTouchTime = (new Date).getTime();
-        this.contentStartOffsetY = this.getContentOffsetY();
+        this.contentStartOffsetY = this.getCurrentContentOffsetY();
+        this.contentLastOffsetY = this.contentStartOffsetY;
         if (debug) {
           return console.log('onTouchStart', {
             startTouchY: this.startTouchY,
@@ -841,14 +842,9 @@ if (objCtr.defineProperty) {
         }
         deltaY = currentY - this.startTouchY;
         newY = deltaY + this.contentStartOffsetY;
-        if (debug) {
-          console.log('onTouchMove', {
-            touchY: currentY,
-            deltaY: deltaY,
-            newY: newY,
-            contentStartOffsetY: this.contentStartOffsetY
-          });
-        }
+        /*
+                        */
+
         d = this.getTouchDirection();
         if (d === 1) {
           if (newY > this.snapBoundary) {
@@ -898,7 +894,7 @@ if (objCtr.defineProperty) {
         return new WebKitCSSMatrix(style.webkitTransform);
       };
 
-      Scroller.prototype.getContentOffsetY = function() {
+      Scroller.prototype.getCurrentContentOffsetY = function() {
         return this.getCurrentTransform().m42;
       };
 
@@ -966,10 +962,11 @@ if (objCtr.defineProperty) {
       };
 
       Scroller.prototype.startMomentum = function() {
-        var framecss, frames, m, name, newY, normalEnd, time,
+        var d, framecss, frames, m, name, newY, normalEnd, time,
           _this = this;
+        d = this.getTouchDirection();
         m = this.calculateMomentum();
-        if (m.newY > 0) {
+        if (d === 1 && m.newY > 0) {
           name = 'snaptobounds' + (this.animationIndex++);
           frames = [];
           time = m.time * 0.6;
@@ -996,7 +993,8 @@ if (objCtr.defineProperty) {
             _this.globalStyleSheet.deleteRule(0);
             _this.element.style.webkitAnimation = 'none';
             _this.element.style.webkitTransition = '';
-            return _this.animateTo(0);
+            _this.animateTo(0);
+            return _this.contentLastOffsetY = 0;
           };
           this.element.addEventListener("webkitAnimationEnd", normalEnd, false);
           return;
@@ -1018,7 +1016,7 @@ if (objCtr.defineProperty) {
 
       Scroller.prototype.snapToBounds = function() {
         var contentHeight, d, offsetY, parentHeight;
-        offsetY = this.getContentOffsetY();
+        offsetY = this.getCurrentContentOffsetY();
         d = this.getTouchDirection();
         console.log(d);
         if (d === -1 && this.overBottomSnapLimit(offsetY)) {
