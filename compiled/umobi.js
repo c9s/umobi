@@ -272,9 +272,12 @@ if (objCtr.defineProperty) {
         } else if (a instanceof NodeList) {
           this.els = a;
           this.length = a.length;
-        } else if (a instanceof Node) {
+        } else if (typeof a === "object" || a instanceof Node) {
           this.el = a;
         } else {
+          if (window.console) {
+            console.error(a);
+          }
           throw new Error("u: unsupported argument");
         }
       }

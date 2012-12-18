@@ -44,9 +44,10 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         else if a instanceof NodeList
           @els = a
           @length = a.length
-        else if a instanceof Node
+        else if typeof a is "object" or a instanceof Node
           @el = a
         else
+          console.error(a) if window.console
           throw new Error("u: unsupported argument")
 
       size: ->
