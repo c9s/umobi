@@ -56,7 +56,7 @@ In real world, 802.11b/g/n Wi-Fi (test incomplete)
 
 ## File sizes
 
-<img height="150" src="https://raw.github.com/c9s/umobi/master/assets/chart.png"/>
+<img width="300" src="https://raw.github.com/c9s/umobi/master/assets/chart.png"/>
 <!-- http://jsfiddle.net/kL9UT/ -->
 
 Zepto (minified 23KB, 22KB through Google closure compiler)
