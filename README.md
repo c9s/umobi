@@ -25,7 +25,7 @@ jQueryMobile files.
 
 Beyond that, jQuery runs slower 8 times than pure DOM manipulation.
 
-But we found that the UI design, effects of jQueryMobile are so splendid,
+We found that the UI design, effects of jQueryMobile are so splendid,
 and other frameworks are not.  So we decide to make a smaller, faster,
 lighter mobile web framework, especially for 3G-bandwidth devices.
 
