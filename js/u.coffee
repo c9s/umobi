@@ -213,26 +213,30 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       ###
       # Returns style or computed style
       ###
-      style: (computed) ->
-        return unless @el
-        return window.getComputedStyle(@el) if computed
-        @el.style
+      style: (computed,update = false) ->
+        el = @get(0)
+        return unless el
+        if computed
+          return @cstyle if @cstyle and not update
+          return @cstyle = window.getComputedStyle(el)
+        return el.style
 
       height: (a) ->
+        # setter
         if a
           return @each (i,e) -> e.style.height = parseInt(a) + 'px'
         else
-          return unless @el
-          return parseInt(@el.style.height) if @el.style.height
+          el = @get(0)
+          return parseInt(el.style.height) if el.style.height
           parseInt(@style(1).height)
 
       width: (a) ->
         if a
-          @each (i,e) -> e.style.width = parseInt(a) + 'px'
+          return @each (i,e) -> e.style.width = parseInt(a) + 'px'
         else
-          return unless @el
-          return parseInt(@el.style.width) if @el.style.width
-          parseInt(@style(1).width)
+          el = @get(0)
+          return parseInt(el.style.width) if el.style.width
+          parseInt(style(1).width)
 
       # convert element or element collection to jQuery object.
       jQuery: () -> $( @els or @el )

@@ -26,11 +26,12 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         @globalStyleSheet = document.styleSheets[document.styleSheets.length-1]
 
         @$el = $(@element)
-
         @uEl = u(@element)
+        @viewportElement = @element.parentNode
 
         # last touch offset Y from touchmove event.
-        @lastTouchY          = 0
+        @lastTouchY          = undefined
+        @prevTouchY          = undefined
         @contentStartOffsetY = 0
         @element.addEventListener('touchstart', this, false)
         @element.addEventListener('touchmove', this, false)
@@ -71,14 +72,17 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           # transform: @getCurrentTransform()
         } if debug
 
+        @prevTouchY = @lastTouchY
         @lastTouchY = currentY
 
         # top boundary
         newY = @snapBoundary if newY > @snapBoundary
 
         # bottom boundary
-        newY = - @uEl.height() + (@uEl.parent().height() - @snapBoundary) \
-          if ( @uEl.height() + newY + @snapBoundary ) < @uEl.parent().height()
+        contentHeight = @contentHeight()
+        viewportHeight = @viewportHeight()
+        newY = - contentHeight + (viewportHeight - @snapBoundary) \
+          if (contentHeight + newY + @snapBoundary) < viewportHeight
 
         # @startTouchY = currentY
         # return
@@ -120,11 +124,12 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         @element.style.webkitTransform = 'translate3d(0,' + newY + 'px, 0)'
         @contentOffsetY = newY
 
+      contentHeight: -> u(@element).height()
+
+      viewportHeight: -> u(@viewportElement).height()
+
       overBottomSnapLimit: (newY) ->
-        contentHeight = u(@element).height()
-        parentHeight  = u(@element.parentNode).height()
-        # console.log 'overBottomSnapLimit', (parentHeight - (contentHeight + newY)) , @snapBoundary
-        return (parentHeight - (contentHeight + newY)) >= @snapBoundary
+        return ( @viewportHeight() - (@contentHeight() + newY)) >= @snapBoundary
 
       shouldStartMomentum: ->
         m = @calculateMomentum()
@@ -207,8 +212,8 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
       snapToBounds: () ->
         offsetY = @getContentOffsetY()
         if @overBottomSnapLimit(offsetY)
-          contentHeight = u(@element).height()
-          parentHeight  = u(@element.parentNode).height()
+          contentHeight = @contentHeight()
+          parentHeight  = @viewportHeight()
           @cubicBezierAnimateTo(@snapDuration, (parentHeight - contentHeight) )
         else
           @cubicBezierAnimateTo(@snapDuration,0)

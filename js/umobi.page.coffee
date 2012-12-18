@@ -50,8 +50,9 @@ define [
         isBothFixed = h.attr 'data-fixed' or f.attr 'data-fixed'
 
         if isBothFixed
-          c.jQuery().wrap('<div class="ui-content-scroll"/>')
-          $scrollingContent = c.parent().jQuery()
+          $c = c.jQuery()
+          $c.wrap('<div class="ui-content-scroll"/>')
+          $scrollingContent = $c.parent()
           umobi.scroller.create(c.get(0))
           AdjustContentHeight = (e) ->
             contentHeight = $(window).height()
@@ -65,6 +66,7 @@ define [
               left: 0
               bottom: contentBottom + 'px'
               overflow: 'auto'
+
           $page.on 'pagereveal', AdjustContentHeight
         resizeTimeout = null
         u(window).on 'resize',->
