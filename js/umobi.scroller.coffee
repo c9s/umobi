@@ -148,7 +148,6 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
 
       getEndVelocity: -> (@contentLastOffsetY - @contentStartOffsetY) / ((new Date).getTime() - @startTouchTime)
 
-      isDecelerating: -> true
 
       cubicBezierAnimateTo: (time,newY) ->
         @element.style.webkitTransition = '-webkit-transform ' + time + 'ms cubic-bezier(0.33, 0.66, 0.66, 1)'
@@ -234,7 +233,14 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
         console.log "startMomentum", m if debug
         @cubicBezierAnimateTo(m.time,m.newY)
 
-      stopMomentum: () ->
+      ###
+      TODO:
+      When touch starts, stopMomentum will be called if 
+      the transition is decelerating.
+      ###
+      isDecelerating: -> true
+
+      stopMomentum: ->
         if @isDecelerating()
           transform = @getCurrentTransform()
           # Clear the active transition so it doesn’t apply to our next transform.
@@ -242,10 +248,9 @@ define ['jquery','cs!umobi.core','cs!u'], ($,umobi,u) ->
           # Set the element transform to where it is right now.
           @animateTo(transform.m42)
 
-      snapToBounds: () ->
+      snapToBounds: ->
         offsetY = @getCurrentContentOffsetY()
         d = @getTouchDirection()
-        console.log d
         if d is -1 and @overBottomSnapLimit(offsetY)
           contentHeight = @contentHeight()
           parentHeight  = @viewportHeight()
