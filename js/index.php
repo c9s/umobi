@@ -57,10 +57,11 @@ function runCoffee($files)
 		1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
 		# 2 => array("pipe", "w", "a") // stderr is a file to write to
 	);
-	$node = findbin('node');
+	$node   = findbin('node');
 	$coffee = findbin('coffee');
+	$cwd = getcwd();
 	$pipes = array();
-	$process = proc_open("$node $coffee --bare --stdio --print", $desc, $pipes);
+	$process = proc_open("$node $coffee --bare --stdio --print", $desc, $pipes, $cwd);
 	if (is_resource($process)) {
 		$content = '';
 		foreach( $files as $file ) {
