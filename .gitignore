@@ -2,3 +2,4 @@ css/*.css
 .sass-cache/
 compiled/
 node_modules/
+.deps
