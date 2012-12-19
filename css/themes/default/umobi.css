@@ -341,10 +341,6 @@ a.ui-link:active {
 .ui-btn:focus, .ui-link-inherit:focus {
   outline: 0; }
 
-.ui-btn-inner {
-  border-top: 1px solid white;
-  border-color: rgba(255, 255, 255, 0.3); }
-
 textarea.ui-input-text.ui-focus,
 div.ui-input-text.ui-focus {
   /* box-shadow: inset 0px 1px 4px rgba(0, 0, 0, .4), 0px 0px 12px #80acbd */
@@ -472,6 +468,10 @@ ul.ui-listview li.ui-btn:hover {
   background-image: -ms-linear-gradient(#99ccdd, #62b1d0);
   background-image: -o-linear-gradient(#99ccdd, #62b1d0);
   background-image: linear-gradient(#99ccdd, #62b1d0); }
+
+ul.ui-listview li.ui-btn div.ui-btn-inner {
+  border-top: 1px solid white;
+  border-color: rgba(255, 255, 255, 0.3); }
 
 ul.ui-listview li.ui-btn:last-child {
   border-color: #cccccc; }
