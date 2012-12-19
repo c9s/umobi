@@ -10,11 +10,7 @@
     "type": "git",
     "url": "https://github.com/c9s/umobi.git"
   },
-  "dependencies": {},
-  "engine": {
-    "node": ">=8.0"
-  },
-  "devDependencies": {
+  "dependencies": {
     "grunt": "~0.4.0",
     "grunt-css": "0",
     "grunt-contrib-uglify": "~0.1.0",
@@ -41,5 +37,10 @@
     "temporary": "0.0.5",
     "eventemitter2": "~0.4.11",
     "phantomjs": "~0.2.3"
+  },
+  "engine": {
+    "node": ">=8.0"
+  },
+  "devDependencies": {
   }
 }
