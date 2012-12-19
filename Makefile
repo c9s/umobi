@@ -21,7 +21,7 @@ node_modules:
 gem_modules:
 	gem install sass listen
 
-deps: node_modules gem_modules
+.deps: node_modules gem_modules
 	touch .deps
 
 sass:
