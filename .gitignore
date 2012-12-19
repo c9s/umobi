@@ -3,3 +3,4 @@ css/*.css
 compiled/
 node_modules/
 .deps
+js/umobi.*.js
