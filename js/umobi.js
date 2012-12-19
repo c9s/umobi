@@ -1,7 +1,7 @@
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 require({
-  // baseUrl: '/js',
-    urlArgs: 'bust=' + (new Date()).getTime()
+  // baseUrl: 'js',
+  urlArgs: 'bust=' + (new Date()).getTime()
     /*
     , paths: {
         "cs": "cs",

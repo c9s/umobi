@@ -182,37 +182,28 @@ if (objCtr.defineProperty) {
 ;
 var __slice = [].slice;
 
-String.prototype.toCamelCase = function() {
-  var ps;
-  ps = this.toWords();
-  return (ps.map(function(p) {
-    return p.charAt(0).toUpperCase() + p.substr(1);
-  })).join('');
-};
-
-String.prototype.toLowerCamelCase = function() {
-  var first, rest, _ref;
-  _ref = this.toWords(), first = _ref[0], rest = 2 <= _ref.length ? __slice.call(_ref, 1) : [];
-  return first + (rest.map(function(p) {
-    return p.charAt(0).toUpperCase() + p.substr(1);
-  })).join('');
-};
-
-String.prototype.toWords = function() {
-  return this.split('-');
-};
-
-String.prototype.toDashCase = function() {
-  return this.replace(/([A-Z])/, function(v) {
-    return '-' + v.toLowerCase();
-  }).replace(/^-/, '');
-};
-
-console.log('data-user-name'.toCamelCase());
-
-console.log('data-user-name'.toLowerCamelCase());
-
-console.log('data-user-name'.toDashCase());
+define('cs!str',[], function() {
+  String.prototype.toCamelCase = function() {
+    return (this.toWords().map(function(p) {
+      return p.charAt(0).toUpperCase() + p.substr(1);
+    })).join('');
+  };
+  String.prototype.toLowerCamelCase = function() {
+    var first, rest, _ref;
+    _ref = this.toWords(), first = _ref[0], rest = 2 <= _ref.length ? __slice.call(_ref, 1) : [];
+    return first + (rest.map(function(p) {
+      return p.charAt(0).toUpperCase() + p.substr(1);
+    })).join('');
+  };
+  String.prototype.toWords = function() {
+    return this.split('-');
+  };
+  return String.prototype.toDashCase = function() {
+    return this.replace(/([A-Z])/g, function(v) {
+      return '-' + v.toLowerCase();
+    }).replace(/^-/, '');
+  };
+});
 
 /*
   */
