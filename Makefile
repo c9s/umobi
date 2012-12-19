@@ -32,3 +32,7 @@ sass-updater:
 
 clean:
 	rm -rf compiled/ .sass-cache/ .deps
+
+clean_all: clean
+	rm -rf node_modules
+	
