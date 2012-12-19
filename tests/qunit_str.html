@@ -7,27 +7,14 @@
   <link rel="stylesheet" href="libs/qunit.css" media="screen">
   <script src="libs/qunit.js"></script>
   <script src="../js/require.js"></script>
+  <script src="config.js"></script>
   <script type="text/javascript">
-    window.addEventListener("load",function() {
-      QUnit.config.autostart = false;
-      require.config({
-        baseUrl: '../js',
-        urlArgs: 'bust=' + (new Date()).getTime(),
-        CoffeeScript: { bare: true },
-        paths: {
-          "tests": "../tests/tests",
-          "cs": "cs",
-          "coffee-script": "coffee-script",
-          "jquery":"jquery"
-        }
-      });
-      require([
-        'coffee-script', 'cs',
-        'cs!str',
-        'cs!tests/str' 
-      ], function() {
-        QUnit.start();
-      });
+    require([
+      'coffee-script', 'cs',
+      'cs!str',
+      'cs!tests/str' 
+    ], function() {
+      QUnit.start();
     });
   </script>
 </head>
