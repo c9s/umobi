@@ -36,7 +36,8 @@
     "file": "~0.2.1",
     "temporary": "0.0.5",
     "eventemitter2": "~0.4.11",
-    "phantomjs": "~0.2.3"
+    "phantomjs": "~0.2.3",
+    "coffee-script": "~1.4.0"
   },
   "engine": {
     "node": ">=8.0"
