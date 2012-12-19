@@ -7,7 +7,7 @@ stat:
 	@stat -f "%N: %z bytes" compiled/umobi.min.css
 
 build:
-	grunt
+	grunt --no-color
 
 js:
 	grunt --no-color js
@@ -20,7 +20,7 @@ gem_modules:
 
 .deps:
 	npm install --quiet
-	touch .deps
+	uouch .deps
 
 sass:
 	sass -c --update css
