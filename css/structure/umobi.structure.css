@@ -114,6 +114,8 @@ a img {
 .grid-5-4 {
   width: 80%; }
 
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible */
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 

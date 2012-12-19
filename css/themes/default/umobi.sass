@@ -64,7 +64,7 @@ a.ui-link:visited
   font-weight: bold
 
 a.ui-link:hover
-  color: #62B1D0
+  color: #333
 
 a.ui-link:active
   color: #2489ce
@@ -151,9 +151,11 @@ input[type=number]::-webkit-outer-spin-button
     -ms-box-sizing: border-box
     box-sizing: border-box
 
-  .ui-hide-label input.ui-input-text,
-  .ui-hide-label textarea.ui-input-text,
-  .ui-hide-label div.ui-input-text,
+  .ui-hide-label
+    input.ui-input-text,
+    textarea.ui-input-text,
+    div.ui-input-text
+      width: 100%
   div.ui-input-text input.ui-input-text
     width: 100%
 

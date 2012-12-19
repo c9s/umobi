@@ -115,6 +115,8 @@ a img {
 .grid-5-4 {
   width: 80%; }
 
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible */
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 
@@ -249,6 +251,8 @@ textarea.ui-input-text {
 textarea.ui-mini {
   height: 45px; }
 
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible */
 p {
   color: #333333;
   -webkit-text-shadow: 0 1px white;
@@ -323,7 +327,7 @@ a.ui-link:visited {
   font-weight: bold; }
 
 a.ui-link:hover {
-  color: #62b1d0; }
+  color: #333333; }
 
 a.ui-link:active {
   color: #2489ce; }
@@ -420,7 +424,9 @@ input[type=number]::-webkit-outer-spin-button {
 
   .ui-hide-label input.ui-input-text,
   .ui-hide-label textarea.ui-input-text,
-  .ui-hide-label div.ui-input-text,
+  .ui-hide-label div.ui-input-text {
+    width: 100%; }
+
   div.ui-input-text input.ui-input-text {
     width: 100%; } }
 .ui-btn {
@@ -431,6 +437,8 @@ input[type=number]::-webkit-outer-spin-button {
   -moz-text-shadow: 8px;
   text-shadow: 8px; }
 
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible */
 /* structure */
 .ui-content ul.ui-listview {
   margin: -15px; }
@@ -466,12 +474,12 @@ ul.ui-listview li.ui-btn {
   background-image: linear-gradient(white, #f1f1f1); }
 
 ul.ui-listview li.ui-btn:hover {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(lightgrey));
-  background-image: -webkit-linear-gradient(#f0f0f0, lightgrey);
-  background-image: -moz-linear-gradient(#f0f0f0, lightgrey);
-  background-image: -ms-linear-gradient(#f0f0f0, lightgrey);
-  background-image: -o-linear-gradient(#f0f0f0, lightgrey);
-  background-image: linear-gradient(#f0f0f0, lightgrey); }
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#99ccdd), to(#62b1d0));
+  background-image: -webkit-linear-gradient(#99ccdd, #62b1d0);
+  background-image: -moz-linear-gradient(#99ccdd, #62b1d0);
+  background-image: -ms-linear-gradient(#99ccdd, #62b1d0);
+  background-image: -o-linear-gradient(#99ccdd, #62b1d0);
+  background-image: linear-gradient(#99ccdd, #62b1d0); }
 
 ul.ui-listview li.ui-btn:last-child {
   border-color: #cccccc; }
