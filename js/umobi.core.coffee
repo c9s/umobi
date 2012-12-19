@@ -6,7 +6,8 @@ define [],->
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-    window.umobi = {}
+    window.umobi =
+      config: { }
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
