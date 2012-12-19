@@ -16,7 +16,7 @@ css:
 	grunt --config Gruntfile.coffee css
 
 node_modules:
-	npm install --dev --quiet --link
+	npm install --quiet --link
 
 gem_modules:
 	gem install sass listen
