@@ -314,14 +314,12 @@ p {
 .ui-link-inherit {
   color: white; }
 
-a.ui-link,
 a.ui-link:visited {
   color: #4587a9;
   font-weight: bold; }
 
 a.ui-link:hover {
   color: #333333; }
-
 a.ui-link:active {
   color: #2489ce; }
 
