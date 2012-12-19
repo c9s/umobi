@@ -1,6 +1,6 @@
 .PHONY: build js css
 
-all: .deps build stat
+all: .deps build
 	# node node_modules/requirejs/bin/r.js -o js/build.js
 
 stat:
@@ -21,7 +21,7 @@ node_modules:
 gem_modules:
 	gem install sass listen
 
-.deps: node_modules gem_modules
+.deps: node_modules
 	touch .deps
 
 sass:

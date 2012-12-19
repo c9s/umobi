@@ -183,7 +183,9 @@ if (objCtr.defineProperty) {
 /*
   */
   (function() {
-    return window.umobi = {};
+    return window.umobi = {
+      config: {}
+    };
   })();
   /*
     */

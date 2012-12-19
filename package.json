@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/c9s/umobi.git"
   },
-  "dependencies": { },
+  "dependencies": {},
   "engine": {
     "node": ">=8.0"
   },
@@ -21,9 +21,8 @@
     "grunt-contrib-coffee": "~0.3.2",
     "grunt-contrib-jshint": "0",
     "grunt-contrib-concat": "~0.1.1",
-    "qunit": "~0.5.14",
+    "qunit": "~0.5.15",
     "grunt-contrib-qunit": "~0.1.0",
-    "js-yaml": "~1.0.3",
     "grunt-coffeelint": "0.0.3",
     "grunt-contrib-copy": "~0.3.2",
     "grunt-contrib": "~0.3.0",
@@ -31,10 +30,16 @@
     "exec-sync": "~0.1.5",
     "requirejs": "~1.0.8",
     "grunt-sass": "~0.2.5",
-    "grunt-junit": "0.1.4",
+    "grunt-junit": "~0.1.5",
     "grunt-git-authors": "1.0.0",
     "glob-whatev": "~0.1.4",
     "rimraf": "2.0.1",
-    "testswarm": "0.2.3"
+    "minimatch": ">=0",
+    "semver": ">=0",
+    "testswarm": "0.2.3",
+    "file": "~0.2.1",
+    "temporary": "0.0.5",
+    "eventemitter2": "~0.4.11",
+    "phantomjs": "~0.2.3"
   }
 }
