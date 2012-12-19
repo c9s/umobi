@@ -4,6 +4,7 @@
 
 $fore-color: #62B1D0
 $fore-color2: #9cd
+$fore-dark-text-color: #264755
 
 
 
@@ -68,6 +69,21 @@ p
   @include box-shadow(0px 1px 5px rgba(0,0,0,.3))
 
 
+/*
+  Button Styles
+  ========================
+a.ui-btn
+  color: $fore-dark-text-color
+  @include text-shadow(1px 1px #fff)
+
+a.ui-btn.ui-btn-up-c
+  @include background-v-gradient(#ffffff,#e5e5e5)
+
+a.ui-btn.ui-btn-hover-c
+  @include background-v-gradient(#f5f5f5,#d5d5d5)
+
+a.ui-btn.ui-btn-down-c
+  @include background-v-gradient(#ddd,#fff)
 
 
 /**********************************************

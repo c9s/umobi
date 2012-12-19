@@ -204,8 +204,7 @@ h3.ui-title {
 a.ui-btn {
   text-decoration: none;
   display: inline-block;
-  padding: 3px 8px;
-  /* .ui-btn-inner */ }
+  padding: 3px 8px; }
 
 /***************************************
  * focus state  for most case
@@ -339,6 +338,47 @@ p {
   -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3); }
+
+/* Button Styles
+ * ======================== */
+a.ui-btn {
+  color: #264755;
+  -webkit-text-shadow: 1px 1px white;
+  -moz-text-shadow: 1px 1px white;
+  text-shadow: 1px 1px white; }
+
+a.ui-btn.ui-btn-up-c {
+  background: white;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, white 0%, #e5e5e5 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e5e5e5));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, white 0%, #e5e5e5 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
+
+a.ui-btn.ui-btn-hover-c {
+  background: whitesmoke;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whitesmoke), color-stop(100%, #d5d5d5));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, whitesmoke 0%, #d5d5d5 100%); }
+
+a.ui-btn.ui-btn-down-c {
+  background: #dddddd;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #dddddd 0%, white 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, white));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #dddddd 0%, white 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #dddddd 0%, white 100%); }
 
 /*********************************************
  * ui link styles

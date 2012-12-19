@@ -203,8 +203,7 @@ h3.ui-title {
 a.ui-btn {
   text-decoration: none;
   display: inline-block;
-  padding: 3px 8px;
-  /* .ui-btn-inner */ }
+  padding: 3px 8px; }
 
 /***************************************
  * focus state  for most case
