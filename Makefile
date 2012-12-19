@@ -23,6 +23,7 @@ gem_modules:
 	gem install sass listen
 
 .deps: node_modules
+	npm install --quiet
 	touch .deps
 
 sass:
