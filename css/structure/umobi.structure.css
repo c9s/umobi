@@ -115,7 +115,7 @@ a img {
   width: 80%; }
 
 /* Lightweight compatible graident syntax for non-IE browsers */
-/* gradient syntax with IE-compatible */
+/* gradient syntax with IE-compatible and older browser */
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 
