@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "grunt": "~0.4.0",
-    "grunt-css": "0",
+    "grunt-css": "git://github.com/c9s/grunt-css.git#grunt-0.4",
     "grunt-contrib-uglify": "~0.1.0",
     "grunt-contrib-coffee": "~0.3.2",
     "grunt-contrib-jshint": "0",
@@ -41,6 +41,5 @@
   "engine": {
     "node": ">=8.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
