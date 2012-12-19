@@ -23,7 +23,7 @@ define [
   </a>
   ###
   (->
-    u.ready () ->
+    initializeLinks = () ->
       for link in document.links
         ulink = u(link)
         if ulink.data('role') is 'button'
@@ -40,8 +40,8 @@ define [
           # initialize <a> as a normal link
           ulink.addClass('ui-link').click (e) ->
             href = ulink.attr('href')
-            if href.match( /^#\w+/ )
-              umobi.page.revealByHash(href)
+            umobi.page.revealByHash(href) if href.match( /^#\w+/ )
+    u.ready initializeLinks
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
