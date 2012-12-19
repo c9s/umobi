@@ -37,7 +37,8 @@
     "temporary": "0.0.5",
     "eventemitter2": "~0.4.11",
     "phantomjs": "~0.2.3",
-    "coffee-script": "~1.4.0"
+    "coffee-script": "~1.4.0",
+    "grunt-contrib-compress": "~0.3.3"
   },
   "engine": {
     "node": ">=8.0"
