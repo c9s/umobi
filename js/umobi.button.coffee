@@ -10,20 +10,22 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
 
   umobi.button.bindClassEvents = (el) ->
     $el = $(el)
-    btnUpClass = "ui-btn-up-#{ umobi.config.theme }"
-    btnDownClass = "ui-btn-down-#{ umobi.config.theme }"
-    btnHoverClass = "ui-btn-hover-#{ umobi.config.theme }"
-
-    $el.addClass btnUpClass
-    $el.hover ((e) ->
-      u(this).removeClass(btnUpClass).addClass(btnHoverClass)
-    ), ((e) ->
-      u(this).removeClass(btnHoverClass).addClass(btnUpClass)
+    # class name map hash
+    theme = umobi.config.theme
+    cmap =
+      up:    "ui-btn-up-#{theme}"
+      down:  "ui-btn-down-#{theme}"
+      hover: "ui-btn-hover-#{theme}"
+    $el.addClass cmap.up
+    $el.hover (->
+      u(@).removeClass(cmap.up).addClass(cmap.hover)
+    ), (->
+      u(@).removeClass(cmap.hover).addClass(cmap.up)
     )
-    $el.on 'mousedown', (e) ->
-      u(this).removeClass(btnHoverClass).removeClass(btnUpClass).addClass(btnDownClass)
-    $el.on 'mouseup', (e) ->
-      u(this).removeClass(btnDownClass).addClass(btnHoverClass)
+    $el.on 'mousedown',->
+      u(@).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down)
+    $el.on 'mouseup',->
+      u(@).removeClass(cmap.down).addClass(cmap.hover)
 
   u.ready ->
     buttons = u.dom.queryAll('[data-role="button"]')

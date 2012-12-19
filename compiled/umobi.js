@@ -708,21 +708,25 @@ define('cs!str',[], function() {
   umobi.button = {};
   umobi.button.markup = function(el) {};
   umobi.button.bindClassEvents = function(el) {
-    var $el, btnDownClass, btnHoverClass, btnUpClass;
+    var $el, cmap, theme;
     $el = $(el);
-    btnUpClass = "ui-btn-up-" + umobi.config.theme;
-    btnDownClass = "ui-btn-down-" + umobi.config.theme;
-    btnHoverClass = "ui-btn-hover-" + umobi.config.theme;
-    $el.hover((function(e) {
-      return u(this).removeClass(btnUpClass).addClass(btnHoverClass);
-    }), (function(e) {
-      return u(this).removeClass(btnHoverClass).addClass(btnUpClass);
+    theme = umobi.config.theme;
+    cmap = {
+      up: "ui-btn-up-" + theme,
+      down: "ui-btn-down-" + theme,
+      hover: "ui-btn-hover-" + theme
+    };
+    $el.addClass(cmap.up);
+    $el.hover((function() {
+      return u(this).removeClass(cmap.up).addClass(cmap.hover);
+    }), (function() {
+      return u(this).removeClass(cmap.hover).addClass(cmap.up);
     }));
-    $el.on('mousedown', function(e) {
-      return u(this).removeClass(btnHoverClass).removeClass(btnUpClass).addClass(btnDownClass);
+    $el.on('mousedown', function() {
+      return u(this).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down);
     });
-    return $el.on('mouseup', function(e) {
-      return u(this).removeClass(btnDownClass).addClass(btnHoverClass);
+    return $el.on('mouseup', function() {
+      return u(this).removeClass(cmap.down).addClass(cmap.hover);
     });
   };
   u.ready(function() {
@@ -1376,7 +1380,7 @@ define('cs!str',[], function() {
         ulink = u(link);
         if (ulink.data("role") === "button") {
           ulink.data("corners", true).data("shadow", true).data("theme", umobi.config.theme);
-          ulink.addClass(["ui-btn", "ui-shadow", "ui-btn-corner-all", "ui-btn-up-" + umobi.config.theme]);
+          ulink.addClass(["ui-btn", "ui-shadow", "ui-btn-corner-all"]);
           if (ulink.data('mini')) {
             ulink.addClass("ui-mini");
           }
