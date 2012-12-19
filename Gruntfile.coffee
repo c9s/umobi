@@ -114,6 +114,7 @@ module.exports = (grunt) ->
     #      key based assignment. See below.
     uglify: `undefined`
     cssmin: `undefined`
+    compress: readCoffee "build/compress.coffee"
     
     # JS config, mostly the requirejs configuration
     # full example: https://github.com/jrburke/r.js/blob/master/build/example.build.js
@@ -182,11 +183,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-contrib-qunit"
+  grunt.loadNpmTasks "grunt-contrib-compress"
   
-  
-  # Ease of use aliases for users who want the zip and docs
-  grunt.registerTask "docs", "js css legacy_tasks:docs"
-  grunt.registerTask "zip", "js css legacy_tasks:zip"
+  grunt.registerTask "zip", "js css compress:zip".split(' ')
 
   grunt.event.on 'qunit.spawn', (url) ->
     grunt.log.ok("Running test: " + url)
