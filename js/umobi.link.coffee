@@ -6,6 +6,7 @@ define [
   "cs!umobi.core"
   "cs!u"
   "cs!umobi.page"
+  "cs!umobi.button"
 ], ->
   ###
   //>>excludeEnd("umobiBuildExclude")
@@ -24,29 +25,9 @@ define [
   </a>
   ###
   (->
-    # TODO: move this to umobi.button
-    bindButtonClassEvents = ($el) ->
-      btnUpClass = "ui-btn-up-#{ umobi.config.theme }"
-      btnDownClass = "ui-btn-down-#{ umobi.config.theme }"
-      btnHoverClass = "ui-btn-hover-#{ umobi.config.theme }"
-      $el.hover ((e) ->
-        $(this).removeClass(btnUpClass).addClass(btnHoverClass)
-      ), ((e) ->
-        $(this).removeClass(btnHoverClass).addClass(btnUpClass)
-      )
-      $el.on 'mousedown', (e) ->
-        $(this).removeClass(btnHoverClass)
-          .removeClass(btnUpClass)
-          .addClass(btnDownClass)
-      $el.on 'mouseup', (e) ->
-        $(this).removeClass(btnDownClass)
-          .addClass(btnHoverClass)
-
     initializeLinks = () ->
       for link in document.links
         ulink = u(link)
-
-        # TODO: let's refactor this to button markup js file.
         if ulink.data("role") is "button"
           ulink.data("corners",true)
             .data("shadow",true)
@@ -61,7 +42,7 @@ define [
               </span>
             </span>
           """)
-          bindButtonClassEvents($link)
+          umobi.button.bindClassEvents(link)
         else
           # initialize <a> as a normal link
           ulink.addClass('ui-link')

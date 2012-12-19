@@ -207,7 +207,8 @@ a.ui-btn {
   font-size: 16px;
   padding: 6px 12px;
   display: block;
-  text-align: center; }
+  text-align: center;
+  margin: 0.5em 0; }
 
 a.ui-btn.ui-mini {
   display: inline-block; }
