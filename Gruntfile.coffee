@@ -18,6 +18,10 @@ module.exports = (grunt) ->
   # context instead of it
   readCoffee = (file) -> eval coffee.compile(grunt.file.read(file),{bare:1})
 
+  # TODO again, I'd like to use grunt params but I'm not sure
+  #      how to get that working with a custom task with deps
+  theme = process.env.THEME or "default"
+
   # version suffix
   suffix = (if process.env.IS_DEPLOY_TARGET is "true" then "-" + verOfficial else "")
   names =
@@ -31,9 +35,6 @@ module.exports = (grunt) ->
   themeFile = outputPath(names.theme)
 
   
-  # TODO again, I'd like to use grunt params but I'm not sure
-  #      how to get that working with a custom task with deps
-  theme = process.env.THEME or "default"
   
   # Project configuration.
   grunt.config.init
@@ -124,7 +125,7 @@ module.exports = (grunt) ->
       themeFile: themeFile
       require:
         all:
-          cssIn: "css/themes/default/umobi.css"
+          cssIn: "css/themes/" + theme + "/umobi.css"
           optimizeCss: "standard.keepComments.keepLines"
           baseUrl: "."
           out: rootFile + ".compiled.css"
