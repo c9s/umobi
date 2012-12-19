@@ -200,10 +200,16 @@ h3.ui-title {
 
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
+/*Link button structure */
 a.ui-btn {
   text-decoration: none;
-  display: inline-block;
-  padding: 3px 8px; }
+  font-size: 16px;
+  padding: 6px 12px;
+  display: block;
+  text-align: center; }
+
+a.ui-btn.ui-mini {
+  display: inline-block; }
 
 /***************************************
  * focus state  for most case

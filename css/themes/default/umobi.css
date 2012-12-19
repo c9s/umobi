@@ -201,10 +201,16 @@ h3.ui-title {
 
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
+/*Link button structure */
 a.ui-btn {
   text-decoration: none;
-  display: inline-block;
-  padding: 3px 8px; }
+  font-size: 16px;
+  padding: 6px 12px;
+  display: block;
+  text-align: center; }
+
+a.ui-btn.ui-mini {
+  display: inline-block; }
 
 /***************************************
  * focus state  for most case
@@ -339,10 +345,15 @@ p {
   -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3); }
 
-/* Button Styles
+/* Link Button Styles
  * ======================== */
 a.ui-btn {
   color: #264755;
+  font-weight: bold;
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #aaaaaa;
+  border-bottom: 1px solid #999999;
   -webkit-text-shadow: 1px 1px white;
   -moz-text-shadow: 1px 1px white;
   text-shadow: 1px 1px white; }
