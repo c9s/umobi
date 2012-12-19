@@ -1,7 +1,6 @@
 .PHONY: build js css
 
 all: .deps build
-	# node node_modules/requirejs/bin/r.js -o js/build.js
 
 stat:
 	@stat -f "%N: %z bytes" compiled/umobi.min.js
@@ -16,13 +15,10 @@ js:
 css:
 	grunt --no-color css
 
-node_modules:
-	npm install --quiet
-
 gem_modules:
 	gem install sass listen
 
-.deps: node_modules
+.deps:
 	npm install --quiet
 	touch .deps
 
