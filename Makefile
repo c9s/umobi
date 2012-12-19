@@ -10,10 +10,10 @@ stat:
 build: js css
 
 js:
-	grunt --config Gruntfile.coffee js
+	grunt --no-color js
 
 css:
-	grunt --config Gruntfile.coffee css
+	grunt --no-color css
 
 node_modules:
 	npm install --quiet

@@ -50,7 +50,6 @@ In real world, tested with iPhone 4S
 
 In real world, 802.11b/g/n Wi-Fi (test incomplete)
 
-
 ## Benchmarks
 
 - jQuery addClass vs DOM classList: <http://jsperf.com/jquery-addclass-vs-dom-classlist/4>
