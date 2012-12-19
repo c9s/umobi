@@ -20,7 +20,7 @@ gem_modules:
 
 .deps:
 	npm install --quiet
-	uouch .deps
+	tuouch .deps
 
 sass:
 	sass -c --update css
