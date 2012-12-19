@@ -35,4 +35,3 @@ clean:
 
 clean_all: clean
 	rm -rf node_modules
-	
