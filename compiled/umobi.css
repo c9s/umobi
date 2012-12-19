@@ -281,12 +281,12 @@ p {
 .ui-link-inherit {
   color: white; }
 a.ui-link {
-  color: #7cc4e7;
+  color: #99ccdd;
   font-weight: bold; }
 a.ui-link:visited {
-  color: #2489ce; }
+  color: #99ccdd; }
 a.ui-link:hover {
-  color: #2489ce; }
+  color: #62b1d0; }
 a.ui-link:active {
   color: #2489ce; }
 /**********
