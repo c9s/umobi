@@ -6,8 +6,21 @@
   <!-- Load local QUnit. -->
   <link rel="stylesheet" href="libs/qunit.css" media="screen">
   <script src="libs/qunit.js"></script>
+  <!--
+  <script data-main="../js/umobi" src="../js/require.js"></script>
+  -->
+  <script src="../js/coffee-script.js"></script>
+  <script type="text/coffeescript" src="../js/str.coffee"></script>
+
   <!-- Load local lib and tests. -->
   <script src="qunit_test.js"></script>
+
+  <script type="text/coffeescript">
+    test 'string test', () ->
+      equal('data-user-name'.toCamelCase(),'DataUserName')
+      equal('data-user-name'.toLowerCamelCase(),'dataUserName')
+      equal('dataUserName'.toDashCase(),'data-user-name')
+  </script>
 </head>
 <body>
   <h1 id="qunit-header">Basic Test Suite</h1>

@@ -180,6 +180,40 @@ if (objCtr.defineProperty) {
  
 }
 ;
+var __slice = [].slice;
+
+String.prototype.toCamelCase = function() {
+  var ps;
+  ps = this.toWords();
+  return (ps.map(function(p) {
+    return p.charAt(0).toUpperCase() + p.substr(1);
+  })).join('');
+};
+
+String.prototype.toLowerCamelCase = function() {
+  var first, rest, _ref;
+  _ref = this.toWords(), first = _ref[0], rest = 2 <= _ref.length ? __slice.call(_ref, 1) : [];
+  return first + (rest.map(function(p) {
+    return p.charAt(0).toUpperCase() + p.substr(1);
+  })).join('');
+};
+
+String.prototype.toWords = function() {
+  return this.split('-');
+};
+
+String.prototype.toDashCase = function() {
+  return this.replace(/([A-Z])/, function(v) {
+    return '-' + v.toLowerCase();
+  }).replace(/^-/, '');
+};
+
+console.log('data-user-name'.toCamelCase());
+
+console.log('data-user-name'.toLowerCamelCase());
+
+console.log('data-user-name'.toDashCase());
+
 /*
   */
   (function() {
@@ -189,7 +223,6 @@ if (objCtr.defineProperty) {
   })();
   /*
     */
-
 ;
 /*
   */
@@ -608,6 +641,22 @@ if (objCtr.defineProperty) {
           return this.cstyle = window.getComputedStyle(el);
         }
         return el.style;
+      };
+
+      USet.prototype.data = function(n, v) {
+        var el;
+        el = this.get(0);
+        if (el) {
+          if (n && v) {
+
+          } else if (n) {
+            if (typeof el.dataset !== 'undefined') {
+              return el.dataset[n];
+            } else {
+              return this.attr(n);
+            }
+          }
+        }
       };
 
       USet.prototype.height = function(a) {
@@ -1348,6 +1397,7 @@ define('umobi',[
     "depend!classList[]",
     "cs",
     "coffee-script",
+    "cs!str",
     "cs!umobi.core",
     "cs!u.dom",
     "cs!u",

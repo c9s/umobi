@@ -22,6 +22,7 @@ define([
     "depend!classList[]",
     "cs",
     "coffee-script",
+    "cs!str",
     "cs!umobi.core",
     "cs!u.dom",
     "cs!u",

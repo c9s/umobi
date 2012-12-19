@@ -1,5 +1,5 @@
 <?php
-$apcEnable = extension_loaded('apc');
+$apcEnable = false && extension_loaded('apc');
 $contentType = 'text/javascript';
 $jsfiles = array (
   '../LICENSE.txt',
@@ -20,6 +20,7 @@ $jsfiles = array (
 );
 
 $coffeefiles = array(
+  'str.coffee',
   'u.dom.coffee',
   'u.coffee',
   'umobi.core.coffee',

@@ -137,6 +137,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @el.style[n]
 
       attr: (n,v) ->
+
         # setter
         if( n and v )
           return @each (i,el) -> el.setAttribute(n,v)
@@ -222,6 +223,19 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @cstyle = window.getComputedStyle(el)
         return el.style
 
+      data: (n,v) ->
+        el = @get(0)
+        if el
+          # setter
+          if n and v
+
+          # getter
+          else if n
+            if typeof el.dataset isnt 'undefined'
+              return el.dataset[n]
+            else
+              return @attr(n)
+
       height: (a) ->
         # setter
         if a
@@ -243,6 +257,7 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       jQuery: () -> $( @els or @el )
 
     window.u = u
+
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
