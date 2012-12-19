@@ -14,16 +14,16 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
     btnDownClass = "ui-btn-down-#{ umobi.config.theme }"
     btnHoverClass = "ui-btn-hover-#{ umobi.config.theme }"
     $el.hover ((e) ->
-      $(this).removeClass(btnUpClass).addClass(btnHoverClass)
+      u(this).removeClass(btnUpClass).addClass(btnHoverClass)
     ), ((e) ->
-      $(this).removeClass(btnHoverClass).addClass(btnUpClass)
+      u(this).removeClass(btnHoverClass).addClass(btnUpClass)
     )
     $el.on 'mousedown', (e) ->
-      $(this).removeClass(btnHoverClass)
+      u(this).removeClass(btnHoverClass)
         .removeClass(btnUpClass)
         .addClass(btnDownClass)
     $el.on 'mouseup', (e) ->
-      $(this).removeClass(btnDownClass)
+      u(this).removeClass(btnDownClass)
         .addClass(btnHoverClass)
 
   u.ready ->
