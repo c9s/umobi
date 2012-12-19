@@ -5,6 +5,8 @@
 $fore-color: #62B1D0
 $fore-color2: #9cd
 
+
+
 p
   color: #333
   @include text-shadow(0 1px #fff)
@@ -52,6 +54,21 @@ p
   padding: 15px
 
 
+/*
+  Common Styles
+  ==============================
+.ui-corner-all
+  -webkit-border-radius: .5em
+  border-radius: .5em
+
+.ui-shadow-inset
+  @include box-shadow(inset 0px 1px 5px rgba(0,0,0, .3))
+
+.ui-shadow
+  @include box-shadow(0px 1px 5px rgba(0,0,0,.3))
+
+
+
 
 /**********************************************
  ui link styles
@@ -86,16 +103,6 @@ div.ui-input-text.ui-focus
   box-shadow: inset 0px 1px 8px rgba(0, 0, 0, .5)
   background: $fore-color2
 
-/* corner rounding classes */
-.ui-corner-all
-  -webkit-border-radius: .5em
-  border-radius: .5em
-
-.ui-shadow-inset
-  @include box-shadow(inset 0px 1px 5px rgba(0,0,0, .3))
-
-.ui-shadow
-  @include box-shadow(0px 1px 5px rgba(0,0,0,.3))
 
 input.ui-input-text, 
 textarea.ui-input-text

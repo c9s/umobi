@@ -26,9 +26,14 @@ define [
     initializeLinks = () ->
       for link in document.links
         ulink = u(link)
-        if ulink.data('role') is 'button'
-          ulink.data('corners',true).data('shadow',true).data('theme','c')
-          ulink.addClass(['ui-btn','ui-shadow','ui-btn-corner-all','ui-btn-up-c'])
+
+        # TODO: let's refactor this to button markup js file.
+        if ulink.data("role") is "button"
+          ulink.data("corners",true)
+            .data("shadow",true)
+            .data("theme",umobi.config.theme)
+          ulink.addClass(["ui-btn","ui-shadow","ui-btn-corner-all","ui-btn-up-#{ umobi.config.theme }"])
+          ulink.addClass("ui-mini") if ulink.data 'mini'
           # initialize <a> as a button
           $(link).wrapInner("""
             <span class="ui-btn ui-btn-corner-all">

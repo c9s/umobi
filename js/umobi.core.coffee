@@ -7,7 +7,8 @@ define [],->
   ###
   (->
     window.umobi =
-      config: { }
+      config:
+        theme: 'c'
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
