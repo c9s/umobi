@@ -31,7 +31,7 @@ define [
           ulink.data("corners",true)
             .data("shadow",true)
             .data("theme",umobi.config.theme)
-          ulink.addClass(["ui-btn","ui-shadow","ui-btn-corner-all","ui-btn-up-#{ umobi.config.theme }"])
+          ulink.addClass(["ui-btn","ui-shadow","ui-btn-corner-all"])
           ulink.addClass "ui-mini" if ulink.data 'mini'
           # initialize <a> as a button
           $link = $(link)

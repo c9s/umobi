@@ -13,6 +13,8 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
     btnUpClass = "ui-btn-up-#{ umobi.config.theme }"
     btnDownClass = "ui-btn-down-#{ umobi.config.theme }"
     btnHoverClass = "ui-btn-hover-#{ umobi.config.theme }"
+
+    $el.addClass btnUpClass
     $el.hover ((e) ->
       u(this).removeClass(btnUpClass).addClass(btnHoverClass)
     ), ((e) ->
