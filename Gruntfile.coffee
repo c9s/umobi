@@ -1,7 +1,9 @@
-path = require("path")
-fs = require("fs")
-execSync = require("exec-sync")
-coffee = require("coffee-script")
+path = require "path"
+fs = require "fs"
+execSync = require "exec-sync"
+coffee = require "coffee-script"
+filesize = require "filesize"
+
 module.exports = (grunt) ->
 
   cssmin = {}
@@ -164,8 +166,6 @@ module.exports = (grunt) ->
   cssmin[themeFile + ".min.css"] = ["<%= global.ver.min %>", themeFile + ".css"]
   grunt.config.set "cssmin", cssmin
   
-  # set the default task.
-  grunt.registerTask "default", ["coffeelint","js","css","qunit"]
 
   grunt.registerTask "sass", "compile sass files into css file", ->
     grunt.log.writeln "sass --update css"
@@ -187,8 +187,19 @@ module.exports = (grunt) ->
   
   grunt.registerTask "zip", "js css compress:zip".split(' ')
 
+  grunt.registerTask "stat", () ->
+    statCss = fs.statSync( rootFile + ".min.css" )
+    statJs  = fs.statSync( rootFile + ".min.js" )
+    sizeCss = statCss.size
+    sizeJs = statJs.size
+    grunt.log.ok( "Compressed: #{ rootFile }.min.js size: " + filesize(sizeJs) )
+    grunt.log.ok( "Compressed: #{ rootFile }.min.css size: " + filesize(sizeCss) )
+
   grunt.event.on 'qunit.spawn', (url) ->
     grunt.log.ok("Running test: " + url)
   
   # load the project's default tasks
   grunt.loadTasks "build/tasks"
+
+  # set the default task.
+  grunt.registerTask "default", ["coffeelint","js","css","qunit","stat"]

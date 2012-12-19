@@ -38,7 +38,8 @@
     "eventemitter2": "~0.4.11",
     "phantomjs": "~0.2.3",
     "coffee-script": "~1.4.0",
-    "grunt-contrib-compress": "~0.3.3"
+    "grunt-contrib-compress": "~0.3.3",
+    "filesize": "~1.7.2"
   },
   "engine": {
     "node": ">=8.0"
