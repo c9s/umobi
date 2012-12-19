@@ -307,12 +307,12 @@ p {
 .ui-content {
   padding: 15px; }
 
-.ui-link {
-  color: #2489ce;
-  font-weight: bold; }
-
 .ui-link-inherit {
   color: white; }
+
+a.ui-link {
+  color: #2489ce;
+  font-weight: bold; }
 
 a.ui-link,
 a.ui-link:visited {

@@ -27,7 +27,6 @@ define([
     "cs!u.dom",
     "cs!u",
     "cs!umobi.button",
-    "cs!umobi.link",
     "cs!umobi.widget",
     "cs!umobi.zoom",
     "cs!umobi.listview",
@@ -36,6 +35,7 @@ define([
     "cs!umobi.support",
     "cs!umobi.offlinecache",
     "cs!umobi.page",
+    "cs!umobi.link",
     "cs!umobi.init"
 ], function(r,jQuery,cs,cs2,umobi) { 
     // r(["cs!umobi.init"]);
