@@ -1,14 +1,10 @@
 define [],() ->
-  test 'string test', () ->
+  module 'Extended String Test'
+  test 'toCamelCase', () ->
     equal('data-user-name'.toCamelCase(),'DataUserName')
+
+  test 'toLowerCamelCase', () ->
     equal('data-user-name'.toLowerCamelCase(),'dataUserName')
+
+  test 'toDashCase', () ->
     equal('dataUserName'.toDashCase(),'data-user-name')
-
-  test 'basic test', ->
-    expect(1)
-    ok(true, 'this had better work.')
-
-  test 'can access the DOM', ->
-    expect(1)
-    fixture = document.getElementById('qunit-fixture')
-    equal(fixture.innerText, 'this had better work.', 'should be able to access the DOM.')

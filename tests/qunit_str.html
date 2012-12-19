@@ -31,30 +31,13 @@
         }
       });
       require([
-        'coffee-script', 'cs'
-        ], function() {
-        require([ 'cs!str', 'cs!tests/str' ], function() {
-            console.log('QUnit Start!');
-            QUnit.start();
-        });
+        'coffee-script', 'cs',
+        'cs!str',
+        'cs!tests/str' 
+      ], function() {
+        QUnit.start();
       });
     });
-
-
-    /*
-    define([
-      'require',
-      'depend!define[]',
-      'depend!jquery[]',
-      'depend!classList[]',
-      'cs',
-      'coffee-script',
-      'define'
-      // 'cs!testapp/str'
-      ],function() {
-        console.log('QUnit test started');
-      });
-      */
   </script>
 </head>
 <body>
