@@ -7,7 +7,8 @@ stat:
 	@stat -f "%N: %z bytes" compiled/umobi.min.js
 	@stat -f "%N: %z bytes" compiled/umobi.min.css
 
-build: js css
+build:
+	grunt
 
 js:
 	grunt --no-color js
