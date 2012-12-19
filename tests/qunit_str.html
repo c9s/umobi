@@ -9,23 +9,52 @@
   <!--
   <script data-main="../js/umobi" src="../js/require.js"></script>
   -->
-  <script src="../js/coffee-script.js"></script>
+  <script src="../js/require.js"></script>
+  <!--
   <script src="../js/define.js"></script>
+  -->
+  <!--
   <script type="text/coffeescript" src="../js/str.coffee"></script>
-  <script type="text/coffeescript">
-    test 'string test', () ->
-      equal('data-user-name'.toCamelCase(),'DataUserName')
-      equal('data-user-name'.toLowerCamelCase(),'dataUserName')
-      equal('dataUserName'.toDashCase(),'data-user-name')
+  -->
+  <script type="text/javascript">
+    window.addEventListener("load",function() {
+      QUnit.config.autostart = false;
+      require.config({
+        baseUrl: '../js',
+        urlArgs: 'bust=' + (new Date()).getTime(),
+        CoffeeScript: { bare: true },
+        paths: {
+          "tests": "../tests/tests",
+          "cs": "cs",
+          "coffee-script": "coffee-script",
+          "jquery":"jquery"
+        }
+      });
+      require([
+        'coffee-script', 'cs'
+        ], function() {
+        require([ 'cs!str', 'cs!tests/str' ], function() {
+            console.log('QUnit Start!');
+            QUnit.start();
+        });
+      });
+    });
 
-    test 'basic test', ->
-      expect(1)
-      ok(true, 'this had better work.')
 
-    test 'can access the DOM', ->
-      expect(1)
-      fixture = document.getElementById('qunit-fixture')
-      equal(fixture.innerText, 'this had better work.', 'should be able to access the DOM.')
+    /*
+    define([
+      'require',
+      'depend!define[]',
+      'depend!jquery[]',
+      'depend!classList[]',
+      'cs',
+      'coffee-script',
+      'define'
+      // 'cs!testapp/str'
+      ],function() {
+        console.log('QUnit test started');
+      });
+      */
   </script>
 </head>
 <body>
