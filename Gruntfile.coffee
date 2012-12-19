@@ -1,6 +1,7 @@
 path = require("path")
 fs = require("fs")
 execSync = require("exec-sync")
+coffee = require("coffee-script")
 module.exports = (grunt) ->
 
   cssmin = {}
@@ -13,6 +14,10 @@ module.exports = (grunt) ->
 
   verOfficial = grunt.file.read("version.txt").replace(/\n/, "")
 
+  # as we need the result, we can't use coffee.eval, we use eval in current
+  # context instead of it
+  readCoffee = (file) -> eval coffee.compile(grunt.file.read(file),{bare:1})
+
   # version suffix
   suffix = (if process.env.IS_DEPLOY_TARGET is "true" then "-" + verOfficial else "")
   names =
@@ -24,6 +29,7 @@ module.exports = (grunt) ->
   rootFile = outputPath(names.root)
   structureFile = outputPath(names.structure)
   themeFile = outputPath(names.theme)
+
   
   # TODO again, I'd like to use grunt params but I'm not sure
   #      how to get that working with a custom task with deps
@@ -110,33 +116,7 @@ module.exports = (grunt) ->
     
     # JS config, mostly the requirejs configuration
     # full example: https://github.com/jrburke/r.js/blob/master/build/example.build.js
-    js:
-      require:
-        baseUrl: "js"
-        name: "umobi"
-        exclude: [
-          "jquery"
-          "cs"
-          "coffee-script"
-          "depend"
-          "text"
-          "text!../version.txt"
-        ]
-        paths:
-          "cs": "cs"
-          "coffee-script": "coffee-script"
-          "jquery":"jquery"
-        # use bare option for coffee-script compiler,
-        # this remove the function wrapper from coffee-script.
-        CoffeeScript: { bare: true }
-        out: rootFile + ".compiled.js"
-        pragmas: { umobiBuildExclude: true }
-        wrap:
-          startFile: 'build/wrap.start'
-          endFile: 'build/wrap.end'
-        findNestedDependencies: true
-        skipModuleInsertion: true
-        optimize: "none"
+    js: { require: readCoffee "build/require-js.coffee" }
     
     # CSS config, mostly the requirejs configuration
     css:

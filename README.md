@@ -85,7 +85,10 @@ jQuery UI 1.9.2 (minified 335KB)
 - css/ui-lightness/jquery-ui-1.9.2.custom.min.css 27KB
 - images/   76KB
 
-## Development
+## Contribution
+
+- SASS for styles, Please see <http://sass-lang.com/tutorial.html>
+- CoffeeScript for javascript, Please see <http://coffeescript.org>
 
 ### Special Requirement
 
