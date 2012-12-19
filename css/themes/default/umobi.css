@@ -199,6 +199,15 @@ h2.ui-title {
 h3.ui-title {
   font-size: 1.1em; }
 
+/***************************************
+ * focus state  for most case
+ **************************************** */
+.ui-btn:focus, .ui-link-inherit:focus {
+  outline: 0; }
+
+.ui-btn.ui-focus {
+  z-index: 1; }
+
 label.ui-input-text {
   font-size: 16px;
   line-height: 1.4;
@@ -218,7 +227,9 @@ textarea.ui-input-text {
   width: 100%;
   outline: 0; }
 
-input.ui-mini, .ui-mini input, textarea.ui-mini {
+input.ui-mini,
+.ui-mini input,
+textarea.ui-mini {
   font-size: 14px;
   width: auto; }
 
@@ -236,17 +247,15 @@ textarea.ui-input-text {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
-  box-sizing: border-box; }
-
-input.ui-input-text {
-  -webkit-appearance: none; }
-
-textarea.ui-input-text {
+  box-sizing: border-box;
   min-height: 50px;
   -webkit-transition: height 200ms linear;
   -moz-transition: height 200ms linear;
   -o-transition: height 200ms linear;
   transition: height 200ms linear; }
+
+input.ui-input-text {
+  -webkit-appearance: none; }
 
 textarea.ui-mini {
   height: 45px; }
@@ -326,15 +335,6 @@ a.ui-link:hover {
   color: #333333; }
 a.ui-link:active {
   color: #2489ce; }
-
-/***************************************
- * button focus state 
- **************************************** */
-.ui-btn:focus, .ui-link-inherit:focus {
-  outline: 0; }
-
-.ui-btn.ui-focus {
-  z-index: 1; }
 
 .ui-focus,
 .ui-btn:focus {
