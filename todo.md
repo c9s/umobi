@@ -17,8 +17,9 @@ x list view
 - range input widget
 - dialog widget
 
-- navigate buttons (in footer)
-
+- navigator buttons (in footer)
 - split view demo page.
 - form widgets demo page.
 - offline cache support.
+
+- use jinja2 to render templates for docs pages.
