@@ -183,20 +183,23 @@ if (objCtr.defineProperty) {
 var __slice = [].slice;
 
 define('cs!str',[], function() {
+  String.prototype.toCapitalCase = function() {
+    return this.charAt(0).toUpperCase() + this.substr(1);
+  };
   String.prototype.toCamelCase = function() {
     return (this.toWords().map(function(p) {
-      return p.charAt(0).toUpperCase() + p.substr(1);
+      return p.toCapitalCase();
     })).join('');
   };
   String.prototype.toLowerCamelCase = function() {
     var first, rest, _ref;
     _ref = this.toWords(), first = _ref[0], rest = 2 <= _ref.length ? __slice.call(_ref, 1) : [];
     return first + (rest.map(function(p) {
-      return p.charAt(0).toUpperCase() + p.substr(1);
+      return p.toCapitalCase();
     })).join('');
   };
   String.prototype.toWords = function() {
-    return this.split('-');
+    return this.split(/[-_,\.]+/);
   };
   return String.prototype.toDashCase = function() {
     return this.replace(/([A-Z])/g, function(v) {
@@ -209,7 +212,9 @@ define('cs!str',[], function() {
   */
   (function() {
     return window.umobi = {
-      config: {}
+      config: {
+        theme: 'c'
+      }
     };
   })();
   /*
@@ -635,19 +640,25 @@ define('cs!str',[], function() {
       };
 
       USet.prototype.data = function(n, v) {
-        var el;
+        var datakey, el;
         el = this.get(0);
         if (el) {
           if (n && v) {
-
+            if (typeof v === "string" || typeof v === "boolean") {
+              return this.attr('data-' + n, v);
+            } else {
+              console.error('not implemented yet.');
+            }
           } else if (n) {
+            datakey = n.toLowerCamelCase();
             if (typeof el.dataset !== 'undefined') {
-              return el.dataset[n];
+              return el.dataset[datakey];
             } else {
               return this.attr(n);
             }
           }
         }
+        return this;
       };
 
       USet.prototype.height = function(a) {
@@ -694,6 +705,26 @@ define('cs!str',[], function() {
 ;
 /*
   */
+  umobi.button = {};
+  umobi.button.markup = function(el) {};
+  umobi.button.bindClassEvents = function(el) {
+    var $el, btnDownClass, btnHoverClass, btnUpClass;
+    $el = $(el);
+    btnUpClass = "ui-btn-up-" + umobi.config.theme;
+    btnDownClass = "ui-btn-down-" + umobi.config.theme;
+    btnHoverClass = "ui-btn-hover-" + umobi.config.theme;
+    $el.hover((function(e) {
+      return u(this).removeClass(btnUpClass).addClass(btnHoverClass);
+    }), (function(e) {
+      return u(this).removeClass(btnHoverClass).addClass(btnUpClass);
+    }));
+    $el.on('mousedown', function(e) {
+      return u(this).removeClass(btnHoverClass).removeClass(btnUpClass).addClass(btnDownClass);
+    });
+    return $el.on('mouseup', function(e) {
+      return u(this).removeClass(btnDownClass).addClass(btnHoverClass);
+    });
+  };
   u.ready(function() {
     var buttons;
     return buttons = u.dom.queryAll('[data-role="button"]');
@@ -1322,12 +1353,62 @@ define('cs!str',[], function() {
 ;
 /*
   */
+
+  /*
+    To inner wrap a link with ui-btn classes:
+  
+    <a href="index.html" data-role="button" data-corners="true"
+      data-shadow="true" data-iconshadow="true" data-wrapperels="span"
+      data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+        <span class="ui-btn-inner ui-btn-corner-all">
+          <span class="ui-btn-text">Link button</span>
+        </span>
+    </a>
+  */
+  (function() {
+    var initializeLinks;
+    initializeLinks = function() {
+      var $link, link, ulink, _i, _len, _ref, _results;
+      _ref = document.links;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        link = _ref[_i];
+        ulink = u(link);
+        if (ulink.data("role") === "button") {
+          ulink.data("corners", true).data("shadow", true).data("theme", umobi.config.theme);
+          ulink.addClass(["ui-btn", "ui-shadow", "ui-btn-corner-all", "ui-btn-up-" + umobi.config.theme]);
+          if (ulink.data('mini')) {
+            ulink.addClass("ui-mini");
+          }
+          $link = $(link);
+          $link.wrapInner("<span class=\"ui-btn ui-btn-corner-all\">\n  <span class=\"ui-btn-text\">\n  </span>\n</span>");
+          umobi.button.bindClassEvents(link);
+        } else {
+          ulink.addClass('ui-link');
+        }
+        _results.push(ulink.click(function(e) {
+          var href;
+          href = ulink.attr('href');
+          if (href.match(/^#\w+/)) {
+            return umobi.page.revealByHash(href);
+          }
+        }));
+      }
+      return _results;
+    };
+    return u.ready(initializeLinks);
+  })();
+  /*
+    */
+;
+/*
+  */
   (function() {
     var uhtml;
     uhtml = u('html');
     uhtml.children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
     return u.ready(function() {
-      var $pages, hideAddressBar, indexPage, link, _i, _len, _ref;
+      var $pages, hideAddressBar, indexPage;
       $(document).trigger('pageinit');
       $pages = umobi.page.all();
       if (!$pages.length) {
@@ -1336,17 +1417,6 @@ define('cs!str',[], function() {
       $pages.each(function() {
         return umobi.page.create(this);
       });
-      _ref = document.links;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        link = _ref[_i];
-        $(link).addClass('ui-link').click(function(e) {
-          var href;
-          href = $(this).attr('href');
-          if (href.match(/^#\w+/)) {
-            return umobi.page.revealByHash(href);
-          }
-        });
-      }
       if (window.navigator.userAgent.match(/iPhone|iPad|Android/)) {
         hideAddressBar = function() {
           if (document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)) {
@@ -1401,6 +1471,7 @@ define('umobi',[
     "cs!umobi.support",
     "cs!umobi.offlinecache",
     "cs!umobi.page",
+    "cs!umobi.link",
     "cs!umobi.init"
 ], function(r,jQuery,cs,cs2,umobi) { 
     // r(["cs!umobi.init"]);

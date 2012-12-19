@@ -19,12 +19,9 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
       u(this).removeClass(btnHoverClass).addClass(btnUpClass)
     )
     $el.on 'mousedown', (e) ->
-      u(this).removeClass(btnHoverClass)
-        .removeClass(btnUpClass)
-        .addClass(btnDownClass)
+      u(this).removeClass(btnHoverClass).removeClass(btnUpClass).addClass(btnDownClass)
     $el.on 'mouseup', (e) ->
-      u(this).removeClass(btnDownClass)
-        .addClass(btnHoverClass)
+      u(this).removeClass(btnDownClass).addClass(btnHoverClass)
 
   u.ready ->
     buttons = u.dom.queryAll('[data-role="button"]')

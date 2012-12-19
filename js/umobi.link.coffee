@@ -12,7 +12,6 @@ define [
   //>>excludeEnd("umobiBuildExclude")
   ###
   
-
   ###
   To inner wrap a link with ui-btn classes:
 
@@ -25,7 +24,7 @@ define [
   </a>
   ###
   (->
-    initializeLinks = () ->
+    initializeLinks = ->
       for link in document.links
         ulink = u(link)
         if ulink.data("role") is "button"
@@ -46,7 +45,6 @@ define [
         else
           # initialize <a> as a normal link
           ulink.addClass('ui-link')
-
         ulink.click (e) ->
           href = ulink.attr('href')
           umobi.page.revealByHash(href) if href.match( /^#\w+/ )

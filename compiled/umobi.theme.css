@@ -222,6 +222,29 @@ h2.ui-title {
 h3.ui-title {
   font-size: 1.1em; }
 
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
+/*Link button structure */
+a.ui-btn {
+  text-decoration: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  display: block;
+  text-align: center;
+  margin: 0.5em 0; }
+
+a.ui-btn.ui-mini {
+  display: inline-block; }
+
+/***************************************
+ * focus state  for most case
+ **************************************** */
+.ui-btn:focus, .ui-link-inherit:focus {
+  outline: 0; }
+
+.ui-btn.ui-focus {
+  z-index: 1; }
+
 label.ui-input-text {
   font-size: 16px;
   line-height: 1.4;
@@ -241,7 +264,9 @@ textarea.ui-input-text {
   width: 100%;
   outline: 0; }
 
-input.ui-mini, .ui-mini input, textarea.ui-mini {
+input.ui-mini,
+.ui-mini input,
+textarea.ui-mini {
   font-size: 14px;
   width: auto; }
 
@@ -259,17 +284,15 @@ textarea.ui-input-text {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
-  box-sizing: border-box; }
-
-input.ui-input-text {
-  -webkit-appearance: none; }
-
-textarea.ui-input-text {
+  box-sizing: border-box;
   min-height: 50px;
   -webkit-transition: height 200ms linear;
   -moz-transition: height 200ms linear;
   -o-transition: height 200ms linear;
   transition: height 200ms linear; }
+
+input.ui-input-text {
+  -webkit-appearance: none; }
 
 textarea.ui-mini {
   height: 45px; }
@@ -330,50 +353,8 @@ p {
 .ui-content {
   padding: 15px; }
 
-.ui-link {
-  color: #2489ce;
-  font-weight: bold; }
-
-.ui-link-inherit {
-  color: white; }
-
-a.ui-link:visited {
-  color: #4587a9;
-  font-weight: bold; }
-
-a.ui-link:hover {
-  color: #333333; }
-a.ui-link:active {
-  color: #2489ce; }
-
-/**********
- * focus state  */
-.ui-btn:focus, .ui-link-inherit:focus {
-  outline: 0; }
-
-.ui-btn.ui-focus {
-  z-index: 1; }
-
-.ui-focus,
-.ui-btn:focus {
-  -moz-box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0";
-  -webkit-box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0";
-  box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0"; }
-
-.ui-btn:focus, .ui-link-inherit:focus {
-  outline: 0; }
-
-.ui-btn-inner {
-  border-top: 1px solid white;
-  border-color: rgba(255, 255, 255, 0.3); }
-
-textarea.ui-input-text.ui-focus,
-div.ui-input-text.ui-focus {
-  /* box-shadow: inset 0px 1px 4px rgba(0, 0, 0, .4), 0px 0px 12px #80acbd */
-  box-shadow: inset 0px 1px 8px rgba(0, 0, 0, 0.5);
-  background: #99ccdd; }
-
-/* corner rounding classes */
+/* Common Styles
+ * ============================== */
 .ui-corner-all {
   -webkit-border-radius: 0.5em;
   border-radius: 0.5em; }
@@ -387,6 +368,87 @@ div.ui-input-text.ui-focus {
   -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3); }
+
+/* Link Button Styles
+ * ======================== */
+a.ui-btn {
+  color: #264755;
+  font-weight: bold;
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #aaaaaa;
+  border-bottom: 1px solid #999999;
+  -webkit-text-shadow: 1px 1px white;
+  -moz-text-shadow: 1px 1px white;
+  text-shadow: 1px 1px white; }
+
+a.ui-btn.ui-btn-up-c {
+  background: white;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, white 0%, #e5e5e5 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e5e5e5));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, white 0%, #e5e5e5 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
+
+a.ui-btn.ui-btn-hover-c {
+  background: whitesmoke;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whitesmoke), color-stop(100%, #d5d5d5));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, whitesmoke 0%, #d5d5d5 100%); }
+
+a.ui-btn.ui-btn-down-c {
+  background: #dddddd;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #dddddd 0%, white 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, white));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #dddddd 0%, white 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #dddddd 0%, white 100%); }
+
+/*********************************************
+ * ui link styles
+ ********************************************** */
+.ui-link-inherit {
+  color: white; }
+
+a.ui-link {
+  color: #2489ce;
+  font-weight: bold; }
+
+a.ui-link,
+a.ui-link:visited {
+  color: #4587a9;
+  font-weight: bold; }
+
+a.ui-link:hover {
+  color: #333333; }
+a.ui-link:active {
+  color: #2489ce; }
+
+.ui-focus,
+.ui-btn:focus {
+  -moz-box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0";
+  -webkit-box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0";
+  box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0"; }
+
+.ui-btn:focus, .ui-link-inherit:focus {
+  outline: 0; }
+
+textarea.ui-input-text.ui-focus,
+div.ui-input-text.ui-focus {
+  /* box-shadow: inset 0px 1px 4px rgba(0, 0, 0, .4), 0px 0px 12px #80acbd */
+  box-shadow: inset 0px 1px 8px rgba(0, 0, 0, 0.5);
+  background: #99ccdd; }
 
 input.ui-input-text,
 textarea.ui-input-text {
@@ -460,45 +522,46 @@ input[type=number]::-webkit-outer-spin-button {
 ul.ui-listview {
   margin: 0;
   padding: 0; }
+  ul.ui-listview li {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  ul.ui-listview li a {
+    text-decoration: none;
+    color: #333333;
+    text-shadow: 1px 1px 2px white;
+    padding: 10px;
+    display: block;
+    font-size: 15px; }
+  ul.ui-listview li.ui-btn {
+    border: 1px solid #cccccc;
+    border-bottom: 1px solid #e3e3e3;
+    border-radius: 0px;
+    background-color: white;
+    text-shadow: 0 1px 0 white;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#f1f1f1));
+    background-image: -webkit-linear-gradient(white, #f1f1f1);
+    background-image: -moz-linear-gradient(white, #f1f1f1);
+    background-image: -ms-linear-gradient(white, #f1f1f1);
+    background-image: -o-linear-gradient(white, #f1f1f1);
+    background-image: linear-gradient(white, #f1f1f1); }
+  ul.ui-listview li.ui-btn:hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#99ccdd), to(#62b1d0));
+    background-image: -webkit-linear-gradient(#99ccdd, #62b1d0);
+    background-image: -moz-linear-gradient(#99ccdd, #62b1d0);
+    background-image: -ms-linear-gradient(#99ccdd, #62b1d0);
+    background-image: -o-linear-gradient(#99ccdd, #62b1d0);
+    background-image: linear-gradient(#99ccdd, #62b1d0); }
+  ul.ui-listview li.ui-btn div.ui-btn-inner {
+    border-top: 1px solid white;
+    border-color: rgba(255, 255, 255, 0.3); }
+  ul.ui-listview li.ui-btn:last-child {
+    border-color: #cccccc; }
 
-ul.ui-listview li {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
-
-ul.ui-listview li a {
-  text-decoration: none;
-  color: #333333;
-  text-shadow: 1px 1px 2px white;
-  padding: 10px;
-  display: block;
-  font-size: 15px; }
-
-ul.ui-listview li.ui-btn {
-  border: 1px solid #cccccc;
-  border-bottom: 1px solid #e3e3e3;
-  border-radius: 0px;
-  background-color: white;
-  text-shadow: 0 1px 0 white;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#f1f1f1));
-  background-image: -webkit-linear-gradient(white, #f1f1f1);
-  background-image: -moz-linear-gradient(white, #f1f1f1);
-  background-image: -ms-linear-gradient(white, #f1f1f1);
-  background-image: -o-linear-gradient(white, #f1f1f1);
-  background-image: linear-gradient(white, #f1f1f1); }
-
-ul.ui-listview li.ui-btn:hover {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#99ccdd), to(#62b1d0));
-  background-image: -webkit-linear-gradient(#99ccdd, #62b1d0);
-  background-image: -moz-linear-gradient(#99ccdd, #62b1d0);
-  background-image: -ms-linear-gradient(#99ccdd, #62b1d0);
-  background-image: -o-linear-gradient(#99ccdd, #62b1d0);
-  background-image: linear-gradient(#99ccdd, #62b1d0); }
-
-ul.ui-listview li.ui-btn:last-child {
-  border-color: #cccccc; }
-
-/* inset ui-listview, we should provide inset listview with
+/****************************************
+ * listview with inset
+ * ===================
+ * we should provide inset listview with 
  * border radius and box-shadow here. */
 .ui-content ul.ui-listview-inset {
   margin: 10px 0;
@@ -509,7 +572,6 @@ ul.ui-listview-inset li.ui-btn:first-child {
   -webkit-border-radius: 12px 12px 0 0;
   -moz-border-radius: 12px 12px 0 0;
   border-radius: 12px 12px 0 0; }
-
 ul.ui-listview-inset li.ui-btn:last-child {
   -webkit-border-radius: 0 0 12px 12px;
   -moz-border-radius: 0 0 12px 12px;
