@@ -5,24 +5,6 @@
 $fore-color: #62B1D0
 $fore-color2: #9cd
 
-body, p
-  font-family: Helvetica, Arial, sans-serif
-
-h1
-  font-size: 1.9em
-
-h2
-  font-size: 1.6em
-
-h3
-  font-size: 1.3em
-
-h4
-  font-size: 1.1em
-
-h2
-  margin: 1.2em 0 .4em 0
-
 p
   color: #333
   @include text-shadow(0 1px #fff)
@@ -61,19 +43,10 @@ p
   overflow: hidden
   white-space: nowrap
   outline: 0 !important
-  color: #000
   font-weight: bold
   text-shadow: 0px 1px #d8d8d8
   color: #383838
 
-h1.ui-title
-  font-size: 1.4em
-
-h2.ui-title
-  font-size: 1.2em
-
-h3.ui-title
-  font-size: 1.1em
 
 .ui-content
   padding: 15px
@@ -97,7 +70,6 @@ a.ui-link:hover
 
 a.ui-link:active
   color: #2489ce
-
 
 /***********
  focus state 
@@ -136,39 +108,10 @@ div.ui-input-text.ui-focus
 .ui-shadow
   @include box-shadow(0px 1px 5px rgba(0,0,0,.3))
 
-label.ui-input-text
-  font-size: 16px
-  line-height: 1.4
-  display: block
-  font-weight: normal
-  margin: 0 0 .3em
-
 input.ui-input-text, 
 textarea.ui-input-text
-  background-image: none
-  padding: .4em
-  margin: .5em 0
-  min-height: 1.4em
-  line-height: 1.4em
-  font-size: 16px
-  display: block
-  width: 100%
-  outline: 0
   @include text-shadow(0px 1px #d8d8d8)
   
-input.ui-mini, .ui-mini input, textarea.ui-mini
-  font-size: 14px
-
-div.ui-input-text input.ui-input-text, 
-div.ui-input-text textarea.ui-input-text
-  border: none
-  width: 100%
-  padding: .4em 0
-  margin: 0
-  display: block
-  background: transparent none
-  outline: 0 !important
-
 div.ui-input-text 
   padding: 0 30px 0 .4em
   border: 1px solid #ccc
@@ -183,38 +126,6 @@ div.ui-input-text.ui-mini
 .ui-field-contain textarea.ui-input-text,
 .ui-field-contain div.ui-input-text
   margin: 0
-
-textarea.ui-input-text 
-  -webkit-box-sizing: border-box
-  -moz-box-sizing: border-box
-  -ms-box-sizing: border-box
-  box-sizing: border-box
-
-input.ui-input-text
-  -webkit-appearance: none
-
-textarea.ui-input-text
-  min-height: 50px
-  -webkit-transition: height 200ms linear
-  -moz-transition: height 200ms linear
-  -o-transition: height 200ms linear
-  transition: height 200ms linear
-
-textarea.ui-mini
-  height: 45px
-
-.ui-input-text .ui-input-clear
-  position: absolute
-  right: 0
-  top: 50%
-  margin-top: -13px
-
-.ui-mini .ui-input-clear
-  margin-top: -14px
-  right: -3px
-
-.ui-input-text .ui-input-clear-hidden
-  display: none
 
 /* Resolves issue #5166: Added to support issue introduced in Firefox 15. We can likely remove this in the future. */
 input:-moz-placeholder
