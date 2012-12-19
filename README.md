@@ -35,6 +35,8 @@ lighter mobile web framework, especially for 3G-bandwidth devices.
 - Small: core is pretty small. you can build a customzied version with extra extensions.
 - Extensible: write your features in extensions.
 - jQueryMobile template compatible.
+- SASS powered.
+- CoffeeScript powered.
 
 ## Band width limitation
 
