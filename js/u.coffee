@@ -1,7 +1,7 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
+define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
@@ -228,13 +228,18 @@ define ["cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         if el
           # setter
           if n and v
-
+            if typeof v is "string" or typeof v is "boolean"
+              return @attr 'data-' + n, v
+            else
+              console.error('not implemented yet.')
           # getter
           else if n
+            datakey = n.toLowerCamelCase()
             if typeof el.dataset isnt 'undefined'
-              return el.dataset[n]
+              return el.dataset[datakey]
             else
               return @attr(n)
+        return this
 
       height: (a) ->
         # setter

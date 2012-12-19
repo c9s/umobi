@@ -5,17 +5,43 @@ define [
   "cs!umobi.core"
   "cs!u"
   "cs!umobi.page"
-  ], ->
+], ->
   ###
   //>>excludeEnd("umobiBuildExclude")
+  ###
+  
+
+  ###
+  To inner wrap a link with ui-btn classes:
+
+  <a href="index.html" data-role="button" data-corners="true"
+    data-shadow="true" data-iconshadow="true" data-wrapperels="span"
+    data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+      <span class="ui-btn-inner ui-btn-corner-all">
+        <span class="ui-btn-text">Link button</span>
+      </span>
+  </a>
   ###
   (->
     u.ready () ->
       for link in document.links
-        u(link).addClass('ui-link').click (e) ->
-          href = u(this).attr('href')
-          if href.match( /^#\w+/ )
-            umobi.page.revealByHash(href)
+        ulink = u(link)
+        if ulink.data('role') is 'button'
+          ulink.data('corners',true).data('shadow',true).data('theme','c')
+          ulink.addClass(['ui-btn','ui-shadow','ui-btn-corner-all','ui-btn-up-c'])
+          # initialize <a> as a button
+          $(link).wrapInner("""
+            <span class="ui-btn ui-btn-corner-all">
+              <span class="ui-btn-text">
+              </span>
+            </span>
+          """)
+        else
+          # initialize <a> as a normal link
+          ulink.addClass('ui-link').click (e) ->
+            href = ulink.attr('href')
+            if href.match( /^#\w+/ )
+              umobi.page.revealByHash(href)
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)

@@ -1,5 +1,6 @@
 <?php
 $apcEnable = false && extension_loaded('apc');
+$useCompiledCoffee = true;
 $contentType = 'text/javascript';
 $jsfiles = array (
   '../LICENSE.txt',
@@ -36,6 +37,12 @@ $coffeefiles = array(
   'umobi.link.coffee',
   'umobi.init.coffee',
 );
+
+foreach( $coffeefiles as $coffeefile ) {
+    $newfile = str_replace('.coffee','.js',$coffeefile);
+    if(file_exists($newfile))
+        $jsfiles[] = $newfile;
+}
 
 function findbin($bin)
 {
@@ -102,6 +109,7 @@ function aggregateContent($commitId)
 {
 	global $jsfiles;
 	global $coffeefiles;
+    global $useCompiledCoffee;
 
 	$output = '';
 	$comment = '';
@@ -112,7 +120,10 @@ function aggregateContent($commitId)
 	foreach( $jsfiles as $jsfile ) {
 		$output .= file_get_contents($jsfile);
 	}
-	$output .= runCoffee($coffeefiles);
+
+    if( !$useCompiledCoffee ) {
+        $output .= runCoffee($coffeefiles);
+    }
 	return $output;
 }
 
