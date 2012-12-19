@@ -27,6 +27,7 @@ define([
     "cs!u.dom",
     "cs!u",
     "cs!umobi.button",
+    "cs!umobi.link",
     "cs!umobi.widget",
     "cs!umobi.zoom",
     "cs!umobi.listview",

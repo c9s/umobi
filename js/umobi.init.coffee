@@ -30,12 +30,6 @@ define [
         $pages = $("body").wrapInner( "<div data-role=\"page\"></div>" ).children(0)
       $pages.each -> umobi.page.create(this)
 
-      for link in document.links
-        $(link).addClass('ui-link').click (e) ->
-          href = $(this).attr('href')
-          if href.match(/^#\w+/)
-            umobi.page.revealByHash(href)
-
       # currently, if the page can not be scrolled, this won't work.
       if window.navigator.userAgent.match(/iPhone|iPad|Android/)
         hideAddressBar = () ->
