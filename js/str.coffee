@@ -1,7 +1,7 @@
 
 define [], ->
 
-  String::toCapitalCase = -> p.charAt(0).toUpperCase() + p.substr(1)
+  String::toCapitalCase = -> @charAt(0).toUpperCase() + @substr(1)
 
   String::toCamelCase = () ->
     (@toWords().map (p) -> p.toCapitalCase() ).join('')
