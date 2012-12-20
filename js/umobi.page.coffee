@@ -38,9 +38,8 @@ define [
         umobi.page.reveal($page)
 
       create: (el) ->
-        $page = $(el)
         upage = u(el)
-        upage.trigger('pagecreate').addClass(['ui-page','ui-body-c'])
+        upage.trigger('pagecreate').addClass(['ui-page',"ui-body-#{ umobi.config.theme }"])
 
         # TODO: rewrite this with umobi.dom
         h = upage.find('[data-role="header"]').addClass('ui-header') # header container
@@ -74,7 +73,7 @@ define [
               bottom: contentBottom + 'px'
               overflow: if umobi.support.touchEnabled then 'hidden' else 'auto'
 
-          $page.on 'pagereveal', AdjustContentHeight
+          upage.on 'pagereveal', AdjustContentHeight
         resizeTimeout = null
         u(window).on 'resize',->
           clearTimeout(resizeTimeout) if resizeTimeout
