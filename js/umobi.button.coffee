@@ -6,7 +6,18 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
   //>>excludeEnd("umobiBuildExclude")
   ###
   umobi.button = { }
+
+  # get buttons
+  umobi.button.all = () -> u.dom.queryAll('[data-role="button"]')
+
   umobi.button.markup = (el) ->
+    $el = $(el)
+    $el.wrapInner("""
+      <span class="ui-btn ui-btn-corner-all">
+        <span class="ui-btn-text">
+        </span>
+      </span>
+    """)
 
   umobi.button.bindClassEvents = (el) ->
     $el = $(el)

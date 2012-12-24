@@ -17,8 +17,7 @@ if (typeof document !== "undefined" && !("classList" in document.documentElement
  
 "use strict";
  
-var
-      classListProp = "classList"
+var classListProp = "classList"
     , protoProp = "prototype"
     , elemCtrProto = (view.HTMLElement || view.Element)[protoProp]
     , objCtr = Object
@@ -26,10 +25,7 @@ var
         return this.replace(/^\s+|\s+$/g, "");
     }
     , arrIndexOf = Array[protoProp].indexOf || function (item) {
-        var
-              i = 0
-            , len = this.length
-        ;
+        var i = 0 , len = this.length;
         for (; i < len; i++) {
             if (i in this && this[i] === item) {
                 return i;
