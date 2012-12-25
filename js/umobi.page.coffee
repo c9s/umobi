@@ -90,7 +90,7 @@ define [
               $contentContainer.css('paddingBottom', f.height() + 'px') if f.get(0)
             upage.on 'pagereveal', AdjustContentPadding
           else
-            # use absolute position and fixed header/footer for desktop 
+            # use absolute position and fixed header/footer for desktop
             AdjustContentHeight = (e) ->
               console.log "pagereveal" , h.height(), f.height()
               contentHeight = $(window).height()
