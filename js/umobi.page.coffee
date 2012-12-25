@@ -18,10 +18,29 @@ define [
     umobi.page =
 
       # get all pages
-      all: -> u('[data-role="page"]')
+      findAll: -> u('[data-role="page"]')
 
       # get active page
       findActive: -> u('.ui-page-active')
+
+      init: ->
+        $(document).trigger('pageinit')
+
+        # find static pages and initialize them
+        pages = @findAll()
+        # if no pages are found, create one with body's inner html
+        if not pages.get(0)
+          pages = u($("body").wrapInner( "<div data-role=\"page\"></div>" ).children(0).get(0))
+        pages.each (i,e) => @create(e)
+
+        if location.hash
+          @revealByHash(location.hash)
+        else
+          indexPage = u('#index')
+          if indexPage.get(0)
+            @reveal(indexPage)
+          else
+            @reveal(pages.first())
 
       # $p: page element object.
       reveal: (p) ->
