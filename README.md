@@ -85,6 +85,11 @@ jQuery UI 1.9.2 (minified 335KB)
 - css/ui-lightness/jquery-ui-1.9.2.custom.min.css 27KB
 - images/   76KB
 
+
+## Target Platforms
+
+- iOS5.0+ (WebKit on iPhone and iPad)
+
 ## Contribution
 
 - SASS for styles, Please see <http://sass-lang.com/tutorial.html>
