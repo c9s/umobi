@@ -18,28 +18,30 @@ define [
     umobi.page =
 
       # get all pages
-      all: -> $(u.dom.queryAll('[data-role="page"]'))
+      all: -> u('[data-role="page"]')
 
       # get active page
-      active: () -> $(u.dom.queryAll('.ui-page-active'))
+      findActive: -> u('.ui-page-active')
 
       # $p: page element object.
-      reveal: ($p) ->
+      reveal: (p) ->
         # hide current active page
-        @active().removeClass('ui-page-active')
-        $p.addClass('ui-page-active').trigger('pagereveal')
-        $(document).trigger('pagereveal',[$p])
+        @findActive().removeClass("ui-page-active")
+        p.addClass("ui-page-active").trigger("pagereveal")
+        $(document).trigger("pagereveal",[p])
 
       # reveal page element by hash
       revealByHash: (hash) ->
         # show first page if page not found.
-        $page = $(hash)
-        $page = $('[data-role="page"]').first() if not $page.get(0)
-        umobi.page.reveal($page)
+        upage = u(hash)
+        if not upage.get(0)
+          upage = u('[data-role="page"]').first()
+        umobi.page.reveal(upage)
 
       create: (el) ->
         upage = u(el)
-        upage.trigger('pagecreate').addClass(['ui-page',"ui-body-#{ umobi.config.theme }"])
+        upage.trigger("pagecreate")
+        upage.addClass(["ui-page","ui-body-#{ umobi.config.theme }"])
 
         # TODO: rewrite this with umobi.dom
         h = upage.find('[data-role="header"]').addClass('ui-header') # header container
@@ -57,25 +59,36 @@ define [
 
           # Initialize touch scroller with 3D translate if it's on mobile
           # device
-          if umobi.support.touchEnabled
+          if umobi.support.touchEnabled and umobi.config.touchScroll
             umobi.scroller.create(c.get(0))
-            $contentContainer.addClass('ui-content-scroll')
-          AdjustContentHeight = (e) ->
-            contentHeight = $(window).height()
-            contentTop    = 0
-            contentBottom = 0
-            contentTop    = h.height() if h.get(0)
-            contentBottom = f.height() if f.get(0)
-            $contentContainer.css
-              position: 'absolute'
-              top: contentTop + 'px'
-              left: 0
-              bottom: contentBottom + 'px'
-              overflow: if umobi.support.touchEnabled then 'hidden' else 'auto'
+            document.documentElement.style.overflow = "hidden"
+            $contentContainer.addClass("ui-content-scroll")
 
-          upage.on 'pagereveal', AdjustContentHeight
+          if not umobi.config.touchScroll
+            AdjustContentPadding = () ->
+              console.log "pagereveal", h.height(), f.height()
+              $contentContainer.css('paddingTop', h.height() + 'px') if h.get(0)
+              $contentContainer.css('paddingBottom', f.height() + 'px') if f.get(0)
+            upage.on 'pagereveal', AdjustContentPadding
+          else
+            # use absolute position and fixed header/footer for desktop 
+            AdjustContentHeight = (e) ->
+              console.log "pagereveal" , h.height(), f.height()
+              contentHeight = $(window).height()
+              contentTop    = 0
+              contentBottom = 0
+              contentTop    = h.height() if h.get(0)
+              contentBottom = f.height() if f.get(0)
+              $contentContainer.css
+                position: 'absolute'
+                top: contentTop + 'px'
+                left: 0
+                bottom: contentBottom + 'px'
+                overflow: if umobi.support.touchEnabled then 'hidden' else 'auto'
+            upage.on "pagereveal", AdjustContentHeight
+
         resizeTimeout = null
-        u(window).on 'resize',->
+        $(window).on "resize",->
           clearTimeout(resizeTimeout) if resizeTimeout
           resizeTimeout = setTimeout AdjustContentHeight, 100
         h.addClass('ui-fixed-header') if h.attr 'data-fixed'

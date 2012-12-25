@@ -6,7 +6,9 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
-    u = (a) -> new USet(a)
+    u = (a) ->
+      return a if typeof a is "object" and a instanceof USet
+      return new USet(a)
 
     u.dom = window.dom
     u.ready = (cb) ->
@@ -100,7 +102,9 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       ###
       addClass: (cls) ->
         if typeof cls is "object"
-          return @each (i, el) -> el.classList.add(c) for c in cls
+          return @each (i, el) ->
+            for c in cls
+              el.classList.add(c)
         else
           return @each (i, el) -> el.classList.add(cls)
 
@@ -159,7 +163,8 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
             cb i, @els[i]
             i++
         else
-          cb 0, @el
+          el = @get(0)
+          cb 0, el if el
         return this
 
       ###
@@ -189,8 +194,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         els = []
         for el in @all()
           nodes = u.dom.queryAll(sel,el)
-          for n in nodes
-            els.push(n)
+          els.push(n) for n in nodes
         return u(els)
 
       siblings: (sel) ->
@@ -247,6 +251,8 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @each (i,e) -> e.style.height = parseInt(a) + 'px'
         else
           el = @get(0)
+#            console.log el.style.height
+#            console.log @style(1).height
           return parseInt(el.style.height) if el?.style.height
           parseInt(@style(1).height)
 

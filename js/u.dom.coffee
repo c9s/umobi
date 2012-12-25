@@ -21,6 +21,8 @@ define [], ->
 
     dom.queryAll = (q, c) ->
       c = c or document
+      throw new Error("Object " + typeof(c) + " does not contains querySelectorAll method") unless c.querySelectorAll
+      # return document.querySelectorAll(q) unless c.querySelectorAll
       
       # querySelectorAll is available in IE8, Chrome, Firefox and Safari
       # in this library we don t consider IE7

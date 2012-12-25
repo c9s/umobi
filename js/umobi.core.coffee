@@ -8,6 +8,7 @@ define [],->
   (->
     window.umobi =
       config:
+        touchScroll: true
         theme: 'c'
   )()
   ###

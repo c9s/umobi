@@ -173,9 +173,15 @@ h4 {
   bottom: 0;
   left: 0; }
 
+.ui-content {
+  padding: 15px; }
+
 .ui-content-container {
-  position: fixed;
   width: 100%; }
+
+/* is container scrollable ? */
+.ui-content-scroll {
+  position: fixed; }
 
 /* .ui-content
  * .ui-content-scroll */
