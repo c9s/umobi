@@ -80,16 +80,19 @@ define [
         if isBothFixed
           $c = c.jQuery()
 
+          # create ui-content container for scrolling
           $c.wrap('<div class="ui-content-container"/>')
           $contentContainer = $c.parent()
 
           # Initialize touch scroller with 3D translate if it's on mobile
-          # device
+          # device and the touchScroll option is enabled.
           if umobi.support.touchEnabled and umobi.config.touchScroll
             umobi.scroller.create(c.get(0))
             document.documentElement.style.overflow = "hidden"
             $contentContainer.addClass("ui-content-scroll")
 
+          # if touchScroll option is not enabled, we should just 
+          # adjust cotnent padding to keep space for header and footer.
           if not umobi.config.touchScroll
             AdjustContentPadding = () ->
               console.log "pagereveal", h.height(), f.height()
