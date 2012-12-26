@@ -59,8 +59,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
 
       get: (i) ->
         return @els[i] if @els
-        if i is 0
-          return @el
+        return @el if i is 0
 
       all: ->
         return @els if @els
@@ -132,7 +131,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         # setter
         if( n and v )
           return @each (i,el) -> el.style[n] = v
-        else if typeof n is "object" and @el
+        else if typeof n is "object"
           return @each (i,el) ->
             for k,val in n
               el.style[k] = val
@@ -145,7 +144,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         # setter
         if( n and v )
           return @each (i,el) -> el.setAttribute(n,v)
-        else if typeof n is "object" and @el
+        else if typeof n is "object"
           return @each (i,el) ->
             for k,val in n
               el.setAttribute(k,val)
