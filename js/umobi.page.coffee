@@ -70,6 +70,13 @@ define [
         h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title')
         isBothFixed = h.attr 'data-fixed' or f.attr 'data-fixed'
 
+        # iOS5.0+, Android 2.2 supports position:fixed,
+        # we need a simple detection here.
+        #
+        # and there is a native scrolling support in iOS5
+        #
+        #    -webkit-overflow-scrolling: touch;
+        #
         if isBothFixed
           $c = c.jQuery()
 
