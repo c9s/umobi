@@ -37,3 +37,14 @@ define [] , () ->
     ok u("#test1 .foo").last()
     ok u("#test1").last()
 
+  test "Test addClass()", () ->
+    foos = u('#test1 .foo')
+    equal 6, foos.size()
+
+    foos.addClass('bar')
+
+    bars = u('#test1 .bar')
+    equal bars.size(), foos.size()
+
+    foos.removeClass('bar')
+
