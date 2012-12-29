@@ -2,8 +2,8 @@
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
 define [
-  "cs!umobi.core"
   "cs!u"
+  "cs!umobi.core"
   "cs!umobi.page"
   "cs!umobi.widget"
   "cs!umobi.zoom"

@@ -91,7 +91,7 @@ define [
             document.documentElement.style.overflow = "hidden"
             $contentContainer.addClass("ui-content-scroll")
 
-          # if touchScroll option is not enabled, we should just 
+          # if touchScroll option is not enabled, we should just
           # adjust cotnent padding to keep space for header and footer.
           if not umobi.config.touchScroll
             AdjustContentPadding = () ->

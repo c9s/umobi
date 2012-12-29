@@ -1,4 +1,3 @@
 
-define ["cs!u","cs!umobi.core"] , () ->
-  u.widget
-
+define ["cs!u","cs!umobi.core"], ->
+  # u.widget
