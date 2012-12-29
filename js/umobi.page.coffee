@@ -94,7 +94,7 @@ define [
           # if touchScroll option is not enabled, we should just
           # adjust cotnent padding to keep space for header and footer.
           if not umobi.config.touchScroll
-            AdjustContentPadding = () ->
+            AdjustContentPadding = ->
               # console.log "pagereveal", h.height(), f.height()
               $contentContainer.css("paddingTop", h.height() + 'px') if h.get(0)
               $contentContainer.css("paddingBottom", f.height() + 'px') if f.get(0)
@@ -115,7 +115,7 @@ define [
             upage.on "pagereveal", AdjustContentHeight
 
         resizeTimeout = null
-        $(window).on "resize",->
+        u(window).on "resize",->
           clearTimeout(resizeTimeout) if resizeTimeout
           resizeTimeout = setTimeout AdjustContentHeight, 100
         h.addClass("ui-fixed-header") if h.attr "data-fixed"
