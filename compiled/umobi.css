@@ -159,9 +159,13 @@ h4 {
 .ui-fixed-footer {
   bottom: 0;
   left: 0; }
+.ui-content {
+  padding: 15px; }
 .ui-content-container {
-  position: fixed;
   width: 100%; }
+/* is container scrollable ? */
+.ui-content-scroll {
+  position: fixed; }
 /* .ui-content
  * .ui-content-scroll */
 .ui-title {
@@ -290,8 +294,6 @@ p {
   font-weight: bold;
   text-shadow: 0px 1px #d8d8d8;
   color: #383838; }
-.ui-content {
-  padding: 15px; }
 /* Common Styles
  * ============================== */
 .ui-corner-all {

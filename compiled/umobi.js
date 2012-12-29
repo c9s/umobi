@@ -61,8 +61,7 @@ if (typeof document !== "undefined" && !("classList" in document.documentElement
  
 
  
-var
-      classListProp = "classList"
+var classListProp = "classList"
     , protoProp = "prototype"
     , elemCtrProto = (view.HTMLElement || view.Element)[protoProp]
     , objCtr = Object
@@ -70,10 +69,7 @@ var
         return this.replace(/^\s+|\s+$/g, "");
     }
     , arrIndexOf = Array[protoProp].indexOf || function (item) {
-        var
-              i = 0
-            , len = this.length
-        ;
+        var i = 0 , len = this.length;
         for (; i < len; i++) {
             if (i in this && this[i] === item) {
                 return i;
@@ -213,6 +209,7 @@ define('cs!str',[], function() {
   (function() {
     return window.umobi = {
       config: {
+        touchScroll: true,
         theme: 'c'
       }
     };
@@ -236,6 +233,9 @@ define('cs!str',[], function() {
     };
     dom.queryAll = function(q, c) {
       c = c || document;
+      if (!c.querySelectorAll) {
+        throw new Error("Object " + typeof c + " does not contains querySelectorAll method");
+      }
       return c.querySelectorAll(q);
     };
     dom.get = function(dom, c) {
@@ -274,6 +274,9 @@ define('cs!str',[], function() {
   (function() {
     var USet, ensureClassArray, u;
     u = function(a) {
+      if (typeof a === "object" && a instanceof USet) {
+        return a;
+      }
       return new USet(a);
     };
     u.dom = window.dom;
@@ -397,70 +400,75 @@ define('cs!str',[], function() {
 
 
       USet.prototype.addClass = function(cls) {
+        var c, el, els, _i, _j, _k, _len, _len1, _len2;
+        els = this.all();
         if (typeof cls === "object") {
-          return this.each(function(i, el) {
-            var c, _i, _len, _results;
-            _results = [];
-            for (_i = 0, _len = cls.length; _i < _len; _i++) {
-              c = cls[_i];
-              _results.push(el.classList.add(c));
+          for (_i = 0, _len = cls.length; _i < _len; _i++) {
+            c = cls[_i];
+            for (_j = 0, _len1 = els.length; _j < _len1; _j++) {
+              el = els[_j];
+              el.classList.add(c);
             }
-            return _results;
-          });
+          }
         } else {
-          return this.each(function(i, el) {
-            return el.classList.add(cls);
-          });
+          for (_k = 0, _len2 = els.length; _k < _len2; _k++) {
+            el = els[_k];
+            el.classList.add(cls);
+          }
         }
+        return this;
       };
 
       USet.prototype.toggleClass = function(cls) {
+        var c, el, els, _i, _j, _k, _len, _len1, _len2;
+        els = this.all();
         if (typeof cls === "object") {
-          return this.each(function(i, el) {
-            var c, _i, _len, _results;
-            _results = [];
-            for (_i = 0, _len = cls.length; _i < _len; _i++) {
-              c = cls[_i];
-              _results.push(el.classList.toggle(c));
+          for (_i = 0, _len = cls.length; _i < _len; _i++) {
+            c = cls[_i];
+            for (_j = 0, _len1 = els.length; _j < _len1; _j++) {
+              el = els[_j];
+              el.classList.toggle(c);
             }
-            return _results;
-          });
+          }
         } else {
-          return this.each(function(i, el) {
-            return el.classList.toggle(cls);
-          });
+          for (_k = 0, _len2 = els.length; _k < _len2; _k++) {
+            el = els[_k];
+            el.classList.toggle(cls);
+          }
         }
+        return this;
       };
 
       USet.prototype.removeClass = function(cls) {
+        var c, el, els, _i, _j, _k, _len, _len1, _len2;
+        els = this.all();
         if (typeof cls === "object") {
-          return this.each(function(i, el) {
-            var c, _i, _len, _results;
-            _results = [];
-            for (_i = 0, _len = cls.length; _i < _len; _i++) {
-              c = cls[_i];
-              _results.push(el.classList.remove(c));
+          for (_i = 0, _len = cls.length; _i < _len; _i++) {
+            c = cls[_i];
+            for (_j = 0, _len1 = els.length; _j < _len1; _j++) {
+              el = els[_j];
+              el.classList.remove(c);
             }
-            return _results;
-          });
+          }
         } else {
-          return this.each(function(i, el) {
-            return el.classList.remove(cls);
-          });
+          for (_k = 0, _len2 = els.length; _k < _len2; _k++) {
+            el = els[_k];
+            el.classList.remove(cls);
+          }
         }
+        return this;
       };
 
       USet.prototype.hasClass = function(cls) {
-        var has;
-        if (this.el) {
-          return this.el.classList.contains(cls);
-        } else {
-          has = false;
-          this.each(function(i, el) {
-            return has && (has = el.classList.contains(cls));
-          });
-          return has;
+        var all, el, _i, _len;
+        all = this.all();
+        for (_i = 0, _len = all.length; _i < _len; _i++) {
+          el = all[_i];
+          if (!el.classList.contains(cls)) {
+            return false;
+          }
         }
+        return true;
       };
 
       USet.prototype.css = function(n, v) {
@@ -468,7 +476,7 @@ define('cs!str',[], function() {
           return this.each(function(i, el) {
             return el.style[n] = v;
           });
-        } else if (typeof n === "object" && this.el) {
+        } else if (typeof n === "object") {
           return this.each(function(i, el) {
             var k, val, _i, _len, _results;
             _results = [];
@@ -490,7 +498,7 @@ define('cs!str',[], function() {
           return this.each(function(i, el) {
             return el.setAttribute(n, v);
           });
-        } else if (typeof n === "object" && this.el) {
+        } else if (typeof n === "object") {
           return this.each(function(i, el) {
             var k, val, _i, _len, _results;
             _results = [];
@@ -513,16 +521,22 @@ define('cs!str',[], function() {
       };
 
       USet.prototype.each = function(cb) {
-        var i, len;
+        var b, el, i, len;
         if (this.els) {
           i = 0;
           len = this.els.length;
           while (i < len) {
-            cb(i, this.els[i]);
+            b = cb(i, this.els[i]);
+            if (b === false) {
+              break;
+            }
             i++;
           }
         } else {
-          cb(0, this.el);
+          el = this.get(0);
+          if (el) {
+            cb(0, el);
+          }
         }
         return this;
       };
@@ -706,7 +720,14 @@ define('cs!str',[], function() {
 /*
   */
   umobi.button = {};
-  umobi.button.markup = function(el) {};
+  umobi.button.all = function() {
+    return u.dom.queryAll('[data-role="button"]');
+  };
+  umobi.button.markup = function(el) {
+    var $el;
+    $el = $(el);
+    return $el.wrapInner("<span class=\"ui-btn ui-btn-corner-all\">\n  <span class=\"ui-btn-text\">\n  </span>\n</span>");
+  };
   umobi.button.bindClassEvents = function(el) {
     var $el, cmap, theme;
     $el = $(el);
@@ -1188,30 +1209,52 @@ define('cs!str',[], function() {
   (function() {
     u('body').css('overflow', 'hidden').addClass('ui-overlay-c');
     return umobi.page = {
-      all: function() {
-        return $(u.dom.queryAll('[data-role="page"]'));
+      findAll: function() {
+        return u('[data-role="page"]');
       },
-      active: function() {
-        return $(u.dom.queryAll('.ui-page-active'));
+      findActive: function() {
+        return u('.ui-page-active');
       },
-      reveal: function($p) {
-        this.active().removeClass('ui-page-active');
-        $p.addClass('ui-page-active').trigger('pagereveal');
-        return $(document).trigger('pagereveal', [$p]);
+      init: function() {
+        var indexPage, pages,
+          _this = this;
+        $(document).trigger('pageinit');
+        pages = this.findAll();
+        if (!pages.get(0)) {
+          pages = u($("body").wrapInner("<div data-role=\"page\"></div>").children(0).get(0));
+        }
+        pages.each(function(i, e) {
+          return _this.create(e);
+        });
+        if (location.hash) {
+          return this.revealByHash(location.hash);
+        } else {
+          indexPage = u('#index');
+          if (indexPage.get(0)) {
+            return this.reveal(indexPage);
+          } else {
+            return this.reveal(pages.first());
+          }
+        }
+      },
+      reveal: function(p) {
+        this.findActive().removeClass("ui-page-active");
+        p.addClass("ui-page-active").trigger("pagereveal");
+        return $(document).trigger("pagereveal", [p]);
       },
       revealByHash: function(hash) {
-        var $page;
-        $page = $(hash);
-        if (!$page.get(0)) {
-          $page = $('[data-role="page"]').first();
+        var upage;
+        upage = u(hash);
+        if (!upage.get(0)) {
+          upage = u('[data-role="page"]').first();
         }
-        return umobi.page.reveal($page);
+        return umobi.page.reveal(upage);
       },
       create: function(el) {
-        var $c, $contentContainer, $page, AdjustContentHeight, c, f, h, isBothFixed, resizeTimeout, upage;
-        $page = $(el);
+        var $c, $contentContainer, AdjustContentHeight, AdjustContentPadding, c, f, h, isBothFixed, resizeTimeout, upage;
         upage = u(el);
-        upage.trigger('pagecreate').addClass(['ui-page', 'ui-body-c']);
+        upage.trigger("pagecreate");
+        upage.addClass(["ui-page", "ui-body-" + umobi.config.theme]);
         h = upage.find('[data-role="header"]').addClass('ui-header');
         f = upage.find('[data-role="footer"]').addClass('ui-footer');
         c = upage.find('[data-role="content"]').addClass('ui-content');
@@ -1221,33 +1264,48 @@ define('cs!str',[], function() {
           $c = c.jQuery();
           $c.wrap('<div class="ui-content-container"/>');
           $contentContainer = $c.parent();
-          if (umobi.support.touchEnabled) {
+          if (umobi.support.touchEnabled && umobi.config.touchScroll) {
             umobi.scroller.create(c.get(0));
-            $contentContainer.addClass('ui-content-scroll');
+            document.documentElement.style.overflow = "hidden";
+            $contentContainer.addClass("ui-content-scroll");
           }
-          AdjustContentHeight = function(e) {
-            var contentBottom, contentHeight, contentTop;
-            contentHeight = $(window).height();
-            contentTop = 0;
-            contentBottom = 0;
-            if (h.get(0)) {
-              contentTop = h.height();
-            }
-            if (f.get(0)) {
-              contentBottom = f.height();
-            }
-            return $contentContainer.css({
-              position: 'absolute',
-              top: contentTop + 'px',
-              left: 0,
-              bottom: contentBottom + 'px',
-              overflow: umobi.support.touchEnabled ? 'hidden' : 'auto'
-            });
-          };
-          $page.on('pagereveal', AdjustContentHeight);
+          if (!umobi.config.touchScroll) {
+            AdjustContentPadding = function() {
+              console.log("pagereveal", h.height(), f.height());
+              if (h.get(0)) {
+                $contentContainer.css('paddingTop', h.height() + 'px');
+              }
+              if (f.get(0)) {
+                return $contentContainer.css('paddingBottom', f.height() + 'px');
+              }
+            };
+            upage.on('pagereveal', AdjustContentPadding);
+          } else {
+            AdjustContentHeight = function(e) {
+              var contentBottom, contentHeight, contentTop;
+              console.log("pagereveal", h.height(), f.height());
+              contentHeight = $(window).height();
+              contentTop = 0;
+              contentBottom = 0;
+              if (h.get(0)) {
+                contentTop = h.height();
+              }
+              if (f.get(0)) {
+                contentBottom = f.height();
+              }
+              return $contentContainer.css({
+                position: 'absolute',
+                top: contentTop + 'px',
+                left: 0,
+                bottom: contentBottom + 'px',
+                overflow: umobi.support.touchEnabled ? 'hidden' : 'auto'
+              });
+            };
+            upage.on("pagereveal", AdjustContentHeight);
+          }
         }
         resizeTimeout = null;
-        u(window).on('resize', function() {
+        $(window).on("resize", function() {
           if (resizeTimeout) {
             clearTimeout(resizeTimeout);
           }
@@ -1412,36 +1470,18 @@ define('cs!str',[], function() {
     uhtml = u('html');
     uhtml.children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
     return u.ready(function() {
-      var $pages, hideAddressBar, indexPage;
-      $(document).trigger('pageinit');
-      $pages = umobi.page.all();
-      if (!$pages.length) {
-        $pages = $("body").wrapInner("<div data-role=\"page\"></div>").children(0);
-      }
-      $pages.each(function() {
-        return umobi.page.create(this);
-      });
+      var hideAddressBar;
+      umobi.page.init();
       if (window.navigator.userAgent.match(/iPhone|iPad|Android/)) {
         hideAddressBar = function() {
           if (document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)) {
             document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
-            document.documentElement.style.overflow = 'hidden';
           }
           return window.scrollTo(0, 1);
         };
         window.addEventListener("load", hideAddressBar);
         window.addEventListener("orientationchange", hideAddressBar);
         $(document).on('pagereveal', hideAddressBar);
-      }
-      if (location.hash) {
-        umobi.page.revealByHash(location.hash);
-      } else {
-        indexPage = u.dom.query('#index');
-        if (indexPage) {
-          umobi.page.reveal($(indexPage));
-        } else {
-          umobi.page.reveal($pages.first());
-        }
       }
       return u.load(function() {
         return uhtml.removeClass('ui-mobile-rendering');

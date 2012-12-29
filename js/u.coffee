@@ -118,10 +118,13 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         return this
 
       removeClass: (cls) ->
+        els = @all()
         if typeof cls is "object"
-          return @each (i, el) -> el.classList.remove(c) for c in cls
+          for c in cls
+            el.classList.remove(c) for el in els
         else
-          return @each (i,el) -> el.classList.remove(cls)
+          el.classList.remove(cls) for el in els
+        return this
 
       hasClass: (cls) ->
         all = @all()

@@ -139,9 +139,12 @@ h4 {
 .ui-fixed-footer {
   bottom: 0;
   left: 0; }
+.ui-content {
+  padding: 15px; }
 .ui-content-container {
-  position: fixed;
   width: 100%; }
+.ui-content-scroll {
+  position: fixed; }
 .ui-title {
   min-height: 1.1em;
   text-align: center;
