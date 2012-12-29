@@ -120,12 +120,11 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @each (i,el) -> el.classList.remove(cls)
 
       hasClass: (cls) ->
-        if @el
-          return @el.classList.contains(cls)
-        else
-          has = false
-          @each (i, el) -> has and= el.classList.contains(cls)
-          return has
+        all = @all()
+        for el in all
+          if not el.classList.contains(cls)
+            return false
+        return true
 
       css: (n,v) ->
         # setter
@@ -159,7 +158,8 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           i = 0
           len = @els.length
           while i < len
-            cb i, @els[i]
+            b = cb i, @els[i]
+            break if b is false
             i++
         else
           el = @get(0)
