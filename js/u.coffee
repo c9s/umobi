@@ -8,6 +8,9 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
   (->
     u = (a) ->
       return a if typeof a is "object" and a instanceof USet
+
+      # we may create an array that contains node objects,
+      # so we can iterate the items.
       return new USet(a)
 
     u.dom = window.dom
@@ -154,7 +157,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         if typeof n is "string"
           return @get(0)?.getAttribute(n)
 
-      empty: () -> @each (i,el) -> el.innerHTML = ''
+      empty: -> @each (i,el) -> el.innerHTML = ''
 
       each: (cb) ->
         els = @all()
@@ -268,7 +271,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       toArray: -> @all()
 
       # convert element or element collection to jQuery object.
-      jQuery: () -> $( @els or @el )
+      jQuery: -> $( @els or @el )
 
 
     window.u = u

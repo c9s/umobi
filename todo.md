@@ -11,6 +11,12 @@ x hashchange trirgger (to switch page)
 x fast scroll js implementation
 x list view
 
+
+- use array based interface for u object.
+    - we need to copy the element collection into self object by index. 
+      it might caused some performance problem because it's copying NodeList object.
+
+
 - button style
 - fast button
 - table view

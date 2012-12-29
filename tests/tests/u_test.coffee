@@ -1,11 +1,14 @@
 
-define [] , () ->
+define [] , ->
   module "u.js unit test"
 
-  test "Core", () ->
+  test "Core", ->
     ok u, "Got global u helper"
 
-  test "Test query selector", () ->
+  test "Test iterating", ->
+    # items = 1..3
+
+  test "Test query selector", ->
     elements = u("#test1 .foo")
     ok elements, "Got elements"
     equal 6, elements.size()
@@ -60,7 +63,7 @@ define [] , () ->
     # u("#test1 .foo").toggleClass("toggle1")
     # ok ! u("#test1 .foo").hasClass("toggle1")
 
-  test "Test addClass() and removeClass()", () ->
+  test "Test addClass() and removeClass()", ->
     foos = u('#test1 .foo')
     equal 6, foos.size()
 

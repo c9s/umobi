@@ -96,9 +96,9 @@ define [
           if not umobi.config.touchScroll
             AdjustContentPadding = () ->
               # console.log "pagereveal", h.height(), f.height()
-              $contentContainer.css('paddingTop', h.height() + 'px') if h.get(0)
-              $contentContainer.css('paddingBottom', f.height() + 'px') if f.get(0)
-            upage.on 'pagereveal', AdjustContentPadding
+              $contentContainer.css("paddingTop", h.height() + 'px') if h.get(0)
+              $contentContainer.css("paddingBottom", f.height() + 'px') if f.get(0)
+            upage.on "pagereveal", AdjustContentPadding
           else
             # use absolute position and fixed header/footer for desktop
             AdjustContentHeight = (e) ->
@@ -107,19 +107,19 @@ define [
               contentTop    = if h.get(0) then h.height() else 0
               contentBottom = if f.get(0) then f.height() else 0
               $contentContainer.css
-                position: 'absolute'
-                top: contentTop + 'px'
+                position: "absolute"
+                top: contentTop + "px"
                 left: 0
-                bottom: contentBottom + 'px'
-                overflow: if umobi.support.touchEnabled then 'hidden' else 'auto'
+                bottom: contentBottom + "px"
+                overflow: if umobi.support.touchEnabled then "hidden" else "auto"
             upage.on "pagereveal", AdjustContentHeight
 
         resizeTimeout = null
         $(window).on "resize",->
           clearTimeout(resizeTimeout) if resizeTimeout
           resizeTimeout = setTimeout AdjustContentHeight, 100
-        h.addClass('ui-fixed-header') if h.attr 'data-fixed'
-        f.addClass('ui-fixed-footer') if f.attr 'data-fixed'
+        h.addClass("ui-fixed-header") if h.attr "data-fixed"
+        f.addClass("ui-fixed-footer") if f.attr "data-fixed"
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
