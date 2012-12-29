@@ -71,5 +71,5 @@ define [] , () ->
 
     foos.removeClass('bar')
 
-    equal 0,u('#test1 .bar').size()
+    equal 0, u('#test1 .bar').size()
 

@@ -702,12 +702,12 @@ define('cs!str',[], function() {
         }
       };
 
-      USet.prototype.jQuery = function() {
-        return $(this.els || this.el);
-      };
-
       USet.prototype.toArray = function() {
         return this.all();
+      };
+
+      USet.prototype.jQuery = function() {
+        return $(this.els || this.el);
       };
 
       return USet;

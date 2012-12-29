@@ -158,10 +158,12 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
 
       each: (cb) ->
         els = @all()
+        return unless els
+
         i = 0
-        len = @els.length
+        len = els.length
         while i < len
-          b = cb.apply els[i], i, els[i]
+          b = cb.call els[i], i, els[i]
           break if b is false
           i++
         return this
@@ -263,7 +265,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return parseInt(el.style.width) if el?.style.width
           parseInt(style(1).width)
 
-      toArray: -> return @all()
+      toArray: -> @all()
 
       # convert element or element collection to jQuery object.
       jQuery: () -> $( @els or @el )

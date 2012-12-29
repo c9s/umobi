@@ -90,7 +90,6 @@ jQuery UI 1.9.2 (minified 335KB)
 - iOS5.0+ (WebKit on iPhone and iPad)
 - Android ?.?
 
-
 ## Contribution
 
 - SASS for styles, Please see <http://sass-lang.com/tutorial.html>
