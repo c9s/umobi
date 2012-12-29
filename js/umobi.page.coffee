@@ -104,10 +104,8 @@ define [
             AdjustContentHeight = (e) ->
               # console.log "pagereveal" , h.height(), f.height()
               contentHeight = $(window).height()
-              contentTop    = 0
-              contentBottom = 0
-              contentTop    = h.height() if h.get(0)
-              contentBottom = f.height() if f.get(0)
+              contentTop    = if h.get(0) then h.height() else 0
+              contentBottom = if f.get(0) then f.height() else 0
               $contentContainer.css
                 position: 'absolute'
                 top: contentTop + 'px'
