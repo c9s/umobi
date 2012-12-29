@@ -90,19 +90,6 @@ jQuery UI 1.9.2 (minified 335KB)
 - iOS5.0+ (WebKit on iPhone and iPad)
 - Android ?.?
 
-# u.js library
-
-## Widget API
-
-Define your widget:
-
-    u.widget('calendar', function(options) {
-        return new Widget;
-    });
-
-To use your widget:
-
-    var widget = u('#container').widget.calendar({ url: ... });
 
 ## Contribution
 

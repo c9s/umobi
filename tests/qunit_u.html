@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>u.js Test Suite</title>
+  <!-- Load local QUnit. -->
+  <link rel="stylesheet" href="libs/qunit.css" media="screen">
+  <script src="libs/qunit.js"></script>
+  <script src="../js/require.js"></script>
+  <script src="config.js"></script>
+  <script type="text/javascript">
+    require([
+      'coffee-script', 'cs',
+      'cs!str',
+      'cs!u.dom',
+      'cs!u',
+      'cs!tests/u_test'
+    ], function() {
+      QUnit.start();
+    });
+  </script>
+</head>
+<body>
+  <h1 id="qunit-header">u.js Test Suite</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <div id="qunit-fixture">
+
+      <div id="test1">
+        <div class="foo">1</div>
+        <div class="foo">2</div>
+        <div class="foo">3</div>
+        <div class="foo">4</div>
+        <div class="foo">5</div>
+        <div class="foo">6</div>
+      </div>
+  
+  </div>
+</body>
+</html>

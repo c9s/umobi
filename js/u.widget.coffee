@@ -15,5 +15,7 @@ define ["cs!u.dom","cs!u"], () ->
      @param closure factory
   ###
   u.widget = (name,factory) ->
-    @_widgets[ name ] = factory
-
+    # register factory method to u.js
+    if factory
+      u[ name ] = (options) ->
+        return factory.apply(options)
