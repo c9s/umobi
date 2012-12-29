@@ -14,6 +14,9 @@ define [] , () ->
     ok elements, "Got elements"
     equal 1, elements.size()
 
+    elements = u('#test1 [data-role=widget]')
+    equal 2, elements.size(), "Get data-role=widget"
+
   test "Test all()", () ->
     elements = u("#test1 .foo")
     for el in elements.all()
@@ -36,6 +39,7 @@ define [] , () ->
   test "Test last()", () ->
     ok u("#test1 .foo").last()
     ok u("#test1").last()
+
 
   test "Test addClass() and removeClass()", () ->
     foos = u('#test1 .foo')
