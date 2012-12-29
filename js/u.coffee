@@ -100,35 +100,31 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       https://developer.mozilla.org/en-US/docs/DOM/element.classList
       ###
       addClass: (cls) ->
-        els = @all()
         if typeof cls is "object"
           for c in cls
-            el.classList.add(c) for el in els
+            el.classList.add(c) for el in @all()
         else
-          el.classList.add(cls) for el in els
+          el.classList.add(cls) for el in @all()
         return this
 
       toggleClass: (cls) ->
-        els = @all()
         if typeof cls is "object"
           for c in cls
-            el.classList.toggle(c) for el in els
+            el.classList.toggle(c) for el in @all()
         else
-          el.classList.toggle(cls) for el in els
+          el.classList.toggle(cls) for el in @all()
         return this
 
       removeClass: (cls) ->
-        els = @all()
         if typeof cls is "object"
           for c in cls
-            el.classList.remove(c) for el in els
+            el.classList.remove(c) for el in @all()
         else
-          el.classList.remove(cls) for el in els
+          el.classList.remove(cls) for el in @all()
         return this
 
       hasClass: (cls) ->
-        all = @all()
-        for el in all
+        for el in @all()
           if not el.classList.contains(cls)
             return false
         return true
@@ -161,16 +157,13 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       empty: () -> @each (i,el) -> el.innerHTML = ''
 
       each: (cb) ->
-        if @els
-          i = 0
-          len = @els.length
-          while i < len
-            b = cb i, @els[i]
-            break if b is false
-            i++
-        else
-          el = @get(0)
-          cb 0, el if el
+        els = @all()
+        i = 0
+        len = @els.length
+        while i < len
+          b = cb.apply els[i], i, els[i]
+          break if b is false
+          i++
         return this
 
       ###
