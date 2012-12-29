@@ -263,8 +263,11 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return parseInt(el.style.width) if el?.style.width
           parseInt(style(1).width)
 
+      toArray: -> return @all()
+
       # convert element or element collection to jQuery object.
       jQuery: () -> $( @els or @el )
+
 
     window.u = u
 

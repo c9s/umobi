@@ -706,6 +706,10 @@ define('cs!str',[], function() {
         return $(this.els || this.el);
       };
 
+      USet.prototype.toArray = function() {
+        return this.all();
+      };
+
       return USet;
 
     })();
