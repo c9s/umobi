@@ -100,12 +100,15 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       https://developer.mozilla.org/en-US/docs/DOM/element.classList
       ###
       addClass: (cls) ->
+        els = @all()
         if typeof cls is "object"
-          return @each (i, el) ->
+          for el in els
             for c in cls
               el.classList.add(c)
         else
-          return @each (i, el) -> el.classList.add(cls)
+          for el in els
+            el.classList.add(cls)
+        return this
 
       toggleClass: (cls) ->
         if typeof cls is "object"
