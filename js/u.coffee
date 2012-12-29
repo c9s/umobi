@@ -102,19 +102,20 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       addClass: (cls) ->
         els = @all()
         if typeof cls is "object"
-          for el in els
-            for c in cls
-              el.classList.add(c)
+          for c in cls
+            el.classList.add(c) for el in els
         else
-          for el in els
-            el.classList.add(cls)
+          el.classList.add(cls) for el in els
         return this
 
       toggleClass: (cls) ->
+        els = @all()
         if typeof cls is "object"
-          return @each (i, el) -> el.classList.toggle(c) for c in cls
+          for c in cls
+            el.classList.toggle(c) for el in els
         else
-          return @each (i, el) -> el.classList.toggle(cls)
+          el.classList.toggle(cls) for el in els
+        return this
 
       removeClass: (cls) ->
         if typeof cls is "object"
