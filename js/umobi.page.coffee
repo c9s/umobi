@@ -95,14 +95,14 @@ define [
           # adjust cotnent padding to keep space for header and footer.
           if not umobi.config.touchScroll
             AdjustContentPadding = () ->
-              console.log "pagereveal", h.height(), f.height()
+              # console.log "pagereveal", h.height(), f.height()
               $contentContainer.css('paddingTop', h.height() + 'px') if h.get(0)
               $contentContainer.css('paddingBottom', f.height() + 'px') if f.get(0)
             upage.on 'pagereveal', AdjustContentPadding
           else
             # use absolute position and fixed header/footer for desktop
             AdjustContentHeight = (e) ->
-              console.log "pagereveal" , h.height(), f.height()
+              # console.log "pagereveal" , h.height(), f.height()
               contentHeight = $(window).height()
               contentTop    = 0
               contentBottom = 0
