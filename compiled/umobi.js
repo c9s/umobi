@@ -400,19 +400,20 @@ define('cs!str',[], function() {
 
 
       USet.prototype.addClass = function(cls) {
-        var c, el, els, _i, _j, _k, _len, _len1, _len2;
-        els = this.all();
+        var c, el, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
         if (typeof cls === "object") {
           for (_i = 0, _len = cls.length; _i < _len; _i++) {
             c = cls[_i];
-            for (_j = 0, _len1 = els.length; _j < _len1; _j++) {
-              el = els[_j];
+            _ref = this.all();
+            for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+              el = _ref[_j];
               el.classList.add(c);
             }
           }
         } else {
-          for (_k = 0, _len2 = els.length; _k < _len2; _k++) {
-            el = els[_k];
+          _ref1 = this.all();
+          for (_k = 0, _len2 = _ref1.length; _k < _len2; _k++) {
+            el = _ref1[_k];
             el.classList.add(cls);
           }
         }
@@ -420,19 +421,20 @@ define('cs!str',[], function() {
       };
 
       USet.prototype.toggleClass = function(cls) {
-        var c, el, els, _i, _j, _k, _len, _len1, _len2;
-        els = this.all();
+        var c, el, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
         if (typeof cls === "object") {
           for (_i = 0, _len = cls.length; _i < _len; _i++) {
             c = cls[_i];
-            for (_j = 0, _len1 = els.length; _j < _len1; _j++) {
-              el = els[_j];
+            _ref = this.all();
+            for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+              el = _ref[_j];
               el.classList.toggle(c);
             }
           }
         } else {
-          for (_k = 0, _len2 = els.length; _k < _len2; _k++) {
-            el = els[_k];
+          _ref1 = this.all();
+          for (_k = 0, _len2 = _ref1.length; _k < _len2; _k++) {
+            el = _ref1[_k];
             el.classList.toggle(cls);
           }
         }
@@ -440,19 +442,20 @@ define('cs!str',[], function() {
       };
 
       USet.prototype.removeClass = function(cls) {
-        var c, el, els, _i, _j, _k, _len, _len1, _len2;
-        els = this.all();
+        var c, el, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
         if (typeof cls === "object") {
           for (_i = 0, _len = cls.length; _i < _len; _i++) {
             c = cls[_i];
-            for (_j = 0, _len1 = els.length; _j < _len1; _j++) {
-              el = els[_j];
+            _ref = this.all();
+            for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+              el = _ref[_j];
               el.classList.remove(c);
             }
           }
         } else {
-          for (_k = 0, _len2 = els.length; _k < _len2; _k++) {
-            el = els[_k];
+          _ref1 = this.all();
+          for (_k = 0, _len2 = _ref1.length; _k < _len2; _k++) {
+            el = _ref1[_k];
             el.classList.remove(cls);
           }
         }
@@ -460,10 +463,10 @@ define('cs!str',[], function() {
       };
 
       USet.prototype.hasClass = function(cls) {
-        var all, el, _i, _len;
-        all = this.all();
-        for (_i = 0, _len = all.length; _i < _len; _i++) {
-          el = all[_i];
+        var el, _i, _len, _ref;
+        _ref = this.all();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          el = _ref[_i];
           if (!el.classList.contains(cls)) {
             return false;
           }
@@ -521,22 +524,16 @@ define('cs!str',[], function() {
       };
 
       USet.prototype.each = function(cb) {
-        var b, el, i, len;
-        if (this.els) {
-          i = 0;
-          len = this.els.length;
-          while (i < len) {
-            b = cb(i, this.els[i]);
-            if (b === false) {
-              break;
-            }
-            i++;
+        var b, els, i, len;
+        els = this.all();
+        i = 0;
+        len = this.els.length;
+        while (i < len) {
+          b = cb.apply(els[i], i, els[i]);
+          if (b === false) {
+            break;
           }
-        } else {
-          el = this.get(0);
-          if (el) {
-            cb(0, el);
-          }
+          i++;
         }
         return this;
       };
