@@ -526,10 +526,13 @@ define('cs!str',[], function() {
       USet.prototype.each = function(cb) {
         var b, els, i, len;
         els = this.all();
+        if (!els) {
+          return;
+        }
         i = 0;
-        len = this.els.length;
+        len = els.length;
         while (i < len) {
-          b = cb.apply(els[i], i, els[i]);
+          b = cb.call(els[i], i, els[i]);
           if (b === false) {
             break;
           }
@@ -1272,7 +1275,6 @@ define('cs!str',[], function() {
           }
           if (!umobi.config.touchScroll) {
             AdjustContentPadding = function() {
-              console.log("pagereveal", h.height(), f.height());
               if (h.get(0)) {
                 $contentContainer.css('paddingTop', h.height() + 'px');
               }
@@ -1284,16 +1286,9 @@ define('cs!str',[], function() {
           } else {
             AdjustContentHeight = function(e) {
               var contentBottom, contentHeight, contentTop;
-              console.log("pagereveal", h.height(), f.height());
               contentHeight = $(window).height();
-              contentTop = 0;
-              contentBottom = 0;
-              if (h.get(0)) {
-                contentTop = h.height();
-              }
-              if (f.get(0)) {
-                contentBottom = f.height();
-              }
+              contentTop = h.get(0) ? h.height() : 0;
+              contentBottom = f.get(0) ? f.height() : 0;
               return $contentContainer.css({
                 position: 'absolute',
                 top: contentTop + 'px',
