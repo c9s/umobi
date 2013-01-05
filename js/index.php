@@ -11,6 +11,7 @@ $jsfiles = array (
   // 'domReady.js',
   'jquery.js',
   'jquery.hashchange.js',
+  'coffee-script.js',
   // 'z.js',
   // 'zepto.js',
   // 'zepto.min.js',
@@ -19,6 +20,7 @@ $jsfiles = array (
   // 'coffee-script.js',
   // 'cs.js',
 );
+
 
 $coffeefiles = array(
   'str.coffee',

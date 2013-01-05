@@ -8,7 +8,7 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
   umobi.button = { }
 
   # get buttons
-  umobi.button.all = () -> u.dom.queryAll('[data-role="button"]')
+  umobi.button.all = -> u.dom.queryAll('[data-role="button"]')
 
   umobi.button.markup = (el) ->
     $el = $(el)
