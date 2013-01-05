@@ -11,16 +11,14 @@ $jsfiles = array (
   // 'domReady.js',
   'jquery.js',
   'jquery.hashchange.js',
-  'coffee-script.js',
   // 'z.js',
   // 'zepto.js',
   // 'zepto.min.js',
 
   // TODO: use coffee-script to filter these coffee-script
-  // 'coffee-script.js',
+  'coffee-script.js',
   // 'cs.js',
 );
-
 
 $coffeefiles = array(
   'str.coffee',
@@ -40,6 +38,8 @@ $coffeefiles = array(
   'umobi.init.coffee',
 );
 
+
+// should compile coffee-script in runtime.
 foreach( $coffeefiles as $coffeefile ) {
     $newfile = str_replace('.coffee','.js',$coffeefile);
     if(file_exists($newfile))
@@ -66,7 +66,7 @@ function runCoffee($files)
 	$desc = array(
 		0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
 		1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
-		# 2 => array("pipe", "w", "a") // stderr is a file to write to
+		2 => array("pipe", "w"), // stderr is a file to write to
 	);
 	$node   = findbin('node');
 	$coffee = findbin('coffee');
@@ -83,6 +83,10 @@ function runCoffee($files)
 		$js = stream_get_contents($pipes[1]);
 		fclose($pipes[1]);
 		$return_value = proc_close($process);
+
+        if ( $pipes[2] ) {
+            return "console.error('{$pipes[2]}');";
+        }
 		return $js;
 	} else {
 		header('HTTP/1.0 500 Process Error');
