@@ -16,7 +16,7 @@ $jsfiles = array (
   // 'zepto.min.js',
 
   // TODO: use coffee-script to filter these coffee-script
-  'coffee-script.js',
+  // 'coffee-script.js',
   // 'cs.js',
 );
 
@@ -39,12 +39,6 @@ $coffeefiles = array(
 );
 
 
-// should compile coffee-script in runtime.
-foreach( $coffeefiles as $coffeefile ) {
-    $newfile = str_replace('.coffee','.js',$coffeefile);
-    if(file_exists($newfile))
-        $jsfiles[] = $newfile;
-}
 
 function findbin($bin)
 {
@@ -75,18 +69,29 @@ function runCoffee($files)
 	$process = proc_open("$node $coffee --bare --stdio --print", $desc, $pipes, $cwd);
 	if (is_resource($process)) {
 		$content = '';
+
 		foreach( $files as $file ) {
 			$content .= file_get_contents($file);
 		}
+
 		fwrite($pipes[0], $content);
 		fclose($pipes[0]);
 		$js = stream_get_contents($pipes[1]);
 		fclose($pipes[1]);
-		$return_value = proc_close($process);
 
-        if ( $pipes[2] ) {
-            return "console.error('{$pipes[2]}');";
+        /*
+        if( $pipes[2] ) {
+            $errors = explode("\n",stream_get_contents($pipes[2]));
+            fclose($pipes[2]);
+            if ( $pipes[2] ) {
+                return join("\n",array_map(function($err) {
+                    return "console.error(\"$err\");";
+                },$errors));
+            }
         }
+         */
+
+		$return_value = proc_close($process);
 		return $js;
 	} else {
 		header('HTTP/1.0 500 Process Error');
@@ -121,6 +126,15 @@ function aggregateContent($commitId)
 	$comment = '';
 	if ( $commitId )
 		$comment = "/* git commitid " . $commitId . " */\n";
+
+    // should compile coffee-script in runtime.
+    if( $useCompiledCoffee ) {
+        foreach( $coffeefiles as $coffeefile ) {
+            $newfile = str_replace('.coffee','.js',$coffeefile);
+            if(file_exists($newfile))
+                $jsfiles[] = $newfile;
+        }
+    }
 
 	$output .= $comment . "\n";
 	foreach( $jsfiles as $jsfile ) {

@@ -228,6 +228,9 @@ h2.ui-title {
 h3.ui-title {
   font-size: 1.1em; }
 
+.ui-input-text.ui-mini {
+  display: inline-block; }
+
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
 /*Link button structure */

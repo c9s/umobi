@@ -777,17 +777,27 @@ define('cs!str',[], function() {
         $input.focus(function() {
           return $(this).parent().addClass('ui-focus');
         });
-        _results.push($input.blur(function() {
+        $input.blur(function() {
           return $(this).parent().removeClass('ui-focus');
-        }));
+        });
+        if ($input.data("mini")) {
+          _results.push($input.parent().addClass("ui-mini"));
+        } else {
+          _results.push(void 0);
+        }
       } else if (input.nodeName === "TEXTAREA") {
         input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c";
         $input.focus(function() {
           return $(this).addClass('ui-focus');
         });
-        _results.push($input.blur(function() {
+        $input.blur(function() {
           return $(this).removeClass('ui-focus');
-        }));
+        });
+        if ($input.data("mini")) {
+          _results.push($input.parent().addClass("ui-mini"));
+        } else {
+          _results.push(void 0);
+        }
       } else {
         _results.push(void 0);
       }
@@ -1276,13 +1286,13 @@ define('cs!str',[], function() {
           if (!umobi.config.touchScroll) {
             AdjustContentPadding = function() {
               if (h.get(0)) {
-                $contentContainer.css('paddingTop', h.height() + 'px');
+                $contentContainer.css("paddingTop", h.height() + 'px');
               }
               if (f.get(0)) {
-                return $contentContainer.css('paddingBottom', f.height() + 'px');
+                return $contentContainer.css("paddingBottom", f.height() + 'px');
               }
             };
-            upage.on('pagereveal', AdjustContentPadding);
+            upage.on("pagereveal", AdjustContentPadding);
           } else {
             AdjustContentHeight = function(e) {
               var contentBottom, contentHeight, contentTop;
@@ -1290,28 +1300,28 @@ define('cs!str',[], function() {
               contentTop = h.get(0) ? h.height() : 0;
               contentBottom = f.get(0) ? f.height() : 0;
               return $contentContainer.css({
-                position: 'absolute',
-                top: contentTop + 'px',
+                position: "absolute",
+                top: contentTop + "px",
                 left: 0,
-                bottom: contentBottom + 'px',
-                overflow: umobi.support.touchEnabled ? 'hidden' : 'auto'
+                bottom: contentBottom + "px",
+                overflow: umobi.support.touchEnabled ? "hidden" : "auto"
               });
             };
             upage.on("pagereveal", AdjustContentHeight);
           }
         }
         resizeTimeout = null;
-        $(window).on("resize", function() {
+        u(window).on("resize", function() {
           if (resizeTimeout) {
             clearTimeout(resizeTimeout);
           }
           return resizeTimeout = setTimeout(AdjustContentHeight, 100);
         });
-        if (h.attr('data-fixed')) {
-          h.addClass('ui-fixed-header');
+        if (h.attr("data-fixed")) {
+          h.addClass("ui-fixed-header");
         }
-        if (f.attr('data-fixed')) {
-          return f.addClass('ui-fixed-footer');
+        if (f.attr("data-fixed")) {
+          return f.addClass("ui-fixed-footer");
         }
       }
     };
