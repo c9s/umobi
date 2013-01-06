@@ -743,9 +743,9 @@ define('cs!str',[], function() {
     };
     $el.addClass(cmap.up);
     $el.hover((function() {
-      return u(this).removeClass(cmap.up).addClass(cmap.hover);
+      return u(this).removeClass([cmap.up, cmap.down]).addClass(cmap.hover);
     }), (function() {
-      return u(this).removeClass(cmap.hover).addClass(cmap.up);
+      return u(this).removeClass([cmap.down, cmap.hover]).addClass(cmap.up);
     }));
     $el.on('mousedown', function() {
       return u(this).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down);
@@ -755,8 +755,33 @@ define('cs!str',[], function() {
     });
   };
   u.ready(function() {
-    var buttons;
-    return buttons = u.dom.queryAll('[data-role="button"]');
+    var $link, button, buttons, el, link, linkbuttons, _i, _j, _len, _len1, _ref, _ref1, _results;
+    linkbuttons = u('a[data-role="button"]');
+    _ref = linkbuttons.all();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      el = _ref[_i];
+      link = u(el);
+      link.data("corners", true).data("shadow", true).data("theme", umobi.config.theme);
+      link.addClass(["ui-btn", "ui-shadow", "ui-btn-corner-all"]);
+      if (link.data("mini")) {
+        link.addClass("ui-mini");
+      }
+      $link = $(el);
+      $link.wrapInner("<span class=\"ui-btn ui-btn-corner-all\">\n  <span class=\"ui-btn-text\">\n  </span>\n</span>");
+      umobi.button.bindClassEvents($link);
+    }
+    buttons = u('button, input[type="button"]');
+    _ref1 = buttons.all();
+    _results = [];
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      button = _ref1[_j];
+      u(button).addClass(["ui-btn", "ui-btn-corner-all", "ui-shadow"]);
+      if (u(button).data("mini")) {
+        u(button).addClass("ui-mini");
+      }
+      _results.push(umobi.button.bindClassEvents($(button)));
+    }
+    return _results;
   });
   /*
     */
@@ -764,40 +789,39 @@ define('cs!str',[], function() {
 /*
   */
   $(function() {
-    var $input, input, inputs, uiClass, _i, _len, _results;
-    inputs = u.dom.queryAll('input, textarea');
-    _results = [];
-    for (_i = 0, _len = inputs.length; _i < _len; _i++) {
-      input = inputs[_i];
+    var $input, input, inputs, textareas, uiClass, _i, _j, _len, _len1, _ref, _ref1, _results;
+    inputs = u('input[type="text"],input[type="password"]');
+    _ref = inputs.all();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      input = _ref[_i];
       $input = $(input);
-      if (input.type === "text" || input.type === "password") {
-        uiClass = "ui-input-text";
-        input.className += uiClass;
-        $input.wrap('<div class="' + uiClass + ' ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"></div>');
-        $input.focus(function() {
-          return $(this).parent().addClass('ui-focus');
-        });
-        $input.blur(function() {
-          return $(this).parent().removeClass('ui-focus');
-        });
-        if ($input.data("mini")) {
-          _results.push($input.parent().addClass("ui-mini"));
-        } else {
-          _results.push(void 0);
-        }
-      } else if (input.nodeName === "TEXTAREA") {
-        input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c";
-        $input.focus(function() {
-          return $(this).addClass('ui-focus');
-        });
-        $input.blur(function() {
-          return $(this).removeClass('ui-focus');
-        });
-        if ($input.data("mini")) {
-          _results.push($input.parent().addClass("ui-mini"));
-        } else {
-          _results.push(void 0);
-        }
+      uiClass = "ui-input-text";
+      input.className += uiClass;
+      $input.wrap('<div class="' + uiClass + ' ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"></div>');
+      $input.focus(function() {
+        return $(this).parent().addClass('ui-focus');
+      });
+      $input.blur(function() {
+        return $(this).parent().removeClass('ui-focus');
+      });
+      if ($input.data("mini")) {
+        $input.parent().addClass("ui-mini");
+      }
+    }
+    textareas = u('textarea');
+    _ref1 = textareas.all();
+    _results = [];
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      input = _ref1[_j];
+      input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c";
+      $input.focus(function() {
+        return $(this).addClass('ui-focus');
+      });
+      $input.blur(function() {
+        return $(this).removeClass('ui-focus');
+      });
+      if ($input.data("mini")) {
+        _results.push($input.parent().addClass("ui-mini"));
       } else {
         _results.push(void 0);
       }
@@ -1436,22 +1460,13 @@ define('cs!str',[], function() {
   (function() {
     var initializeLinks;
     initializeLinks = function() {
-      var $link, link, ulink, _i, _len, _ref, _results;
+      var link, ulink, _i, _len, _ref, _results;
       _ref = document.links;
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         link = _ref[_i];
         ulink = u(link);
-        if (ulink.data("role") === "button") {
-          ulink.data("corners", true).data("shadow", true).data("theme", umobi.config.theme);
-          ulink.addClass(["ui-btn", "ui-shadow", "ui-btn-corner-all"]);
-          if (ulink.data('mini')) {
-            ulink.addClass("ui-mini");
-          }
-          $link = $(link);
-          $link.wrapInner("<span class=\"ui-btn ui-btn-corner-all\">\n  <span class=\"ui-btn-text\">\n  </span>\n</span>");
-          umobi.button.bindClassEvents(link);
-        } else {
+        if (!ulink.data('role')) {
           ulink.addClass('ui-link');
         }
         _results.push(ulink.click(function(e) {

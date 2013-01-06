@@ -5,8 +5,9 @@ define [] , ->
   test "Core", ->
     ok u, "Got global u helper"
 
-  test "Test iterating", ->
-    # items = 1..3
+#    test "Test iterating", ->
+#      items = 1..3
+#      ok items
 
   test "Test query selector", ->
     elements = u("#test1 .foo")

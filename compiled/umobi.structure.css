@@ -162,15 +162,20 @@ h3.ui-title {
   font-size: 1.1em; }
 .ui-input-text.ui-mini {
   display: inline-block; }
-a.ui-btn {
+a.ui-btn,
+button.ui-btn {
   text-decoration: none;
   font-size: 16px;
   padding: 6px 12px;
   display: block;
   text-align: center;
   margin: 0.5em 0; }
-a.ui-btn.ui-mini {
-  display: inline-block; }
+button.ui-btn {
+  width: 100%; }
+a.ui-btn.ui-mini,
+button.ui-btn.ui-mini {
+  display: inline-block;
+  width: auto; }
 .ui-btn:focus, .ui-link-inherit:focus {
   outline: 0; }
 .ui-btn.ui-focus {
@@ -194,6 +199,7 @@ textarea.ui-input-text {
   outline: 0; }
 input.ui-mini,
 .ui-mini input,
+button.ui-mini,
 textarea.ui-mini {
   font-size: 14px;
   width: auto; }

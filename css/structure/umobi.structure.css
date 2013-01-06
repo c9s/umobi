@@ -210,7 +210,8 @@ h3.ui-title {
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
 /*Link button structure */
-a.ui-btn {
+a.ui-btn,
+button.ui-btn {
   text-decoration: none;
   font-size: 16px;
   padding: 6px 12px;
@@ -218,8 +219,13 @@ a.ui-btn {
   text-align: center;
   margin: 0.5em 0; }
 
-a.ui-btn.ui-mini {
-  display: inline-block; }
+button.ui-btn {
+  width: 100%; }
+
+a.ui-btn.ui-mini,
+button.ui-btn.ui-mini {
+  display: inline-block;
+  width: auto; }
 
 /***************************************
  * focus state  for most case
@@ -251,6 +257,7 @@ textarea.ui-input-text {
 
 input.ui-mini,
 .ui-mini input,
+button.ui-mini,
 textarea.ui-mini {
   font-size: 14px;
   width: auto; }

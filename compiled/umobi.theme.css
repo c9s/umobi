@@ -234,7 +234,8 @@ h3.ui-title {
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
 /*Link button structure */
-a.ui-btn {
+a.ui-btn,
+button.ui-btn {
   text-decoration: none;
   font-size: 16px;
   padding: 6px 12px;
@@ -242,8 +243,13 @@ a.ui-btn {
   text-align: center;
   margin: 0.5em 0; }
 
-a.ui-btn.ui-mini {
-  display: inline-block; }
+button.ui-btn {
+  width: 100%; }
+
+a.ui-btn.ui-mini,
+button.ui-btn.ui-mini {
+  display: inline-block;
+  width: auto; }
 
 /***************************************
  * focus state  for most case
@@ -275,6 +281,7 @@ textarea.ui-input-text {
 
 input.ui-mini,
 .ui-mini input,
+button.ui-mini,
 textarea.ui-mini {
   font-size: 14px;
   width: auto; }
@@ -377,7 +384,8 @@ p {
 
 /* Link Button Styles
  * ======================== */
-a.ui-btn {
+a.ui-btn,
+button.ui-btn {
   color: #264755;
   font-weight: bold;
   border-top: 1px solid #cccccc;
@@ -388,7 +396,8 @@ a.ui-btn {
   -moz-text-shadow: 1px 1px white;
   text-shadow: 1px 1px white; }
 
-a.ui-btn.ui-btn-up-c {
+a.ui-btn.ui-btn-up-c,
+button.ui-btn.ui-btn-up-c {
   background: white;
   /* FF3.6+ */
   background: -moz-linear-gradient(top, white 0%, #e5e5e5 100%);
@@ -399,7 +408,7 @@ a.ui-btn.ui-btn-up-c {
   /* W3C */
   background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
 
-a.ui-btn.ui-btn-hover-c {
+button.ui-btn.ui-btn-hover-c {
   background: whitesmoke;
   /* FF3.6+ */
   background: -moz-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
@@ -410,7 +419,8 @@ a.ui-btn.ui-btn-hover-c {
   /* W3C */
   background: linear-gradient(to bottom, whitesmoke 0%, #d5d5d5 100%); }
 
-a.ui-btn.ui-btn-down-c {
+a.ui-btn.ui-btn-down-c,
+button.ui-btn.ui-btn-down-c {
   background: #dddddd;
   /* FF3.6+ */
   background: -moz-linear-gradient(top, #dddddd 0%, white 100%);
@@ -467,6 +477,7 @@ div.ui-input-text {
   border: 1px solid #cccccc;
   border-radius: 10px; }
 
+button.ui-mini,
 input.ui-input-text.ui-mini,
 textarea.ui-input-text.ui-mini,
 div.ui-input-text.ui-mini {
