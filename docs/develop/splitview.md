@@ -34,9 +34,14 @@ a split view may contains a main menu and the main content.
 
 - when initializing a page with a splitview:
 
-1. find the splitview container.
-    1. find the primary content container inside the splitview container.
+    1. find the splitview container.
     2. find the secondary content container inside the splitview container.
+        1. initialize pages inside the secondary content container.
+        2. initialize links with target (should support target)
+    3. find the primary content container inside the splitview container.
+        1. initialize pages inside the primary content container.
+        2. shows the index page (of primary content)
+        3. initialize links with target (should support target)
 
 ## HTML Template
 

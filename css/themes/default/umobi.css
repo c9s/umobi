@@ -385,6 +385,7 @@ button.ui-btn.ui-btn-up-c {
   /* W3C */
   background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
 
+a.ui-btn.ui-btn-hover-c,
 button.ui-btn.ui-btn-hover-c {
   background: whitesmoke;
   /* FF3.6+ */
@@ -454,6 +455,7 @@ div.ui-input-text {
   border: 1px solid #cccccc;
   border-radius: 10px; }
 
+/* mini style for button, text input, textarea */
 button.ui-mini,
 input.ui-input-text.ui-mini,
 textarea.ui-input-text.ui-mini,

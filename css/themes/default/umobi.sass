@@ -83,7 +83,7 @@ a.ui-btn.ui-btn-up-c,
 button.ui-btn.ui-btn-up-c
   @include background-v-gradient(#ffffff,#e5e5e5)
 
-a.ui-btn.ui-btn-hover-c
+a.ui-btn.ui-btn-hover-c,
 button.ui-btn.ui-btn-hover-c
   @include background-v-gradient(#f5f5f5,#d5d5d5)
 
@@ -118,6 +118,8 @@ a.ui-link
 .ui-btn:focus, .ui-link-inherit:focus
   outline: 0
 
+
+
 textarea.ui-input-text.ui-focus,
 div.ui-input-text.ui-focus
   /* box-shadow: inset 0px 1px 4px rgba(0, 0, 0, .4), 0px 0px 12px #80acbd
@@ -128,12 +130,14 @@ div.ui-input-text.ui-focus
 input.ui-input-text, 
 textarea.ui-input-text
   @include text-shadow(0px 1px #d8d8d8)
-  
+
 div.ui-input-text 
   padding: 0 30px 0 .4em
   border: 1px solid #ccc
   border-radius: 10px
 
+
+/* mini style for button, text input, textarea
 button.ui-mini,
 input.ui-input-text.ui-mini, 
 textarea.ui-input-text.ui-mini,

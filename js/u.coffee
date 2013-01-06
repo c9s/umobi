@@ -201,6 +201,12 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           els.push(n) for n in nodes
         return u(els)
 
+      findone: (sel) ->
+        for el in @all()
+          node = u.dom.query(sel,el)
+          return u(node) if node
+        return
+
       siblings: (sel) ->
         return @parent().find(sel) if sel
         return @parent().children()
