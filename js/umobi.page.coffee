@@ -63,12 +63,12 @@ define [
         upage.addClass(["ui-page","ui-body-#{ umobi.config.theme }"])
 
         # TODO: rewrite this with umobi.dom
-        h = upage.find('[data-role="header"]').addClass('ui-header') # header container
-        f = upage.find('[data-role="footer"]').addClass('ui-footer')  # footer container
-        c = upage.find('[data-role="content"]').addClass('ui-content') # content container
+        h = upage.find('[data-role="header"]').addClass("ui-header") # header container
+        f = upage.find('[data-role="footer"]').addClass("ui-footer")  # footer container
+        c = upage.find('[data-role="content"]').addClass("ui-content") # content container
 
-        h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title')
-        isBothFixed = h.attr 'data-fixed' or f.attr 'data-fixed'
+        h.find("h1,h2,h3,h4,h5,h6").addClass("ui-title")
+        isBothFixed = h.data "fixed" or f.data "fixed"
 
         # iOS5.0+, Android 2.2 supports position:fixed,
         # we need a simple detection here.
