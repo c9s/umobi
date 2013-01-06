@@ -11,21 +11,28 @@ x hashchange trirgger (to switch page)
 x fast scroll js implementation
 x list view
 
+## Layout features
 
+- sidebar view (primary content and sidebar content)
+    - a sidebar view may contains a primary content and the sidebar
+    - the sidebar could be togglable if the screen width is not enough.
+
+## Interface components
+
+x button style
+- splitview 
+- range widget
+- dialog widget
+- table view
+- navigator buttons (in footer)
+- fast button
+
+## Application components
+
+- offline cache support.
 - use array based interface for u object.
     - we need to copy the element collection into self object by index. 
       it might caused some performance problem because it's copying NodeList object.
 
-
-- button style
-- fast button
-- table view
-- range input widget
-- dialog widget
-
-- navigator buttons (in footer)
-- split view demo page.
-- form widgets demo page.
-- offline cache support.
 
 - use jinja2 to render templates for docs pages.
