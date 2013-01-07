@@ -17,6 +17,7 @@ define [
     uhtml = u('html')
     uhtml.children(0).addClass(['ui-mobile','ui-mobile-rendering'])
 
+
     u.ready ->
       # defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1
       umobi.page.init()
@@ -33,6 +34,7 @@ define [
         $(document).on('pagereveal', hideAddressBar )
 
       u.load -> uhtml.removeClass('ui-mobile-rendering')
+      u(document.body).addClass("ui-body-c")
   )()
 
   ###

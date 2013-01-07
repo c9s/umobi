@@ -33,6 +33,7 @@ $coffeefiles = array(
   'umobi.button.coffee',
   'umobi.widget.coffee',
   'umobi.page.coffee',
+  'umobi.splitview.coffee',
   'umobi.zoom.coffee',
   'umobi.link.coffee',
   'umobi.init.coffee',

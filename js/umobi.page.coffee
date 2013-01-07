@@ -96,8 +96,8 @@ define [
           if not umobi.config.touchScroll
             AdjustContentPadding = ->
               # console.log "pagereveal", h.height(), f.height()
-              $contentContainer.css("paddingTop", h.height() + 'px') if h.get(0)
-              $contentContainer.css("paddingBottom", f.height() + 'px') if f.get(0)
+              $contentContainer.css("paddingTop", h.height() + "px") if h.get(0)
+              $contentContainer.css("paddingBottom", f.height() + "px") if f.get(0)
             upage.on "pagereveal", AdjustContentPadding
           else
             # use absolute position and fixed header/footer for desktop

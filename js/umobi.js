@@ -35,6 +35,7 @@ define([
     "cs!umobi.support",
     "cs!umobi.offlinecache",
     "cs!umobi.page",
+    "cs!umobi.splitview",
     "cs!umobi.link",
     "cs!umobi.init"
 ], function(r,jQuery,cs,cs2,umobi) { 

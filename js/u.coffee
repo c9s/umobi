@@ -135,10 +135,11 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
       css: (n,v) ->
         # setter
         if( n and v )
-          return @each (i,el) -> el.style[n] = v
+          return @each (i,el) ->
+            el.style[n] = v
         else if typeof n is "object"
           return @each (i,el) ->
-            for k,val in n
+            for k,val of n
               el.style[k] = val
         # getter
         if typeof n is "string" and @el
