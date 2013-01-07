@@ -8,12 +8,12 @@ define ['jquery','cs!umobi.core','cs!u'], () ->
   (->
     debug = window.console and true
 
-    u.ready ->
-      # TODO: range slider need this.
-      document.body.addEventListener('touchmove', ((e) ->
-        # This prevents native scrolling from happening.
-        e.preventDefault()
-      ), false)
+#      u.ready ->
+#        # TODO: range slider need this.
+#        document.body.addEventListener('touchmove', ((e) ->
+#          # This prevents native scrolling from happening.
+#          e.preventDefault()
+#        ), false)
 
     class Scroller
       snapBoundary: 80

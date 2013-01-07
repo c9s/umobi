@@ -86,10 +86,10 @@ define [
 
           # Initialize touch scroller with 3D translate if it's on mobile
           # device and the touchScroll option is enabled.
-          if umobi.support.touchEnabled and umobi.config.touchScroll
-            umobi.scroller.create(c.get(0))
-            document.documentElement.style.overflow = "hidden"
-            $contentContainer.addClass("ui-content-scroll")
+#            if umobi.support.touchEnabled and umobi.config.touchScroll
+#              umobi.scroller.create(c.get(0))
+#              document.documentElement.style.overflow = "hidden"
+#              $contentContainer.addClass "ui-content-scroll"
 
           # if touchScroll option is not enabled, we should just
           # adjust cotnent padding to keep space for header and footer.

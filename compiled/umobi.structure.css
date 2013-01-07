@@ -99,19 +99,20 @@ a img {
   width: 80%; }
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
+pre {
+  font-family: Monospace; }
 h1 {
   font-size: 1.9em; }
 h2 {
-  font-size: 1.6em;
-  margin: 1.2em 0 0.4em 0; }
+  font-size: 1.6em; }
 h3 {
   font-size: 1.3em; }
 h4 {
   font-size: 1.1em; }
 .ui-mobile-rendering > * {
   visibility: hidden; }
-.ui-mobile [data-role=page],
-.ui-mobile [data-role=dialog],
+.ui-mobile .ui-page,
+.ui-mobile .ui-dialog,
 .ui-page {
   top: 0;
   left: 0;
@@ -127,7 +128,8 @@ h4 {
   outline: none; }
 .ui-header,
 .ui-footer {
-  text-align: center; }
+  text-align: center;
+  z-index: 99; }
 .ui-fixed-footer,
 .ui-fixed-header {
   position: fixed;
@@ -162,6 +164,22 @@ h3.ui-title {
   font-size: 1.1em; }
 .ui-input-text.ui-mini {
   display: inline-block; }
+.ui-content-primary {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  margin-left: 230px; }
+.ui-content-secondary {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 230px;
+  overflow: scroll;
+  border: 1px solid red;
+  background: red;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; }
 a.ui-btn,
 button.ui-btn {
   text-decoration: none;

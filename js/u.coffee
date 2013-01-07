@@ -133,6 +133,8 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
         return true
 
       css: (n,v) ->
+        # Note: The CSS.setProperty method is supported in Internet Explorer from version 9.
+        #
         # setter
         if( n and v )
           return @each (i,el) ->
@@ -141,6 +143,7 @@ define ["cs!str","cs!u.dom","cs!umobi.core"], (dom,umobi) ->
           return @each (i,el) ->
             for k,val of n
               el.style[k] = val
+
         # getter
         if typeof n is "string" and @el
           return @el.style[n]

@@ -23,8 +23,8 @@ h4
 .ui-mobile-rendering > *
   visibility: hidden
 
-.ui-mobile [data-role=page],
-.ui-mobile [data-role=dialog],
+.ui-mobile .ui-page,
+.ui-mobile .ui-dialog,
 .ui-page
   top: 0
   left: 0
@@ -98,5 +98,22 @@ h3.ui-title
 
 .ui-input-text.ui-mini
   display: inline-block
+
+
+.ui-content-primary
+  position: relative
+  top: 0px
+  left: 0px
+  margin-left: 230px
+
+.ui-content-secondary
+  position: fixed
+  top: 0px
+  left: 0px
+  height: 100%
+  width: 230px
+  overflow: scroll
+  overflow-scrolling: touch
+  -webkit-overflow-scrolling: touch
 
 @import 'umobi.widget'

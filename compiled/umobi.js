@@ -481,10 +481,10 @@ define('cs!str',[], function() {
           });
         } else if (typeof n === "object") {
           return this.each(function(i, el) {
-            var k, val, _i, _len, _results;
+            var k, val, _results;
             _results = [];
-            for (val = _i = 0, _len = n.length; _i < _len; val = ++_i) {
-              k = n[val];
+            for (k in n) {
+              val = n[k];
               _results.push(el.style[k] = val);
             }
             return _results;
@@ -592,6 +592,18 @@ define('cs!str',[], function() {
           }
         }
         return u(els);
+      };
+
+      USet.prototype.findone = function(sel) {
+        var el, node, _i, _len, _ref;
+        _ref = this.all();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          el = _ref[_i];
+          node = u.dom.query(sel, el);
+          if (node) {
+            return u(node);
+          }
+        }
       };
 
       USet.prototype.siblings = function(sel) {
@@ -1293,27 +1305,22 @@ define('cs!str',[], function() {
         upage = u(el);
         upage.trigger("pagecreate");
         upage.addClass(["ui-page", "ui-body-" + umobi.config.theme]);
-        h = upage.find('[data-role="header"]').addClass('ui-header');
-        f = upage.find('[data-role="footer"]').addClass('ui-footer');
-        c = upage.find('[data-role="content"]').addClass('ui-content');
-        h.find('h1,h2,h3,h4,h5,h6').addClass('ui-title');
-        isBothFixed = h.attr('data-fixed' || f.attr('data-fixed'));
+        h = upage.find('[data-role="header"]').addClass("ui-header");
+        f = upage.find('[data-role="footer"]').addClass("ui-footer");
+        c = upage.find('[data-role="content"]').addClass("ui-content");
+        h.find("h1,h2,h3,h4,h5,h6").addClass("ui-title");
+        isBothFixed = h.data("fixed" || f.data("fixed"));
         if (isBothFixed) {
           $c = c.jQuery();
           $c.wrap('<div class="ui-content-container"/>');
           $contentContainer = $c.parent();
-          if (umobi.support.touchEnabled && umobi.config.touchScroll) {
-            umobi.scroller.create(c.get(0));
-            document.documentElement.style.overflow = "hidden";
-            $contentContainer.addClass("ui-content-scroll");
-          }
           if (!umobi.config.touchScroll) {
             AdjustContentPadding = function() {
               if (h.get(0)) {
-                $contentContainer.css("paddingTop", h.height() + 'px');
+                $contentContainer.css("paddingTop", h.height() + "px");
               }
               if (f.get(0)) {
-                return $contentContainer.css("paddingBottom", f.height() + 'px');
+                return $contentContainer.css("paddingBottom", f.height() + "px");
               }
             };
             upage.on("pagereveal", AdjustContentPadding);
@@ -1443,6 +1450,31 @@ define('cs!str',[], function() {
   /*
     */
 ;
+define('cs!umobi.splitview',["cs!u", "cs!umobi.core", "cs!umobi.page"], function() {
+  umobi.splitview = {
+    init: function() {
+      var view, _i, _len, _ref, _results;
+      _ref = u('[data-role="splitview"]').all();
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        view = _ref[_i];
+        _results.push(umobi.splitview.create(view));
+      }
+      return _results;
+    },
+    create: function(view) {
+      var asideWidth, contentPrimary, contentSecondary;
+      contentPrimary = u(view).findone('[data-role="content-primary"]');
+      contentSecondary = u(view).findone('[data-role="content-secondary"]');
+      asideWidth = "230px";
+      contentSecondary.addClass("ui-content-secondary");
+      return contentPrimary.addClass("ui-content-primary");
+    }
+  };
+  return u.ready(function() {
+    return umobi.splitview.init();
+  });
+});
 /*
   */
 
@@ -1504,9 +1536,10 @@ define('cs!str',[], function() {
         window.addEventListener("orientationchange", hideAddressBar);
         $(document).on('pagereveal', hideAddressBar);
       }
-      return u.load(function() {
+      u.load(function() {
         return uhtml.removeClass('ui-mobile-rendering');
       });
+      return u(document.body).addClass("ui-body-c");
     });
   })();
   /*
@@ -1536,6 +1569,7 @@ define('umobi',[
     "cs!umobi.support",
     "cs!umobi.offlinecache",
     "cs!umobi.page",
+    "cs!umobi.splitview",
     "cs!umobi.link",
     "cs!umobi.init"
 ], function(r,jQuery,cs,cs2,umobi) { 
