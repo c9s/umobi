@@ -1,6 +1,6 @@
-requirejs = require("requirejs")
-path = require("path")
-fs = require("fs")
+requirejs = require "requirejs"
+path      = require "path"
+fs        = require "fs"
 
 module.exports = (grunt) ->
   config = grunt.config.get("global")

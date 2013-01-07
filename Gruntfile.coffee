@@ -187,7 +187,7 @@ module.exports = (grunt) ->
   
   grunt.registerTask "zip", "js css compress:zip".split(' ')
 
-  grunt.registerTask "stat", () ->
+  grunt.registerTask "stat", ->
     statCss = fs.statSync( rootFile + ".min.css" )
     statJs  = fs.statSync( rootFile + ".min.js" )
     sizeCss = statCss.size
