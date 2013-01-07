@@ -175,7 +175,7 @@ h3.ui-title {
   left: 0px;
   height: 100%;
   width: 230px;
-  overflow: scroll;
+  overflow: auto;
   overflow-scrolling: touch;
   -webkit-overflow-scrolling: touch; }
 a.ui-btn,

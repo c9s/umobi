@@ -84,6 +84,8 @@ module.exports = (grunt) ->
     coffeelint:
       app: ['js/*.coffee']
     coffeelintOptions:
+      no_backticks:
+        level: "ignore"
       max_line_length:
         value: 100
         level: "ignore"
