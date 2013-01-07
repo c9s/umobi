@@ -919,11 +919,6 @@ define('cs!str',[], function() {
   (function() {
     var Scroller, debug;
     debug = window.console && true;
-    u.ready(function() {
-      return document.body.addEventListener('touchmove', (function(e) {
-        return e.preventDefault();
-      }), false);
-    });
     Scroller = (function() {
 
       Scroller.prototype.snapBoundary = 80;
@@ -1463,10 +1458,9 @@ define('cs!umobi.splitview',["cs!u", "cs!umobi.core", "cs!umobi.page"], function
       return _results;
     },
     create: function(view) {
-      var asideWidth, contentPrimary, contentSecondary;
+      var contentPrimary, contentSecondary;
       contentPrimary = u(view).findone('[data-role="content-primary"]');
       contentSecondary = u(view).findone('[data-role="content-secondary"]');
-      asideWidth = "230px";
       contentSecondary.addClass("ui-content-secondary");
       return contentPrimary.addClass("ui-content-primary");
     }
