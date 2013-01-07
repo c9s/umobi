@@ -120,6 +120,9 @@ a img {
 body, p {
   font-family: Helvetica, Arial, sans-serif; }
 
+pre {
+  font-family: Monospace; }
+
 h1 {
   font-size: 1.9em; }
 
@@ -297,6 +300,21 @@ p {
   -webkit-text-shadow: 0 1px white;
   -moz-text-shadow: 0 1px white;
   text-shadow: 0 1px white; }
+
+pre {
+  color: #555555;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  background: #e8e8e8;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #e8e8e8 0%, #eaeaea 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e8e8), color-stop(100%, #eaeaea));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #e8e8e8 0%, #eaeaea 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #e8e8e8 0%, #eaeaea 100%); }
 
 /* basic layout system */
 .ui-header,
