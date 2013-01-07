@@ -194,6 +194,7 @@ module.exports = (grunt) ->
     sizeJs = statJs.size
     grunt.log.ok( "Compressed: #{ rootFile }.min.js size: " + filesize(sizeJs) )
     grunt.log.ok( "Compressed: #{ rootFile }.min.css size: " + filesize(sizeCss) )
+    grunt.log.ok( "Total: " + filesize(sizeJs + sizeCss) )
 
   grunt.event.on 'qunit.spawn', (url) ->
     grunt.log.ok("Running test: " + url)

@@ -1216,11 +1216,16 @@ define('cs!str',[], function() {
 ;
 /*
   */
-  umobi.support = {
+
+  var support;
+  support = {
     offlineCache: typeof window.applicationCache !== 'undefined',
     classList: typeof document.documentElement !== 'undefined',
     touchEnabled: navigator.userAgent.match(/(iPhone|iPad|Android|Mobile)/)
   };
+  support.matrix = __indexOf.call(window, "WebKitCSSMatrix") >= 0;
+  support.matrixM11 = umobi.support.matrix && (__indexOf.call(new WebKitCSSMatrix(), "m11") >= 0);
+  umobi.support = support;
   /*
     */
 ;
