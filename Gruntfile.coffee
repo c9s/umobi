@@ -2,7 +2,6 @@ path = require "path"
 fs = require "fs"
 execSync = require "exec-sync"
 coffee = require "coffee-script"
-filesize = require "filesize"
 
 module.exports = (grunt) ->
 
@@ -35,8 +34,6 @@ module.exports = (grunt) ->
   rootFile = outputPath(names.root)
   structureFile = outputPath(names.structure)
   themeFile = outputPath(names.theme)
-
-  
   
   # Project configuration.
   grunt.config.init
@@ -189,14 +186,6 @@ module.exports = (grunt) ->
   
   grunt.registerTask "zip", "js css compress:zip".split(' ')
 
-  grunt.registerTask "stat", ->
-    statCss = fs.statSync( rootFile + ".min.css" )
-    statJs  = fs.statSync( rootFile + ".min.js" )
-    sizeCss = statCss.size
-    sizeJs = statJs.size
-    grunt.log.ok( "Compressed: #{ rootFile }.min.js size: " + filesize(sizeJs) )
-    grunt.log.ok( "Compressed: #{ rootFile }.min.css size: " + filesize(sizeCss) )
-    grunt.log.ok( "Total: " + filesize(sizeJs + sizeCss) )
 
   grunt.event.on 'qunit.spawn', (url) ->
     grunt.log.ok("Running test: " + url)

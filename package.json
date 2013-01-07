@@ -44,5 +44,7 @@
   "engine": {
     "node": ">=8.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "async": "~0.1.22"
+  }
 }
