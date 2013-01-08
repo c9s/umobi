@@ -1,3 +1,4 @@
+.DS_Store
 css/*.css
 .sass-cache/
 compiled/
