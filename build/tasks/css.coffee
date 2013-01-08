@@ -2,6 +2,8 @@ requirejs = require("requirejs")
 path = require("path")
 fs = require("fs")
 util = require("util")
+execSync = require "exec-sync"
+
 module.exports = (grunt) ->
   config = grunt.config.get("global")
   helpers = config.helpers
@@ -20,6 +22,10 @@ module.exports = (grunt) ->
     # simple theme file compile
     # grunt.file.write themeFile + ".css", "css/themes/" + theme + "/umobi.css"
 
+  grunt.registerTask "css:fontawesome","copy fontawesome files", ->
+    grunt.log.ok("Copying font-awesome files...")
+    wrench = require "wrench"
+    wrench.copyDirSyncRecursive("external/font-awesome", "compiled/font-awesome")
   
   # TODO image copy would be better in compile though not perfect
   grunt.registerTask "css:images", "copy images for css", ->

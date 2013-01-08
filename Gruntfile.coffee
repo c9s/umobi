@@ -1,6 +1,5 @@
 path = require "path"
 fs = require "fs"
-execSync = require "exec-sync"
 coffee = require "coffee-script"
 
 module.exports = (grunt) ->
@@ -141,12 +140,6 @@ module.exports = (grunt) ->
   cssmin[structureFile + ".min.css"] = ["<%= global.ver.min %>", structureFile + ".css"]
   cssmin[themeFile + ".min.css"] = ["<%= global.ver.min %>", themeFile + ".css"]
   grunt.config.set "cssmin", cssmin
-  
-
-  grunt.registerTask "sass", "compile sass files into css file", ->
-    grunt.log.writeln "sass --update css"
-    execSync "sass --compass --update css"
-
   
   # csslint and cssmin tasks
   grunt.loadNpmTasks "grunt-css"
