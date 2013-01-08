@@ -17,7 +17,7 @@ gem_modules:
 .deps:
 	git submodule init
 	git submodule update
-	npm install --quiet --dev
+	npm install --quiet
 	touch .deps
 
 sass:
