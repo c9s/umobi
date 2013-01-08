@@ -43,6 +43,10 @@ module.exports = (grunt) ->
       "Compressed javascript": [
          rootFile + ".min.js"
       ]
+      "Font-Awesome": [
+        "compiled/font-awesome/css/font-awesome.min.css"
+        "compiled/font-awesome/font"
+      ]
       "Images": [
         "compiled/images"
       ]
