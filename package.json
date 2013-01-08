@@ -10,8 +10,7 @@
     "type": "git",
     "url": "https://github.com/c9s/umobi.git"
   },
-  "dependencies": {
-  },
+  "dependencies": { },
   "engine": {
     "node": ">=8.0"
   },
@@ -38,7 +37,7 @@
     "semver": ">=0",
     "file": "~0.2.1",
     "temporary": "0.0.5",
-    "coffee-script": "~1.4.0"
+    "coffee-script": "~1.4.0",
     "filesize": "~1.7.2",
     "phantomjs": "~0.2.3",
     "eventemitter2": "~0.4.11",
