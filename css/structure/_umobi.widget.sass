@@ -4,6 +4,9 @@ a.ui-btn,
 button.ui-btn
   position: relative
 
+  .ui-icon
+    font-size: 16px
+
   // iconpos=left
   .ui-icon-left
     position: absolute
@@ -14,8 +17,10 @@ button.ui-btn
 
   &.ui-btn-icon-left .ui-icon
     margin-top: 3px
+
+  // iconpos=left and mini
   &.ui-mini.ui-btn-icon-left .ui-btn-inner
-    margin-left: 15px
+    margin-left: 17px
 
   // iconpos=right
   .ui-icon-right
@@ -24,8 +29,10 @@ button.ui-btn
 
   &.ui-btn-icon-right .ui-icon
     margin-top: 3px
+
+  // iconpos=right and mini
   &.ui-mini.ui-btn-icon-right .ui-btn-inner
-    margin-right: 15px
+    margin-right: 17px
 
   // iconpos=bottom
   &.ui-btn-icon-bottom .ui-btn-inner
@@ -71,6 +78,7 @@ button.ui-btn
   display: block
   text-align: center
   margin: 0.5em 0
+  line-height: 1.5
 
 button.ui-btn
   width: 100%
