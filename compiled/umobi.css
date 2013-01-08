@@ -24,6 +24,8 @@
 /* uMobi default theme */
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
 p {
   color: #333333;
   -webkit-text-shadow: 0 1px white;
@@ -96,6 +98,8 @@ pre {
   -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3); }
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
 /* Link Button Styles
  * ======================== */
 a.ui-btn,
@@ -119,18 +123,18 @@ button.ui-btn.ui-btn-up-c {
   /* Chrome10+,Safari5.1+ */
   background: -webkit-linear-gradient(top, white 0%, #e5e5e5 100%);
   /* W3C */
-  background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); }
 a.ui-btn.ui-btn-hover-c,
 button.ui-btn.ui-btn-hover-c {
-  background: whitesmoke;
+  background: #f5f5f5;
   /* FF3.6+ */
-  background: -moz-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  background: -moz-linear-gradient(top, #f5f5f5 0%, #d5d5d5 100%);
   /* Chrome,Safari4+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whitesmoke), color-stop(100%, #d5d5d5));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #d5d5d5));
   /* Chrome10+,Safari5.1+ */
-  background: -webkit-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  background: -webkit-linear-gradient(top, #f5f5f5 0%, #d5d5d5 100%);
   /* W3C */
-  background: linear-gradient(to bottom, whitesmoke 0%, #d5d5d5 100%); }
+  background: linear-gradient(to bottom, #f5f5f5 0%, #d5d5d5 100%); }
 a.ui-btn.ui-btn-down-c,
 button.ui-btn.ui-btn-down-c {
   background: #dddddd;
@@ -141,7 +145,7 @@ button.ui-btn.ui-btn-down-c {
   /* Chrome10+,Safari5.1+ */
   background: -webkit-linear-gradient(top, #dddddd 0%, white 100%);
   /* W3C */
-  background: linear-gradient(to bottom, #dddddd 0%, white 100%); }
+  background: linear-gradient(to bottom, #dddddd 0%, #ffffff 100%); }
 /*********************************************
  * ui link styles
  ********************************************** */
@@ -254,7 +258,7 @@ ul.ui-listview {
     background-image: -moz-linear-gradient(white, #f1f1f1);
     background-image: -ms-linear-gradient(white, #f1f1f1);
     background-image: -o-linear-gradient(white, #f1f1f1);
-    background-image: linear-gradient(white, #f1f1f1); }
+    background-image: linear-gradient(#ffffff, #f1f1f1); }
   ul.ui-listview li.ui-btn:hover {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#99ccdd), to(#62b1d0));
     background-image: -webkit-linear-gradient(#99ccdd, #62b1d0);

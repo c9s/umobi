@@ -44,7 +44,8 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 body {
   line-height: 1.5;
-  background: white; }
+  background: white;
+  font-family: Helvetica, Arial, sans-serif; }
 table {
   border-collapse: separate;
   border-spacing: 0; }
@@ -62,6 +63,18 @@ a img {
   border: none; }
 :focus {
   outline: 0; }
+pre {
+  font-family: Monospace;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; }
+h1 {
+  font-size: 1.9em; }
+h2 {
+  font-size: 1.6em; }
+h3 {
+  font-size: 1.3em; }
+h4 {
+  font-size: 1.1em; }
 .clearfix:after,
 .container:after {
   content: "\0020";
@@ -97,18 +110,6 @@ a img {
   width: 60%; }
 .grid-5-4 {
   width: 80%; }
-body, p {
-  font-family: Helvetica, Arial, sans-serif; }
-pre {
-  font-family: Monospace; }
-h1 {
-  font-size: 1.9em; }
-h2 {
-  font-size: 1.6em; }
-h3 {
-  font-size: 1.3em; }
-h4 {
-  font-size: 1.1em; }
 .ui-mobile-rendering > * {
   visibility: hidden; }
 .ui-mobile .ui-page,
@@ -164,20 +165,29 @@ h3.ui-title {
   font-size: 1.1em; }
 .ui-input-text.ui-mini {
   display: inline-block; }
-.ui-content-primary {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  margin-left: 230px; }
-.ui-content-secondary {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 230px;
-  overflow: auto;
-  overflow-scrolling: touch;
-  -webkit-overflow-scrolling: touch; }
+@media all and (min-width: 28em) {
+  .ui-content-primary {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin-left: 230px; }
+  .ui-content-secondary {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 230px;
+    overflow: auto;
+    overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; } }
+@media all and (max-width: 28em) {
+  .ui-content-primary {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin-left: 0px; }
+  .ui-content-secondary {
+    display: none; } }
 a.ui-btn,
 button.ui-btn {
   text-decoration: none;
