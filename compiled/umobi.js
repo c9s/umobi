@@ -1224,7 +1224,7 @@ define('cs!str',[], function() {
     touchEnabled: navigator.userAgent.match(/(iPhone|iPad|Android|Mobile)/)
   };
   support.matrix = "WebKitCSSMatrix" in window;
-  support.matrixM11 = umobi.support.matrix && (__indexOf.call(new WebKitCSSMatrix(), "m11") >= 0);
+  support.matrixM11 = support.matrix && (__indexOf.call(new WebKitCSSMatrix(), "m11") >= 0);
   umobi.support = support;
   /*
     */
