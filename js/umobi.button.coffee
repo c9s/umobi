@@ -47,24 +47,60 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
         .data("theme",umobi.config.theme)
       link.addClass(["ui-btn","ui-shadow","ui-btn-corner-all"])
       link.addClass("ui-mini") if link.data("mini")
+      link.addClass("ui-inline") if link.data("inline")
 
       # initialize <a> as a button
       $link = $(el)
       $link.wrapInner("""
-        <span class="ui-btn ui-btn-corner-all">
           <span class="ui-btn-text">
           </span>
+      """)
+      $link.wrapInner("""
+        <span class="ui-btn-inner">
         </span>
       """)
-      if icon = link.data("icon")
-        $link.find(".ui-btn-text").before("<span class=\"ui-icon icon-#{ icon }\"></span>")
+
+#        if icontype = link.data("icon")
+#          $link.find(".ui-btn-text").before("<span class=\"ui-icon icon-#{ icon }\"></span>")
+
+      if icontype = $link.data("icon")
+        iconpos = $link.data("iconpos")
+        iconpos ?= "left"
+        $icon = $('<span/>')
+        $icon.addClass("ui-icon icon-#{ icontype }")
+        $icon.addClass("ui-icon-#{ iconpos }")
+        $link.addClass("ui-btn-icon-#{ iconpos }")
+        $link.children(0).prepend($icon)
+
       umobi.button.bindClassEvents($link)
 
     buttons = u('button, input[type="button"]')
-    for button in buttons.all()
-      u(button).addClass(["ui-btn","ui-btn-corner-all","ui-shadow"])
-      u(button).addClass("ui-mini") if u(button).data("mini")
-      umobi.button.bindClassEvents($(button))
+    for btn in buttons.all()
+      b = u(btn)
+      b.addClass(["ui-btn","ui-btn-corner-all","ui-shadow"])
+      b.addClass("ui-mini") if b.data("mini")
+      b.addClass("ui-inline") if b.data("inline")
+
+      $(btn).wrapInner("""
+        <span class="ui-btn-text">
+        </span>
+      """)
+      $(btn).wrapInner("""
+        <span class="ui-btn-inner">
+        </span>
+      """)
+
+      if icontype = b.data("icon")
+        iconpos = b.data("iconpos")
+        iconpos ?= "left"
+
+        $icon = $('<span/>')
+        $icon.addClass("ui-icon icon-#{ icontype }")
+        $icon.addClass("ui-icon-#{ iconpos }")
+        b.addClass("ui-btn-icon-#{ iconpos }")
+        $(btn).children(0).prepend($icon)
+
+      umobi.button.bindClassEvents($(btn))
 
     # for button in buttons
   ###
