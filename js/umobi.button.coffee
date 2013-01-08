@@ -47,6 +47,7 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
         .data("theme",umobi.config.theme)
       link.addClass(["ui-btn","ui-shadow","ui-btn-corner-all"])
       link.addClass("ui-mini") if link.data("mini")
+
       # initialize <a> as a button
       $link = $(el)
       $link.wrapInner("""
@@ -55,6 +56,8 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
           </span>
         </span>
       """)
+      if icon = link.data("icon")
+        $link.find(".ui-btn-text").before("<span class=\"ui-icon icon-#{ icon }\"></span>")
       umobi.button.bindClassEvents($link)
 
     buttons = u('button, input[type="button"]')
