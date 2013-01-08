@@ -767,7 +767,7 @@ define('cs!str',[], function() {
     });
   };
   u.ready(function() {
-    var $link, button, buttons, el, link, linkbuttons, _i, _j, _len, _len1, _ref, _ref1, _results;
+    var $icon, $link, b, btn, buttons, el, iconpos, icontype, link, linkbuttons, _i, _j, _len, _len1, _ref, _ref1, _results;
     linkbuttons = u('a[data-role="button"]');
     _ref = linkbuttons.all();
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -778,20 +778,52 @@ define('cs!str',[], function() {
       if (link.data("mini")) {
         link.addClass("ui-mini");
       }
+      if (link.data("inline")) {
+        link.addClass("ui-inline");
+      }
       $link = $(el);
-      $link.wrapInner("<span class=\"ui-btn ui-btn-corner-all\">\n  <span class=\"ui-btn-text\">\n  </span>\n</span>");
+      $link.wrapInner("<span class=\"ui-btn-text\">\n</span>");
+      $link.wrapInner("<span class=\"ui-btn-inner\">\n</span>");
+      if (icontype = $link.data("icon")) {
+        iconpos = $link.data("iconpos");
+        if (iconpos == null) {
+          iconpos = "left";
+        }
+        $icon = $('<span/>');
+        $icon.addClass("ui-icon icon-" + icontype);
+        $icon.addClass("ui-icon-" + iconpos);
+        $link.addClass("ui-btn-icon-" + iconpos);
+        $link.children(0).prepend($icon);
+      }
       umobi.button.bindClassEvents($link);
     }
     buttons = u('button, input[type="button"]');
     _ref1 = buttons.all();
     _results = [];
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-      button = _ref1[_j];
-      u(button).addClass(["ui-btn", "ui-btn-corner-all", "ui-shadow"]);
-      if (u(button).data("mini")) {
-        u(button).addClass("ui-mini");
+      btn = _ref1[_j];
+      b = u(btn);
+      b.addClass(["ui-btn", "ui-btn-corner-all", "ui-shadow"]);
+      if (b.data("mini")) {
+        b.addClass("ui-mini");
       }
-      _results.push(umobi.button.bindClassEvents($(button)));
+      if (b.data("inline")) {
+        b.addClass("ui-inline");
+      }
+      $(btn).wrapInner("<span class=\"ui-btn-text\">\n</span>");
+      $(btn).wrapInner("<span class=\"ui-btn-inner\">\n</span>");
+      if (icontype = b.data("icon")) {
+        iconpos = b.data("iconpos");
+        if (iconpos == null) {
+          iconpos = "left";
+        }
+        $icon = $('<span/>');
+        $icon.addClass("ui-icon icon-" + icontype);
+        $icon.addClass("ui-icon-" + iconpos);
+        b.addClass("ui-btn-icon-" + iconpos);
+        $(btn).children(0).prepend($icon);
+      }
+      _results.push(umobi.button.bindClassEvents($(btn)));
     }
     return _results;
   });

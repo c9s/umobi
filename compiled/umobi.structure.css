@@ -70,10 +70,13 @@ pre {
 h1 {
   font-size: 1.9em; }
 h2 {
+  margin-top: 0.3em;
   font-size: 1.6em; }
 h3 {
+  margin-top: 0.7em;
   font-size: 1.3em; }
 h4 {
+  margin-top: 1.1em;
   font-size: 1.1em; }
 .clearfix:after,
 .container:after {
@@ -188,6 +191,57 @@ h3.ui-title {
     margin-left: 0px; }
   .ui-content-secondary {
     display: none; } }
+a.ui-btn,
+button.ui-btn {
+  position: relative; }
+  a.ui-btn .ui-icon-left,
+  button.ui-btn .ui-icon-left {
+    position: absolute;
+    left: 8px; }
+  a.ui-btn.ui-inline,
+  button.ui-btn.ui-inline {
+    vertical-align: middle; }
+  a.ui-btn.ui-btn-icon-left .ui-icon,
+  button.ui-btn.ui-btn-icon-left .ui-icon {
+    margin-top: 3px; }
+  a.ui-btn.ui-mini.ui-btn-icon-left .ui-btn-inner,
+  button.ui-btn.ui-mini.ui-btn-icon-left .ui-btn-inner {
+    margin-left: 15px; }
+  a.ui-btn .ui-icon-right,
+  button.ui-btn .ui-icon-right {
+    position: absolute;
+    right: 8px; }
+  a.ui-btn.ui-btn-icon-right .ui-icon,
+  button.ui-btn.ui-btn-icon-right .ui-icon {
+    margin-top: 3px; }
+  a.ui-btn.ui-mini.ui-btn-icon-right .ui-btn-inner,
+  button.ui-btn.ui-mini.ui-btn-icon-right .ui-btn-inner {
+    margin-right: 15px; }
+  a.ui-btn.ui-btn-icon-bottom .ui-btn-inner,
+  button.ui-btn.ui-btn-icon-bottom .ui-btn-inner {
+    padding-bottom: 30px;
+    display: block; }
+  a.ui-btn.ui-btn-icon-bottom .ui-icon,
+  button.ui-btn.ui-btn-icon-bottom .ui-icon {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -9px; }
+  a.ui-btn.ui-btn-icon-top .ui-btn-inner,
+  button.ui-btn.ui-btn-icon-top .ui-btn-inner {
+    padding-top: 30px;
+    display: block; }
+  a.ui-btn.ui-btn-icon-top .ui-icon,
+  button.ui-btn.ui-btn-icon-top .ui-icon {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -9px; }
+a.ui-btn.ui-btn-icon-notext .ui-btn-text,
+button.ui-btn.ui-btn-icon-notext .ui-btn-text {
+  display: none; }
+a.ui-btn {
+  display: inline-block; }
 a.ui-btn,
 button.ui-btn {
   text-decoration: none;
