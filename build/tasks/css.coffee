@@ -25,7 +25,7 @@ module.exports = (grunt) ->
   grunt.registerTask "css:fontawesome","copy fontawesome files", ->
     grunt.log.ok("Copying font-awesome files...")
     wrench = require "wrench"
-    wrench.copyDirSyncRecursive("external/font-awesome", "compiled/font-awesome")
+    wrench.copyDirSyncRecursive("css/customfont", "compiled/customfont")
   
   # TODO image copy would be better in compile though not perfect
   grunt.registerTask "css:images", "copy images for css", ->

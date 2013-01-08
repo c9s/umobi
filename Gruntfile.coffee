@@ -37,19 +37,13 @@ module.exports = (grunt) ->
   # Project configuration.
   grunt.config.init
     filesize:
-      "Compressed stylesheet": [
-         rootFile + ".min.css"
-      ]
-      "Compressed javascript": [
-         rootFile + ".min.js"
-      ]
-      "Font-Awesome": [
-        "compiled/font-awesome/css/font-awesome.min.css"
-        "compiled/font-awesome/font"
-      ]
-      "Images": [
-        "compiled/images"
-      ]
+      "Compressed stylesheet": [ rootFile + ".min.css" ]
+      "Compressed javascript": [ rootFile + ".min.js" ]
+      "Custom font-awesome stylesheet": [ "compiled/customfont/fontawesome.css" ]
+      "Custom font-awesome ttf fonts": [ "compiled/customfont/fontawesome-webfont.ttf" ]
+      "Custom font-awesome eot fonts": [ "compiled/customfont/fontawesome-webfont.eot" ]
+      "Custom font-awesome woff fonts": [ "compiled/customfont/fontawesome-webfont.woff" ]
+      "Images": [ "compiled/images" ]
 
     jshint: readCoffee "build/jshint.coffee"
     
