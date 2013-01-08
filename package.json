@@ -10,11 +10,7 @@
     "type": "git",
     "url": "https://github.com/c9s/umobi.git"
   },
-  "dependencies": { },
-  "engine": {
-    "node": ">=8.0"
-  },
-  "devDependencies": {
+  "dependencies": {
     "grunt": "~0.4.0",
     "grunt-css": "git://github.com/c9s/grunt-css.git#grunt-0.4",
     "grunt-contrib-compress": "~0.3.3",
@@ -46,5 +42,10 @@
     "minimatch": ">=0",
     "du-sync": "0.0.1",
     "wrench": "~1.4.4"
+  },
+  "engine": {
+    "node": ">=8.0"
+  },
+  "devDependencies": {
   }
 }
