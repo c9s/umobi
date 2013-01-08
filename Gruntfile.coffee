@@ -145,7 +145,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask "sass", "compile sass files into css file", ->
     grunt.log.writeln "sass --update css"
-    execSync "sass --update css"
+    execSync "sass --compass --update css"
 
   
   # csslint and cssmin tasks
