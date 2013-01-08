@@ -12,7 +12,7 @@ css:
 	grunt --no-color css
 
 gem_modules:
-	gem install sass listen
+	gem install sass listen compass guard
 
 .deps:
 	git submodule init
