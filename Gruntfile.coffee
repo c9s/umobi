@@ -132,7 +132,7 @@ module.exports = (grunt) ->
           baseUrl: "."
           out: rootFile + ".compiled.css"
         structure:
-          cssIn: "css/structure/umobi.structure.css"
+          cssIn: "css/structure/umobi.css"
           out: structureFile + ".compiled.css"
 
     global:
