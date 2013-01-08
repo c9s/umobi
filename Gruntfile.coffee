@@ -37,6 +37,16 @@ module.exports = (grunt) ->
   
   # Project configuration.
   grunt.config.init
+    stat:
+      "Compressed stylesheet": [
+         rootFile + ".min.css"
+      ]
+      "Compressed javascript": [
+         rootFile + ".min.js"
+      ]
+      "Images": [
+        "compiled/images"
+      ]
     jshint:
       options:
         curly: true

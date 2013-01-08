@@ -44,6 +44,7 @@
     "grunt-contrib-concat": "~0.1.1",
     "grunt-sass": "~0.2.5",
     "grunt-junit": "~0.1.5",
-    "grunt-git-authors": "1.0.0"
+    "grunt-git-authors": "1.0.0",
+    "du-sync": "0.0.1"
   }
 }

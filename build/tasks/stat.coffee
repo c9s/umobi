@@ -1,31 +1,21 @@
-requirejs = require "requirejs"
 path      = require "path"
-fs        = require "fs"
-filesize = require "filesize"
-async = require "async"
-
-readSizeRecursive = (item) ->
-  stats = fs.lstatSync item
-  total = stats.size
-  if stats.isDirectory()
-    list = fs.readdirSync item
-    for diritem in list
-      size = readSizeRecursive path.join(item, diritem)
-      total += size
-    return total
-  else
-    return total
+filesize  = require "filesize"
+du        = require "du-sync"
 
 module.exports = (grunt) ->
   grunt.registerTask "stat", ->
-    rootFile = "compiled/umobi"
-    statCss = fs.statSync( rootFile + ".min.css" )
-    statJs  = fs.statSync( rootFile + ".min.js" )
-    sizeImage = readSizeRecursive( "compiled/images" )
-    sizeCss = statCss.size
-    sizeJs = statJs.size
-    grunt.log.ok( "Compressed JavaScript: #{ rootFile }.min.js size: " + filesize(sizeJs) )
-    grunt.log.ok( "Compressed StyleSheet: #{ rootFile }.min.css size: " + filesize(sizeCss) )
-    grunt.log.ok( "Image size: " + filesize(sizeImage) )
-    grunt.log.ok( "Total: " + filesize(sizeJs + sizeCss + sizeImage) )
-
+    ###
+      config = {
+        "Title": [ files... ]
+        "Title2": [ files... ]
+      }
+    ###
+    statConfig = grunt.config.get("stat")
+    total = 0
+    for title,files of statConfig
+      sum = 0
+      sum += du(file) for file in files
+      total += sum
+      grunt.log.ok( "#{ title }: " + filesize(sum) )
+    grunt.log.ok( "===============================" )
+    grunt.log.ok( "Total size: #{ filesize(total) }" )
