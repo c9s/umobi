@@ -37,7 +37,7 @@ module.exports = (grunt) ->
   
   # Project configuration.
   grunt.config.init
-    stat:
+    filesize:
       "Compressed stylesheet": [
          rootFile + ".min.css"
       ]
@@ -204,4 +204,4 @@ module.exports = (grunt) ->
   grunt.loadTasks "build/tasks"
 
   # set the default task.
-  grunt.registerTask "default", ["coffeelint","js","css","qunit","stat"]
+  grunt.registerTask "default", ["coffeelint","js","css","qunit","filesize"]

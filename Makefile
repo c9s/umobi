@@ -2,10 +2,6 @@
 
 all: .deps build
 
-stat:
-	@stat -f "%N: %z bytes" compiled/umobi.min.js
-	@stat -f "%N: %z bytes" compiled/umobi.min.css
-
 build:
 	grunt --no-color
 

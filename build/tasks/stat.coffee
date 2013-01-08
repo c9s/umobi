@@ -3,16 +3,16 @@ filesize  = require "filesize"
 du        = require "du-sync"
 
 module.exports = (grunt) ->
-  grunt.registerTask "stat", ->
+  grunt.registerTask "filesize", ->
     ###
       config = {
         "Title": [ files... ]
         "Title2": [ files... ]
       }
     ###
-    statConfig = grunt.config.get("stat")
+    filesizeConfig = grunt.config.get("filesize")
     total = 0
-    for title,files of statConfig
+    for title,files of filesizeConfig
       sum = 0
       sum += du(file) for file in files
       total += sum
