@@ -40,11 +40,11 @@ module.exports = (grunt) ->
       "Core":
         "Compressed stylesheet": [ rootFile + ".min.css" ]
         "Compressed javascript": [ rootFile + ".min.js" ]
-      "Font":
-        "Custom font-awesome stylesheet": [ "compiled/customfont/fontawesome.css" ]
-        "Custom font-awesome ttf fonts": [ "compiled/customfont/fontawesome-webfont.ttf" ]
-        "Custom font-awesome eot fonts": [ "compiled/customfont/fontawesome-webfont.eot" ]
-        "Custom font-awesome woff fonts": [ "compiled/customfont/fontawesome-webfont.woff" ]
+      "Custom font-awesome":
+        "Stylesheet": [ "compiled/customfont/fontawesome.css" ]
+        "TTF fonts": [ "compiled/customfont/fontawesome-webfont.ttf" ]
+        "EOT fonts": [ "compiled/customfont/fontawesome-webfont.eot" ]
+        "WOFF fonts": [ "compiled/customfont/fontawesome-webfont.woff" ]
       "Images":
         "Image files": [ "compiled/images" ]
 
