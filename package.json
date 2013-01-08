@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "grunt": "~0.4.0",
-    "grunt-css": "git://github.com/c9s/grunt-css.git#grunt-0.4",
+    "grunt-css": "git://github.com/jzaefferer/grunt-css.git",
     "grunt-contrib-compress": "~0.3.3",
     "grunt-contrib-uglify": "~0.1.0",
     "grunt-contrib-coffee": "~0.3.2",
