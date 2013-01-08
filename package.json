@@ -12,11 +12,6 @@
   },
   "dependencies": {
     "grunt": "~0.4.0",
-    "grunt-css": "git://github.com/c9s/grunt-css.git#grunt-0.4",
-    "grunt-contrib-uglify": "~0.1.0",
-    "grunt-contrib-coffee": "~0.3.2",
-    "grunt-contrib-jshint": "0",
-    "grunt-contrib-concat": "~0.1.1",
     "qunit": "~0.5.15",
     "grunt-contrib-qunit": "~0.1.0",
     "grunt-coffeelint": "0.0.3",
@@ -25,9 +20,6 @@
     "grunt-lib-phantomjs": "~0.1.0",
     "exec-sync": "~0.1.5",
     "requirejs": "~1.0.8",
-    "grunt-sass": "~0.2.5",
-    "grunt-junit": "~0.1.5",
-    "grunt-git-authors": "1.0.0",
     "glob-whatev": "~0.1.4",
     "rimraf": "2.0.1",
     "minimatch": ">=0",
@@ -45,5 +37,13 @@
     "node": ">=8.0"
   },
   "devDependencies": {
+    "grunt-css": "git://github.com/c9s/grunt-css.git#grunt-0.4",
+    "grunt-contrib-uglify": "~0.1.0",
+    "grunt-contrib-coffee": "~0.3.2",
+    "grunt-contrib-jshint": "0",
+    "grunt-contrib-concat": "~0.1.1",
+    "grunt-sass": "~0.2.5",
+    "grunt-junit": "~0.1.5",
+    "grunt-git-authors": "1.0.0"
   }
 }

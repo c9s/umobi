@@ -14,7 +14,7 @@ define ['cs!umobi.core'] , ->
   support.matrix = `"WebKitCSSMatrix" in window`
 
   # with m11 3d translate
-  support.matrixM11  = umobi.support.matrix and ("m11" in new WebKitCSSMatrix())
+  support.matrixM11  = support.matrix and ("m11" in new WebKitCSSMatrix())
   umobi.support = support
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)`
