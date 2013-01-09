@@ -28,7 +28,7 @@ define([
     "cs!u",
     "cs!umobi.button",
     "cs!umobi.widget",
-    "cs!widget/slider",
+    "cs!widgets/slider",
     "cs!umobi.zoom",
     "cs!umobi.listview",
     "cs!umobi.navigation",
