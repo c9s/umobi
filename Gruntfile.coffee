@@ -168,4 +168,4 @@ module.exports = (grunt) ->
   grunt.loadTasks "build/tasks"
 
   # set the default task.
-  grunt.registerTask "default", ["coffeelint","js","css","qunit"]
+  grunt.registerTask "default", ["coffeelint","js","css","qunit","sizereport"]
