@@ -24,6 +24,7 @@ define [
 
       # currently, if the page can not be scrolled, this won't work.
       if window.navigator.userAgent.match(/iPhone|iPad|Android/)
+        console.log "touch enabled deviced" if window.console
         hideAddressBar = () ->
           if document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)
             document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
