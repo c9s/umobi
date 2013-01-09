@@ -17,6 +17,12 @@ define ["jquery","cs!umobi.core","cs!u"], () ->
         when "touchstart" then @onTouchStart(e)
         when "touchend"   then @onTouchEnd(e)
 
+
+    # touch event reference:
+    #   1. http://stackoverflow.com/questions/5713393/creating-and-firing-touch-events-on-a-touch-enabled-browser
+    #   2. Tap: http://css-infos.net/property/-webkit-tap-highlight-color
+    #   3. WebKit: http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone
+    #   4. Safari: http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html
     onTouchStart: (e) ->
       @moved = false
       @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
