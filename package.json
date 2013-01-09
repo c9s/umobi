@@ -11,7 +11,7 @@
     "url": "https://github.com/c9s/umobi.git"
   },
   "dependencies": {
-    "grunt": "~0.4.0",
+    "grunt": "~0.4.0rc2",
     "grunt-css": "git://github.com/jzaefferer/grunt-css.git",
     "grunt-contrib-compress": "~0.3.3",
     "grunt-contrib-uglify": "~0.1.0",
@@ -42,10 +42,13 @@
     "minimatch": ">=0",
     "du-sync": "0.0.1",
     "wrench": "~1.4.4",
-    "grunt-contrib-clean": "~0.4.0a"
+    "grunt-contrib-clean": "~0.4.0a",
+    "grunt-sizereport": "0.0.1"
   },
   "engine": {
     "node": ">=8.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "grunt-sizereport": "0.0.1"
+  }
 }

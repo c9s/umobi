@@ -36,7 +36,7 @@ module.exports = (grunt) ->
   
   # Project configuration.
   grunt.config.init
-    filesize:
+    sizereport:
       "Core":
         "Compressed stylesheet": [ rootFile + ".min.css" ]
         "Compressed javascript": [ rootFile + ".min.js" ]
@@ -142,8 +142,6 @@ module.exports = (grunt) ->
   cssmin[themeFile + ".min.css"] = ["<%= global.ver.min %>", themeFile + ".css"]
   grunt.config.set "cssmin", cssmin
   
-  # csslint and cssmin tasks
-  grunt.loadNpmTasks "grunt-css"
   
   # authors task
   grunt.loadNpmTasks "grunt-git-authors"
@@ -154,6 +152,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-contrib-qunit"
   grunt.loadNpmTasks "grunt-contrib-compress"
+  grunt.loadNpmTasks "grunt-contrib-clean"
+  grunt.loadNpmTasks "grunt-sizereport"
+
+  # csslint and cssmin tasks
+  grunt.loadNpmTasks "grunt-css"
   
   grunt.registerTask "zip", "js css compress:zip".split(' ')
 
@@ -165,4 +168,4 @@ module.exports = (grunt) ->
   grunt.loadTasks "build/tasks"
 
   # set the default task.
-  grunt.registerTask "default", ["coffeelint","js","css","qunit","filesize"]
+  grunt.registerTask "default", ["coffeelint","js","css","qunit"]
