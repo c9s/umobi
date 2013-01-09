@@ -12,6 +12,7 @@ define ["cs!u","cs!umobi.core"], ->
       # force changing type
       el.type = "number"
 
+      $(el).addClass("ui-btn ui-input-text ui-btn-corner-all ui-mini ui-inline")
       $(el).after($widget)
       # el.parentNode.removeChild(el)
 

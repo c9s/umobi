@@ -1,5 +1,10 @@
 @import "umobi.mixin"
 
+.ui-inline
+  display: inline-block
+  width: auto
+  vertical-align: middle
+
 .ui-btn
   position: relative
 
@@ -11,8 +16,6 @@
     position: absolute
     left: 8px
 
-  &.ui-inline
-    vertical-align: middle
 
   &.ui-btn-icon-left .ui-icon
     margin-top: 3px
@@ -82,8 +85,7 @@ button.ui-btn
 button.ui-btn
   width: 100%
 
-a.ui-btn.ui-mini,
-button.ui-btn.ui-mini
+.ui-btn.ui-mini
   display: inline-block
   width: auto
 
