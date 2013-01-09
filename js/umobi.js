@@ -32,6 +32,7 @@ define([
     "cs!umobi.listview",
     "cs!umobi.navigation",
     "cs!umobi.scroller",
+    "cs!umobi.touch",
     "cs!umobi.support",
     "cs!umobi.offlinecache",
     "cs!umobi.page",

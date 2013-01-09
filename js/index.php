@@ -30,6 +30,7 @@ $coffeefiles = array(
   'umobi.navigation.coffee',
   'umobi.offlinecache.coffee',
   'umobi.scroller.coffee',
+  'umobi.touch.coffee',
   'umobi.button.coffee',
   'umobi.widget.coffee',
   'umobi.page.coffee',
