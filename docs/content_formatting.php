@@ -8,9 +8,9 @@
             </div>
             <div data-role="content">
                 <ul data-role="listview" data-inset="true">
-                    <li><a href="pages.html">Pages</a></li>
-                    <li><a href="forms.html">Form Widgets</a></li>
-                    <li><a href="content_formatting.html">Content Formatting</a></li>
+                    <li><a href="pages.php">Pages</a></li>
+                    <li><a href="forms.php">Form Widgets</a></li>
+                    <li><a href="content_formatting.php">Content Formatting</a></li>
                 </ul>
             </div>
             <div data-role="footer" data-fixed="true">

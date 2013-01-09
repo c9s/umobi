@@ -9,10 +9,10 @@
                     <div data-role="header"><h1>Side Content</h1></div>
                     <div data-role="content">
                         <ul data-role="listview">
-                            <li><a href="pages.html">Pages</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="forms.html">Form Widgets</a></li>
-                            <li><a href="content_formatting.html">Content Formatting</a></li>
+                            <li><a href="pages.php">Pages</a></li>
+                            <li><a href="buttons.php">Buttons</a></li>
+                            <li><a href="forms.php">Form Widgets</a></li>
+                            <li><a href="content_formatting.php">Content Formatting</a></li>
                         </ul>
                     </div>
                 </div>
@@ -28,11 +28,11 @@
             &lt;div data-role="header"&gt;&lt;h1&gt;Side Content&lt;/h1&gt;&lt;/div&gt;
             &lt;div data-role="content"&gt;
                 &lt;ul data-role="listview"&gt;
-                    &lt;li&gt;&lt;a href="pages.html"&gt;Pages&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href="buttons.html"&gt;Buttons&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href="forms.html"&gt;Form Widgets&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href="content_formatting.html"&gt;Content Formatting&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href="minified.html"&gt;With Minified JS/CSS&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="pages.php"&gt;Pages&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="buttons.php"&gt;Buttons&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="forms.php"&gt;Form Widgets&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="content_formatting.php"&gt;Content Formatting&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="minified.php"&gt;With Minified JS/CSS&lt;/a&gt;&lt;/li&gt;
                 &lt;/ul&gt;
             &lt;/div&gt;
         &lt;/div&gt;

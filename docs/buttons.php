@@ -9,18 +9,18 @@
             <div data-role="content">
 
                 <h2>Link buttons</h2>
-                <a href="index.html">Normal Link</a>
-                <a data-role="button" href="index.html">Link button</a>
-                <a data-role="button" data-icon="search" href="index.html">Button with icon</a>
-                <a data-role="button" data-mini="true" href="index.html">Mini button</a>
+                <a href="index.php">Normal Link</a>
+                <a data-role="button" href="index.php">Link button</a>
+                <a data-role="button" data-icon="search" href="index.php">Button with icon</a>
+                <a data-role="button" data-mini="true" href="index.php">Mini button</a>
 
-                <a data-role="button" data-icon="th" data-mini="true" href="index.html">Mini button</a>
-                <a data-role="button" data-icon="th" data-iconpos="left" data-mini="true" href="index.html">Mini button</a>
-                <a data-role="button" data-icon="th" data-iconpos="right" data-mini="true" href="index.html">Mini button</a>
+                <a data-role="button" data-icon="th" data-mini="true" href="index.php">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="left" data-mini="true" href="index.php">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="right" data-mini="true" href="index.php">Mini button</a>
 
                 <p>
-                <a data-role="button" data-icon="th" data-iconpos="top" data-inline="true" data-mini="true" href="index.html">Mini button</a>
-                <a data-role="button" data-icon="th" data-iconpos="bottom" data-inline="true" data-mini="true" href="index.html">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="top" data-inline="true" data-mini="true" href="index.php">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="bottom" data-inline="true" data-mini="true" href="index.php">Mini button</a>
                 </p>
 
                 <h2>Button tag</h2>
