@@ -86,8 +86,6 @@ pre {
 
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
-/* Link Button Styles
- * ======================== */
 .ui-btn {
   color: #264755;
   font-weight: bold;
@@ -230,31 +228,6 @@ input[type=number]::-webkit-outer-spin-button {
 
   div.ui-input-text input.ui-input-text {
     width: 100%; } }
-/* $widget = $("<div/>").addClass("ui-slider ui-btn-corner-all")
- * $a = $("<a/>").addClass("ui-slider-handle ui-btn ui-shadow ui-btn-corner-all")
- * $a.addClass("ui-btn-up-c")
- * $btn = $("<span/>").addClass("ui-btn-inner ui-btn-corner-all") */
-input[type=number] {
-  font-size: 16px;
-  width: 50px; }
-
-.ui-slider {
-  display: inline-block;
-  width: 65%;
-  min-height: 0.75em;
-  margin: 10px;
-  margin-left: 20px;
-  position: relative;
-  top: 12px; }
-  .ui-slider > a.ui-slider-handle {
-    position: absolute;
-    z-index: 1;
-    left: -12px;
-    top: -20px;
-    width: 12px;
-    height: 22px;
-    border-radius: 22px; }
-
 /* Lightweight compatible graident syntax for non-IE browsers */
 /* gradient syntax with IE-compatible and older browser */
 /* structure */
@@ -357,3 +330,27 @@ ul.ui-listview-inset li.ui-btn:last-child {
   -webkit-border-radius: 0 0 12px 12px;
   -moz-border-radius: 0 0 12px 12px;
   border-radius: 0 0 12px 12px; }
+
+/* $widget = $("<div/>").addClass("ui-slider ui-btn-corner-all")
+ * $a = $("<a/>").addClass("ui-slider-handle ui-btn ui-shadow ui-btn-corner-all")
+ * $a.addClass("ui-btn-up-c")
+ * $btn = $("<span/>").addClass("ui-btn-inner ui-btn-corner-all") */
+.ui-slider-input {
+  width: 50px; }
+
+.ui-slider {
+  display: inline-block;
+  width: 65%;
+  min-height: 0.6em;
+  margin: 10px;
+  margin-left: 20px;
+  position: relative;
+  top: 12px; }
+  .ui-slider > a.ui-slider-handle {
+    position: absolute;
+    z-index: 1;
+    left: -12px;
+    top: -22px;
+    width: 12px;
+    height: 22px;
+    border-radius: 22px; }
