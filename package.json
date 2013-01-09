@@ -41,11 +41,11 @@
     "rimraf": "2.0.1",
     "minimatch": ">=0",
     "du-sync": "0.0.1",
-    "wrench": "~1.4.4"
+    "wrench": "~1.4.4",
+    "grunt-contrib-clean": "~0.4.0a"
   },
   "engine": {
     "node": ">=8.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
