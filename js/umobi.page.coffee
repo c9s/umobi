@@ -86,7 +86,7 @@ define [
 
           # Initialize touch scroller with 3D translate if it's on mobile
           # device and the touchScroll option is enabled.
-          if umobi.support.touchEnabled and umobi.config.touchScroll
+          if umobi.support.touch and umobi.config.touchScroll
             umobi.scroller.create(c.get(0))
             document.documentElement.style.overflow = "hidden"
             $contentContainer.addClass "ui-content-scroll"
@@ -116,7 +116,7 @@ define [
                 top: contentTop + "px"
                 left: 0
                 bottom: contentBottom + "px"
-                overflow: if umobi.support.touchEnabled then "hidden" else "auto"
+                overflow: if umobi.support.touch then "hidden" else "auto"
             upage.on "pagereveal", AdjustContentHeight
 
         resizeTimeout = null

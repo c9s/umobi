@@ -9,7 +9,7 @@ define ['cs!umobi.core'] , ->
   support = {
     offlineCache: (typeof window.applicationCache isnt 'undefined')
     classList: (typeof document.documentElement isnt 'undefined')
-    touchEnabled: (navigator.userAgent.match /(iPhone|iPad|Android|Mobile)/)
+    touch: (navigator.userAgent.match /(iPhone|iPad|Android|Mobile)/)
   }
   support.matrix = `"WebKitCSSMatrix" in window`
 
