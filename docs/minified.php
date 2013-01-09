@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>µMobi (uMobi)</title>
-        <meta name="apple-touch-fullscreen" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-        <script src="../js/jquery.js"> </script>
-        <script src="../compiled/umobi.min.js"> </script>
-        <link href="../compiled/umobi.min.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <?php require "_head.php"; ?>
     <body>
         <div data-role="page" id="index">
             <div data-role="header" data-fixed="true">
