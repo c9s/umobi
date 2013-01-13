@@ -6,7 +6,7 @@
             <header data-fixed="true">
                 <h1>µMobi</h1>
             </header>
-            <div data-role="content">
+            <article data-role="content">
                 <ul data-role="listview" data-inset="true">
                     <li><a href="pages.php">Pages</a></li>
                     <li><a href="buttons.php">Buttons</a></li>
@@ -16,7 +16,7 @@
                     <li><a href="slider.php">Slider</a></li>
                     <li><a href="minified.php">With Minified JS/CSS</a></li>
                 </ul>
-            </div>
+            </article>
             <footer data-fixed="true">
                 <div>Footer</div>
             </footer>
