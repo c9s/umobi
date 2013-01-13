@@ -40,6 +40,9 @@ module.exports = (grunt) ->
       "Core":
         "Compressed stylesheet": [ rootFile + ".min.css" ]
         "Compressed javascript": [ rootFile + ".min.js" ]
+      "Stylesheets":
+        "structure": [structureFile  + ".min.css"]
+        "theme": [themeFile + ".min.css"]
       "Custom font-awesome":
         "Stylesheet": [ "compiled/customfont/fontawesome.css" ]
         "TTF fonts": [ "compiled/customfont/fontawesome-webfont.ttf" ]
@@ -95,18 +98,12 @@ module.exports = (grunt) ->
       all:
         src: rootFile + ".css"
         dest: rootFile  + ".min.css"
-
-    # cssmin: cssmin
-  # CSSMIN configuration
-#    cssmin = {
-#      "compiled/umobi.min.css": "compiled/umobi.css"
-#      all: {
-#        # src: ["<%= global.ver.min %>", rootFile + ".css"]
-#      }
-#    }
-  # cssmin.all[ "#{rootFile}.min.css" ]      = ["<%= global.ver.min %>", rootFile + ".css"]
-  # cssmin.all[ "#{structureFile}.min.css" ] = ["<%= global.ver.min %>", structureFile + ".css"]
-  # cssmin.all[ "#{themeFile}.min.css" ]     = ["<%= global.ver.min %>", themeFile + ".css"]
+      structure:
+        src: structureFile + ".css"
+        dest: structureFile  + ".min.css"
+      theme:
+        src: themeFile + ".css"
+        dest: themeFile + ".min.css"
     compress: readCoffee "build/compress.coffee"
     
     # JS config, mostly the requirejs configuration
