@@ -60,4 +60,15 @@ module.exports = (grunt) ->
   
   # NOTE the progression of events is not obvious from the above
   #      compile -> concat x 3 -> min all -> cleanup the compiled stuff
-  grunt.registerTask "css", "config:async css:fontawesome sass:compile css:compile concat:regular concat:structure concat:theme cssmin css:cleanup css:images".split(" ")
+  grunt.registerTask "css", [
+    "config:async"
+    "css:fontawesome"
+    "sass:compile"
+    "css:compile"
+    "concat:regular"
+    "concat:structure"
+    "concat:theme"
+    "cssmin"
+    "css:cleanup"
+    "css:images"
+  ]

@@ -33,11 +33,6 @@ module.exports = (grunt) ->
   structureFile = outputPath(names.structure)
   themeFile = outputPath(names.theme)
 
-  # CSSMIN configuration
-  cssmin = { all: { } }
-  cssmin.all[ "#{rootFile}.min.css" ]      = ["<%= global.ver.min %>", rootFile + ".css"]
-  cssmin.all[ "#{structureFile}.min.css" ] = ["<%= global.ver.min %>", structureFile + ".css"]
-  cssmin.all[ "#{themeFile}.min.css" ]     = ["<%= global.ver.min %>", themeFile + ".css"]
 
   # Project configuration.
   grunt.config.init
@@ -96,7 +91,22 @@ module.exports = (grunt) ->
     # NOTE the keys are filenames which, being stored as variables requires that we use
     #      key based assignment. See below.
     uglify: `undefined`
-    cssmin: cssmin
+    cssmin:
+      all:
+        src: rootFile + ".css"
+        dest: rootFile  + ".min.css"
+
+    # cssmin: cssmin
+  # CSSMIN configuration
+#    cssmin = {
+#      "compiled/umobi.min.css": "compiled/umobi.css"
+#      all: {
+#        # src: ["<%= global.ver.min %>", rootFile + ".css"]
+#      }
+#    }
+  # cssmin.all[ "#{rootFile}.min.css" ]      = ["<%= global.ver.min %>", rootFile + ".css"]
+  # cssmin.all[ "#{structureFile}.min.css" ] = ["<%= global.ver.min %>", structureFile + ".css"]
+  # cssmin.all[ "#{themeFile}.min.css" ]     = ["<%= global.ver.min %>", themeFile + ".css"]
     compress: readCoffee "build/compress.coffee"
     
     # JS config, mostly the requirejs configuration
@@ -158,7 +168,7 @@ module.exports = (grunt) ->
   # csslint and cssmin tasks
   grunt.loadNpmTasks "grunt-css"
   
-  grunt.registerTask "zip", "js css compress:zip".split(' ')
+  grunt.registerTask "zip", ["js","css","compress:zip"]
 
 
   grunt.event.on 'qunit.spawn', (url) ->
