@@ -1,5 +1,74 @@
 @import "umobi.mixin"
 
+a.ui-btn,
+button.ui-btn
+  position: relative
+
+  .ui-icon
+    font-size: 16px
+
+  // iconpos=left
+  .ui-icon-left
+    position: absolute
+    left: 8px
+
+  &.ui-inline
+    vertical-align: middle
+
+  &.ui-btn-icon-left .ui-icon
+    margin-top: 3px
+
+  // iconpos=left and mini
+  &.ui-mini.ui-btn-icon-left .ui-btn-inner
+    margin-left: 17px
+
+  // iconpos=right
+  .ui-icon-right
+    position: absolute
+    right: 8px
+
+  &.ui-btn-icon-right .ui-icon
+    margin-top: 3px
+
+  // iconpos=right and mini
+  &.ui-mini.ui-btn-icon-right .ui-btn-inner
+    margin-right: 17px
+
+  // iconpos=bottom
+  &.ui-btn-icon-bottom .ui-btn-inner
+    padding-bottom: 30px
+    display: block
+  &.ui-btn-icon-bottom .ui-icon
+    position: absolute
+    bottom: 10px
+    left: 50%
+    margin-left: -9px
+
+
+  // iconpos=top
+  &.ui-btn-icon-top .ui-btn-inner
+    padding-top: 30px
+    display: block
+  &.ui-btn-icon-top .ui-icon
+    position: absolute
+    top: 10px
+    left: 50%
+    margin-left: -9px
+
+a.ui-btn.ui-btn-icon-notext,
+button.ui-btn.ui-btn-icon-notext
+  .ui-btn-text
+    display: none
+
+
+a.ui-btn
+  display: inline-block
+
+// a.ui-btn
+  &.ui-mini.ui-btn-icon-left .ui-icon
+  &.ui-mini.ui-btn-icon-left .ui-btn-inner
+
+
 /** Link button structure
 a.ui-btn,
 button.ui-btn
@@ -9,6 +78,7 @@ button.ui-btn
   display: block
   text-align: center
   margin: 0.5em 0
+  line-height: 1.5
 
 button.ui-btn
   width: 100%
@@ -82,3 +152,4 @@ input.ui-input-text
 
 textarea.ui-mini
   height: 45px
+

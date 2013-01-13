@@ -2,10 +2,6 @@
 
 all: .deps build
 
-stat:
-	@stat -f "%N: %z bytes" compiled/umobi.min.js
-	@stat -f "%N: %z bytes" compiled/umobi.min.css
-
 build:
 	grunt --no-color
 
@@ -16,9 +12,11 @@ css:
 	grunt --no-color css
 
 gem_modules:
-	gem install sass listen
+	gem install sass listen compass guard
 
 .deps:
+	git submodule init
+	git submodule update
 	npm install --quiet
 	touch .deps
 
@@ -30,6 +28,3 @@ sass-updater:
 
 clean:
 	rm -rf compiled/ .sass-cache/ .deps
-
-clean_all: clean
-	rm -rf node_modules

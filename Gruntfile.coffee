@@ -1,6 +1,5 @@
 path = require "path"
 fs = require "fs"
-execSync = require "exec-sync"
 coffee = require "coffee-script"
 
 module.exports = (grunt) ->
@@ -37,41 +36,19 @@ module.exports = (grunt) ->
   
   # Project configuration.
   grunt.config.init
-    jshint:
-      options:
-        curly: true
-        eqeqeq: true
-        
-        # (function(){})() seems acceptable
-        immed: false
-        latedef: true
-        newcap: true
-        noarg: true
-        sub: true
-        undef: true
-        boss: true
-        eqnull: true
-        browser: true
+    filesize:
+      "Core":
+        "Compressed stylesheet": [ rootFile + ".min.css" ]
+        "Compressed javascript": [ rootFile + ".min.js" ]
+      "Custom font-awesome":
+        "Stylesheet": [ "compiled/customfont/fontawesome.css" ]
+        "TTF fonts": [ "compiled/customfont/fontawesome-webfont.ttf" ]
+        "EOT fonts": [ "compiled/customfont/fontawesome-webfont.eot" ]
+        "WOFF fonts": [ "compiled/customfont/fontawesome-webfont.woff" ]
+      "Images":
+        "Image files": [ "compiled/images" ]
 
-      globals:
-        jQuery: true
-        $: true
-        
-        # qunit globals
-        # TODO would be nice to confine these to test files
-        module: true
-        ok: true
-        test: true
-        asyncTest: true
-        same: true
-        start: true
-        stop: true
-        expect: true
-        
-        # require js global
-        define: true
-        require: true
-
+    jshint: readCoffee "build/jshint.coffee"
     
     # TODO add test files here once we can specify different configs for
     #      different globs
@@ -132,7 +109,7 @@ module.exports = (grunt) ->
           baseUrl: "."
           out: rootFile + ".compiled.css"
         structure:
-          cssIn: "css/structure/umobi.structure.css"
+          cssIn: "css/structure/umobi.css"
           out: structureFile + ".compiled.css"
 
     global:
@@ -165,12 +142,6 @@ module.exports = (grunt) ->
   cssmin[themeFile + ".min.css"] = ["<%= global.ver.min %>", themeFile + ".css"]
   grunt.config.set "cssmin", cssmin
   
-
-  grunt.registerTask "sass", "compile sass files into css file", ->
-    grunt.log.writeln "sass --update css"
-    execSync "sass --update css"
-
-  
   # csslint and cssmin tasks
   grunt.loadNpmTasks "grunt-css"
   
@@ -194,4 +165,4 @@ module.exports = (grunt) ->
   grunt.loadTasks "build/tasks"
 
   # set the default task.
-  grunt.registerTask "default", ["coffeelint","js","css","qunit","stat"]
+  grunt.registerTask "default", ["coffeelint","js","css","qunit","filesize"]
