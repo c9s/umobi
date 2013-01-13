@@ -7,9 +7,11 @@
                 <h1>µMobi</h1>
             </header>
             <section data-role="content">
-                <ul data-role="listview" data-inset="true">
-                    <?php require "_index.php"; ?>
-                </ul>
+                <nav>
+                    <ul data-role="listview" data-inset="true">
+                        <?php require "_index.php"; ?>
+                    </ul>
+                </nav>
             </section>
             <footer data-fixed="true">
                 <div>Footer</div>
