@@ -4,7 +4,6 @@ coffee = require "coffee-script"
 
 module.exports = (grunt) ->
 
-  cssmin = {}
   dirs =
     output: "compiled"
     temp: "tmp"
@@ -33,7 +32,13 @@ module.exports = (grunt) ->
   rootFile = outputPath(names.root)
   structureFile = outputPath(names.structure)
   themeFile = outputPath(names.theme)
-  
+
+  # CSSMIN configuration
+  cssmin = { all: { } }
+  cssmin.all[ "#{rootFile}.min.css" ]      = ["<%= global.ver.min %>", rootFile + ".css"]
+  cssmin.all[ "#{structureFile}.min.css" ] = ["<%= global.ver.min %>", structureFile + ".css"]
+  cssmin.all[ "#{themeFile}.min.css" ]     = ["<%= global.ver.min %>", themeFile + ".css"]
+
   # Project configuration.
   grunt.config.init
     sizereport:
@@ -91,7 +96,7 @@ module.exports = (grunt) ->
     # NOTE the keys are filenames which, being stored as variables requires that we use
     #      key based assignment. See below.
     uglify: `undefined`
-    cssmin: `undefined`
+    cssmin: cssmin
     compress: readCoffee "build/compress.coffee"
     
     # JS config, mostly the requirejs configuration
@@ -136,11 +141,6 @@ module.exports = (grunt) ->
   uglify.js.files[ rootFile + ".min.js" ] = [rootFile + ".js"]
   grunt.config.set "uglify",uglify
   
-  # CSSMIN configuration
-  cssmin[rootFile + ".min.css"] = ["<%= global.ver.min %>", rootFile + ".css"]
-  cssmin[structureFile + ".min.css"] = ["<%= global.ver.min %>", structureFile + ".css"]
-  cssmin[themeFile + ".min.css"] = ["<%= global.ver.min %>", themeFile + ".css"]
-  grunt.config.set "cssmin", cssmin
   
   
   # authors task
