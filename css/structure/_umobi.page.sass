@@ -1,0 +1,75 @@
+.ui-page,
+.ui-dialog
+  top: 0
+  left: 0
+  width: 100%
+  min-height: 100%
+  position: absolute
+  display: none
+  border: 0
+
+.ui-page.ui-page-active
+  display: block
+  overflow: visible
+
+/* on ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
+.ui-page 
+  outline: none
+
+/* basic layout system */
+.ui-header,
+.ui-footer
+  text-align: center
+  z-index: 99
+
+.ui-fixed-footer,
+.ui-fixed-header
+  position: fixed
+  z-index: 99
+  width: 100%
+
+.ui-fixed-header
+  top: 0
+  left: 0
+
+.ui-fixed-footer
+  bottom: 0
+  left: 0
+
+.ui-content
+  padding: 15px
+
+.ui-content-container
+  width: 100%
+
+/* is container scrollable ?
+.ui-content-scroll
+  position: fixed
+
+/*
+  .ui-content
+  .ui-content-scroll
+
+
+.ui-title
+  min-height: 1.1em
+  text-align: center
+  display: block
+  padding: 0
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  outline: 0 !important
+
+h1.ui-title
+  font-size: 1.4em
+
+h2.ui-title
+  font-size: 1.2em
+
+h3.ui-title
+  font-size: 1.1em
+
+.ui-input-text.ui-mini
+  display: inline-block
+

@@ -59,9 +59,10 @@ define [
 
       create: (el) ->
         upage = u(el).addClass(["ui-page","ui-body-#{ umobi.config.theme }"])
+
+        # trigger pagecreate event.
         upage.trigger("pagecreate")
 
-        # TODO: rewrite this with umobi.dom
         h = upage.find('[data-role="header"],header').addClass("ui-header") # header container
         f = upage.find('[data-role="footer"],footer').addClass("ui-footer")  # footer container
         c = upage.find('[data-role="content"]').addClass("ui-content") # content container
