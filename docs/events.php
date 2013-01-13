@@ -14,6 +14,10 @@
 
 `pageinit`:
 
+`pagecreate`:
+
+`pagereveal`:
+
 <?php md_end(); ?>
 
             </section>
