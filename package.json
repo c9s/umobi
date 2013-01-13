@@ -49,6 +49,5 @@
     "node": ">=8.0"
   },
   "devDependencies": {
-    "grunt-sizereport": "0.0.1"
   }
 }
