@@ -45,6 +45,5 @@
     "node": ">=8.0"
   },
   "devDependencies": {
-    "async": "~0.1.22"
   }
 }

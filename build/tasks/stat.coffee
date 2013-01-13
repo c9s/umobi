@@ -2,7 +2,6 @@ requirejs = require "requirejs"
 path      = require "path"
 fs        = require "fs"
 filesize = require "filesize"
-async = require "async"
 
 readSizeRecursive = (item) ->
   stats = fs.lstatSync item
