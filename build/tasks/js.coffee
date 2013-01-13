@@ -26,4 +26,10 @@ module.exports = (grunt) ->
     fs.unlink require.out
   
   # NOTE custom dasks don't accept dependencies so we alias
-  grunt.registerTask "js", "config:async js:compile concat:js uglify js:cleanup".split(" ")
+  grunt.registerTask "js", [
+    "config:async"
+		"js:compile"
+		"concat:js"
+		"uglify"
+		"js:cleanup"
+	]

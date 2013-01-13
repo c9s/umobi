@@ -1,6 +1,7 @@
 path = require "path"
 fs = require "fs"
 coffee = require "coffee-script"
+child_process = require("child_process")
 
 module.exports = (grunt) ->
 
@@ -52,7 +53,9 @@ module.exports = (grunt) ->
       shas: {}
 
     coffeelint: { app: ['js/*.coffee'] }
+
     jshint: readCoffee "build/jshint.coffee"
+
     coffeelintOptions:
       no_backticks:
         level: "ignore"

@@ -2,7 +2,6 @@
 fs            = require("fs")
 path          = require("path")
 child_process = require("child_process")
-glob          = require("glob-whatev")
 
 module.exports = (grunt) ->
   grunt.registerTask "config:async", "git hashes for output headers", ->
