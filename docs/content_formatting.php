@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>µMobi (uMobi)</title>
-        <meta name="apple-touch-fullscreen" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-        <link href="../css/structure/umobi.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/themes/default/umobi.css" rel="stylesheet" type="text/css"/>
-        <script src="../js"></script>
-    </head>
+    <?php require "_head.php"; ?>
     <body>
         <div data-role="page" id="index">
             <div data-role="header" data-fixed="true">
@@ -18,9 +8,9 @@
             </div>
             <div data-role="content">
                 <ul data-role="listview" data-inset="true">
-                    <li><a href="pages.html">Pages</a></li>
-                    <li><a href="forms.html">Form Widgets</a></li>
-                    <li><a href="content_formatting.html">Content Formatting</a></li>
+                    <li><a href="pages.php">Pages</a></li>
+                    <li><a href="forms.php">Form Widgets</a></li>
+                    <li><a href="content_formatting.php">Content Formatting</a></li>
                 </ul>
             </div>
             <div data-role="footer" data-fixed="true">

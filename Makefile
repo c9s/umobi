@@ -21,10 +21,10 @@ gem_modules:
 	touch .deps
 
 sass:
-	sass -c --update css
+	sass --compass --update css
 
 sass-updater:
-	sass -q --debug-info --watch css &
+	sass --compass -q --debug-info --watch css &
 
 clean:
 	rm -rf compiled/ .sass-cache/ .deps

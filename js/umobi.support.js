@@ -17,7 +17,7 @@
     support = {
       offlineCache: typeof window.applicationCache !== 'undefined',
       classList: typeof document.documentElement !== 'undefined',
-      touchEnabled: navigator.userAgent.match(/(iPhone|iPad|Android|Mobile)/)
+      touch: navigator.userAgent.match(/(iPhone|iPad|Android|Mobile)/)
     };
     support.matrix = "WebKitCSSMatrix" in window;
     support.matrixM11 = support.matrix && (__indexOf.call(new WebKitCSSMatrix(), "m11") >= 0);

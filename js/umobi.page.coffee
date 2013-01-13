@@ -86,18 +86,23 @@ define [
 
           # Initialize touch scroller with 3D translate if it's on mobile
           # device and the touchScroll option is enabled.
-#            if umobi.support.touchEnabled and umobi.config.touchScroll
-#              umobi.scroller.create(c.get(0))
-#              document.documentElement.style.overflow = "hidden"
-#              $contentContainer.addClass "ui-content-scroll"
+          if umobi.support.touch and umobi.config.touchScroll
+            umobi.scroller.create(c.get(0))
+            document.documentElement.style.overflow = "hidden"
+            $contentContainer.addClass "ui-content-scroll"
 
           # if touchScroll option is not enabled, we should just
           # adjust cotnent padding to keep space for header and footer.
           if not umobi.config.touchScroll
             AdjustContentPadding = ->
               # console.log "pagereveal", h.height(), f.height()
-              $contentContainer.css("paddingTop", h.height() + "px") if h.get(0)
-              $contentContainer.css("paddingBottom", f.height() + "px") if f.get(0)
+              $contentContainer.css({
+                "position": "absolute"
+                "-webkit-overflow-scrolling": "touch"
+                "overflow": "auto"
+              })
+              $contentContainer.css("top", h.height() + "px") if h.get(0)
+              $contentContainer.css("bottom", f.height() + "px") if f.get(0)
             upage.on "pagereveal", AdjustContentPadding
           else
             # use absolute position and fixed header/footer for desktop
@@ -111,7 +116,7 @@ define [
                 top: contentTop + "px"
                 left: 0
                 bottom: contentBottom + "px"
-                overflow: if umobi.support.touchEnabled then "hidden" else "auto"
+                overflow: if umobi.support.touch then "hidden" else "auto"
             upage.on "pagereveal", AdjustContentHeight
 
         resizeTimeout = null

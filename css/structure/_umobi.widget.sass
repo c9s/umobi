@@ -1,7 +1,11 @@
 @import "umobi.mixin"
 
-a.ui-btn,
-button.ui-btn
+.ui-inline
+  display: inline-block
+  width: auto
+  vertical-align: middle
+
+.ui-btn
   position: relative
 
   .ui-icon
@@ -12,8 +16,6 @@ button.ui-btn
     position: absolute
     left: 8px
 
-  &.ui-inline
-    vertical-align: middle
 
   &.ui-btn-icon-left .ui-icon
     margin-top: 3px
@@ -60,16 +62,7 @@ button.ui-btn.ui-btn-icon-notext
   .ui-btn-text
     display: none
 
-
-a.ui-btn
-  display: inline-block
-
-// a.ui-btn
-  &.ui-mini.ui-btn-icon-left .ui-icon
-  &.ui-mini.ui-btn-icon-left .ui-btn-inner
-
-
-/** Link button structure
+// Link button structure
 a.ui-btn,
 button.ui-btn
   text-decoration: none
@@ -80,21 +73,20 @@ button.ui-btn
   margin: 0.5em 0
   line-height: 1.5
 
-button.ui-btn
-  width: 100%
-
-a.ui-btn.ui-mini,
-button.ui-btn.ui-mini
+.ui-btn.ui-mini
   display: inline-block
   width: auto
+
+button.ui-btn
+  width: 100%
 
 /****************************************
  focus state  for most case
  ****************************************
-.ui-btn:focus, .ui-link-inherit:focus
-  outline: 0
-
+.ui-btn:focus,
+.ui-link-inherit:focus,
 .ui-btn.ui-focus
+  outline: 0
   z-index: 1
 
 label.ui-input-text

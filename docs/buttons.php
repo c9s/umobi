@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>µMobi (uMobi)</title>
-        <meta name="apple-touch-fullscreen" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-        <link href="../css/structure/umobi.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/themes/default/umobi.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
-        <script src="../js"></script>
-    </head>
+    <?php require "_head.php"; ?>
     <body>
         <div data-role="page" id="index">
             <div data-role="header" data-fixed="true">
@@ -20,18 +9,18 @@
             <div data-role="content">
 
                 <h2>Link buttons</h2>
-                <a href="index.html">Normal Link</a>
-                <a data-role="button" href="index.html">Link button</a>
-                <a data-role="button" data-icon="search" href="index.html">Button with icon</a>
-                <a data-role="button" data-mini="true" href="index.html">Mini button</a>
+                <a href="index.php">Normal Link</a>
+                <a data-role="button" href="index.php">Link button</a>
+                <a data-role="button" data-icon="search" href="index.php">Button with icon</a>
+                <a data-role="button" data-mini="true" href="index.php">Mini button</a>
 
-                <a data-role="button" data-icon="th" data-mini="true" href="index.html">Mini button</a>
-                <a data-role="button" data-icon="th" data-iconpos="left" data-mini="true" href="index.html">Mini button</a>
-                <a data-role="button" data-icon="th" data-iconpos="right" data-mini="true" href="index.html">Mini button</a>
+                <a data-role="button" data-icon="th" data-mini="true" href="index.php">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="left" data-mini="true" href="index.php">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="right" data-mini="true" href="index.php">Mini button</a>
 
                 <p>
-                <a data-role="button" data-icon="th" data-iconpos="top" data-inline="true" data-mini="true" href="index.html">Mini button</a>
-                <a data-role="button" data-icon="th" data-iconpos="bottom" data-inline="true" data-mini="true" href="index.html">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="top" data-inline="true" data-mini="true" href="index.php">Mini button</a>
+                <a data-role="button" data-icon="th" data-iconpos="bottom" data-inline="true" data-mini="true" href="index.php">Mini button</a>
                 </p>
 
                 <h2>Button tag</h2>

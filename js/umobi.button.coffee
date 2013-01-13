@@ -33,9 +33,14 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
     ), (->
       u(@).removeClass([cmap.down,cmap.hover]).addClass(cmap.up)
     )
-    $el.on 'mousedown',->
+
+    $el.on "tap", (e) ->
       u(@).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down)
-    $el.on 'mouseup',->
+
+    $el.on "mousedown", (e) ->
+      u(@).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down)
+
+    $el.on 'mouseup', (e) ->
       u(@).removeClass(cmap.down).addClass(cmap.hover)
 
   u.ready ->

@@ -56,8 +56,8 @@ a simple splitview example:
                 <ul data-role="listview">
                     <li><a data-target="primary-contnet" href="">Item1</a></li>
                     <li><a data-target="primary-content" href="">Item1</a></li>
-                    <li><a href="folderlist.html">Folder</a></li>
-                    <li><a href="folderlist.html">Folder</a></li>
+                    <li><a href="folderlist.php">Folder</a></li>
+                    <li><a href="folderlist.php">Folder</a></li>
                 </ul>
             </div>
         </div>

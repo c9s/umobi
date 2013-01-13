@@ -1,19 +1,13 @@
 ###
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 ###
-define ['jquery','cs!umobi.core','cs!u'], () ->
+define ["jquery","cs!umobi.core","cs!u"], () ->
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
   (->
     debug = window.console and true
 
-#      u.ready ->
-#        # TODO: range slider need this.
-#        document.body.addEventListener('touchmove', ((e) ->
-#          # This prevents native scrolling from happening.
-#          e.preventDefault()
-#        ), false)
 
     class Scroller
       snapBoundary: 80
@@ -34,15 +28,14 @@ define ['jquery','cs!umobi.core','cs!u'], () ->
         @prevTouchY          = undefined
         @contentStartOffsetY = 0
         self = this
-        @element.addEventListener 'touchstart', this, false
-
+        @element.addEventListener "touchstart", this, false
 
         # @element.addEventListener 'touchmove', this, false
         # This seems faster for dispatching (by using native dispatcher?)
         onTouchMove = self.onTouchMove
-        @element.addEventListener 'touchmove', (e) -> onTouchMove.call(self,e)
+        @element.addEventListener "touchmove", (e) -> onTouchMove.call(self,e)
 
-        @element.addEventListener 'touchend', this, false
+        @element.addEventListener "touchend", this, false
 
       ###
       HandleEvent
@@ -57,7 +50,7 @@ define ['jquery','cs!umobi.core','cs!u'], () ->
       handleEvent: (e) ->
         switch e.type
           when "touchstart" then @onTouchStart(e)
-          when "touchend" then @onTouchEnd(e)
+          when "touchend"   then @onTouchEnd(e)
 
       onTouchStart: (e) ->
         @stopMomentum()
@@ -275,7 +268,12 @@ define ['jquery','cs!umobi.core','cs!u'], () ->
         lines.push '}'
         return lines.join '\n'
     umobi.scroller = {}
-    umobi.scroller.create = (element) -> new Scroller(element)
+    umobi.scroller.create = (element) ->
+      # TODO: range slider need this.
+#        document.body.addEventListener "touchmove", ((e) ->
+#          e.preventDefault()
+#        ), false
+      return new Scroller(element)
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)

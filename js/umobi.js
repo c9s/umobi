@@ -1,6 +1,6 @@
 //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
 require({
-  // baseUrl: 'js',
+  baseUrl: 'js',
   urlArgs: 'bust=' + (new Date()).getTime()
     /*
     , paths: {
@@ -28,10 +28,12 @@ define([
     "cs!u",
     "cs!umobi.button",
     "cs!umobi.widget",
+    "cs!widgets/slider",
     "cs!umobi.zoom",
     "cs!umobi.listview",
     "cs!umobi.navigation",
     "cs!umobi.scroller",
+    "cs!umobi.touch",
     "cs!umobi.support",
     "cs!umobi.offlinecache",
     "cs!umobi.page",
