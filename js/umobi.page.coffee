@@ -58,9 +58,8 @@ define [
         umobi.page.reveal(upage)
 
       create: (el) ->
-        upage = u(el)
+        upage = u(el).addClass(["ui-page","ui-body-#{ umobi.config.theme }"])
         upage.trigger("pagecreate")
-        upage.addClass(["ui-page","ui-body-#{ umobi.config.theme }"])
 
         # TODO: rewrite this with umobi.dom
         h = upage.find('[data-role="header"],header').addClass("ui-header") # header container
@@ -70,7 +69,7 @@ define [
         h.find("h1,h2,h3,h4,h5,h6").addClass("ui-title")
         isBothFixed = h.data "fixed" or f.data "fixed"
 
-        # iOS5.0+, Android 2.2 supports position:fixed,
+        # TODO: iOS5.0+, Android 2.2 supports position:fixed,
         # we need a simple detection here.
         #
         # and there is a native scrolling support in iOS5
@@ -87,6 +86,7 @@ define [
           # Initialize touch scroller with 3D translate if it's on mobile
           # device and the touchScroll option is enabled.
           if umobi.support.touch and umobi.config.touchScroll
+            # create js touch scroller for content wrapper.
             umobi.scroller.create(c.get(0))
             document.documentElement.style.overflow = "hidden"
             $contentContainer.addClass "ui-content-scroll"
@@ -120,7 +120,7 @@ define [
             upage.on "pagereveal", AdjustContentHeight
 
         resizeTimeout = null
-        u(window).on "resize",->
+        u(window).on "resize", ->
           clearTimeout(resizeTimeout) if resizeTimeout
           resizeTimeout = setTimeout AdjustContentHeight, 100
         h.addClass("ui-fixed-header") if h.attr "data-fixed"
