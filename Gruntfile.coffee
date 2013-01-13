@@ -36,36 +36,23 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.config.init
-
     global:
       dirs: dirs
       names: names
       files:
         license: "LICENSE.txt"
-
       
       # other version information is added via the asyncConfig helper that
       # depends on git commands (eg ver.min, ver.header)
       ver:
         official: verOfficial
-        min: "/*! umobi v<%= build_sha %> umobi.com !*/"
+        min: "/*! umobi v<%= global.shas.build_sha %> umobi.com !*/"
         gitLongSha: "git log -1 --format=format:\"Git Build: SHA1: %H <> Date: %cd\""
         gitShortSha: "git log -1 --format=format:\"%H\""
-
       shas: {}
 
-  
-
-
+    coffeelint: { app: ['js/*.coffee'] }
     jshint: readCoffee "build/jshint.coffee"
-    
-    # TODO add test files here once we can specify different configs for
-    #      different globs
-    # lint:
-    #  files: ["js/**/*.mobile.*.js", "js/*/*.js"]
-
-    coffeelint:
-      app: ['js/*.coffee']
     coffeelintOptions:
       no_backticks:
         level: "ignore"
@@ -121,6 +108,8 @@ module.exports = (grunt) ->
 
     # config for grunt-css
     cssmin:
+      options:
+        banner: "<%= global.ver.min %>"
       all:
         src: rootFile + ".css"
         dest: rootFile  + ".min.css"
