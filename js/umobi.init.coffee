@@ -12,7 +12,11 @@ define [
   ###
   //>>excludeEnd("umobiBuildExclude")
   ###
-  (->
+  ((d)->
+    # support HTML5 tags
+    tags = ["article","section","header","footer","aside","details","summary"]
+    d.createElement('div') for tag in tags
+
     # Page Initialization
     uhtml = u('html')
     uhtml.children(0).addClass(['ui-mobile','ui-mobile-rendering'])
@@ -36,7 +40,7 @@ define [
 
       u.load -> uhtml.removeClass('ui-mobile-rendering')
       u(document.body).addClass("ui-body-c")
-  )()
+  )(document)
 
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)

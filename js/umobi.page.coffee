@@ -63,8 +63,8 @@ define [
         upage.addClass(["ui-page","ui-body-#{ umobi.config.theme }"])
 
         # TODO: rewrite this with umobi.dom
-        h = upage.find('[data-role="header"]').addClass("ui-header") # header container
-        f = upage.find('[data-role="footer"]').addClass("ui-footer")  # footer container
+        h = upage.find('[data-role="header"],header').addClass("ui-header") # header container
+        f = upage.find('[data-role="footer"],footer').addClass("ui-footer")  # footer container
         c = upage.find('[data-role="content"]').addClass("ui-content") # content container
 
         h.find("h1,h2,h3,h4,h5,h6").addClass("ui-title")
