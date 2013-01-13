@@ -36,20 +36,26 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.config.init
-    sizereport:
-      "Core":
-        "Compressed stylesheet": [ rootFile + ".min.css" ]
-        "Compressed javascript": [ rootFile + ".min.js" ]
-      "Stylesheets":
-        "structure": [structureFile  + ".min.css"]
-        "theme": [themeFile + ".min.css"]
-      "Custom font-awesome":
-        "Stylesheet": [ "compiled/customfont/fontawesome.css" ]
-        "TTF fonts": [ "compiled/customfont/fontawesome-webfont.ttf" ]
-        "EOT fonts": [ "compiled/customfont/fontawesome-webfont.eot" ]
-        "WOFF fonts": [ "compiled/customfont/fontawesome-webfont.woff" ]
-      "Images":
-        "Image files": [ "compiled/images" ]
+
+    global:
+      dirs: dirs
+      names: names
+      files:
+        license: "LICENSE.txt"
+
+      
+      # other version information is added via the asyncConfig helper that
+      # depends on git commands (eg ver.min, ver.header)
+      ver:
+        official: verOfficial
+        min: "/*! umobi v<%= build_sha %> umobi.com !*/"
+        gitLongSha: "git log -1 --format=format:\"Git Build: SHA1: %H <> Date: %cd\""
+        gitShortSha: "git log -1 --format=format:\"%H\""
+
+      shas: {}
+
+  
+
 
     jshint: readCoffee "build/jshint.coffee"
     
@@ -94,17 +100,6 @@ module.exports = (grunt) ->
     # NOTE the keys are filenames which, being stored as variables requires that we use
     #      key based assignment. See below.
     uglify: `undefined`
-    cssmin:
-      all:
-        src: rootFile + ".css"
-        dest: rootFile  + ".min.css"
-      structure:
-        src: structureFile + ".css"
-        dest: structureFile  + ".min.css"
-      theme:
-        src: themeFile + ".css"
-        dest: themeFile + ".min.css"
-    compress: readCoffee "build/compress.coffee"
     
     # JS config, mostly the requirejs configuration
     # full example: https://github.com/jrburke/r.js/blob/master/build/example.build.js
@@ -124,31 +119,41 @@ module.exports = (grunt) ->
           cssIn: "css/structure/umobi.css"
           out: structureFile + ".compiled.css"
 
-    global:
-      dirs: dirs
-      names: names
-      files:
-        license: "LICENSE.txt"
+    # config for grunt-css
+    cssmin:
+      all:
+        src: rootFile + ".css"
+        dest: rootFile  + ".min.css"
+      structure:
+        src: structureFile + ".css"
+        dest: structureFile  + ".min.css"
+      theme:
+        src: themeFile + ".css"
+        dest: themeFile + ".min.css"
 
-      
-      # other version information is added via the asyncConfig helper that
-      # depends on git commands (eg ver.min, ver.header)
-      ver:
-        official: verOfficial
-        min: "/*! umobi v<%= build_sha %> umobi.com !*/"
-        gitLongSha: "git log -1 --format=format:\"Git Build: SHA1: %H <> Date: %cd\""
-        gitShortSha: "git log -1 --format=format:\"%H\""
+    # config for grunt-contrib-compress
+    compress: readCoffee "build/compress.coffee"
 
-      shas: {}
+    sizereport:
+      "Core":
+        "Compressed stylesheet": [ rootFile + ".min.css" ]
+        "Compressed javascript": [ rootFile + ".min.js" ]
+      "Stylesheets":
+        "structure": [structureFile  + ".min.css"]
+        "theme": [themeFile + ".min.css"]
+      "Custom font-awesome":
+        "Stylesheet": [ "compiled/customfont/fontawesome.css" ]
+        "TTF fonts": [ "compiled/customfont/fontawesome-webfont.ttf" ]
+        "EOT fonts": [ "compiled/customfont/fontawesome-webfont.eot" ]
+        "WOFF fonts": [ "compiled/customfont/fontawesome-webfont.woff" ]
+      "Images":
+        "Image files": [ "compiled/images" ]
 
-  
   # MIN configuration
   uglify = { js: { files: {} } }
   uglify.options = { banner: "<%= global.ver.min %>" }
   uglify.js.files[ rootFile + ".min.js" ] = [rootFile + ".js"]
   grunt.config.set "uglify",uglify
-  
-  
   
   # authors task
   grunt.loadNpmTasks "grunt-git-authors"
