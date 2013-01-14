@@ -1,4 +1,4 @@
-fs = require "fs"
+fs   = require "fs"
 rmrf = require "rimraf"
 
 module.exports = (grunt) ->

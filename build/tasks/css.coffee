@@ -1,8 +1,8 @@
-requirejs = require("requirejs")
-path = require("path")
-fs = require("fs")
-util = require("util")
-execSync = require "exec-sync"
+requirejs = require "requirejs"
+path      = require "path"
+fs        = require "fs"
+util      = require "util"
+execSync  = require "exec-sync"
 
 module.exports = (grunt) ->
   config = grunt.config.get("global")
