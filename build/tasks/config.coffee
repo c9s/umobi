@@ -3,6 +3,7 @@ path          = require "path"
 child_process = require "child_process"
 
 module.exports = (grunt) ->
+
   grunt.registerTask "config:async", "git hashes for output headers", ->
     done = @async()
     global = grunt.config.get("global")

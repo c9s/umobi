@@ -13,7 +13,7 @@ x list view
 
 ## Layout features
 
-- sidebar view (primary content and sidebar content)
+x sidebar view (primary content and sidebar content)
     - a sidebar view may contains a primary content and the sidebar
     - the sidebar could be togglable if the screen width is not enough.
 
@@ -26,6 +26,13 @@ x button style
 - table view
 - navigator buttons (in footer)
 - fast button
+
+## JS Codebase
+
+- use a lighter ajax library instead of jQuery or zepto library.
+	- microajax <http://code.google.com/p/microajax/>
+	- promisejs https://github.com/stackp/promisejs
+
 
 ## Application components
 

@@ -5,6 +5,7 @@ util      = require "util"
 execSync  = require "exec-sync"
 
 module.exports = (grunt) ->
+
   config = grunt.config.get("global")
   helpers = config.helpers
   grunt.registerTask "css:compile", "use require js to sort out deps", ->
@@ -22,8 +23,8 @@ module.exports = (grunt) ->
     # simple theme file compile
     # grunt.file.write themeFile + ".css", "css/themes/" + theme + "/umobi.css"
 
-  grunt.registerTask "css:fontawesome","copy fontawesome files", ->
-    grunt.log.ok("Copying font-awesome files...")
+  grunt.registerTask "css:fontawesome", "copy fontawesome files", ->
+    grunt.log.ok "Copying font-awesome files..."
     wrench = require "wrench"
     wrench.copyDirSyncRecursive("css/customfont", "compiled/customfont")
   

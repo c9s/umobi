@@ -13,11 +13,17 @@ define [
   //>>excludeEnd("umobiBuildExclude")
   ###
   ((d)->
-    # support HTML5 tags
-    tags = ["article","section","header","footer","aside","details","summary"]
-    d.createElement('div') for tag in tags
+    # support HTML5 tags, and custom "page" tag.
+    (->
+      tags = ["article","section","header","footer","aside","details","summary","page"]
+      f = document.createDocumentFragment()
+      for tag in tags
+        f.appendChild( d.createElement(tag) )
+    )()
 
-    # Page Initialization
+    # To optimize rendering performance, we append a ui-mobile-rendering class
+    # to hide elements before rendering pages and adding classes to every
+    # elements.
     uhtml = u('html')
     uhtml.children(0).addClass(['ui-mobile','ui-mobile-rendering'])
 

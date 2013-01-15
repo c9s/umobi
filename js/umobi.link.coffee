@@ -24,16 +24,40 @@ define [
   </a>
   ###
   (->
-    initializeLinks = ->
+    u.ready ->
       for link in document.links
         ulink = u(link)
         if not ulink.data('role')
           # initialize <a> as a normal link
           ulink.addClass('ui-link')
         ulink.click (e) ->
-          href = ulink.attr('href')
-          umobi.page.revealByHash(href) if href.match( /^#\w+/ )
-    u.ready initializeLinks
+          href = ulink.attr("href")
+
+          # just reveal the page if the href only contains #hash
+          umobi.page.revealByHash(href) if /^#\w+/
+
+          regs = href.match /(#\w+)/
+          hash = if regs then regs[1] else "#index"
+
+          if ulink.data("ajax")
+            # XXX: show loading indicator here.
+            e.preventDefault()
+            $.ajax
+              url: href
+              dataType: "html"
+              success: (html) ->
+                body = document.createElement("body")
+                body.innerHTML = html
+                $body = $(body)
+
+                # XXX: injects all pages into current document.
+                $page = $body.find(hash)
+                if not $page.get(0)
+                  $page = $body.find('[data-role="page"]').first()
+                $(document.body).append($page)
+              error: (err) ->
+                console.error "error",err
+            return false
   )()
   ###
   //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)

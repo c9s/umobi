@@ -18,7 +18,7 @@ define [
     umobi.page =
 
       # get all pages
-      findAll: -> u('[data-role="page"]')
+      findAll: -> u('[data-role="page"],page')
 
       # get active page
       findActive: -> u('.ui-page-active')

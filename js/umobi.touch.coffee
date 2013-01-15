@@ -48,7 +48,6 @@ define ["jquery","cs!umobi.core","cs!u"], () ->
         # XXX: we should use lighter event handler/trigger.
         # and which should be compatible with DOM's addEventListener() function.
         $(@theTarget).trigger("tap")
-
   u.ready ->
     $("a,button").each (i,e) ->
       new TapDetector(this)
