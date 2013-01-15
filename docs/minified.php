@@ -8,15 +8,10 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-<!--
-        <link href="../compiled/umobi.structure.css" rel="stylesheet" type="text/css"/>
-        <link href="../compiled/umobi.theme.css" rel="stylesheet" type="text/css"/>
--->
-        <link href="../compiled/umobi.min.css" rel="stylesheet" type="text/css"/>
-
-        <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
         <script src="../js/jquery.js"> </script>
         <script src="../compiled/umobi.js"> </script>
+        <link href="../compiled/umobi.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../compiled/customfont/fontawesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- requirejs, which is too slow -->
         <!--
         <script data-main="../js/umobi" src="../js/require.js"></script>
@@ -36,12 +31,19 @@ This is a testing page for compiled umobi js/css
 
 ## Usage
 
+
     <head>
         <script src="../js/jquery.js"> </script>
         <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
         <link href="../compiled/umobi.min.css" rel="stylesheet" type="text/css"/>
         <script src="../compiled/umobi.min.js"> </script>
     </head>
+
+To load css structure and theme separately:
+
+    <link href="../compiled/umobi.structure.css" rel="stylesheet" type="text/css"/>
+    <link href="../compiled/umobi.theme.css" rel="stylesheet" type="text/css"/>
+
 
 <?php md_end(); ?>
                 <h1>Testing samples</h2>
