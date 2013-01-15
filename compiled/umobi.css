@@ -1,0 +1,647 @@
+/**
+ * MIT License, Copyright 2012 Yo-An Lin <cornelius.howl@gmail.com>
+ * http://github.com/c9s/umobi
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+html {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+/* This helps to make newer HTML5 elements behave like DIVs in older browers */
+article, aside, details, figcaption, figure, dialog,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+/* Line-height should always be unitless! */
+body {
+  line-height: 1.5;
+  background: white;
+  font-family: Helvetica, Arial, sans-serif; }
+/* Tables still need 'cellspacing="0"' in the markup. */
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+/* float:none prevents the span-x classes from breaking table-cell display */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  float: none !important; }
+table, th, td {
+  vertical-align: middle; }
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: ""; }
+blockquote, q {
+  quotes: "" ""; }
+/* Remove annoying border on linked images. */
+a img {
+  border: none; }
+/* Remember to define your own focus styles! */
+:focus {
+  outline: 0; }
+pre {
+  font-family: Monospace;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; }
+h1 {
+  font-size: 1.9em; }
+h2 {
+  margin-top: 0.3em;
+  font-size: 1.6em; }
+h3 {
+  margin-top: 0.7em;
+  font-size: 1.3em; }
+h4 {
+  margin-top: 1.1em;
+  font-size: 1.1em; }
+/* Clearing floats without extra markup
+ * Based on How To Clear Floats Without Structural Markup by PiE
+ * [http://www.positioniseverything.net/easyclearing.html] */
+.clearfix:after,
+.container:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow: hidden; }
+.clearfix,
+.container {
+  display: block; }
+/* Regular clearing
+ * apply to column that should drop below previous ones. */
+.clear {
+  clear: both; }
+/* for grid 1/3, 2/3 */
+.grid-3-1 {
+  width: 33.3%; }
+.grid-3-2 {
+  width: 66.6%; }
+.column {
+  float: left; }
+.column.border {
+  border: 1px dashed #cccccc; }
+/* for grid 1/4, 2/4, 3/4 */
+.grid-4-1 {
+  width: 25%; }
+.grid-4-2 {
+  width: 50%; }
+.grid-4-3 {
+  width: 75%; }
+/* grid 1/5 */
+.grid-5-1 {
+  width: 20%; }
+.grid-5-2 {
+  width: 40%; }
+.grid-5-3 {
+  width: 60%; }
+.grid-5-4 {
+  width: 80%; }
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
+.ui-mobile-rendering > * {
+  visibility: hidden; }
+.ui-page,
+.ui-dialog {
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  display: none;
+  border: 0; }
+.ui-page.ui-page-active {
+  display: block;
+  overflow: visible; }
+/* on ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
+.ui-page {
+  outline: none; }
+/* basic layout system */
+.ui-header,
+.ui-footer {
+  text-align: center;
+  z-index: 99; }
+.ui-fixed-footer,
+.ui-fixed-header {
+  position: fixed;
+  z-index: 99;
+  width: 100%; }
+.ui-fixed-header {
+  top: 0;
+  left: 0; }
+.ui-fixed-footer {
+  bottom: 0;
+  left: 0; }
+.ui-content {
+  padding: 15px; }
+.ui-content-container {
+  width: 100%; }
+/* is container scrollable ? */
+.ui-content-scroll {
+  position: fixed; }
+/* .ui-content
+ * .ui-content-scroll */
+.ui-title {
+  min-height: 1.1em;
+  text-align: center;
+  display: block;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  outline: 0 !important; }
+h1.ui-title {
+  font-size: 1.4em; }
+h2.ui-title {
+  font-size: 1.2em; }
+h3.ui-title {
+  font-size: 1.1em; }
+.ui-input-text.ui-mini {
+  display: inline-block; }
+/* 28em => width smaller then iPhone */
+@media all and (min-width: 28em) {
+  .ui-content-primary {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin-left: 230px; }
+  .ui-content-secondary {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 230px;
+    overflow: auto;
+    overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; } }
+/* 28em => width larger then iPhone */
+@media all and (max-width: 28em) {
+  .ui-content-primary {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin-left: 0px; }
+  .ui-content-secondary {
+    display: none; } }
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
+.ui-inline {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle; }
+.ui-btn {
+  position: relative; }
+  .ui-btn .ui-icon {
+    font-size: 16px; }
+  .ui-btn .ui-icon-left {
+    position: absolute;
+    left: 8px; }
+  .ui-btn.ui-btn-icon-left .ui-icon {
+    margin-top: 3px; }
+  .ui-btn.ui-mini.ui-btn-icon-left .ui-btn-inner {
+    margin-left: 17px; }
+  .ui-btn .ui-icon-right {
+    position: absolute;
+    right: 8px; }
+  .ui-btn.ui-btn-icon-right .ui-icon {
+    margin-top: 3px; }
+  .ui-btn.ui-mini.ui-btn-icon-right .ui-btn-inner {
+    margin-right: 17px; }
+  .ui-btn.ui-btn-icon-bottom .ui-btn-inner {
+    padding-bottom: 30px;
+    display: block; }
+  .ui-btn.ui-btn-icon-bottom .ui-icon {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -9px; }
+  .ui-btn.ui-btn-icon-top .ui-btn-inner {
+    padding-top: 30px;
+    display: block; }
+  .ui-btn.ui-btn-icon-top .ui-icon {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -9px; }
+a.ui-btn.ui-btn-icon-notext .ui-btn-text,
+button.ui-btn.ui-btn-icon-notext .ui-btn-text {
+  display: none; }
+a.ui-btn,
+button.ui-btn {
+  text-decoration: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  display: block;
+  text-align: center;
+  margin: 0.5em 0;
+  line-height: 1.5; }
+.ui-btn.ui-mini {
+  display: inline-block;
+  width: auto; }
+button.ui-btn {
+  width: 100%; }
+/***************************************
+ * focus state  for most case
+ **************************************** */
+.ui-btn:focus,
+.ui-link-inherit:focus,
+.ui-btn.ui-focus {
+  outline: 0;
+  z-index: 1; }
+label.ui-input-text {
+  font-size: 16px;
+  line-height: 1.4;
+  display: block;
+  font-weight: normal;
+  margin: 0 0 0.3em; }
+input.ui-input-text,
+textarea.ui-input-text {
+  background-image: none;
+  padding: 0.4em;
+  margin: 0.5em 0;
+  min-height: 1.4em;
+  line-height: 1.4em;
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  outline: 0; }
+input.ui-mini,
+.ui-mini input,
+button.ui-mini,
+textarea.ui-mini {
+  font-size: 14px;
+  width: auto; }
+div.ui-input-text input.ui-input-text,
+div.ui-input-text textarea.ui-input-text {
+  border: none;
+  width: 100%;
+  padding: 0.4em 0;
+  margin: 0;
+  display: block;
+  background: transparent none;
+  outline: 0 !important; }
+textarea.ui-input-text {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 50px;
+  -webkit-transition: height 200ms linear;
+  -moz-transition: height 200ms linear;
+  -o-transition: height 200ms linear;
+  transition: height 200ms linear; }
+input.ui-input-text {
+  -webkit-appearance: none; }
+textarea.ui-mini {
+  height: 45px; }
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
+p {
+  color: #333333;
+  -webkit-text-shadow: 0 1px white;
+  -moz-text-shadow: 0 1px white;
+  text-shadow: 0 1px white; }
+pre {
+  color: #555555;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  background: #e8e8e8;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #e8e8e8 0%, #eaeaea 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e8e8), color-stop(100%, #eaeaea));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #e8e8e8 0%, #eaeaea 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #e8e8e8 0%, #eaeaea 100%); }
+/* basic layout system */
+.ui-header,
+.ui-footer {
+  background: #99ccdd;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #99ccdd 0%, #62b1d0 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #99ccdd), color-stop(100%, #62b1d0));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #99ccdd 0%, #62b1d0 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #99ccdd 0%, #62b1d0 100%); }
+.ui-header {
+  box-shadow: 0px 2px 5px #666666; }
+.ui-footer {
+  box-shadow: 0px -3px 10px #666666; }
+.ui-overlay-c,
+.ui-body-c {
+  border: 1px solid #aaaaaa;
+  color: #333333;
+  text-shadow: 0 1px 0 white;
+  background: #f9f9f9;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#eeeeee));
+  background-image: -webkit-linear-gradient(#f9f9f9, #eeeeee);
+  background-image: -moz-linear-gradient(#f9f9f9, #eeeeee);
+  background-image: -ms-linear-gradient(#f9f9f9, #eeeeee);
+  background-image: -o-linear-gradient(#f9f9f9, #eeeeee);
+  background-image: linear-gradient(#f9f9f9, #eeeeee); }
+.ui-title {
+  min-height: 1.1em;
+  text-align: center;
+  display: block;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  outline: 0 !important;
+  font-weight: bold;
+  text-shadow: 0px 1px #d8d8d8;
+  color: #383838; }
+/* Common Styles
+ * ============================== */
+.ui-corner-all {
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em; }
+.ui-shadow-inset {
+  -moz-box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.3); }
+.ui-shadow {
+  -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3); }
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
+.ui-btn {
+  color: #264755;
+  font-weight: bold;
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #aaaaaa;
+  border-bottom: 1px solid #999999;
+  -webkit-text-shadow: 1px 1px white;
+  -moz-text-shadow: 1px 1px white;
+  text-shadow: 1px 1px white;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: 8px;
+  -webkit-box-shadow: 8px;
+  box-shadow: 8px; }
+.ui-btn.ui-btn-up-c {
+  background: white;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, white 0%, #e5e5e5 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e5e5e5));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, white 0%, #e5e5e5 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
+.ui-btn.ui-btn-hover-c {
+  background: whitesmoke;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whitesmoke), color-stop(100%, #d5d5d5));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, whitesmoke 0%, #d5d5d5 100%); }
+.ui-btn.ui-btn-down-c {
+  background: #dddddd;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #dddddd 0%, white 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, white));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #dddddd 0%, white 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #dddddd 0%, white 100%); }
+/*********************************************
+ * ui link styles
+ ********************************************** */
+.ui-link-inherit {
+  color: white; }
+a.ui-link {
+  color: #2489ce;
+  font-weight: bold; }
+a.ui-link,
+a.ui-link:visited {
+  color: #4587a9;
+  font-weight: bold; }
+a.ui-link:hover {
+  color: #333333; }
+a.ui-link:active {
+  color: #2489ce; }
+.ui-focus,
+.ui-btn:focus {
+  -moz-box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0";
+  -webkit-box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0";
+  box-shadow: "inset 0px 0px 3px #9cd, 0px 0px 9px #62B1D0"; }
+.ui-btn:focus, .ui-link-inherit:focus {
+  outline: 0; }
+textarea.ui-input-text.ui-focus,
+div.ui-input-text.ui-focus {
+  /* box-shadow: inset 0px 1px 4px rgba(0, 0, 0, .4), 0px 0px 12px #80acbd */
+  box-shadow: inset 0px 1px 8px rgba(0, 0, 0, 0.5);
+  background: #99ccdd; }
+input.ui-input-text,
+textarea.ui-input-text {
+  -webkit-text-shadow: 0px 1px #d8d8d8;
+  -moz-text-shadow: 0px 1px #d8d8d8;
+  text-shadow: 0px 1px #d8d8d8; }
+div.ui-input-text {
+  padding: 0 30px 0 0.4em;
+  border: 1px solid #cccccc;
+  border-radius: 10px; }
+/* mini style for button, text input, textarea */
+button.ui-mini,
+input.ui-input-text.ui-mini,
+textarea.ui-input-text.ui-mini,
+div.ui-input-text.ui-mini {
+  margin: 0.25em 0; }
+.ui-field-contain input.ui-input-text,
+.ui-field-contain textarea.ui-input-text,
+.ui-field-contain div.ui-input-text {
+  margin: 0; }
+/* Resolves issue #5166: Added to support issue introduced in Firefox 15. We can likely remove this in the future. */
+input:-moz-placeholder {
+  color: #aaaaaa; }
+/* Resolves issue #5131: Width of textinput depends on its type, for Android 4.1 */
+input[type=number]::-webkit-outer-spin-button {
+  margin: 0; }
+@media all and (min-width: 28em) {
+  .ui-field-contain label.ui-input-text {
+    vertical-align: top;
+    display: inline-block;
+    width: 20%;
+    margin: 0 2% 0 0; }
+  .ui-field-contain input.ui-input-text,
+  .ui-field-contain textarea.ui-input-text,
+  .ui-field-contain div.ui-input-text {
+    width: 78%;
+    display: inline-block; }
+  .ui-field-contain div.ui-input-text {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box; }
+  .ui-hide-label input.ui-input-text,
+  .ui-hide-label textarea.ui-input-text,
+  .ui-hide-label div.ui-input-text {
+    width: 100%; }
+  div.ui-input-text input.ui-input-text {
+    width: 100%; } }
+/* Lightweight compatible graident syntax for non-IE browsers */
+/* gradient syntax with IE-compatible and older browser */
+/* structure */
+.ui-content ul.ui-listview {
+  margin: -15px; }
+ul.ui-listview {
+  margin: 0;
+  padding: 0;
+  /* XXX: we should use the same style as
+   * link and button. */ }
+  ul.ui-listview li {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  ul.ui-listview li a {
+    text-decoration: none;
+    color: #4587a9;
+    text-shadow: 1px 1px 2px white;
+    padding: 10px;
+    display: block;
+    font-size: 15px; }
+  ul.ui-listview li.ui-btn {
+    border: 1px solid #cccccc;
+    border-bottom: 1px solid #e3e3e3;
+    border-radius: 0px;
+    background-color: white;
+    text-shadow: 0 1px 0 white;
+    /* Older browser */
+    background: white;
+    /* FF3.6+ */
+    background: -moz-linear-gradient(top, white 0%, #f1f1f1 100%);
+    /* Chrome,Safari4+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #f1f1f1));
+    /* Chrome10+,Safari5.1+ */
+    background: -webkit-linear-gradient(top, white 0%, #f1f1f1 100%);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, white 0%, #f1f1f1 100%);
+    /* IE10+ */
+    background: -ms-linear-gradient(top, white 0%, #f1f1f1 100%);
+    /* W3C */
+    background: linear-gradient(to bottom, white 0%, #f1f1f1 100%);
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='white', endColorstr='#f1f1f1',GradientType=0 ); }
+  ul.ui-listview li.ui-btn:hover {
+    /* Older browser */
+    background: #f2f2f2;
+    /* FF3.6+ */
+    background: -moz-linear-gradient(top, #f2f2f2 0%, #e2e2e2 100%);
+    /* Chrome,Safari4+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f2f2), color-stop(100%, #e2e2e2));
+    /* Chrome10+,Safari5.1+ */
+    background: -webkit-linear-gradient(top, #f2f2f2 0%, #e2e2e2 100%);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #f2f2f2 0%, #e2e2e2 100%);
+    /* IE10+ */
+    background: -ms-linear-gradient(top, #f2f2f2 0%, #e2e2e2 100%);
+    /* W3C */
+    background: linear-gradient(to bottom, #f2f2f2 0%, #e2e2e2 100%);
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e2e2e2',GradientType=0 ); }
+  ul.ui-listview li.ui-btn:active {
+    /* Older browser */
+    background: #99ccdd;
+    /* FF3.6+ */
+    background: -moz-linear-gradient(top, #99ccdd 0%, #62b1d0 100%);
+    /* Chrome,Safari4+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #99ccdd), color-stop(100%, #62b1d0));
+    /* Chrome10+,Safari5.1+ */
+    background: -webkit-linear-gradient(top, #99ccdd 0%, #62b1d0 100%);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #99ccdd 0%, #62b1d0 100%);
+    /* IE10+ */
+    background: -ms-linear-gradient(top, #99ccdd 0%, #62b1d0 100%);
+    /* W3C */
+    background: linear-gradient(to bottom, #99ccdd 0%, #62b1d0 100%);
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99ccdd', endColorstr='#62b1d0',GradientType=0 ); }
+  ul.ui-listview li.ui-btn div.ui-btn-inner {
+    border-top: 1px solid white;
+    border-color: rgba(255, 255, 255, 0.3); }
+  ul.ui-listview li.ui-btn:last-child {
+    border-color: #cccccc; }
+/****************************************
+ * listview with inset
+ * ===================
+ * we should provide inset listview with 
+ * border radius and box-shadow here. */
+.ui-content ul.ui-listview-inset {
+  margin: 10px 0;
+  border-radius: 12px;
+  box-shadow: 0px 0px 8px #aaaaaa; }
+ul.ui-listview-inset li.ui-btn:first-child {
+  -webkit-border-radius: 12px 12px 0 0;
+  -moz-border-radius: 12px 12px 0 0;
+  border-radius: 12px 12px 0 0; }
+ul.ui-listview-inset li.ui-btn:last-child {
+  -webkit-border-radius: 0 0 12px 12px;
+  -moz-border-radius: 0 0 12px 12px;
+  border-radius: 0 0 12px 12px; }
+/* $widget = $("<div/>").addClass("ui-slider ui-btn-corner-all")
+ * $a = $("<a/>").addClass("ui-slider-handle ui-btn ui-shadow ui-btn-corner-all")
+ * $a.addClass("ui-btn-up-c")
+ * $btn = $("<span/>").addClass("ui-btn-inner ui-btn-corner-all") */
+.ui-slider-input {
+  width: 50px; }
+.ui-slider {
+  display: inline-block;
+  width: 65%;
+  min-height: 0.6em;
+  margin: 10px;
+  margin-left: 20px;
+  position: relative;
+  top: 12px; }
+  .ui-slider > a.ui-slider-handle {
+    position: absolute;
+    z-index: 1;
+    left: -12px;
+    top: -22px;
+    width: 12px;
+    height: 22px;
+    border-radius: 22px; }

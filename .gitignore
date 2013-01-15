@@ -1,7 +1,6 @@
 .DS_Store
 css/*.css
 .sass-cache/
-compiled/
 node_modules/
 .deps
 js/umobi.*.js
