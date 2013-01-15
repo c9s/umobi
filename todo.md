@@ -27,6 +27,10 @@ x button style
 - navigator buttons (in footer)
 - fast button
 
+## Build System
+
+- use a better coffee-script build system, that should easy enough for development.
+
 ## JS Codebase
 
 - use a lighter ajax library instead of jQuery or zepto library.
