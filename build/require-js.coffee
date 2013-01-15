@@ -1,5 +1,5 @@
 {
-  baseUrl: "js"
+  baseUrl: "src"
   name: "umobi"
   exclude: [
     "jquery"

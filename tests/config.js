@@ -1,6 +1,6 @@
 QUnit.config.autostart = false;
 require.config({
-  baseUrl: '../js',
+  baseUrl: '../src',
   urlArgs: 'bust=' + (new Date()).getTime(),
   CoffeeScript: { bare: true },
   paths: {
