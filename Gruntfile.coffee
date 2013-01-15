@@ -122,6 +122,9 @@ module.exports = (grunt) ->
       theme:
         src: themeFile + ".css"
         dest: themeFile + ".min.css"
+      fontawesome:
+        src: "compiled/customfont/fontawesome.css"
+        dest:"compiled/customfont/fontawesome.min.css"
 
     # config for grunt-contrib-compress
     compress: readCoffee "build/compress.coffee"
