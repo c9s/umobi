@@ -28,8 +28,9 @@ module.exports = (grunt) ->
   # NOTE custom dasks don't accept dependencies so we alias
   grunt.registerTask "js", [
     "config:async"
-		"js:compile"
-		"concat:js"
-		"uglify"
-		"js:cleanup"
-	]
+    "js:compile"
+    "concat:js"
+    "uglify"
+    "js:cleanup"
+  ]
+

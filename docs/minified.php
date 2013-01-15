@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <?php require "_head.php"; ?>
+    <head>
+        <meta charset="utf-8">
+        <title>µMobi (uMobi)</title>
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+        <link href="../compiled/umobi.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../compiled/umobi.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery.js"> </script>
+        <script src="../compiled/umobi.js"> </script>
+        <!-- requirejs, which is too slow -->
+        <!--
+        <script data-main="../js/umobi" src="../js/require.js"></script>
+        -->
+    </head>
     <body>
         <div data-role="page" id="index">
             <div data-role="header" data-fixed="true">
-                <h1>µMobi</h1>
+                <h1>µMobi: For Production</h1>
             </div>
             <div data-role="content">
-                <div data-role="fieldcontain">
-                    <label for="text-field">Text Field</label>
-                    <input type="text" id="text-field"/>
-                </div>
+                <h1>µMobi for production</h1>
+                <p>This is a testing page for compiled umobi js/css</p>
 
                 <div data-role="fieldcontain">
                     <label for="password">Password</p>
@@ -29,39 +43,6 @@
 
                 <textarea rows="10" name="textarea"></textarea>
 
-            </div>
-            <div data-role="footer" data-fixed="true">
-                <div>Footer</div>
-            </div>
-        </div>
-
-        <div data-role="page" id="content-formatting">
-            <div data-role="header">
-                <h1>Content Formatting</h1>
-            </div>
-            <div data-role="content">
-                <h1>Header 1 h1</h1>
-                <h2>Header 2 h2</h2>
-                <h3>Header 3 h3</h3>
-                <h4>Header 4 h4</h4>
-                <p>Content here</p>
-            </div>
-            <div data-role="footer">
-                <div>Footer</div>
-            </div>
-        </div>
-
-
-        <div data-role="page" id="page2">
-            <div data-role="header">
-                <h1>umobi project: page2</h1>
-            </div>
-            <div data-role="content">
-                <p>Content here, page2</p>
-                <p><a href="#index">Back to index</a></p>
-            </div>
-            <div data-role="footer" data-fixed="true">
-                <div>Footer</div>
             </div>
         </div>
     </body>

@@ -1,6 +1,3 @@
-###
-//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-###
 define [
   "cs!str"
   "cs!umobi.core"
@@ -8,10 +5,6 @@ define [
   "cs!umobi.page"
   "cs!umobi.button"
 ], ->
-  ###
-  //>>excludeEnd("umobiBuildExclude")
-  ###
-  
   ###
   To inner wrap a link with ui-btn classes:
 
@@ -59,10 +52,4 @@ define [
                 console.error "error",err
             return false
   )()
-  ###
-  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-  ###
   return
-###
-//>>excludeEnd("umobiBuildExclude")
-###

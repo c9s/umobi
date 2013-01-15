@@ -1,10 +1,4 @@
-###
-//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-###
 define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
-  ###
-  //>>excludeEnd("umobiBuildExclude")
-  ###
   umobi.button = { }
 
   # get buttons
@@ -106,12 +100,5 @@ define ['jquery','cs!u.dom','cs!u','cs!umobi.core'], ->
         $(btn).children(0).prepend($icon)
 
       umobi.button.bindClassEvents($(btn))
-
     # for button in buttons
-  ###
-  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-  ###
   return
-###
-//>>excludeEnd("umobiBuildExclude")
-###

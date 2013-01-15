@@ -1,10 +1,4 @@
-###
-//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-###
 define ["jquery","cs!umobi.core","cs!u"], () ->
-  ###
-  //>>excludeEnd("umobiBuildExclude")
-  ###
   $ ->
     inputs = u('input[type="text"],input[type="password"]')
     for input in inputs.all()
@@ -22,10 +16,6 @@ define ["jquery","cs!umobi.core","cs!u"], () ->
       $input.focus -> $(this).addClass('ui-focus')
       $input.blur -> $(this).removeClass('ui-focus')
       $input.parent().addClass("ui-mini") if $input.data("mini")
-
-  ###
-  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-  ###
   #        $input.on 'touchmove', (e) ->
   #          e.stopPropagation()
   #          e.stopImmediatePropagation()
@@ -33,6 +23,3 @@ define ["jquery","cs!umobi.core","cs!u"], () ->
   #          e.stopPropagation()
   #          e.stopImmediatePropagation()
   return
-###
-//>>excludeEnd("umobiBuildExclude")
-###

@@ -1,11 +1,4 @@
-###
-//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-###
 define ["jquery","cs!umobi.core","cs!u"], () ->
-  ###
-  //>>excludeEnd("umobiBuildExclude")
-  ###
-
   class TapDetector
     moved: false
     constructor: (@element) ->
@@ -51,11 +44,4 @@ define ["jquery","cs!umobi.core","cs!u"], () ->
   u.ready ->
     $("a,button").each (i,e) ->
       new TapDetector(this)
-
-  ###
-  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-  ###
   return
-###
-//>>excludeEnd("umobiBuildExclude")
-###

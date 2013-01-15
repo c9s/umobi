@@ -15,8 +15,8 @@
     "jquery":"jquery"
   # use bare option for coffee-script compiler,
   # this remove the function wrapper from coffee-script.
-  CoffeeScript:
-    bare: true
+#    CoffeeScript:
+#      bare: true
   out: rootFile + ".compiled.js"
   pragmas:
     umobiBuildExclude: true

@@ -1,10 +1,4 @@
-###
-//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-###
 define ['cs!umobi.core','cs!u'], () ->
-  ###
-  //>>excludeEnd("umobiBuildExclude")
-  ###
   (->
     c = window.applicationCache
     switch c.status
@@ -24,10 +18,4 @@ define ['cs!umobi.core','cs!u'], () ->
       else
         return 'UKNOWN CACHE STATUS'
   )
-  ###
-  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-  ###
   return
-###
-//>>excludeEnd("umobiBuildExclude")
-###

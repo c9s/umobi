@@ -1,10 +1,4 @@
-###
-//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-###
 define ["jquery","cs!umobi.core","cs!u"], () ->
-  ###
-  //>>excludeEnd("umobiBuildExclude")
-  ###
   (->
     debug = window.console and true
 
@@ -275,10 +269,4 @@ define ["jquery","cs!umobi.core","cs!u"], () ->
 #        ), false
       return new Scroller(element)
   )()
-  ###
-  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-  ###
   return umobi.scroller
-###
-//>>excludeEnd("umobiBuildExclude")
-###

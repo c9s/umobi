@@ -1,6 +1,3 @@
-###
-//>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-###
 define [
   "cs!u"
   "cs!umobi.core"
@@ -9,9 +6,6 @@ define [
   "cs!umobi.zoom"
   "cs!umobi.listview"
   "cs!umobi.navigation" ], () ->
-  ###
-  //>>excludeEnd("umobiBuildExclude")
-  ###
   ((d)->
     # support HTML5 tags, and custom "page" tag.
     (->
@@ -47,11 +41,4 @@ define [
       u.load -> uhtml.removeClass('ui-mobile-rendering')
       u(document.body).addClass("ui-body-c")
   )(document)
-
-  ###
-  //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
-  ###
   return
-###
-//>>excludeEnd("umobiBuildExclude")
-###
