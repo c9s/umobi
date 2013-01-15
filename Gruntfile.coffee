@@ -52,7 +52,7 @@ module.exports = (grunt) ->
         gitShortSha: "git log -1 --format=format:\"%H\""
       shas: {}
 
-    coffeelint: { app: ['js/*.coffee'] }
+    coffeelint: { app: ['src/*.coffee'] }
 
     jshint: readCoffee "build/jshint.coffee"
 
