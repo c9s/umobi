@@ -161,16 +161,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-compress"
   grunt.loadNpmTasks "grunt-contrib-clean"
   grunt.loadNpmTasks "grunt-sizereport"
-
   # csslint and cssmin tasks
   grunt.loadNpmTasks "grunt-css"
   
   grunt.registerTask "zip", ["js","css","compress:zip"]
 
-
-  grunt.event.on 'qunit.spawn', (url) ->
-    grunt.log.ok("Running test: " + url)
-  
   # load the project's default tasks
   grunt.loadTasks "build/tasks"
 
