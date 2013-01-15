@@ -3,4 +3,5 @@ css/*.css
 .sass-cache/
 node_modules/
 .deps
-js/umobi.*.js
+# compiled/
+# js/umobi.*.js
