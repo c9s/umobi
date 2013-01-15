@@ -7,7 +7,7 @@ module.exports = (grunt) ->
   config = grunt.config.get("global")
   helpers = config.helpers
   grunt.registerTask "js:compile", ->
-    require = grunt.config.get("js").require
+    require       = grunt.config.get("js").require
     global_config = grunt.config.get("global")
     
     # pull the includes together using require js
