@@ -1,26 +1,19 @@
 define [
   "cs!u"
   "cs!umobi.core"
+  "cs!umobi.tags"
   "cs!umobi.page"
   "cs!umobi.widget"
   "cs!umobi.zoom"
   "cs!umobi.listview"
   "cs!umobi.navigation" ], () ->
   ((d)->
-    # support HTML5 tags, and custom "page" tag.
-    (->
-      tags = ["article","section","header","footer","aside","details","summary","page"]
-      f = document.createDocumentFragment()
-      for tag in tags
-        f.appendChild( d.createElement(tag) )
-    )()
 
     # To optimize rendering performance, we append a ui-mobile-rendering class
     # to hide elements before rendering pages and adding classes to every
     # elements.
     uhtml = u('html')
     uhtml.children(0).addClass(['ui-mobile','ui-mobile-rendering'])
-
 
     u.ready ->
       # defaultHomeScroll = if not $.support.scrollTop or $( window ).scrollTop() is 1 then 0 else 1
