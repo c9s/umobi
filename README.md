@@ -95,6 +95,17 @@ jQuery UI 1.9.2 (minified 335KB)
 - SASS for styles, Please see <http://sass-lang.com/tutorial.html>
 - CoffeeScript for javascript, Please see <http://coffeescript.org>
 
+For quick development, the following is the requirement:
+
+- Apache / Nginx + PHP support: for rendering document templates.
+- node.js, npm, coffee-script, grunt.
+
+To edit coffee scripts, you need to run the following command to watch the
+source directory:
+
+    $ coffee -wc -o lib src
+
+
 ### Special Requirement
 
 We use Grunt.js 0.4.x, which is still in development. there are some fixed dependencies 
