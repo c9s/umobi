@@ -105,7 +105,6 @@ source directory:
 
     $ coffee -wc -o lib src
 
-
 ### Special Requirement
 
 We use Grunt.js 0.4.x, which is still in development. there are some fixed dependencies 
