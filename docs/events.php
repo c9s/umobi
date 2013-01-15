@@ -1,4 +1,3 @@
-<?php require "_init.php"; ?>
 <!DOCTYPE html>
 <html>
     <?php require "_head.php"; ?>

@@ -1,3 +1,4 @@
+<?php require "_init.php"; ?>
 <head>
     <meta charset="utf-8">
     <title>µMobi (uMobi)</title>

@@ -1,3 +1,4 @@
+<?php require "_init.php"; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +12,6 @@
         <link href="../compiled/umobi.structure.css" rel="stylesheet" type="text/css"/>
         <link href="../compiled/umobi.theme.css" rel="stylesheet" type="text/css"/>
 -->
-
         <link href="../compiled/umobi.min.css" rel="stylesheet" type="text/css"/>
 
         <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
@@ -28,9 +28,22 @@
                 <h1>µMobi: For Production</h1>
             </div>
             <div data-role="content">
-                <h1>µMobi for production</h1>
-                <p>This is a testing page for compiled umobi js/css</p>
+<?php md_start(); ?>
+# µMobi for production
 
+This is a testing page for compiled umobi js/css
+
+## Usage
+
+    <head>
+        <script src="../js/jquery.js"> </script>
+        <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
+        <link href="../compiled/umobi.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../compiled/umobi.min.js"> </script>
+    </head>
+
+<?php md_end(); ?>
+                <h1>Testing samples</h2>
                 <div data-role="fieldcontain">
                     <label for="password">Password</p>
                     <input type="password" id="text-field"/>
