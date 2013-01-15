@@ -26,6 +26,7 @@ define([
     "cs!umobi.core",
     "cs!u.dom",
     "cs!u",
+    "cs!umobi.tags",
     "cs!umobi.button",
     "cs!umobi.widget",
     "cs!widgets/slider",
