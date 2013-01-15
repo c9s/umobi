@@ -101,7 +101,7 @@ module.exports = (grunt) ->
       themeFile: themeFile
       require:
         all:
-          cssIn: "css/themes/" + theme + "/umobi.css"
+          cssIn: ["css/umobi.all.css"]
           optimizeCss: "standard.keepComments.keepLines"
           baseUrl: "."
           out: rootFile + ".compiled.css"

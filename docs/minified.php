@@ -7,8 +7,13 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
+<!--
         <link href="../compiled/umobi.structure.css" rel="stylesheet" type="text/css"/>
         <link href="../compiled/umobi.theme.css" rel="stylesheet" type="text/css"/>
+-->
+
+        <link href="../compiled/umobi.min.css" rel="stylesheet" type="text/css"/>
+
         <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
         <script src="../js/jquery.js"> </script>
         <script src="../compiled/umobi.js"> </script>
