@@ -1,185 +1,7 @@
-/**
- * MIT License, Copyright 2012 Yo-An Lin <cornelius.howl@gmail.com>
- * http://github.com/c9s/umobi
- * 
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-(function ( root, doc, factory ) {
-	if ( typeof define === "function" && define.amd ) {
-		// AMD. Register as an anonymous module.
-		define( [ "jquery" ], function ( $ ) {
-			factory( $, root, doc );
-			return window.umobi;
-		});
-	} else {
-		// Browser globals
-		factory( root.jQuery, root, doc );
-	}
-}( this, document, function ( jQuery, window, document, undefined ) {
-
-if(typeof define === "undefined" ) {
-    // creates the define method on window, only used where async loading
-    // is not desired in the docs and experiments
-    window.define = function() {
-        Array.prototype.slice.call( arguments ).pop()( window.jQuery );
-    };
-}
-;
-/**
- * classList.js: Cross-browser full element.classList implementation.
- * 2011-06-15
- *
- * By Eli Grey, http://eligrey.com
- * Public Domain.
- * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
- */
- 
-/*global self, document, DOMException */
- 
-/*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
- 
-if (typeof document !== "undefined" && !("classList" in document.documentElement)) {
- 
-(function (view) {
- 
-
- 
-var classListProp = "classList"
-    , protoProp = "prototype"
-    , elemCtrProto = (view.HTMLElement || view.Element)[protoProp]
-    , objCtr = Object
-    , strTrim = String[protoProp].trim || function () {
-        return this.replace(/^\s+|\s+$/g, "");
-    }
-    , arrIndexOf = Array[protoProp].indexOf || function (item) {
-        var i = 0 , len = this.length;
-        for (; i < len; i++) {
-            if (i in this && this[i] === item) {
-                return i;
-            }
-        }
-        return -1;
-    }
-    // Vendors: please allow content code to instantiate DOMExceptions
-    , DOMEx = function (type, message) {
-        this.name = type;
-        this.code = DOMException[type];
-        this.message = message;
-    }
-    , checkTokenAndGetIndex = function (classList, token) {
-        if (token === "") {
-            throw new DOMEx(
-                  "SYNTAX_ERR"
-                , "An invalid or illegal string was specified"
-            );
-        }
-        if (/\s/.test(token)) {
-            throw new DOMEx(
-                  "INVALID_CHARACTER_ERR"
-                , "String contains an invalid character"
-            );
-        }
-        return arrIndexOf.call(classList, token);
-    }
-    , ClassList = function (elem) {
-        var
-              trimmedClasses = strTrim.call(elem.className)
-            , classes = trimmedClasses ? trimmedClasses.split(/\s+/) : []
-            , i = 0
-            , len = classes.length
-        ;
-        for (; i < len; i++) {
-            this.push(classes[i]);
-        }
-        this._updateClassName = function () {
-            elem.className = this.toString();
-        };
-    }
-    , classListProto = ClassList[protoProp] = []
-    , classListGetter = function () {
-        return new ClassList(this);
-    }
-;
-// Most DOMException implementations don't allow calling DOMException's toString()
-// on non-DOMExceptions. Error's toString() is sufficient here.
-DOMEx[protoProp] = Error[protoProp];
-classListProto.item = function (i) {
-    return this[i] || null;
-};
-classListProto.contains = function (token) {
-    token += "";
-    return checkTokenAndGetIndex(this, token) !== -1;
-};
-classListProto.add = function (token) {
-    token += "";
-    if (checkTokenAndGetIndex(this, token) === -1) {
-        this.push(token);
-        this._updateClassName();
-    }
-};
-classListProto.remove = function (token) {
-    token += "";
-    var index = checkTokenAndGetIndex(this, token);
-    if (index !== -1) {
-        this.splice(index, 1);
-        this._updateClassName();
-    }
-};
-classListProto.toggle = function (token) {
-    token += "";
-    if (checkTokenAndGetIndex(this, token) === -1) {
-        this.add(token);
-    } else {
-        this.remove(token);
-    }
-};
-classListProto.toString = function () {
-    return this.join(" ");
-};
- 
-if (objCtr.defineProperty) {
-    var classListPropDesc = {
-          get: classListGetter
-        , enumerable: true
-        , configurable: true
-    };
-    try {
-        objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
-    } catch (ex) { // IE 8 doesn't support enumerable:true
-        if (ex.number === -0x7FF5EC54) {
-            classListPropDesc.enumerable = false;
-            objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
-        }
-    }
-} else if (objCtr[protoProp].__defineGetter__) {
-    elemCtrProto.__defineGetter__(classListProp, classListGetter);
-}
- 
-}(self));
- 
-}
-;
 (function() {
   var __slice = [].slice;
 
-  define('cs!str',[], function() {
+  define([], function() {
     String.prototype.toCapitalCase = function() {
       return this.charAt(0).toUpperCase() + this.substr(1);
     };
@@ -209,74 +31,7 @@ if (objCtr.defineProperty) {
 
 (function() {
 
-  define('cs!umobi.core',[], function() {
-    window.umobi = {
-      config: {
-        touchScroll: false,
-        theme: 'c'
-      }
-    };
-    return window.umobi;
-  });
-
-}).call(this);
-
-(function() {
-
-  define('cs!u.dom',[], function() {
-    var dom;
-    dom = {};
-    /*
-      # See if current DOM support classList (HTML5)
-    */
-
-    dom.supportClassList = typeof document.documentElement.classList !== "undefined";
-    dom.query = function(q, c) {
-      c = c || document;
-      return c.querySelector(q);
-    };
-    dom.queryAll = function(q, c) {
-      c = c || document;
-      if (!c.querySelectorAll) {
-        throw new Error("Object " + typeof c + " does not contains querySelectorAll method");
-      }
-      return c.querySelectorAll(q);
-    };
-    dom.get = function(dom, c) {
-      c = c || document;
-      return c.getElementById(dom);
-    };
-    dom.collectionToArray = function(c) {
-      var i, len, list;
-      i = 0;
-      len = c.length;
-      list = [];
-      while (i < len) {
-        list.push(c[i]);
-        i++;
-      }
-      return list;
-    };
-    dom.byTagName = function(n, c) {
-      c = c || document;
-      return c.getElementsByTagName(n);
-    };
-    dom.byClassName = function(n, c) {
-      c = c || document;
-      return c.getElementsByClassName(n);
-    };
-    dom.bind = function(el, n, cb) {
-      return el.addEventListener(n, cb);
-    };
-    window.dom = dom;
-    return window.dom;
-  });
-
-}).call(this);
-
-(function() {
-
-  define('cs!u',["cs!str", "cs!u.dom", "cs!umobi.core"], function(dom, umobi) {
+  define(["cs!str", "cs!u.dom", "cs!umobi.core"], function(dom, umobi) {
     var USet, ensureClassArray, u;
     u = function(a) {
       if (typeof a === "object" && a instanceof USet) {
@@ -740,7 +495,93 @@ if (objCtr.defineProperty) {
 
 (function() {
 
-  define('cs!umobi.button',['jquery', 'cs!u.dom', 'cs!u', 'cs!umobi.core'], function() {
+  define([], function() {
+    var dom;
+    dom = {};
+    /*
+      # See if current DOM support classList (HTML5)
+    */
+
+    dom.supportClassList = typeof document.documentElement.classList !== "undefined";
+    dom.query = function(q, c) {
+      c = c || document;
+      return c.querySelector(q);
+    };
+    dom.queryAll = function(q, c) {
+      c = c || document;
+      if (!c.querySelectorAll) {
+        throw new Error("Object " + typeof c + " does not contains querySelectorAll method");
+      }
+      return c.querySelectorAll(q);
+    };
+    dom.get = function(dom, c) {
+      c = c || document;
+      return c.getElementById(dom);
+    };
+    dom.collectionToArray = function(c) {
+      var i, len, list;
+      i = 0;
+      len = c.length;
+      list = [];
+      while (i < len) {
+        list.push(c[i]);
+        i++;
+      }
+      return list;
+    };
+    dom.byTagName = function(n, c) {
+      c = c || document;
+      return c.getElementsByTagName(n);
+    };
+    dom.byClassName = function(n, c) {
+      c = c || document;
+      return c.getElementsByClassName(n);
+    };
+    dom.bind = function(el, n, cb) {
+      return el.addEventListener(n, cb);
+    };
+    window.dom = dom;
+    return window.dom;
+  });
+
+}).call(this);
+
+(function() {
+
+  define(["cs!u.dom", "cs!u"], function() {
+    u._widgets = {};
+    /*
+      Widget base class
+    */
+
+    u.Widget = (function() {
+
+      function Widget() {}
+
+      return Widget;
+
+    })();
+    /*
+      Widget factory method
+      
+         @param string name
+         @param closure factory
+    */
+
+    return u.widget = function(name, factory) {
+      if (factory) {
+        return u[name] = function(options) {
+          return factory.apply(options);
+        };
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+
+  define(['jquery', 'cs!u.dom', 'cs!u', 'cs!umobi.core'], function() {
     umobi.button = {};
     umobi.button.all = function() {
       return u.dom.queryAll('[data-role="button"]');
@@ -842,123 +683,130 @@ if (objCtr.defineProperty) {
 
 (function() {
 
-  define('cs!umobi.widget',["jquery", "cs!umobi.core", "cs!u"], function() {
-    $(function() {
-      var $input, input, inputs, textareas, uiClass, _i, _j, _len, _len1, _ref, _ref1, _results;
-      inputs = u('input[type="text"],input[type="password"]');
-      _ref = inputs.all();
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        input = _ref[_i];
-        $input = $(input);
-        uiClass = "ui-input-text";
-        input.className += uiClass;
-        $input.wrap('<div class="' + uiClass + ' ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"></div>');
-        $input.focus(function() {
-          return $(this).parent().addClass('ui-focus');
-        });
-        $input.blur(function() {
-          return $(this).parent().removeClass('ui-focus');
-        });
-        if ($input.data("mini")) {
-          $input.parent().addClass("ui-mini");
-        }
-      }
-      textareas = u('textarea');
-      _ref1 = textareas.all();
-      _results = [];
-      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-        input = _ref1[_j];
-        input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c";
-        $input.focus(function() {
-          return $(this).addClass('ui-focus');
-        });
-        $input.blur(function() {
-          return $(this).removeClass('ui-focus');
-        });
-        if ($input.data("mini")) {
-          _results.push($input.parent().addClass("ui-mini"));
-        } else {
-          _results.push(void 0);
-        }
-      }
-      return _results;
-    });
+  require({
+    baseUrl: "js",
+    urlArgs: "bust=" + (new Date()).getTime()
   });
+
+  define(["require", "depend!define[]", "depend!jquery[]", "depend!classList[]", "cs", "coffee-script", "cs!str", "cs!umobi.core", "cs!u.dom", "cs!u", "cs!umobi.tags", "cs!umobi.button", "cs!umobi.widget", "cs!widgets/slider", "cs!umobi.zoom", "cs!umobi.listview", "cs!umobi.navigation", "cs!umobi.scroller", "cs!umobi.touch", "cs!umobi.support", "cs!umobi.offlinecache", "cs!umobi.page", "cs!umobi.splitview", "cs!umobi.link", "cs!umobi.init"], (function(r, jQuery, cs, cs2, umobi) {}));
 
 }).call(this);
 
 (function() {
 
-  define('cs!widgets/slider',["cs!u", "cs!umobi.core"], function() {
-    var slider;
-    slider = {
-      create: function(el) {
-        var $a, $btn, $widget;
-        $widget = $("<div/>").addClass("ui-slider ui-btn ui-btn-down-c ui-btn-corner-all");
-        $a = $("<a/>").addClass("ui-slider-handle ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all");
-        $a.addClass("ui-btn-up-c");
-        $btn = $("<span/>").addClass("ui-btn-inner ui-btn-corner-all");
-        $a.append($btn).appendTo($widget);
-        el.type = "number";
-        $(el).addClass("ui-btn ui-input-text ui-slider-input ui-btn-corner-all ui-mini ui-inline");
-        return $(el).after($widget);
+  define([], function() {
+    window.umobi = {
+      config: {
+        touchScroll: false,
+        theme: 'c'
       }
     };
-    return u.ready(function() {
-      var el, _i, _len, _ref, _results;
-      _ref = u('input[type="range"]').all();
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        el = _ref[_i];
-        _results.push(slider.create(el));
-      }
-      return _results;
-    });
+    return window.umobi;
   });
 
 }).call(this);
 
 (function() {
 
-  define('cs!umobi.zoom',['jquery', 'cs!umobi.core', 'cs!u'], function() {
-    var disabledInitially, disabledZoom, enabledZoom, initialContent, meta;
-    meta = $("meta[name=viewport]");
-    initialContent = meta.attr("content");
-    disabledZoom = initialContent + ",maximum-scale=1, user-scalable=no";
-    enabledZoom = initialContent + ",maximum-scale=10, user-scalable=yes";
-    disabledInitially = /(user-scalable[\s]*=[\s]*no)|(maximum-scale[\s]*=[\s]*1)[$,\s]/.test(initialContent);
-    umobi.zoom = $.extend({}, {
-      enabled: !disabledInitially,
-      locked: false,
-      disable: function(lock) {
-        if (!disabledInitially && !umobi.zoom.locked) {
-          meta.attr("content", disabledZoom);
-          umobi.zoom.enabled = false;
-          return umobi.zoom.locked = lock || false;
+  define(["cs!u", "cs!umobi.core", "cs!umobi.tags", "cs!umobi.page", "cs!umobi.widget", "cs!umobi.zoom", "cs!umobi.listview", "cs!umobi.navigation"], function() {
+    (function(d) {
+      var uhtml;
+      uhtml = u('html');
+      uhtml.children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
+      return u.ready(function() {
+        var hideAddressBar;
+        umobi.page.init();
+        if (window.navigator.userAgent.match(/iPhone|iPad|Android/)) {
+          if (window.console) {
+            console.log("touch enabled deviced");
+          }
+          hideAddressBar = function() {
+            if (document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)) {
+              document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
+            }
+            return window.scrollTo(0, 1);
+          };
+          window.addEventListener("load", hideAddressBar);
+          window.addEventListener("orientationchange", hideAddressBar);
+          $(document).on('pagereveal', hideAddressBar);
         }
-      },
-      enable: function(unlock) {
-        if (!disabledInitially && (!umobi.zoom.locked || unlock !== true)) {
-          meta.attr("content", enabledZoom);
-          umobi.zoom.enabled = true;
-          return umobi.zoom.locked = false;
-        }
-      },
-      restore: function() {
-        if (!disabledInitially) {
-          meta.attr("content", initialContent);
-          return umobi.zoom.enabled = true;
-        }
-      }
-    });
-    return umobi.zoom;
+        u.load(function() {
+          return uhtml.removeClass('ui-mobile-rendering');
+        });
+        return u(document.body).addClass("ui-body-c");
+      });
+    })(document);
   });
 
 }).call(this);
 
 (function() {
 
-  define('cs!umobi.listview',['jquery', 'cs!u', 'cs!umobi.core'], function() {
+  define(["cs!str", "cs!umobi.core", "cs!u", "cs!umobi.page", "cs!umobi.button"], function() {
+    /*
+      To inner wrap a link with ui-btn classes:
+    
+      <a href="index.html" data-role="button" data-corners="true"
+        data-shadow="true" data-iconshadow="true" data-wrapperels="span"
+        data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+          <span class="ui-btn-inner ui-btn-corner-all">
+            <span class="ui-btn-text">Link button</span>
+          </span>
+      </a>
+    */
+    (function() {
+      return u.ready(function() {
+        var link, ulink, _i, _len, _ref, _results;
+        _ref = document.links;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          link = _ref[_i];
+          ulink = u(link);
+          if (!ulink.data('role')) {
+            ulink.addClass('ui-link');
+          }
+          _results.push(ulink.click(function(e) {
+            var hash, href, regs;
+            href = ulink.attr("href");
+            if (/^#\w+/) {
+              umobi.page.revealByHash(href);
+            }
+            regs = href.match(/(#\w+)/);
+            hash = regs ? regs[1] : "#index";
+            if (ulink.data("ajax")) {
+              e.preventDefault();
+              $.ajax({
+                url: href,
+                dataType: "html",
+                success: function(html) {
+                  var $body, $page, body;
+                  body = document.createElement("body");
+                  body.innerHTML = html;
+                  $body = $(body);
+                  $page = $body.find(hash);
+                  if (!$page.get(0)) {
+                    $page = $body.find('[data-role="page"]').first();
+                  }
+                  return $(document.body).append($page);
+                },
+                error: function(err) {
+                  return console.error("error", err);
+                }
+              });
+              return false;
+            }
+          }));
+        }
+        return _results;
+      });
+    })();
+  });
+
+}).call(this);
+
+(function() {
+
+  define(['jquery', 'cs!u', 'cs!umobi.core'], function() {
     u.ready(function() {
       var $a, $inner, $li, li, lis, listview, listviews, ulistview, _i, _len, _results;
       listviews = u.dom.queryAll('ul[data-role="listview"]');
@@ -994,7 +842,241 @@ if (objCtr.defineProperty) {
 
 (function() {
 
-  define('cs!umobi.scroller',["jquery", "cs!umobi.core", "cs!u"], function() {
+  define(['cs!umobi.core', 'cs!umobi.page'], function() {
+    (function() {
+      umobi.handleHashChange = function(e) {
+        return umobi.page.revealByHash(location.hash);
+      };
+      $(window).on('hashchange', function(e) {
+        return umobi.handleHashChange(e);
+      });
+      return window.umobi.Navigator = (function() {
+
+        function Navigator() {}
+
+        Navigator.prototype.urlParseRE = /^\s*(((([^:\/#\?]+:)?(?:(\/\/)((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/;
+
+        Navigator.prototype.getLocation = function(url) {
+          var hash, uri;
+          uri = url ? this.parseUrl(url) : location;
+          hash = this.parseUrl(url || location.href).hash;
+          hash = hash === "#" ? "" : hash;
+          return uri.protocol + "//" + uri.host + uri.pathname + uri.search + hash;
+        };
+
+        Navigator.prototype.parseLocation = function() {
+          return this.parseUrl(this.getLocation());
+        };
+
+        Navigator.prototype.parseUrl = function(url) {
+          var data, matches;
+          if ($.type(url) === "object") {
+            return url;
+          }
+          matches = path.urlParseRE.exec(url || "") || [];
+          data = {
+            href: matches[0] || "",
+            hrefNoHash: matches[1] || "",
+            hrefNoSearch: matches[2] || "",
+            domain: matches[3] || "",
+            protocol: matches[4] || "",
+            doubleSlash: matches[5] || "",
+            authority: matches[6] || "",
+            username: matches[8] || "",
+            password: matches[9] || "",
+            host: matches[10] || "",
+            hostname: matches[11] || "",
+            port: matches[12] || "",
+            pathname: matches[13] || "",
+            directory: matches[14] || "",
+            filename: matches[15] || "",
+            search: matches[16] || "",
+            hash: matches[17] || ""
+          };
+          return data;
+        };
+
+        Navigator.prototype.makePathAbsolute = function(relPath, absPath) {
+          var absStack, d, relStack, _i, _len;
+          if (relPath && relPath.charAt(0) === "/") {
+            return relPath;
+          }
+          relPath = relPath || "";
+          absPath = absPath ? absPath.replace(/^\/|(\/[^\/]*|[^\/]+)$/g, "") : "";
+          absStack = absPath ? absPath.split("/") : [];
+          relStack = relPath.split("/");
+          for (_i = 0, _len = relStack.length; _i < _len; _i++) {
+            d = relStack[_i];
+            switch (d) {
+              case ".":
+                1;
+
+                break;
+              case "..":
+                if (absStack.length) {
+                  absStack.pop();
+                }
+                break;
+              default:
+                absStack.push(d);
+            }
+          }
+          return "/" + absStack.join("/");
+        };
+
+        return Navigator;
+
+      })();
+    })();
+  });
+
+}).call(this);
+
+(function() {
+
+  define(['cs!umobi.core', 'cs!u'], function() {
+    (function() {
+      var c;
+      c = window.applicationCache;
+      switch (c.status) {
+        case c.UNCACHED:
+          return 'UNCACHED';
+        case c.IDLE:
+          return 'IDLE';
+        case c.CHECKING:
+          return 'CHECKING';
+        case c.DOWNLOADING:
+          return 'DOWNLOADING';
+        case c.UPDATEREADY:
+          return 'UPDATEREADY';
+        case c.OBSOLETE:
+          return 'OBSOLETE';
+        default:
+          return 'UKNOWN CACHE STATUS';
+      }
+    });
+  });
+
+}).call(this);
+
+(function() {
+
+  define(["cs!umobi.core", "cs!u", "cs!umobi.scroller", "cs!umobi.support"], function() {
+    u('body').css('overflow', 'hidden').addClass('ui-overlay-c');
+    umobi.page = {
+      findAll: function() {
+        return u('[data-role="page"],page');
+      },
+      findActive: function() {
+        return u('.ui-page-active');
+      },
+      init: function() {
+        var indexPage, pages,
+          _this = this;
+        $(document).trigger('pageinit');
+        pages = this.findAll();
+        if (!pages.get(0)) {
+          pages = u($("body").wrapInner("<div data-role=\"page\"></div>").children(0).get(0));
+        }
+        pages.each(function(i, e) {
+          return _this.create(e);
+        });
+        if (location.hash) {
+          return this.revealByHash(location.hash);
+        } else {
+          indexPage = u('#index');
+          if (indexPage.get(0)) {
+            return this.reveal(indexPage);
+          } else {
+            return this.reveal(pages.first());
+          }
+        }
+      },
+      reveal: function(p) {
+        this.findActive().removeClass("ui-page-active");
+        p.addClass("ui-page-active").trigger("pagereveal");
+        return $(document).trigger("pagereveal", [p]);
+      },
+      revealByHash: function(hash) {
+        var upage;
+        upage = u(hash);
+        if (!upage.get(0)) {
+          upage = u('[data-role="page"]').first();
+        }
+        return umobi.page.reveal(upage);
+      },
+      create: function(el) {
+        var $c, $contentContainer, AdjustContentHeight, AdjustContentPadding, c, f, h, isBothFixed, resizeTimeout, upage;
+        upage = u(el).addClass(["ui-page", "ui-body-" + umobi.config.theme]);
+        upage.trigger("pagecreate");
+        h = upage.find('[data-role="header"],header').addClass("ui-header");
+        f = upage.find('[data-role="footer"],footer').addClass("ui-footer");
+        c = upage.find('[data-role="content"]').addClass("ui-content");
+        h.find("h1,h2,h3,h4,h5,h6").addClass("ui-title");
+        isBothFixed = h.data("fixed" || f.data("fixed"));
+        if (isBothFixed) {
+          $c = c.jQuery();
+          $c.wrap('<div class="ui-content-container"/>');
+          $contentContainer = $c.parent();
+          if (umobi.support.touch && umobi.config.touchScroll) {
+            umobi.scroller.create(c.get(0));
+            document.documentElement.style.overflow = "hidden";
+            $contentContainer.addClass("ui-content-scroll");
+          }
+          if (!umobi.config.touchScroll) {
+            AdjustContentPadding = function() {
+              $contentContainer.css({
+                "position": "absolute",
+                "-webkit-overflow-scrolling": "touch",
+                "overflow": "auto"
+              });
+              if (h.get(0)) {
+                $contentContainer.css("top", h.height() + "px");
+              }
+              if (f.get(0)) {
+                return $contentContainer.css("bottom", f.height() + "px");
+              }
+            };
+            upage.on("pagereveal", AdjustContentPadding);
+          } else {
+            AdjustContentHeight = function(e) {
+              var contentBottom, contentHeight, contentTop;
+              contentHeight = $(window).height();
+              contentTop = h.get(0) ? h.height() : 0;
+              contentBottom = f.get(0) ? f.height() : 0;
+              return $contentContainer.css({
+                position: "absolute",
+                top: contentTop + "px",
+                left: 0,
+                bottom: contentBottom + "px",
+                overflow: umobi.support.touch ? "hidden" : "auto"
+              });
+            };
+            upage.on("pagereveal", AdjustContentHeight);
+          }
+        }
+        resizeTimeout = null;
+        u(window).on("resize", function() {
+          if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+          }
+          return resizeTimeout = setTimeout(AdjustContentHeight, 100);
+        });
+        if (h.attr("data-fixed")) {
+          h.addClass("ui-fixed-header");
+        }
+        if (f.attr("data-fixed")) {
+          return f.addClass("ui-fixed-footer");
+        }
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+
+  define(["jquery", "cs!umobi.core", "cs!u"], function() {
     var Scroller, debug;
     debug = window.console && true;
     Scroller = (function() {
@@ -1072,7 +1154,20 @@ if (objCtr.defineProperty) {
         deltaY = currentY - this.startTouchY;
         newY = deltaY + this.contentStartOffsetY;
         /*
-                      */
+              //>>excludeStart("umobiBuildExclude", pragmas.umobiBuildExclude)
+        */
+
+        if (debug) {
+          console.log('onTouchMove', {
+            touchY: currentY,
+            deltaY: deltaY,
+            newY: newY,
+            contentStartOffsetY: this.contentStartOffsetY
+          });
+        }
+        /*
+              //>>excludeEnd("umobiBuildExclude")
+        */
 
         d = this.getTouchDirection();
         if (d === 1) {
@@ -1295,7 +1390,70 @@ if (objCtr.defineProperty) {
 
 (function() {
 
-  define('cs!umobi.touch',["jquery", "cs!umobi.core", "cs!u"], function() {
+  define(["cs!u", "cs!umobi.core", "cs!umobi.page"], function() {
+    umobi.splitview = {
+      init: function() {
+        var view, _i, _len, _ref, _results;
+        _ref = u('[data-role="splitview"]').all();
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          view = _ref[_i];
+          _results.push(umobi.splitview.create(view));
+        }
+        return _results;
+      },
+      create: function(view) {
+        var contentPrimary, contentSecondary;
+        contentPrimary = u(view).findone('[data-role="content-primary"]');
+        contentSecondary = u(view).findone('[data-role="content-secondary"]');
+        contentSecondary.addClass("ui-content-secondary");
+        return contentPrimary.addClass("ui-content-primary");
+      }
+    };
+    return u.ready(function() {
+      return umobi.splitview.init();
+    });
+  });
+
+}).call(this);
+
+(function() {
+  var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  define(['cs!umobi.core'], function() {
+    var support;
+    support = {
+      offlineCache: typeof window.applicationCache !== 'undefined',
+      classList: typeof document.documentElement !== 'undefined',
+      touch: navigator.userAgent.match(/(iPhone|iPad|Android|Mobile)/)
+    };
+    support.matrix = "WebKitCSSMatrix" in window;
+    support.matrixM11 = support.matrix && (__indexOf.call(new WebKitCSSMatrix(), "m11") >= 0);
+    umobi.support = support;
+    return umobi.support;
+  });
+
+}).call(this);
+
+(function() {
+
+  define(["cs!u", "cs!umobi.core", "cs!umobi.page"], function() {
+    var f, tag, tags, _i, _len, _results;
+    tags = ["article", "section", "header", "footer", "aside", "details", "summary", "page"];
+    f = document.createDocumentFragment();
+    _results = [];
+    for (_i = 0, _len = tags.length; _i < _len; _i++) {
+      tag = tags[_i];
+      _results.push(f.appendChild(d.createElement(tag)));
+    }
+    return _results;
+  });
+
+}).call(this);
+
+(function() {
+
+  define(["jquery", "cs!umobi.core", "cs!u"], function() {
     var TapDetector;
     TapDetector = (function() {
 
@@ -1352,297 +1510,47 @@ if (objCtr.defineProperty) {
 }).call(this);
 
 (function() {
-  var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  define('cs!umobi.support',['cs!umobi.core'], function() {
-    var support;
-    support = {
-      offlineCache: typeof window.applicationCache !== 'undefined',
-      classList: typeof document.documentElement !== 'undefined',
-      touch: navigator.userAgent.match(/(iPhone|iPad|Android|Mobile)/)
-    };
-    support.matrix = "WebKitCSSMatrix" in window;
-    support.matrixM11 = support.matrix && (__indexOf.call(new WebKitCSSMatrix(), "m11") >= 0);
-    umobi.support = support;
-    return umobi.support;
-  });
-
-}).call(this);
-
-(function() {
-
-  define('cs!umobi.offlinecache',['cs!umobi.core', 'cs!u'], function() {
-    (function() {
-      var c;
-      c = window.applicationCache;
-      switch (c.status) {
-        case c.UNCACHED:
-          return 'UNCACHED';
-        case c.IDLE:
-          return 'IDLE';
-        case c.CHECKING:
-          return 'CHECKING';
-        case c.DOWNLOADING:
-          return 'DOWNLOADING';
-        case c.UPDATEREADY:
-          return 'UPDATEREADY';
-        case c.OBSOLETE:
-          return 'OBSOLETE';
-        default:
-          return 'UKNOWN CACHE STATUS';
-      }
-    });
-  });
-
-}).call(this);
-
-(function() {
-
-  define('cs!umobi.page',["cs!umobi.core", "cs!u", "cs!umobi.scroller", "cs!umobi.support"], function() {
-    u('body').css('overflow', 'hidden').addClass('ui-overlay-c');
-    umobi.page = {
-      findAll: function() {
-        return u('[data-role="page"],page');
-      },
-      findActive: function() {
-        return u('.ui-page-active');
-      },
-      init: function() {
-        var indexPage, pages,
-          _this = this;
-        $(document).trigger('pageinit');
-        pages = this.findAll();
-        if (!pages.get(0)) {
-          pages = u($("body").wrapInner("<div data-role=\"page\"></div>").children(0).get(0));
-        }
-        pages.each(function(i, e) {
-          return _this.create(e);
+  define(["jquery", "cs!umobi.core", "cs!u"], function() {
+    $(function() {
+      var $input, input, inputs, textareas, uiClass, _i, _j, _len, _len1, _ref, _ref1, _results;
+      inputs = u('input[type="text"],input[type="password"]');
+      _ref = inputs.all();
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        input = _ref[_i];
+        $input = $(input);
+        uiClass = "ui-input-text";
+        input.className += uiClass;
+        $input.wrap('<div class="' + uiClass + ' ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"></div>');
+        $input.focus(function() {
+          return $(this).parent().addClass('ui-focus');
         });
-        if (location.hash) {
-          return this.revealByHash(location.hash);
+        $input.blur(function() {
+          return $(this).parent().removeClass('ui-focus');
+        });
+        if ($input.data("mini")) {
+          $input.parent().addClass("ui-mini");
+        }
+      }
+      textareas = u('textarea');
+      _ref1 = textareas.all();
+      _results = [];
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        input = _ref1[_j];
+        input.className += "ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c";
+        $input.focus(function() {
+          return $(this).addClass('ui-focus');
+        });
+        $input.blur(function() {
+          return $(this).removeClass('ui-focus');
+        });
+        if ($input.data("mini")) {
+          _results.push($input.parent().addClass("ui-mini"));
         } else {
-          indexPage = u('#index');
-          if (indexPage.get(0)) {
-            return this.reveal(indexPage);
-          } else {
-            return this.reveal(pages.first());
-          }
-        }
-      },
-      reveal: function(p) {
-        this.findActive().removeClass("ui-page-active");
-        p.addClass("ui-page-active").trigger("pagereveal");
-        return $(document).trigger("pagereveal", [p]);
-      },
-      revealByHash: function(hash) {
-        var upage;
-        upage = u(hash);
-        if (!upage.get(0)) {
-          upage = u('[data-role="page"]').first();
-        }
-        return umobi.page.reveal(upage);
-      },
-      create: function(el) {
-        var $c, $contentContainer, AdjustContentHeight, AdjustContentPadding, c, f, h, isBothFixed, resizeTimeout, upage;
-        upage = u(el).addClass(["ui-page", "ui-body-" + umobi.config.theme]);
-        upage.trigger("pagecreate");
-        h = upage.find('[data-role="header"],header').addClass("ui-header");
-        f = upage.find('[data-role="footer"],footer').addClass("ui-footer");
-        c = upage.find('[data-role="content"]').addClass("ui-content");
-        h.find("h1,h2,h3,h4,h5,h6").addClass("ui-title");
-        isBothFixed = h.data("fixed" || f.data("fixed"));
-        if (isBothFixed) {
-          $c = c.jQuery();
-          $c.wrap('<div class="ui-content-container"/>');
-          $contentContainer = $c.parent();
-          if (umobi.support.touch && umobi.config.touchScroll) {
-            umobi.scroller.create(c.get(0));
-            document.documentElement.style.overflow = "hidden";
-            $contentContainer.addClass("ui-content-scroll");
-          }
-          if (!umobi.config.touchScroll) {
-            AdjustContentPadding = function() {
-              $contentContainer.css({
-                "position": "absolute",
-                "-webkit-overflow-scrolling": "touch",
-                "overflow": "auto"
-              });
-              if (h.get(0)) {
-                $contentContainer.css("top", h.height() + "px");
-              }
-              if (f.get(0)) {
-                return $contentContainer.css("bottom", f.height() + "px");
-              }
-            };
-            upage.on("pagereveal", AdjustContentPadding);
-          } else {
-            AdjustContentHeight = function(e) {
-              var contentBottom, contentHeight, contentTop;
-              contentHeight = $(window).height();
-              contentTop = h.get(0) ? h.height() : 0;
-              contentBottom = f.get(0) ? f.height() : 0;
-              return $contentContainer.css({
-                position: "absolute",
-                top: contentTop + "px",
-                left: 0,
-                bottom: contentBottom + "px",
-                overflow: umobi.support.touch ? "hidden" : "auto"
-              });
-            };
-            upage.on("pagereveal", AdjustContentHeight);
-          }
-        }
-        resizeTimeout = null;
-        u(window).on("resize", function() {
-          if (resizeTimeout) {
-            clearTimeout(resizeTimeout);
-          }
-          return resizeTimeout = setTimeout(AdjustContentHeight, 100);
-        });
-        if (h.attr("data-fixed")) {
-          h.addClass("ui-fixed-header");
-        }
-        if (f.attr("data-fixed")) {
-          return f.addClass("ui-fixed-footer");
+          _results.push(void 0);
         }
       }
-    };
-  });
-
-}).call(this);
-
-(function() {
-
-  define('cs!umobi.tags',["cs!u", "cs!umobi.core", "cs!umobi.page"], function() {
-    var f, tag, tags, _i, _len, _results;
-    tags = ["article", "section", "header", "footer", "aside", "details", "summary", "page"];
-    f = document.createDocumentFragment();
-    _results = [];
-    for (_i = 0, _len = tags.length; _i < _len; _i++) {
-      tag = tags[_i];
-      _results.push(f.appendChild(d.createElement(tag)));
-    }
-    return _results;
-  });
-
-}).call(this);
-
-(function() {
-
-  define('cs!umobi.navigation',['cs!umobi.core', 'cs!umobi.page'], function() {
-    (function() {
-      umobi.handleHashChange = function(e) {
-        return umobi.page.revealByHash(location.hash);
-      };
-      $(window).on('hashchange', function(e) {
-        return umobi.handleHashChange(e);
-      });
-      return window.umobi.Navigator = (function() {
-
-        function Navigator() {}
-
-        Navigator.prototype.urlParseRE = /^\s*(((([^:\/#\?]+:)?(?:(\/\/)((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/;
-
-        Navigator.prototype.getLocation = function(url) {
-          var hash, uri;
-          uri = url ? this.parseUrl(url) : location;
-          hash = this.parseUrl(url || location.href).hash;
-          hash = hash === "#" ? "" : hash;
-          return uri.protocol + "//" + uri.host + uri.pathname + uri.search + hash;
-        };
-
-        Navigator.prototype.parseLocation = function() {
-          return this.parseUrl(this.getLocation());
-        };
-
-        Navigator.prototype.parseUrl = function(url) {
-          var data, matches;
-          if ($.type(url) === "object") {
-            return url;
-          }
-          matches = path.urlParseRE.exec(url || "") || [];
-          data = {
-            href: matches[0] || "",
-            hrefNoHash: matches[1] || "",
-            hrefNoSearch: matches[2] || "",
-            domain: matches[3] || "",
-            protocol: matches[4] || "",
-            doubleSlash: matches[5] || "",
-            authority: matches[6] || "",
-            username: matches[8] || "",
-            password: matches[9] || "",
-            host: matches[10] || "",
-            hostname: matches[11] || "",
-            port: matches[12] || "",
-            pathname: matches[13] || "",
-            directory: matches[14] || "",
-            filename: matches[15] || "",
-            search: matches[16] || "",
-            hash: matches[17] || ""
-          };
-          return data;
-        };
-
-        Navigator.prototype.makePathAbsolute = function(relPath, absPath) {
-          var absStack, d, relStack, _i, _len;
-          if (relPath && relPath.charAt(0) === "/") {
-            return relPath;
-          }
-          relPath = relPath || "";
-          absPath = absPath ? absPath.replace(/^\/|(\/[^\/]*|[^\/]+)$/g, "") : "";
-          absStack = absPath ? absPath.split("/") : [];
-          relStack = relPath.split("/");
-          for (_i = 0, _len = relStack.length; _i < _len; _i++) {
-            d = relStack[_i];
-            switch (d) {
-              case ".":
-                1;
-
-                break;
-              case "..":
-                if (absStack.length) {
-                  absStack.pop();
-                }
-                break;
-              default:
-                absStack.push(d);
-            }
-          }
-          return "/" + absStack.join("/");
-        };
-
-        return Navigator;
-
-      })();
-    })();
-  });
-
-}).call(this);
-
-(function() {
-
-  define('cs!umobi.splitview',["cs!u", "cs!umobi.core", "cs!umobi.page"], function() {
-    umobi.splitview = {
-      init: function() {
-        var view, _i, _len, _ref, _results;
-        _ref = u('[data-role="splitview"]').all();
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          view = _ref[_i];
-          _results.push(umobi.splitview.create(view));
-        }
-        return _results;
-      },
-      create: function(view) {
-        var contentPrimary, contentSecondary;
-        contentPrimary = u(view).findone('[data-role="content-primary"]');
-        contentSecondary = u(view).findone('[data-role="content-secondary"]');
-        contentSecondary.addClass("ui-content-secondary");
-        return contentPrimary.addClass("ui-content-primary");
-      }
-    };
-    return u.ready(function() {
-      return umobi.splitview.init();
+      return _results;
     });
   });
 
@@ -1650,134 +1558,38 @@ if (objCtr.defineProperty) {
 
 (function() {
 
-  define('cs!umobi.link',["cs!str", "cs!umobi.core", "cs!u", "cs!umobi.page", "cs!umobi.button"], function() {
-    /*
-      To inner wrap a link with ui-btn classes:
-    
-      <a href="index.html" data-role="button" data-corners="true"
-        data-shadow="true" data-iconshadow="true" data-wrapperels="span"
-        data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
-          <span class="ui-btn-inner ui-btn-corner-all">
-            <span class="ui-btn-text">Link button</span>
-          </span>
-      </a>
-    */
-    (function() {
-      return u.ready(function() {
-        var link, ulink, _i, _len, _ref, _results;
-        _ref = document.links;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          link = _ref[_i];
-          ulink = u(link);
-          if (!ulink.data('role')) {
-            ulink.addClass('ui-link');
-          }
-          _results.push(ulink.click(function(e) {
-            var hash, href, regs;
-            href = ulink.attr("href");
-            if (/^#\w+/) {
-              umobi.page.revealByHash(href);
-            }
-            regs = href.match(/(#\w+)/);
-            hash = regs ? regs[1] : "#index";
-            if (ulink.data("ajax")) {
-              e.preventDefault();
-              $.ajax({
-                url: href,
-                dataType: "html",
-                success: function(html) {
-                  var $body, $page, body;
-                  body = document.createElement("body");
-                  body.innerHTML = html;
-                  $body = $(body);
-                  $page = $body.find(hash);
-                  if (!$page.get(0)) {
-                    $page = $body.find('[data-role="page"]').first();
-                  }
-                  return $(document.body).append($page);
-                },
-                error: function(err) {
-                  return console.error("error", err);
-                }
-              });
-              return false;
-            }
-          }));
+  define(['jquery', 'cs!umobi.core', 'cs!u'], function() {
+    var disabledInitially, disabledZoom, enabledZoom, initialContent, meta;
+    meta = $("meta[name=viewport]");
+    initialContent = meta.attr("content");
+    disabledZoom = initialContent + ",maximum-scale=1, user-scalable=no";
+    enabledZoom = initialContent + ",maximum-scale=10, user-scalable=yes";
+    disabledInitially = /(user-scalable[\s]*=[\s]*no)|(maximum-scale[\s]*=[\s]*1)[$,\s]/.test(initialContent);
+    umobi.zoom = $.extend({}, {
+      enabled: !disabledInitially,
+      locked: false,
+      disable: function(lock) {
+        if (!disabledInitially && !umobi.zoom.locked) {
+          meta.attr("content", disabledZoom);
+          umobi.zoom.enabled = false;
+          return umobi.zoom.locked = lock || false;
         }
-        return _results;
-      });
-    })();
+      },
+      enable: function(unlock) {
+        if (!disabledInitially && (!umobi.zoom.locked || unlock !== true)) {
+          meta.attr("content", enabledZoom);
+          umobi.zoom.enabled = true;
+          return umobi.zoom.locked = false;
+        }
+      },
+      restore: function() {
+        if (!disabledInitially) {
+          meta.attr("content", initialContent);
+          return umobi.zoom.enabled = true;
+        }
+      }
+    });
+    return umobi.zoom;
   });
 
 }).call(this);
-
-(function() {
-
-  define('cs!umobi.init',["cs!u", "cs!umobi.core", "cs!umobi.tags", "cs!umobi.page", "cs!umobi.widget", "cs!umobi.zoom", "cs!umobi.listview", "cs!umobi.navigation"], function() {
-    (function(d) {
-      var uhtml;
-      uhtml = u('html');
-      uhtml.children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
-      return u.ready(function() {
-        var hideAddressBar;
-        umobi.page.init();
-        if (window.navigator.userAgent.match(/iPhone|iPad|Android/)) {
-          if (window.console) {
-            console.log("touch enabled deviced");
-          }
-          hideAddressBar = function() {
-            if (document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)) {
-              document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
-            }
-            return window.scrollTo(0, 1);
-          };
-          window.addEventListener("load", hideAddressBar);
-          window.addEventListener("orientationchange", hideAddressBar);
-          $(document).on('pagereveal', hideAddressBar);
-        }
-        u.load(function() {
-          return uhtml.removeClass('ui-mobile-rendering');
-        });
-        return u(document.body).addClass("ui-body-c");
-      });
-    })(document);
-  });
-
-}).call(this);
-
-
-// load cs plugin and coffee-script
-define('umobi',[
-    "require",
-    // "depend!zepto[]",
-    // "z",
-    "depend!define[]",
-    "depend!jquery[]",
-    "depend!classList[]",
-    "cs",
-    "coffee-script",
-    "cs!str",
-    "cs!umobi.core",
-    "cs!u.dom",
-    "cs!u",
-    "cs!umobi.tags",
-    "cs!umobi.button",
-    "cs!umobi.widget",
-    "cs!widgets/slider",
-    "cs!umobi.zoom",
-    "cs!umobi.listview",
-    "cs!umobi.navigation",
-    "cs!umobi.scroller",
-    "cs!umobi.touch",
-    "cs!umobi.support",
-    "cs!umobi.offlinecache",
-    "cs!umobi.page",
-    "cs!umobi.splitview",
-    "cs!umobi.link",
-    "cs!umobi.init"
-], function(r,jQuery,cs,cs2,umobi) { 
-    // r(["cs!umobi.init"]);
-});
-
-}));

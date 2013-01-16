@@ -2,7 +2,7 @@
 <html>
     <?php require "_head.php"; ?>
     <body>
-        <article data-role="page" id="index">
+        <page data-role="page" id="index">
             <header data-fixed="true">
                 <h1>µMobi</h1>
             </header>
@@ -16,6 +16,6 @@
             <footer data-fixed="true">
                 <div>Footer</div>
             </footer>
-        </article>
+        </page>
     </body>
 </html>

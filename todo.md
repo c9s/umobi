@@ -29,7 +29,10 @@ x button style
 
 ## Build System
 
-- use a better coffee-script build system, that should easy enough for development.
+- convert coffee-script to javascript from a coffee-script manifest.
+- use js manifest to concat js files.
+- use uglify to uglify js file.
+
 
 ## JS Codebase
 

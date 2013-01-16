@@ -52,16 +52,20 @@ module.exports = (grunt) ->
         gitShortSha: "git log -1 --format=format:\"%H\""
       shas: {}
 
+    coffee:
+      compile:
+        files:
+          "compiled/umobi.js": [ "src/*.coffee" ]
     coffeelint: { app: ['src/*.coffee'] }
-
-    jshint: readCoffee "build/jshint.coffee"
-
     coffeelintOptions:
       no_backticks:
         level: "ignore"
       max_line_length:
         value: 100
         level: "ignore"
+
+    jshint: readCoffee "build/jshint.coffee"
+
     
     # NOTE these configuration settings are used _after_ compilation has taken place
     #      using requirejs. Thus the .compiled extensions. The exception being the theme concat

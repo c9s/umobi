@@ -9,9 +9,9 @@
     <link href="../css/structure/umobi.css" rel="stylesheet" type="text/css"/>
     <link href="../css/themes/default/umobi.css" rel="stylesheet" type="text/css"/>
     <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
-    <script src="../js"> </script>
+    <script src="../src"> </script>
     <!-- requirejs, which is too slow -->
     <!--
-    <script data-main="../js/umobi" src="../js/require.js"></script>
+    <script data-main="../src/umobi" src="../src/require.js"></script>
     -->
 </head>
