@@ -2,23 +2,28 @@
 # jquery.js
 jquery.hashchange.js
 str.coffee
-u.coffee
 u.dom.coffee
+u.coffee
 u.widget.coffee
-umobi.button.coffee
-umobi.coffee
 umobi.core.coffee
-umobi.init.coffee
+umobi.support.coffee
+
+# components
+umobi.scroller.coffee
+umobi.touch.coffee
+
+# ui staff
+umobi.button.coffee
 umobi.link.coffee
 umobi.listview.coffee
 umobi.navigation.coffee
 umobi.offlinecache.coffee
-umobi.page.coffee
-umobi.scroller.coffee
 umobi.splitview.coffee
-umobi.support.coffee
 umobi.tags.coffee
-umobi.touch.coffee
 umobi.widget.coffee
 umobi.zoom.coffee
+umobi.page.coffee
+
+# initialize umobi ui
+umobi.init.coffee
 # vim:filetype=conf:

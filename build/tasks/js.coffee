@@ -19,7 +19,7 @@ module.exports = (grunt) ->
     grunt.log.header "Compiling js from js.manifest..."
     manifest = new ManifestContent("js.manifest",{ baseDir: "src" })
     manifest.addFilter /\.js$/,  (file) -> fs.readFileSync(file,"utf8")
-    manifest.addFilter /\.coffee/, (file) -> CoffeeScript.compile(fs.readFileSync(file,"utf8"))
+    manifest.addFilter /\.coffee/, (file) -> CoffeeScript.compile(fs.readFileSync(file,"utf8"),{ bare: true })
     fs.writeFileSync(require.out,manifest.compile() )
     grunt.log.writeln "File \"#{ require.out }\" created"
 

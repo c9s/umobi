@@ -1,4 +1,4 @@
-((d) ->
+(->
   # To optimize rendering performance, we append a ui-mobile-rendering class
   # to hide elements before rendering pages and adding classes to every
   # elements.
@@ -23,4 +23,4 @@
 
     u.load -> uhtml.removeClass('ui-mobile-rendering')
     u(document.body).addClass("ui-body-c")
-)(document)
+)()
