@@ -1,11 +1,11 @@
 fs     = require "fs"
 
 ###
-ContentManifest builder provides an interface 
+ManifestContent builder provides an interface 
 for you to read a simple manifest file 
 and generate the aggregated content as output.
 ###
-class ContentManifest
+class ManifestContent
   filters: [ ]
   finalizeFilters: []
   contentList: []
@@ -50,8 +50,8 @@ class ContentManifest
         if file.match f.pattern
           content += f.filter(file)
           break
+
     for f in @finalizeFilters
       content = f(content)
     return content
-
-module.exports = ContentManifest
+module.exports = ManifestContent

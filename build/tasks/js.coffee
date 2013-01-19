@@ -2,7 +2,7 @@ requirejs = require "requirejs"
 path      = require "path"
 fs        = require "fs"
 CoffeeScript    = require "coffee-script"
-ContentManifest = require "../../content_manifest.coffee"
+ManifestContent = require "../../manifest_content.coffee"
 
 module.exports = (grunt) ->
   config = grunt.config.get("global")
@@ -16,7 +16,7 @@ module.exports = (grunt) ->
     # requirejs.optimize require
 
     grunt.log.header "Compiling js from js.manifest..."
-    manifest = new ContentManifest("js.manifest",{ baseDir: "src" })
+    manifest = new ManifestContent("js.manifest",{ baseDir: "src" })
     manifest.addFilter /\.js$/,  (file) -> fs.readFileSync(file,"utf8")
     manifest.addFilter /\.coffee/, (file) -> CoffeeScript.compile(fs.readFileSync(file,"utf8"))
     jscontent = manifest.compile()
