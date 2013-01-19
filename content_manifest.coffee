@@ -23,18 +23,18 @@ class ContentManifest
 
 	compile: ->
 		content = ""
-		for item in @list
+		for line in @list
 			# strip comments
-			continue unless item
-			continue if item.match /^\s*#/
-			item.replace /#.*/,""
+			continue unless line
+			continue if line.match /^\s*#/
+			line.replace /#.*/,""
 			unless fs.existsSync(f)
 				console.warn "File #{ f } does not exist."
 				continue
 
 			for f in @filters
-				if item.match f.pattern
-					content += f.filter(item)
+				if line.match f.pattern
+					content += f.filter(line)
 					break
 		for f in @finalizeFilters
 			content = f(content)
