@@ -21,6 +21,10 @@ class ContentManifest
 	###
 	addFinalizeFilter: (filter) -> @finalizeFilters.push filter
 
+	###
+	Compile manifest to content through these registered filters.
+	returns content string.
+	###
 	compile: ->
 		content = ""
 		for line in @contentList
