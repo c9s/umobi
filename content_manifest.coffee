@@ -38,7 +38,7 @@ class ContentManifest
         console.warn "File #{ file } does not exist."
         continue
 
-      console.log "\tCompiling #{ file }..."
+      console.log "  Compiling #{ file }..."
 
       for f in @filters
         if file.match f.pattern

@@ -15,17 +15,17 @@ module.exports = (grunt) ->
     # grunt.log.writeln "requriejs optimizing..."
     # requirejs.optimize require
 
-    grunt.log.writeln "Compiling js from js.manifest..."
+    grunt.log.header "Compiling js from js.manifest..."
     manifest = new ContentManifest("js.manifest",{ baseDir: "src" })
     manifest.addFilter /\.js$/,  (file) -> fs.readFileSync(file,"utf8")
     manifest.addFilter /\.coffee/, (file) -> CoffeeScript.compile(fs.readFileSync(file,"utf8"))
     jscontent = manifest.compile()
 
-    fs.writeFileSync(require.out,jscontent)
+    fs.writeFileSync(require.out,manifest.compile() )
     grunt.log.ok "js.manifest compilation success."
     
     # replace the version with the value in version.text
-    grunt.log.writeln "writing version info..."
+    grunt.log.header "Writing version info..."
     grunt.file.copy require.out, require.out,
       process: (fileContents) ->
         fileContents.replace /__version__/, "\"" + global_config.ver.official + "\""
