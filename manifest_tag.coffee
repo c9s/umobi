@@ -9,6 +9,10 @@ class ManifestTag
   constructor: (file,@options) ->
     @rawContent = fs.readFileSync(file,"utf8")
     @contentList = @rawContent.split /\n/
+    @addType /\.js$/, "text/javascript"
+    @addType /\.coffee$/, "text/coffeescript"
+    @addType /\.ls$/, "text/livescript"
+    @addType /\.html$/, "text/html"
 
   addType: (pattern,type) -> @types.push { pattern: pattern, type: type }
 
