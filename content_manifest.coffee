@@ -1,4 +1,10 @@
 fs     = require "fs"
+
+###
+ContentManifest builder provides an interface 
+for you to read a simple manifest file 
+and generate the aggregated content as output.
+###
 class ContentManifest
   filters: [ ]
   finalizeFilters: []
