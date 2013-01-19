@@ -1,3 +1,4 @@
+
 u = (a) ->
   return a if typeof a is "object" and a instanceof USet
 
