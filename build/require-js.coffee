@@ -1,3 +1,4 @@
+rootFile = "compiled/umobi"
 {
   baseUrl: "src"
   name: "umobi"
