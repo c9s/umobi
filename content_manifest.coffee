@@ -1,13 +1,13 @@
 
 fs     = require "fs"
 class ContentManifest
-
 	filters: [ ]
 	finalizeFilters: []
+	contentList: []
 
 	constructor: (file,@options) ->
 		@rawContent = fs.readFileSync(file,"utf8")
-		@list = @rawContent.split /\n/
+		@contentList = @rawContent.split /\n/
 
 
 	###
@@ -23,7 +23,7 @@ class ContentManifest
 
 	compile: ->
 		content = ""
-		for line in @list
+		for line in @contentList
 			# strip comments
 			continue unless line
 			continue if line.match /^\s*#/
