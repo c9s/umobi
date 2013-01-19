@@ -1,6 +1,8 @@
 requirejs = require "requirejs"
 path      = require "path"
 fs        = require "fs"
+CoffeeScript    = require "coffee-script"
+ContentManifest = require "../../content_manifest.coffee"
 
 module.exports = (grunt) ->
   config = grunt.config.get("global")
@@ -10,10 +12,20 @@ module.exports = (grunt) ->
     global_config = grunt.config.get("global")
     
     # pull the includes together using require js
-    grunt.log.writeln "requriejs optimizing..."
-    requirejs.optimize require
+    # grunt.log.writeln "requriejs optimizing..."
+    # requirejs.optimize require
+
+    grunt.log.writeln "Compiling js from js.manifest..."
+    manifest = new ContentManifest("js.manifest")
+    manifest.addFilter /\.js$/,  (file) -> fs.readFileSync(file,"utf8")
+    manifest.addFilter /\.coffee/, (file) -> CoffeeScript.compile(fs.readFileSync(file,"utf8"))
+    jscontent = manifest.compile()
+
+    fs.writeFileSync(require.out,jscontent)
+    grunt.log.ok "js.manifest compilation success."
     
     # replace the version with the value in version.text
+    grunt.log.writeln "writing version info..."
     grunt.file.copy require.out, require.out,
       process: (fileContents) ->
         fileContents.replace /__version__/, "\"" + global_config.ver.official + "\""
@@ -21,7 +33,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask "js:cleanup", "compile and minify the js", ->
     require = grunt.config.get("js").require
-    
     # remove the requirejs compile output
     fs.unlink require.out
   

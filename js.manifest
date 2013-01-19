@@ -1,3 +1,4 @@
+src/define.js
 src/build.js
 src/classList.js
 src/jquery.js

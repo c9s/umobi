@@ -1,4 +1,3 @@
-
 fs     = require "fs"
 class ContentManifest
 	filters: [ ]
@@ -31,14 +30,17 @@ class ContentManifest
 			# strip comments
 			continue unless line
 			continue if line.match /^\s*#/
-			line.replace /#.*/,""
-			unless fs.existsSync(f)
-				console.warn "File #{ f } does not exist."
+			file = line.replace /#.*/, ""
+
+			unless fs.existsSync(file)
+				console.warn "File #{ file } does not exist."
 				continue
 
+			console.log "Compiling #{ file }..."
+
 			for f in @filters
-				if line.match f.pattern
-					content += f.filter(line)
+				if file.match f.pattern
+					content += f.filter(file)
 					break
 		for f in @finalizeFilters
 			content = f(content)
