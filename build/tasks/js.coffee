@@ -21,11 +21,12 @@ module.exports = (grunt) ->
     manifest.addFilter /\.js$/,  (file) -> fs.readFileSync(file,"utf8")
     manifest.addFilter /\.coffee/, (file) -> CoffeeScript.compile(fs.readFileSync(file,"utf8"))
     fs.writeFileSync(require.out,manifest.compile() )
-    grunt.log.ok "js.manifest compilation success."
+    grunt.log.writeln "File \"#{ require.out }\" created"
 
     grunt.log.header "Compiling js header for developement..."
-    mtag = new ManifestTag("js.manifest",{ baseDir: "src", baseUrl: "src" })
-    grunt.log.writeln mtag.compile()
+    mtag = new ManifestTag("js.manifest",{ baseDir: "src", baseUrl: "src", newline: true })
+    fs.writeFileSync("docs/_js.php",mtag.compile())
+    grunt.log.writeln "File \"docs/_js.php\" created"
     
     # replace the version with the value in version.text
     grunt.log.header "Writing version info..."

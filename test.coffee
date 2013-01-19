@@ -11,9 +11,6 @@ jscontent = manifest.compile()
 
 ManifestTag = require "./manifest_tag.coffee"
 mtag = new ManifestTag("js.manifest",{ baseDir: "src", baseUrl: "../src", newline: true })
-mtag.addType /\.js$/, "text/javascript"
-mtag.addType /\.coffee$/, "text/coffeescript"
-mtag.addType /\.ls$/, "text/livescript"
 jstags = mtag.compile()
 console.log jstags
 
