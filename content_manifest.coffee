@@ -1,3 +1,4 @@
+
 fs     = require "fs"
 class ContentManifest
 
@@ -7,8 +8,7 @@ class ContentManifest
 		@rawContent = fs.readFileSync(file,"utf8")
 		@list = @rawContent.split /\n/
 
-	registerFilter: (pattern,filter) ->
-		@filters.push { pattern: pattern, filter: filter }
+	addFilter: (pattern,filter) -> @filters.push { pattern: pattern, filter: filter }
 
 	compile: ->
 		content = ""
