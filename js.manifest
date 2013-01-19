@@ -1,7 +1,5 @@
-define.js
-build.js
 classList.js
-jquery.js
+# jquery.js
 jquery.hashchange.js
 str.coffee
 u.coffee
@@ -11,7 +9,6 @@ umobi.button.coffee
 umobi.coffee
 umobi.core.coffee
 umobi.init.coffee
-umobi.js
 umobi.link.coffee
 umobi.listview.coffee
 umobi.navigation.coffee
@@ -24,3 +21,4 @@ umobi.tags.coffee
 umobi.touch.coffee
 umobi.widget.coffee
 umobi.zoom.coffee
+# vim:filetype=conf:
