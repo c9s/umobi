@@ -173,7 +173,7 @@ module.exports = (grunt) ->
   # load the project's default tasks
   grunt.loadTasks "build/tasks"
 
-  grunt.registerTask "watch", () ->
+  grunt.registerTask "coffee:watch", () ->
     done = @async()
     execSync = require "exec-sync"
     
