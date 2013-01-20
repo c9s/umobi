@@ -27,6 +27,14 @@ class ManifestContent
   ###
   addFinalizeFilter: (filter) -> @finalizeFilters.push filter
 
+
+  list: (filter) ->
+    return @contentList unless pattern
+    if filter instanceof RegExp
+      return @contentList.filter (item) -> item.match pattern
+    if filter instanceof Function
+      return @contentList.filter filter
+
   ###
   Compile manifest to content through these registered filters.
   returns content string.
