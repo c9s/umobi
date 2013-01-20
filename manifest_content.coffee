@@ -27,13 +27,15 @@ class ManifestContent
   ###
   addFinalizeFilter: (filter) -> @finalizeFilters.push filter
 
-
   list: (filter) ->
     return @contentList unless pattern
-    if filter instanceof RegExp
-      return @contentList.filter (item) -> item.match pattern
-    if filter instanceof Function
-      return @contentList.filter filter
+    filterComments = (line) ->
+      return false unless line
+      return false if line.match /^\s*#/
+    stripComments = (line) -> line.replace /#.*/, ""
+    list = @contentList.filter( filterComments ).map( stripComments )
+    return list.filter((item) -> item.match pattern) if filter instanceof RegExp
+    return list.filter(filter) if filter instanceof Function
 
   ###
   Compile manifest to content through these registered filters.
