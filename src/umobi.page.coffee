@@ -6,7 +6,8 @@
 #  ], () ->
 
 (->
-  # prevent body scrolling
+  # XXX: prevent body scrolling, use this with
+  # using 3d tranlsate scrolling.
   u('body').css('overflow','hidden').addClass('ui-overlay-c')
 
   # static methods of page object.
