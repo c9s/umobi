@@ -8,7 +8,8 @@
   }
   support.matrix = `"WebKitCSSMatrix" in window`
 
-# with m11 3d translate
+  # with m11 3d translate
   support.matrixM11  = support.matrix and ("m11" in new WebKitCSSMatrix())
   umobi.support = support
+  return
 )()

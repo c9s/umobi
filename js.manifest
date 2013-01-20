@@ -9,7 +9,14 @@ str.coffee
 u.dom.coffee
 u.coffee
 u.widget.coffee
+
+# default umobi config
+umobi.config.coffee
+
+# umobi core functinality
 umobi.core.coffee
+
+# feature detection
 umobi.support.coffee
 
 # components
