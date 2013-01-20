@@ -1,6 +1,10 @@
+# === pure javascript section ===
 # classList.js # classList should be optional for user.
 # jquery.js
 jquery.hashchange.js
+
+
+# === coffee-script section ===
 str.coffee
 u.dom.coffee
 u.coffee
