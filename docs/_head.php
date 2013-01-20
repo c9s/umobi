@@ -11,6 +11,14 @@
     <link href="../css/customfont/fontawesome.css" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="../src/jquery.js"></script>
-    <script type="text/javascript" src="../src/coffee-script.js"></script>
-    <script type="text/coffeescript" src="_coffee.php"></script>
+
+<?php if ( file_exists("../src/umobi.compiled.js") ): ?>
+    <script type="text/javascript" src="../src/jquery.js"></script>
+    <script type="text/javascript" src="../src/umobi.compiled.js"></script>
+<?php else: ?>
+    <script type="text/javascript" src="../src/jquery.js"></script>
+    <script type="text/javascript" src="../compiled/umobi.min.js"></script>
+<?php endif ?>
+
+
 </head>

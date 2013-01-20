@@ -181,7 +181,7 @@ module.exports = (grunt) ->
     m = new ManifestContent("js.manifest",{ baseDir: "src" })
     files = m.list /\.coffee/
     cmd = """
-    coffee -wbc -j compiled/umobi.coffee.js #{ files.join(" ") }
+    coffee -wbc -j src/umobi.compiled.js #{ files.join(" ") }
     """
     grunt.log.writeln("Running command:\n   #{cmd}")
     execSync(cmd)
