@@ -173,5 +173,19 @@ module.exports = (grunt) ->
   # load the project's default tasks
   grunt.loadTasks "build/tasks"
 
+  grunt.registerTask "watch", () ->
+    done = @async()
+    execSync = require "exec-sync"
+    
+    ManifestContent = require "./manifest_content.coffee"
+    m = new ManifestContent("js.manifest",{ baseDir: "src" })
+    files = m.list /\.coffee/
+    cmd = """
+    coffee -wbc -j compiled/umobi.coffee.js #{ files.join(" ") }
+    """
+    grunt.log.writeln("Running command:\n   #{cmd}")
+    execSync(cmd)
+    done()
+
   # set the default task.
   grunt.registerTask "default", ["coffeelint","js","css","qunit","sizereport"]

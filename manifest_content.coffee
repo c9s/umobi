@@ -14,6 +14,7 @@ class ManifestContent
   constructor: (file,@options) ->
     @rawContent = fs.readFileSync(file,"utf8")
     @contentList = @rawContent.split /\n/
+    @options or= {}
 
 
   ###
@@ -28,13 +29,15 @@ class ManifestContent
   addFinalizeFilter: (filter) -> @finalizeFilters.push filter
 
   list: (filter) ->
-    return @contentList unless pattern
     filterComments = (line) ->
       return false unless line
       return false if line.match /^\s*#/
+      return true
     stripComments = (line) -> line.replace /#.*/, ""
-    list = @contentList.filter( filterComments ).map( stripComments )
-    return list.filter((item) -> item.match pattern) if filter instanceof RegExp
+    list = @contentList.filter( filterComments ).map( stripComments ).map (file) =>
+      return if @options.baseDir then @options.baseDir + "/" + file else file
+    return list unless filter
+    return list.filter((item) -> item.match filter) if filter instanceof RegExp
     return list.filter(filter) if filter instanceof Function
 
   ###
