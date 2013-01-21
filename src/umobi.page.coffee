@@ -13,20 +13,26 @@
   # static methods of page object.
   umobi.page =
 
-    # get all pages
-    findAll: -> u('[data-role="page"],page')
+    # get all page objects.
+    findAll: -> u '[data-role="page"],page'
 
-    # get active page
-    findActive: -> u('.ui-page-active')
+    # get active page object
+    findActive: -> u '.ui-page-active'
 
+
+    ###
+    Initialize page components from elements and load correct page by hash or
+    by index.
+    ###
     init: ->
       $(document).trigger('pageinit')
 
       # find static pages and initialize them
       pages = @findAll()
+
       # if no pages are found, create one with body's inner html
       if not pages.get(0)
-        pages = u($("body").wrapInner( "<div data-role=\"page\"></div>" ).children(0).get(0))
+        pages = u $("body").wrapInner( "<div data-role=\"page\"></div>" ).children(0).get(0)
       pages.each (i,e) => @create(e)
 
       if location.hash
