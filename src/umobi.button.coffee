@@ -21,6 +21,7 @@
       up:    "ui-btn-up-#{theme}"
       down:  "ui-btn-down-#{theme}"
       hover: "ui-btn-hover-#{theme}"
+      active: "ui-btn-active-#{theme}"
     $el.addClass cmap.up
     $el.hover (->
       u(@).removeClass([cmap.up,cmap.down]).addClass(cmap.hover)
@@ -29,13 +30,16 @@
     )
 
     $el.on "tap", (e) ->
-      u(@).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down)
+      u(@).removeClass([cmap.hover,cmap.up]).addClass(cmap.down)
 
     $el.on "mousedown", (e) ->
-      u(@).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down)
+      u(@).removeClass([cmap.hover,cmap.up]).addClass(cmap.down)
 
     $el.on 'mouseup', (e) ->
       u(@).removeClass(cmap.down).addClass(cmap.hover)
+
+    $el.on 'click', (e) ->
+      u(@).removeClass([cmap.hover,cmap.down]).addClass(cmap.active)
 
   u.ready ->
     linkbuttons = u('a[data-role="button"]')
