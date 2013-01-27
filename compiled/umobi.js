@@ -953,8 +953,9 @@ String.prototype.toDashCase = function() {
 
 (function() {
   umobi.config = {
-    touchScroll: false,
+    cssTouchScroll: false,
     webkitOverflowScrolling: 'touch',
+    enablePage: true,
     theme: 'c'
   };
 })();
@@ -1710,6 +1711,9 @@ u.ready(function() {
     }
   });
 })();
+/*
+uMobi page UI navigation feature
+*/
 
 (function() {
   u('body').css('overflow', 'hidden').addClass('ui-overlay-c');
@@ -1759,7 +1763,7 @@ u.ready(function() {
       return umobi.page.reveal(upage);
     },
     create: function(el) {
-      var $c, $contentContainer, AdjustContentHeight, AdjustContentPadding, c, f, h, isBothFixed, resizeTimeout, upage;
+      var $c, AdjustContentHeight, AdjustContentPadding, c, f, h, isBothFixed, resizeTimeout, upage;
       upage = u(el).addClass(["ui-page", "ui-body-" + umobi.config.theme]);
       upage.trigger("pagecreate");
       h = upage.find('[data-role="header"],header').addClass("ui-header");
@@ -1769,41 +1773,38 @@ u.ready(function() {
       isBothFixed = h.data("fixed" || f.data("fixed"));
       if (isBothFixed) {
         $c = c.jQuery();
-        $c.wrap('<div class="ui-content-container"/>');
-        $contentContainer = $c.parent();
-        if (umobi.support.touch && umobi.config.touchScroll) {
+        if (umobi.support.touch && umobi.config.cssTouchScroll) {
           umobi.scroller.create(c.get(0));
           document.documentElement.style.overflow = "hidden";
-          $contentContainer.addClass("ui-content-scroll"); 
+          $c.addClass("ui-content-scroll");
+          upage.addClass("ui-fixed-page"); 
         }
-        if (!umobi.config.touchScroll) {
-          AdjustContentPadding = function() {
-            $contentContainer.css({
-              "position": "absolute",
-              "-webkit-overflow-scrolling": "touch",
-              "overflow": "auto"
-            });
-            if (h.get(0))  
-              $contentContainer.css("top", h.height() + "px");
-            if (f.get(0))  
-              return $contentContainer.css("bottom", f.height() + "px");
-          };
-          upage.on("pagereveal", AdjustContentPadding); 
-        } else {
+        if (umobi.config.cssTouchScroll) {
           AdjustContentHeight = function(e) {
             var contentBottom, contentHeight, contentTop;
             contentHeight = $(window).height();
             contentTop = h.get(0) ? h.height() : 0;
             contentBottom = f.get(0) ? f.height() : 0;
-            return $contentContainer.css({
+            return $c.css({
               position: "absolute",
-              top: contentTop + "px",
+              top: contentTop,
               left: 0,
-              bottom: contentBottom + "px",
+              bottom: contentBottom,
               overflow: umobi.support.touch ? "hidden" : "auto"
             });
           };
-          upage.on("pagereveal", AdjustContentHeight);
+          upage.on("pagereveal", AdjustContentHeight); 
+        } else {
+          AdjustContentPadding = function() {
+            var contentBottom, contentTop;
+            contentTop = h.get(0) ? h.height() : 0;
+            contentBottom = f.get(0) ? f.height() : 0;
+            return $c.css({
+              marginTop: contentTop,
+              marginBottom: contentBottom
+            });
+          };
+          upage.on("pagereveal", AdjustContentPadding);
         } 
       }
       resizeTimeout = null;
@@ -1825,19 +1826,20 @@ u.ready(function() {
   uhtml = u('html');
   uhtml.children(0).addClass(['ui-mobile', 'ui-mobile-rendering']);
   return u.ready(function() {
-    var hideAddressBar;
-    umobi.page.init();
-    if (window.navigator.userAgent.match(/iPhone|iPad|Android/)) {
-      if (window.console)  
-        console.log("touch enabled deviced");
-      hideAddressBar = function() {
-        if (document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio))  
-          document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
-        return window.scrollTo(0, 1);
-      };
-      window.addEventListener("load", hideAddressBar);
-      window.addEventListener("orientationchange", hideAddressBar);
-      $(document).on('pagereveal', hideAddressBar); 
+    var d, hideAddressBar;
+    if (umobi.config.enablePage) {
+      umobi.page.init();
+      if (window.navigator.userAgent.match(/iPhone|iPad|Android/)) {
+        d = document;
+        hideAddressBar = function() {
+          if (d.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio))  
+            d.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
+          return window.scrollTo(0, 1);
+        };
+        window.addEventListener("load", hideAddressBar);
+        window.addEventListener("orientationchange", hideAddressBar);
+        $(d).on('pagereveal', hideAddressBar); 
+      } 
     }
     u.load(function() {
       return uhtml.removeClass('ui-mobile-rendering');

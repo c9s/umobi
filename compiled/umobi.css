@@ -132,15 +132,15 @@ h4 {
 /* gradient syntax with IE-compatible and older browser */
 .ui-mobile-rendering > * {
   visibility: hidden; }
-.ui-page,
-.ui-dialog {
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100%;
-  position: absolute;
+.ui-page {
   display: none;
   border: 0; }
+.ui-fixed-page {
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100%;
+  position: absolute; }
 .ui-page.ui-page-active {
   display: block;
   overflow: visible; }
@@ -428,7 +428,7 @@ pre {
   /* Chrome10+,Safari5.1+ */
   background: -webkit-linear-gradient(top, white 0%, #e5e5e5 100%);
   /* W3C */
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); }
+  background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
 .ui-btn.ui-btn-hover-c {
   background: whitesmoke;
   /* FF3.6+ */
@@ -438,7 +438,7 @@ pre {
   /* Chrome10+,Safari5.1+ */
   background: -webkit-linear-gradient(top, whitesmoke 0%, #d5d5d5 100%);
   /* W3C */
-  background: linear-gradient(to bottom, #f5f5f5 0%, #d5d5d5 100%); }
+  background: linear-gradient(to bottom, whitesmoke 0%, #d5d5d5 100%); }
 .ui-btn.ui-btn-down-c {
   background: #dddddd;
   /* FF3.6+ */
@@ -448,7 +448,7 @@ pre {
   /* Chrome10+,Safari5.1+ */
   background: -webkit-linear-gradient(top, #dddddd 0%, white 100%);
   /* W3C */
-  background: linear-gradient(to bottom, #dddddd 0%, #ffffff 100%); }
+  background: linear-gradient(to bottom, #dddddd 0%, white 100%); }
 /*********************************************
  * ui link styles
  ********************************************** */
@@ -564,7 +564,7 @@ ul.ui-listview {
     /* IE10+ */
     background: -ms-linear-gradient(top, white 0%, #f1f1f1 100%);
     /* W3C */
-    background: linear-gradient(to bottom, #ffffff 0%, #f1f1f1 100%);
+    background: linear-gradient(to bottom, white 0%, #f1f1f1 100%);
     /* IE6-9 */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='white', endColorstr='#f1f1f1',GradientType=0 ); }
   ul.ui-listview li.ui-btn:hover {

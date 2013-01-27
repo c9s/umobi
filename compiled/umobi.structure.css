@@ -115,15 +115,15 @@ h4 {
   width: 80%; }
 .ui-mobile-rendering > * {
   visibility: hidden; }
-.ui-page,
-.ui-dialog {
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100%;
-  position: absolute;
+.ui-page {
   display: none;
   border: 0; }
+.ui-fixed-page {
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100%;
+  position: absolute; }
 .ui-page.ui-page-active {
   display: block;
   overflow: visible; }
