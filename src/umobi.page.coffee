@@ -91,16 +91,16 @@ uMobi page UI navigation feature
         $contentContainer = $c.parent()
 
         # Initialize touch scroller with 3D translate if it's on mobile
-        # device and the touchScroll option is enabled.
-        if umobi.support.touch and umobi.config.touchScroll
+        # device and the cssTouchScroll option is enabled.
+        if umobi.support.touch and umobi.config.cssTouchScroll
           # create js touch scroller for content wrapper.
           umobi.scroller.create(c.get(0))
           document.documentElement.style.overflow = "hidden"
           $contentContainer.addClass "ui-content-scroll"
 
-        # if touchScroll option is not enabled, we should just
+        # if cssTouchScroll option is not enabled, we should just
         # adjust cotnent padding to keep space for header and footer.
-        if not umobi.config.touchScroll
+        if not umobi.config.cssTouchScroll
           AdjustContentPadding = ->
             # console.log "pagereveal", h.height(), f.height()
             $contentContainer.css({
