@@ -148,3 +148,7 @@ Below is the compiled directory structure:
     ├── umobi.theme.css
     └── umobi.theme.min.css
 
+To develop with CoffeeScript, simply run the command below:
+
+    grunt coffee:watch
+
