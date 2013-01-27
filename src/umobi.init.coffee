@@ -13,15 +13,15 @@
       umobi.page.init()
       # currently, if the page can not be scrolled, this won't work.
       if window.navigator.userAgent.match(/iPhone|iPad|Android/)
-        console.log "touch enabled deviced" if window.console
-        hideAddressBar = () ->
-          if document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)
-            document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
+        d = document
+        hideAddressBar = ->
+          if d.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)
+            d.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
           window.scrollTo(0,1)
           # window.top.scrollTo(0,1)
         window.addEventListener("load",hideAddressBar)
         window.addEventListener("orientationchange",hideAddressBar)
-        $(document).on('pagereveal', hideAddressBar )
+        $(d).on('pagereveal', hideAddressBar )
 
     u.load -> uhtml.removeClass('ui-mobile-rendering')
     u(document.body).addClass("ui-body-c")
