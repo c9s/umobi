@@ -8,7 +8,10 @@
             </div>
             <div data-role="content">
 
-                <p>Content</p>
+<?php md_start(); ?>
+uMobi turns page elements for navigation, which reduces requests between 
+switching pages.
+<?php md_end(); ?>
 
                 <ul data-role="listview" data-inset="true">
                     <li><a href="pages.php">Pages</a></li>
