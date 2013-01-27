@@ -114,22 +114,14 @@ uMobi page UI navigation feature
               overflow: if umobi.support.touch then "hidden" else "auto"
           upage.on "pagereveal", AdjustContentHeight
         else
-          console.log "not using css touch scroll"
           AdjustContentPadding = ->
             contentTop    = if h.get(0) then h.height() else 0
             contentBottom = if f.get(0) then f.height() else 0
+            # use webkit overflow if it's needed
+            # "-webkit-overflow-scrolling": "touch"
             $c.css
               marginTop: contentTop
               marginBottom: contentBottom
-#            AdjustContentPadding = ->
-#              console.log "pagereveal", h.height(), f.height()
-#              $c.css({
-#                "position": "absolute"
-#                "-webkit-overflow-scrolling": "touch"
-#                "overflow": "auto"
-#              })
-#              $c.css("top", h.height() + "px") if h.get(0)
-#              $c.css("bottom", f.height() + "px") if f.get(0)
           upage.on "pagereveal", AdjustContentPadding
 
       resizeTimeout = null
