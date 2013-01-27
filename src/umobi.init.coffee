@@ -19,9 +19,9 @@
             d.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px'
           window.scrollTo(0,1)
           # window.top.scrollTo(0,1)
-        window.addEventListener("load",hideAddressBar)
-        window.addEventListener("orientationchange",hideAddressBar)
-        $(d).on('pagereveal', hideAddressBar )
+        window.addEventListener "load",hideAddressBar
+        window.addEventListener "orientationchange",hideAddressBar
+        $(d).on 'pagereveal', hideAddressBar
 
     u.load -> uhtml.removeClass('ui-mobile-rendering')
     u(document.body).addClass("ui-body-c")
