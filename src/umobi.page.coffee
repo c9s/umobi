@@ -5,6 +5,10 @@
 #    "cs!umobi.support"
 #  ], () ->
 
+
+###
+uMobi page UI navigation feature
+###
 (->
   # XXX: prevent body scrolling, use this with
   # using 3d tranlsate scrolling.

@@ -7,6 +7,9 @@
                 <h1>µMobi</h1>
             </div>
             <div data-role="content">
+
+                <p>Content</p>
+
                 <ul data-role="listview" data-inset="true">
                     <li><a href="pages.php">Pages</a></li>
                     <li><a href="forms.php">Form Widgets</a></li>

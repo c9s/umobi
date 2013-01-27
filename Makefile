@@ -1,4 +1,4 @@
-.PHONY: build js css
+.PHONY: build js css doc
 
 all: .deps build
 
@@ -13,6 +13,12 @@ css:
 
 gem_modules:
 	gem install sass listen compass guard
+
+doc:
+	-pear channel-discover pear.corneltek.com
+	-pear channel-discover pear.twig-project.org
+	pear install -a -f twig/Twig
+	pear install -a -f corneltek/Twig_Extensions_Markdown
 
 .deps:
 	git submodule init
