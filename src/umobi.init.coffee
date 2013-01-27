@@ -13,10 +13,10 @@
       # currently, if the page can not be scrolled, this won't work.
       if w.navigator.userAgent.match(/iPhone|iPad|Android/)
         hideAddressBar = ->
-          if d.documentElement.scrollHeight < (w.outerHeight / w.devicePixelRatio)
-            d.documentElement.style.height = (w.outerHeight / w.devicePixelRatio) + 'px'
+          r = w.outerHeight / w.devicePixelRatio
+          if d.documentElement.scrollHeight < r
+            d.documentElement.style.height = r + 'px'
           w.scrollTo(0,1)
-          # window.top.scrollTo(0,1)
         w.addEventListener "load",hideAddressBar
         w.addEventListener "orientationchange",hideAddressBar
         $(d).on 'pagereveal', hideAddressBar
