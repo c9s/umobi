@@ -948,11 +948,14 @@ String.prototype.toDashCase = function() {
 })();
 
 (function() {
-  return window.umobi = {
-    config: {
-      touchScroll: false,
-      theme: 'c'
-    }
+  window.umobi = {};
+})();
+
+(function() {
+  umobi.config = {
+    touchScroll: false,
+    webkitOverflowScrolling: 'touch',
+    theme: 'c'
   };
 })();
 var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
@@ -966,7 +969,7 @@ var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; 
   };
   support.matrix = "WebKitCSSMatrix" in window;
   support.matrixM11 = support.matrix && (__indexOf.call(new WebKitCSSMatrix(), "m11") >= 0);
-  return umobi.support = support;
+  umobi.support = support;
 })();
 
 (function() {
@@ -1332,7 +1335,8 @@ var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; 
     cmap = {
       up: "ui-btn-up-" + theme,
       down: "ui-btn-down-" + theme,
-      hover: "ui-btn-hover-" + theme
+      hover: "ui-btn-hover-" + theme,
+      active: "ui-btn-active-" + theme
     };
     $el.addClass(cmap.up);
     $el.hover((function() {
@@ -1341,13 +1345,16 @@ var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; 
       return u(this).removeClass([cmap.down, cmap.hover]).addClass(cmap.up);
     }));
     $el.on("tap", function(e) {
-      return u(this).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down);
+      return u(this).removeClass([cmap.hover, cmap.up]).addClass(cmap.down);
     });
     $el.on("mousedown", function(e) {
-      return u(this).removeClass(cmap.hover).removeClass(cmap.up).addClass(cmap.down);
+      return u(this).removeClass([cmap.hover, cmap.up]).addClass(cmap.down);
     });
-    return $el.on('mouseup', function(e) {
+    $el.on('mouseup', function(e) {
       return u(this).removeClass(cmap.down).addClass(cmap.hover);
+    });
+    return $el.on('click', function(e) {
+      return u(this).removeClass([cmap.hover, cmap.down]).addClass(cmap.active);
     });
   };
   return u.ready(function() {
@@ -1713,6 +1720,11 @@ u.ready(function() {
     findActive: function() {
       return u('.ui-page-active');
     },
+    /*
+        Initialize page components from elements and load correct page by hash or
+        by index.
+    */
+
     init: function() {
       var indexPage, pages,
         _this = this;

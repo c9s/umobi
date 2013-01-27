@@ -4,6 +4,7 @@
 <script type="text/coffeescript" src="src/u.coffee"></script>
 <script type="text/coffeescript" src="src/u.widget.coffee"></script>
 <script type="text/coffeescript" src="src/umobi.core.coffee"></script>
+<script type="text/coffeescript" src="src/umobi.config.coffee"></script>
 <script type="text/coffeescript" src="src/umobi.support.coffee"></script>
 <script type="text/coffeescript" src="src/umobi.scroller.coffee"></script>
 <script type="text/coffeescript" src="src/umobi.touch.coffee"></script>
