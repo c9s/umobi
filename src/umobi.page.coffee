@@ -87,8 +87,6 @@ uMobi page UI navigation feature
         $c = c.jQuery()
 
         # create ui-content container for scrolling
-        $c.wrap('<div class="ui-content-container"/>')
-        $contentContainer = $c.parent()
 
         # Initialize touch scroller with 3D translate if it's on mobile
         # device and the cssTouchScroll option is enabled.
@@ -96,35 +94,43 @@ uMobi page UI navigation feature
           # create js touch scroller for content wrapper.
           umobi.scroller.create(c.get(0))
           document.documentElement.style.overflow = "hidden"
-          $contentContainer.addClass "ui-content-scroll"
+          $c.addClass "ui-content-scroll"
+          upage.addClass("ui-fixed-page")
 
         # if cssTouchScroll option is not enabled, we should just
         # adjust cotnent padding to keep space for header and footer.
-        if not umobi.config.cssTouchScroll
-          AdjustContentPadding = ->
-            # console.log "pagereveal", h.height(), f.height()
-            $contentContainer.css({
-              "position": "absolute"
-              "-webkit-overflow-scrolling": "touch"
-              "overflow": "auto"
-            })
-            $contentContainer.css("top", h.height() + "px") if h.get(0)
-            $contentContainer.css("bottom", f.height() + "px") if f.get(0)
-          upage.on "pagereveal", AdjustContentPadding
-        else
+        if umobi.config.cssTouchScroll
           # use absolute position and fixed header/footer for desktop
           AdjustContentHeight = (e) ->
             # console.log "pagereveal" , h.height(), f.height()
             contentHeight = $(window).height()
             contentTop    = if h.get(0) then h.height() else 0
             contentBottom = if f.get(0) then f.height() else 0
-            $contentContainer.css
+            $c.css
               position: "absolute"
-              top: contentTop + "px"
+              top: contentTop
               left: 0
-              bottom: contentBottom + "px"
+              bottom: contentBottom
               overflow: if umobi.support.touch then "hidden" else "auto"
           upage.on "pagereveal", AdjustContentHeight
+        else
+          console.log "not using css touch scroll"
+          AdjustContentPadding = ->
+            contentTop    = if h.get(0) then h.height() else 0
+            contentBottom = if f.get(0) then f.height() else 0
+            $c.css
+              marginTop: contentTop
+              marginBottom: contentBottom
+#            AdjustContentPadding = ->
+#              console.log "pagereveal", h.height(), f.height()
+#              $c.css({
+#                "position": "absolute"
+#                "-webkit-overflow-scrolling": "touch"
+#                "overflow": "auto"
+#              })
+#              $c.css("top", h.height() + "px") if h.get(0)
+#              $c.css("bottom", f.height() + "px") if f.get(0)
+          upage.on "pagereveal", AdjustContentPadding
 
       resizeTimeout = null
       u(window).on "resize", ->
