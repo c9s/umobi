@@ -22,4 +22,5 @@
         $(d).on 'pagereveal', hideAddressBar
     u.load -> uhtml.removeClass('ui-mobile-rendering')
     u(d.body).addClass("ui-body-c")
+
 )(window,document)

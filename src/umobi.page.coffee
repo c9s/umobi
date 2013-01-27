@@ -64,7 +64,7 @@ uMobi page UI navigation feature
       umobi.page.reveal(upage)
 
     create: (el) ->
-      upage = u(el).addClass(["ui-page","ui-body-#{ umobi.config.theme }"])
+      upage = u(el).addClass(["ui-page","ui-overlay-#{ umobi.config.theme }"])
 
       # trigger pagecreate event.
       upage.trigger("pagecreate")

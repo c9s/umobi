@@ -42,9 +42,10 @@ pre {
 .ui-footer {
   box-shadow: 0px -3px 10px #666666; }
 
-.ui-overlay-c,
 .ui-body-c {
-  border: 1px solid #aaaaaa;
+  background: #eeeeee; }
+
+.ui-overlay-c {
   color: #333333;
   text-shadow: 0 1px 0 white;
   background: #f9f9f9;
